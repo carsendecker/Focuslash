@@ -1,0 +1,107 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+using Slider = UnityEngine.UI.Slider;
+
+public class LaserTurret : Creature
+{
+    public GameObject Laser;
+    public ParticleSystem TelegraphParticles, LaserParticles;
+    public float AttackFrequency;
+    public float AttackFrequencyVariance;
+    public float AttackLeadDistance;
+    public float ChargeTime;
+    public float FireTime;
+    public int Damage;
+    public Slider HealthBar;
+    public GameObject DeathParticles;
+    public AudioClip FireSound;
+
+    private PlayerController player;
+    private Rigidbody2D playerRb;
+    private Collider2D laserCol;
+    private float attackTimer;
+
+//    private float maxColY = 0.62f;
+//    private bool growCol;
+    
+    // Start is called before the first frame update
+    new void Start() {
+        base.Start();
+        player = FindObjectOfType<PlayerController>();
+        playerRb = player.GetComponent<Rigidbody2D>();
+        laserCol = Laser.GetComponent<Collider2D>();
+        laserCol.enabled = false;
+        NewAttackTimer();
+        HealthBar.maxValue = MaxHealth;
+        HealthBar.value = MaxHealth;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (attackTimer > 0)
+        {
+            attackTimer -= Time.deltaTime;
+            if (attackTimer <= 0)
+            {
+                StartCoroutine(Attack());
+            }
+        }
+
+        HealthBar.value = Mathf.Lerp(HealthBar.value, health, 0.1f);
+    }
+
+    private void NewAttackTimer()
+    {
+        float randVariance = Random.Range(-AttackFrequencyVariance, AttackFrequencyVariance);
+        attackTimer = AttackFrequency + randVariance;
+    }
+
+    private IEnumerator Attack()
+    {
+        Vector3 targetPos = player.transform.position + (Vector3)(playerRb.velocity.normalized * AttackLeadDistance);
+        var dir = targetPos - Laser.transform.position;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Laser.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+        
+        TelegraphParticles.Play();
+        yield return new WaitForSeconds(ChargeTime);
+        
+        TelegraphParticles.Stop();
+        TelegraphParticles.Clear();
+        
+//        yield return new WaitForSeconds(0.5f);
+        
+        LaserParticles.Play();
+        AudioManager.AM.PlaySound(FireSound, AMSource.EnemySound);
+        
+        yield return new WaitForSeconds(FireTime);
+
+        LaserParticles.Stop();
+        NewAttackTimer();
+    }
+
+//    private void OnTriggerEnter2D(Collider2D other)
+//    {
+//        if (other.CompareTag("Player"))
+//        {
+//            player.TakeDamage(Damage);
+//        }
+//    }
+    
+//    private void OnParticleCollision(GameObject other)
+//    {
+//        if (other.CompareTag("Player"))
+//        {
+//            player.TakeDamage(Damage);
+//        }
+//    }
+
+    protected override void Die()
+    {
+        Instantiate(DeathParticles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+}

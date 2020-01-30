@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3162398059702796481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3162398059702796483}
+  - component: {fileID: 3162398059702796482}
+  - component: {fileID: 3946449241301045480}
+  m_Layer: 0
+  m_Name: Final Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3162398059702796483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162398059702796481}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.604837, y: 67.63899, z: -4911.5205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3162398059702796482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162398059702796481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489171b37c63b40e4b7dfed232f37c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomFile: {fileID: 4900000, guid: 2288b7c6ad1ba46e9a36166d70526db4, type: 3}
+  WallPrefab: {fileID: 3866137337575304997, guid: c8a337c7272574283a41f3d3c936d1d1,
+    type: 3}
+  TileList: []
+  RoomWidth: 0
+  RoomHeight: 0
+  doorCloseSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+--- !u!114 &3946449241301045480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162398059702796481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae0b2b350cfe4742a5e11dfc4491397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyTypes:
+  - {fileID: 8294495241791088127, guid: c30f1df6545a14bd68fa8f2ec4a89105, type: 3}
+  - {fileID: 2157397900416712337, guid: d80d3fe67801e4361bc6c8d84ef22278, type: 3}
+  SpawnDelay: 5
+  SpawnSpeedVariance: 1
+  SummonDelay: 2
+  SpawnDensity: 3
+  DifficultyScaleDelay: 5
+  SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
+    type: 3}
+  SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  MAP_WIDTH: 0
+  MAP_HEIGHT: 0
