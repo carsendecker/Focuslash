@@ -10,4 +10,5 @@ public static class SystemsManager
 {
 	public static AudioManager Audio;
 	public static UIManager UI;
+	public static UtilityManager Utility;
 }

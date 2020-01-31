@@ -69,7 +69,7 @@ public class PlayerController : Creature
 		base.TakeDamage(damage);
 		iFramesForSeconds(iFrameTime, true);
 		
-		UtilityGod.UG.ShakeCamera(0.5f, 0.3f);
+		SystemsManager.Utility.ShakeCamera(0.5f, 0.3f);
 		SystemsManager.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
 		
 		SetPhase(Phase.Movement);

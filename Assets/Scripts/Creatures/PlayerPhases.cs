@@ -416,7 +416,7 @@ public class AttackPhase : PlayerPhase
 			{
 				player.EnemyQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
 			}
-			UtilityGod.UG.ShakeCamera(0.1f, 0.25f);
+			SystemsManager.Utility.ShakeCamera(0.1f, 0.25f);
 		}
 		
 		//If there are enemies left in the queue, set the next one as the new target

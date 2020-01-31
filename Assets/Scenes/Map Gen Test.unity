@@ -1107,10 +1107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8276fff544d704d56a92a3ee0aa0a2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPanel: {fileID: 0}
-  AttackOptions:
-  - {fileID: 0}
-  - {fileID: 0}
   CooldownSlider: {fileID: 332313376}
   PlayerHealthSlider: {fileID: 20681814}
   TimelineSlider: {fileID: 1484687684}

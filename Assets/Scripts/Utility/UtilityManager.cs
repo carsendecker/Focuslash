@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UtilityGod : MonoBehaviour
+public class UtilityManager : MonoBehaviour
 {
-    public static UtilityGod UG;
     
     private Camera mainCam;
     private CameraShake cShake;
@@ -13,12 +12,11 @@ public class UtilityGod : MonoBehaviour
 
     void Awake()
     {
-        if (UG == null)
-        {
-            UG = this;
-        }
+        if (SystemsManager.Utility == null)
+            SystemsManager.Utility = this;
     }
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         mainCam = Camera.main;

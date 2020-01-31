@@ -43,7 +43,7 @@
             <e p="InputManager.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
             <e p="SystemsManager.cs" t="Include" />
-            <e p="UtilityGod.cs" t="Include" />
+            <e p="UtilityManager.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
