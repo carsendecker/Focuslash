@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         currentDifficulty += Time.deltaTime;
-        MenuGod.MG.ScoreText.text = Mathf.RoundToInt(currentDifficulty * 10).ToString();
+        SystemsManager.UI.ScoreText.text = Mathf.RoundToInt(currentDifficulty * 10).ToString();
     }
 
     IEnumerator SpawnLoop()
@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
             enemyCheck = Physics2D.OverlapCircle(spawnPos, SpawnDensity - (currentDifficulty / DifficultyScaleDelay));
         } while (enemyCheck != null && enemyCheck.gameObject.CompareTag("Enemy"));
 
-        AudioManager.AM.PlaySound(SpawningSound, AMSource.EnemySound);
+        SystemsManager.Audio.PlaySound(SpawningSound, SourceType.EnemySound);
         GameObject particles = Instantiate(SpawnParticlePrefab, spawnPos, Quaternion.identity);
 
         yield return new WaitForSeconds(SummonDelay);

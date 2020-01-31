@@ -1,64 +1,75 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AMSource
+//Audio can be sent to 3 different audio sources
+public enum SourceType
 {
     EnemySound = 1,
     PlayerSound = 2,
     Music = 3
 }
 
+/// <summary>
+/// A class to handle all audio playing needs, prevents use of having to program audio code + audio sources on a million GameObjects
+/// </summary>
 public class AudioManager : MonoBehaviour
-{
-//    public const int ENEMY = 0;
+{   
+    //Pairs the AudioSource names with the actual reference
+    private Dictionary<SourceType, AudioSource> sources = new Dictionary<SourceType, AudioSource>();
+
     
-    public static AudioManager AM;
-
-    private Dictionary<AMSource, AudioSource> sources = new Dictionary<AMSource, AudioSource>();
-
     private void Awake()
     {
-        if (!AM)
-        {
-            AM = this;
-        }
-
+        //Assigns an instance of this to the GameSystems manager
+        if (SystemsManager.Audio == null)
+            SystemsManager.Audio = this;
+        
+        //Assigns all the audio sources to a sound type
         AudioSource[] asos = GetComponents<AudioSource>();
-        sources.Add(AMSource.EnemySound, asos[0]);
-        sources.Add(AMSource.PlayerSound, asos[1]);
-        sources.Add(AMSource.Music, asos[2]);
-
+        sources.Add(SourceType.EnemySound, asos[0]);
+        sources.Add(SourceType.PlayerSound, asos[1]);
+        sources.Add(SourceType.Music, asos[2]);
     }
 
     
-
-    // Update is called once per frame
     void Update()
     {
+        //Pressing M mutes the music just cause
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if (sources[AMSource.Music].volume > 0)
-            {
-                sources[AMSource.Music].volume = 0;
-            }
+            if (sources[SourceType.Music].volume > 0)
+                sources[SourceType.Music].volume = 0;
             else
-            {
-                sources[AMSource.Music].volume = 1;
-            }
+                sources[SourceType.Music].volume = 1;
         }
     }
 
-    public void PlaySound(AudioClip clip, AMSource audioSource)
+    /// <summary>
+    /// Plays a sound from a specified audio source.
+    /// </summary>
+    /// <param name="clip">The sound clip to play</param>
+    /// <param name="audioSourceType">The audio source type to play from</param>
+    public void PlaySound(AudioClip clip, SourceType audioSourceType)
     {
-        sources[audioSource].PlayOneShot(clip);
+        sources[audioSourceType].PlayOneShot(clip);
     }
 
-    public void PlaySound(AudioClip clip, AMSource audioSource, float pitchChange)
+    /// <summary>
+    /// Plays a sound from a specified audio source with a certain pitch change applied
+    /// </summary>
+    /// <param name="clip"></param>
+    /// <param name="audioSourceType"></param>
+    /// <param name="pitchChange"></param>
+    public void PlaySound(AudioClip clip, SourceType audioSourceType, float pitchChange)
     {
-        sources[audioSource].pitch += pitchChange;
-        sources[audioSource].PlayOneShot(clip);
-        sources[audioSource].pitch -= pitchChange;
+        sources[audioSourceType].pitch += pitchChange;
+        sources[audioSourceType].PlayOneShot(clip);
+        sources[audioSourceType].pitch -= pitchChange;
     }
+    
+    
+    //*****Can add more functions if more functionality is required*****
     
 }

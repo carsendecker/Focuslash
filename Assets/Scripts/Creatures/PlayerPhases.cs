@@ -3,17 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//==================================//
-//          PHASE CLASSES           //
-//==================================//
+//========================================//
+//          PHASE STATE CLASSES           //
+//========================================//
 
+/// <summary>
+/// The abstract class to be used in the player state machine.
+/// </summary>
 public abstract class PlayerPhase
 {
 	public PlayerController player;
 	
-	
+	/// <summary>
+	/// Gets called whenever the player enters the state
+	/// </summary>
 	public abstract void OnEnter();
+	
+	/// <summary>
+	/// Gets called every frame while the player is in the state (like Update())
+	/// </summary>
 	public abstract void Run();
+	
+	/// <summary>
+	/// Gets called whenever the player exits the state
+	/// </summary>
 	public abstract void OnExit();
 
 	public virtual void OnCollisionEnter2D(Collision2D col)
@@ -35,6 +48,9 @@ public abstract class PlayerPhase
 //---------------MOVEMENT PHASE----------------//
 //=============================================//
 
+/// <summary>
+/// The state the player is in whenever they are just moving around the map
+/// </summary>
 public class MovePhase : PlayerPhase
 {
 	private float cdTimer;
@@ -46,7 +62,7 @@ public class MovePhase : PlayerPhase
 	
 	public override void OnEnter()
 	{
-		MenuGod.MG.CooldownSlider.maxValue = player.CooldownTime;
+		SystemsManager.UI.CooldownSlider.maxValue = player.CooldownTime;
 		if (player.coolingDown)
 		{
 			cdTimer = 0;
@@ -55,7 +71,7 @@ public class MovePhase : PlayerPhase
 		{
 			cdTimer = player.CooldownTime;
 		}
-		MenuGod.MG.CooldownSlider.value = cdTimer;
+		SystemsManager.UI.CooldownSlider.value = cdTimer;
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 
 		//Short pause of iFrames after attacking
@@ -70,7 +86,7 @@ public class MovePhase : PlayerPhase
 		if (cdTimer < player.CooldownTime)
 		{
 			cdTimer += Time.deltaTime;
-			MenuGod.MG.CooldownSlider.value = cdTimer;
+			SystemsManager.UI.CooldownSlider.value = cdTimer;
 			
 			if (cdTimer >= player.CooldownTime)
 			{
@@ -118,13 +134,12 @@ public class ChoosePhase : PlayerPhase
 		Time.timeScale = 0.05f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
-		AudioManager.AM.PlaySound(player.enterSlomoSound, AMSource.PlayerSound);
+		SystemsManager.Audio.PlaySound(player.enterSlomoSound, SourceType.PlayerSound);
 		
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
 		
-//		MenuGod.MG.AttackPanel.SetActive(true);
-		MenuGod.MG.TimelineSlider.gameObject.SetActive(true);
-		MenuGod.MG.TimelineSlider.maxValue = player.AttackCount;
+		SystemsManager.UI.TimelineSlider.gameObject.SetActive(true);
+		SystemsManager.UI.TimelineSlider.maxValue = player.AttackCount;
 		
 		attacksLeft = player.AttackCount;
 
@@ -157,7 +172,7 @@ public class ChoosePhase : PlayerPhase
 	//Runs every update frame
 	public override void Run()
 	{
-		MenuGod.MG.TimelineSlider.value = Mathf.Lerp(MenuGod.MG.TimelineSlider.value, player.EnemyQueue.Count, 0.25f);
+		SystemsManager.UI.TimelineSlider.value = Mathf.Lerp(SystemsManager.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.25f);
 		if (crosshair != null)
 		{
 			CycleEnemies();
@@ -169,7 +184,7 @@ public class ChoosePhase : PlayerPhase
 			if (confirmingAttack)
 			{
 				//Once pressed again after targeting everything, start attacking
-				MenuGod.MG.TimelineInstructionText.gameObject.SetActive(false);
+				SystemsManager.UI.TimelineInstructionText.gameObject.SetActive(false);
 				player.SetPhase(PlayerController.Phase.Attacking);
 				return;
 			}
@@ -190,7 +205,7 @@ public class ChoosePhase : PlayerPhase
 				targetCrosshair.transform.parent = targetedEnemy.transform;
 				crosshairList.Add(targetCrosshair);
 				
-				AudioManager.AM.PlaySound(player.selectTargetSound, AMSource.PlayerSound);
+				SystemsManager.Audio.PlaySound(player.selectTargetSound, SourceType.PlayerSound);
 
 				attacksLeft--;
 
@@ -199,7 +214,7 @@ public class ChoosePhase : PlayerPhase
 				{
 					confirmingAttack = true;
 					GameObject.Destroy(crosshair);
-					MenuGod.MG.TimelineInstructionText.gameObject.SetActive(true);
+					SystemsManager.UI.TimelineInstructionText.gameObject.SetActive(true);
 				}
 			}
 		}
@@ -226,7 +241,7 @@ public class ChoosePhase : PlayerPhase
 //			}
 			
 			player.EnemyQueue.Clear();
-			MenuGod.MG.TimelineSlider.gameObject.SetActive(false);
+			SystemsManager.UI.TimelineSlider.gameObject.SetActive(false);
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
 
@@ -256,23 +271,6 @@ public class ChoosePhase : PlayerPhase
 		crosshairList.Clear();
 	}
 
-	//Takes input up and down to select an attack in the menu 
-	private void ChooseAttack()
-	{
-		if (InputManager.PressedDown(Inputs.Down) && optionSelected < MenuGod.MG.AttackOptions.Count - 1)
-		{
-			MenuGod.MG.AttackOptions[optionSelected].text = "   " + MenuGod.MG.AttackOptions[optionSelected].text.Substring(2);
-			optionSelected++;
-			MenuGod.MG.AttackOptions[optionSelected].text = "> " + MenuGod.MG.AttackOptions[optionSelected].text.Substring(3);
-		}
-		else if (InputManager.PressedDown(Inputs.Up) && optionSelected > 0)
-		{
-			MenuGod.MG.AttackOptions[optionSelected].text = "   " + MenuGod.MG.AttackOptions[optionSelected].text.Substring(2);
-			optionSelected--;
-			MenuGod.MG.AttackOptions[optionSelected].text = "> " + MenuGod.MG.AttackOptions[optionSelected].text.Substring(3);
-		}
-	}
-
 	//Takes input left and right to cycle through enemies in range
 	//TODO: Better targeting (fix distance based thing?) 
 	private void CycleEnemies()
@@ -289,7 +287,7 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = player.EnemyList.Count - 1;
 			}
 			targetedEnemy = player.EnemyList[currentIndex];
-			AudioManager.AM.PlaySound(player.moveTargetSound, AMSource.PlayerSound);
+			SystemsManager.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
 		}
 		else if (InputManager.PressedDown(Inputs.Right))
 		{
@@ -302,7 +300,7 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = 0;
 			}
 			targetedEnemy = player.EnemyList[currentIndex];
-			AudioManager.AM.PlaySound(player.moveTargetSound, AMSource.PlayerSound);
+			SystemsManager.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
 		}
 	}
 }
@@ -338,7 +336,7 @@ public class AttackPhase : PlayerPhase
 
 	public override void Run()
 	{
-		MenuGod.MG.TimelineSlider.value = Mathf.Lerp(MenuGod.MG.TimelineSlider.value, player.EnemyQueue.Count, 0.3f);
+		SystemsManager.UI.TimelineSlider.value = Mathf.Lerp(SystemsManager.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.3f);
 
 		//If there is no target but the queue still has things in it, stuff went wrong probably
 		if (targetedEnemy == null && player.EnemyQueue.Count > 0)
@@ -382,7 +380,7 @@ public class AttackPhase : PlayerPhase
 		targetedEnemy = null;
 		
 		player.EnemyQueue.Clear();
-		MenuGod.MG.TimelineSlider.gameObject.SetActive(false);
+		SystemsManager.UI.TimelineSlider.gameObject.SetActive(false);
 	}
 
 	public override void OnTriggerEnter2D(Collider2D col)
@@ -390,7 +388,7 @@ public class AttackPhase : PlayerPhase
 		if (col.gameObject.GetComponent<Creature>())
 		{
 			GameObject.Instantiate(player.AttackParticlesPrefab, col.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0, 360)));
-			AudioManager.AM.PlaySound(player.attackSound, AMSource.PlayerSound);
+			SystemsManager.Audio.PlaySound(player.attackSound, SourceType.PlayerSound);
 		}
 		if (col.gameObject.Equals(targetedEnemy))
 		{

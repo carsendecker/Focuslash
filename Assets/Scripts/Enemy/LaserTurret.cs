@@ -75,7 +75,7 @@ public class LaserTurret : Creature
 //        yield return new WaitForSeconds(0.5f);
         
         LaserParticles.Play();
-        AudioManager.AM.PlaySound(FireSound, AMSource.EnemySound);
+        SystemsManager.Audio.PlaySound(FireSound, SourceType.EnemySound);
         
         yield return new WaitForSeconds(FireTime);
 

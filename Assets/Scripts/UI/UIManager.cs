@@ -4,13 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuGod : MonoBehaviour
+/// <summary>
+/// Class that stores references to most UI elements for easy access
+/// </summary>
+public class UIManager : MonoBehaviour
 {
-    public static MenuGod MG;
-    [Header("Attack UI")]
-    public GameObject AttackPanel;
-    public List<TMP_Text> AttackOptions = new List<TMP_Text>();
-
     [Header("Bars")]
     public Slider CooldownSlider;
     public Slider PlayerHealthSlider;
@@ -25,11 +23,12 @@ public class MenuGod : MonoBehaviour
     [Header("Other Screens")]
     public GameObject LoadingScreen;
     
-    // Start is called before the first frame update
+    
+    
     void Awake()
     {
-        if(MG == null)
-            MG = this;
+        if(SystemsManager.UI == null)
+            SystemsManager.UI = this;
     }
 
     private void Start()
@@ -38,19 +37,5 @@ public class MenuGod : MonoBehaviour
         TimelineInstructionText.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-//    public void ChangeSliderValue(Slider slider, float value)
-//    {
-//        
-//    }
-//
-//    public float LerpSlider(Slider slider, float lerpTo, float speed)
-//    {
-//        return Mathf.Lerp(slider.value, lerpTo, speed);
-//    }
 }

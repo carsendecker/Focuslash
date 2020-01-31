@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -155,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.109985, y: -4.6000366}
+  m_AnchoredPosition: {x: 13.109863, y: -4.6000977}
   m_SizeDelta: {x: 203.6, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &20681814
@@ -475,7 +476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.109985, y: -18.22998}
+  m_AnchoredPosition: {x: 13.109863, y: -18.22998}
   m_SizeDelta: {x: 140, y: 14}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &332313376
@@ -665,7 +666,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293512042
+    rgba: 4293512299
   m_fontColor: {r: 0.41869882, g: 0.79838496, b: 0.9150943, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -799,9 +800,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5574e8eb3fd4ee6a43c4975bccbc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomCount: 0
+  RoomCount: 4
   RoomVariance: 0
-  DigPathSize: 100
+  DigPathSize: 30
   DigPathVariance: 10
   StartingRoomPrefab: {fileID: 4248596262663566470, guid: 7de06f3c6be5445be87686951796c03f,
     type: 3}
@@ -1223,11 +1224,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<color="yellow">WASD / Arrow Keys</color> - Move
 
-    <color="yellow">Space</color> - Focus, Target Enemy
+    <color="yellow">Space</color>
+    - Focus, Target Enemy
 
     <color="yellow">Q</color> - Cancel Targeting
 
-    <color="yellow">M</color> - Mute Music
+    <color="yellow">M</color>
+    - Mute Music
 
 '
   m_isRightToLeft: 0
@@ -2324,7 +2327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.199951, y: -4.630005}
+  m_AnchoredPosition: {x: -15.199951, y: -4.629883}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2137577694

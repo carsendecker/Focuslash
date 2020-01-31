@@ -52,14 +52,14 @@ public class PlayerController : Creature
 		
 		//Set stats and sliders and such
 		canMove = true;
-		MenuGod.MG.PlayerHealthSlider.maxValue = MaxHealth;
+		SystemsManager.UI.PlayerHealthSlider.maxValue = MaxHealth;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		currentPhase.Run();
-		MenuGod.MG.PlayerHealthSlider.value = Mathf.Lerp(MenuGod.MG.PlayerHealthSlider.value, health, 0.2f);
+		SystemsManager.UI.PlayerHealthSlider.value = Mathf.Lerp(SystemsManager.UI.PlayerHealthSlider.value, health, 0.2f);
 	}
 
 	//Deals damage to the player
@@ -70,7 +70,7 @@ public class PlayerController : Creature
 		iFramesForSeconds(iFrameTime, true);
 		
 		UtilityGod.UG.ShakeCamera(0.5f, 0.3f);
-		AudioManager.AM.PlaySound(hurtSound, AMSource.PlayerSound);
+		SystemsManager.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
 		
 		SetPhase(Phase.Movement);
 
@@ -92,10 +92,10 @@ public class PlayerController : Creature
 	{
 		EnemySpawner es = FindObjectOfType<EnemySpawner>();
 
-		MenuGod.MG.ScoreText.text = "Final Score: " + MenuGod.MG.ScoreText.text;
-		MenuGod.MG.ScoreText.transform.localPosition = new Vector2(-100, -150);
-		MenuGod.MG.ScoreText.fontSize = 25;
-		MenuGod.MG.PlayerHealthSlider.value = 0;
+		SystemsManager.UI.ScoreText.text = "Final Score: " + SystemsManager.UI.ScoreText.text;
+		SystemsManager.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
+		SystemsManager.UI.ScoreText.fontSize = 25;
+		SystemsManager.UI.PlayerHealthSlider.value = 0;
 		
 		Destroy(es);
 		Destroy(gameObject);
