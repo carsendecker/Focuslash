@@ -41,8 +41,8 @@
           <e p="Utility" t="Include">
             <e p="AudioManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
+            <e p="Services.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
-            <e p="SystemsManager.cs" t="Include" />
             <e p="UtilityManager.cs" t="Include" />
           </e>
         </e>

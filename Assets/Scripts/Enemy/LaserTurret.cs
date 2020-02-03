@@ -8,14 +8,14 @@ public class LaserTurret : Creature
 {
     public GameObject Laser;
     public ParticleSystem TelegraphParticles, LaserParticles;
-    public float AttackFrequency;
-    public float AttackFrequencyVariance;
-    public float AttackLeadDistance;
-    public float ChargeTime;
-    public float FireTime;
+    public float AttackFrequency; //How often it attacks
+    public float AttackFrequencyVariance; //How random the frequency is
+    public float AttackLeadDistance; //How far in front it will aim in front of the player
+    public float ChargeTime; //How long it takes to charge
+    public float FireTime; //How long it fires for
     public int Damage;
     public Slider HealthBar;
-    public GameObject DeathParticles;
+    public GameObject DeathParticles; //For when it dies
     public AudioClip FireSound;
 
     private PlayerController player;
@@ -29,7 +29,7 @@ public class LaserTurret : Creature
     // Start is called before the first frame update
     new void Start() {
         base.Start();
-        player = FindObjectOfType<PlayerController>();
+        player = Services.Player;
         playerRb = player.GetComponent<Rigidbody2D>();
         laserCol = Laser.GetComponent<Collider2D>();
         laserCol.enabled = false;
@@ -75,7 +75,7 @@ public class LaserTurret : Creature
 //        yield return new WaitForSeconds(0.5f);
         
         LaserParticles.Play();
-        SystemsManager.Audio.PlaySound(FireSound, SourceType.EnemySound);
+        Services.Audio.PlaySound(FireSound, SourceType.EnemySound);
         
         yield return new WaitForSeconds(FireTime);
 

@@ -12,8 +12,8 @@ public class UtilityManager : MonoBehaviour
 
     void Awake()
     {
-        if (SystemsManager.Utility == null)
-            SystemsManager.Utility = this;
+        if (Services.Utility == null)
+            Services.Utility = this;
     }
     
 

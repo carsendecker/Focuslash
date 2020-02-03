@@ -40,7 +40,7 @@ public class DigManager : MonoBehaviour
 
     IEnumerator Load()
     {
-        TMP_Text loadText = SystemsManager.UI.LoadingScreen.GetComponentsInChildren<TMP_Text>()[0];
+        TMP_Text loadText = Services.UI.LoadingScreen.GetComponentsInChildren<TMP_Text>()[0];
         for (int i = 0; i < 4; i++)
         {
             yield return new WaitForSecondsRealtime(0.25f);
@@ -48,7 +48,7 @@ public class DigManager : MonoBehaviour
         }
         loadText.text = "Press any key to continue";
         yield return new WaitUntil(() => Input.anyKeyDown);
-        SystemsManager.UI.LoadingScreen.SetActive(false);
+        Services.UI.LoadingScreen.SetActive(false);
         FindObjectOfType<PlayerController>().enabled = true;
     }
 

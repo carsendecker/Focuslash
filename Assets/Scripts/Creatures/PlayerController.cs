@@ -35,6 +35,10 @@ public class PlayerController : Creature
 
 	void Awake()
 	{
+		//Give player to the services manager for easy access
+		if (Services.Player == null)
+			Services.Player = this;
+		
 		rb = GetComponent<Rigidbody2D>();
 		attackRange = GetComponentInChildren<Collider2D>();
 		
@@ -45,21 +49,20 @@ public class PlayerController : Creature
 		SetPhase(Phase.Movement);
 	}
 	
-	// Use this for initialization
 	new void Start ()
 	{
 		base.Start();
 		
 		//Set stats and sliders and such
 		canMove = true;
-		SystemsManager.UI.PlayerHealthSlider.maxValue = MaxHealth;
+		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
 	}
 	
-	// Update is called once per frame
+
 	void Update ()
 	{
 		currentPhase.Run();
-		SystemsManager.UI.PlayerHealthSlider.value = Mathf.Lerp(SystemsManager.UI.PlayerHealthSlider.value, health, 0.2f);
+		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
 	}
 
 	//Deals damage to the player
@@ -69,8 +72,8 @@ public class PlayerController : Creature
 		base.TakeDamage(damage);
 		iFramesForSeconds(iFrameTime, true);
 		
-		SystemsManager.Utility.ShakeCamera(0.5f, 0.3f);
-		SystemsManager.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
+		Services.Utility.ShakeCamera(0.5f, 0.3f);
+		Services.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
 		
 		SetPhase(Phase.Movement);
 
@@ -88,14 +91,15 @@ public class PlayerController : Creature
 		rb.AddForce(forceDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 	}
 
+	//Kills the player
 	protected override void Die()
 	{
 		EnemySpawner es = FindObjectOfType<EnemySpawner>();
 
-		SystemsManager.UI.ScoreText.text = "Final Score: " + SystemsManager.UI.ScoreText.text;
-		SystemsManager.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
-		SystemsManager.UI.ScoreText.fontSize = 25;
-		SystemsManager.UI.PlayerHealthSlider.value = 0;
+		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
+		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
+		Services.UI.ScoreText.fontSize = 25;
+		Services.UI.PlayerHealthSlider.value = 0;
 		
 		Destroy(es);
 		Destroy(gameObject);
@@ -135,7 +139,7 @@ public class PlayerController : Creature
 		rb.velocity = tempVel;
 	}
 
-	//Flashes player sprite and gives iFrames after being damaged
+	//Flashes player sprite
 	private IEnumerator DamageFlash(float duration)
 	{
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -152,6 +156,7 @@ public class PlayerController : Creature
 		}
 	}
 
+	// Gives iFrames after being damaged
 	public void iFramesForSeconds(float time, bool flash)
 	{
 		if (invincible) return;

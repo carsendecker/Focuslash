@@ -62,7 +62,7 @@ public class MovePhase : PlayerPhase
 	
 	public override void OnEnter()
 	{
-		SystemsManager.UI.CooldownSlider.maxValue = player.CooldownTime;
+		Services.UI.CooldownSlider.maxValue = player.CooldownTime;
 		if (player.coolingDown)
 		{
 			cdTimer = 0;
@@ -71,7 +71,7 @@ public class MovePhase : PlayerPhase
 		{
 			cdTimer = player.CooldownTime;
 		}
-		SystemsManager.UI.CooldownSlider.value = cdTimer;
+		Services.UI.CooldownSlider.value = cdTimer;
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 
 		//Short pause of iFrames after attacking
@@ -86,7 +86,7 @@ public class MovePhase : PlayerPhase
 		if (cdTimer < player.CooldownTime)
 		{
 			cdTimer += Time.deltaTime;
-			SystemsManager.UI.CooldownSlider.value = cdTimer;
+			Services.UI.CooldownSlider.value = cdTimer;
 			
 			if (cdTimer >= player.CooldownTime)
 			{
@@ -134,12 +134,12 @@ public class ChoosePhase : PlayerPhase
 		Time.timeScale = 0.05f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
-		SystemsManager.Audio.PlaySound(player.enterSlomoSound, SourceType.PlayerSound);
+		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.PlayerSound);
 		
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
 		
-		SystemsManager.UI.TimelineSlider.gameObject.SetActive(true);
-		SystemsManager.UI.TimelineSlider.maxValue = player.AttackCount;
+		Services.UI.TimelineSlider.gameObject.SetActive(true);
+		Services.UI.TimelineSlider.maxValue = player.AttackCount;
 		
 		attacksLeft = player.AttackCount;
 
@@ -172,7 +172,7 @@ public class ChoosePhase : PlayerPhase
 	//Runs every update frame
 	public override void Run()
 	{
-		SystemsManager.UI.TimelineSlider.value = Mathf.Lerp(SystemsManager.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.25f);
+		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.25f);
 		if (crosshair != null)
 		{
 			CycleEnemies();
@@ -184,7 +184,7 @@ public class ChoosePhase : PlayerPhase
 			if (confirmingAttack)
 			{
 				//Once pressed again after targeting everything, start attacking
-				SystemsManager.UI.TimelineInstructionText.gameObject.SetActive(false);
+				Services.UI.TimelineInstructionText.gameObject.SetActive(false);
 				player.SetPhase(PlayerController.Phase.Attacking);
 				return;
 			}
@@ -205,7 +205,7 @@ public class ChoosePhase : PlayerPhase
 				targetCrosshair.transform.parent = targetedEnemy.transform;
 				crosshairList.Add(targetCrosshair);
 				
-				SystemsManager.Audio.PlaySound(player.selectTargetSound, SourceType.PlayerSound);
+				Services.Audio.PlaySound(player.selectTargetSound, SourceType.PlayerSound);
 
 				attacksLeft--;
 
@@ -214,7 +214,7 @@ public class ChoosePhase : PlayerPhase
 				{
 					confirmingAttack = true;
 					GameObject.Destroy(crosshair);
-					SystemsManager.UI.TimelineInstructionText.gameObject.SetActive(true);
+					Services.UI.TimelineInstructionText.gameObject.SetActive(true);
 				}
 			}
 		}
@@ -241,7 +241,7 @@ public class ChoosePhase : PlayerPhase
 //			}
 			
 			player.EnemyQueue.Clear();
-			SystemsManager.UI.TimelineSlider.gameObject.SetActive(false);
+			Services.UI.TimelineSlider.gameObject.SetActive(false);
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
 
@@ -287,7 +287,7 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = player.EnemyList.Count - 1;
 			}
 			targetedEnemy = player.EnemyList[currentIndex];
-			SystemsManager.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
 		}
 		else if (InputManager.PressedDown(Inputs.Right))
 		{
@@ -300,7 +300,7 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = 0;
 			}
 			targetedEnemy = player.EnemyList[currentIndex];
-			SystemsManager.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
 		}
 	}
 }
@@ -336,7 +336,7 @@ public class AttackPhase : PlayerPhase
 
 	public override void Run()
 	{
-		SystemsManager.UI.TimelineSlider.value = Mathf.Lerp(SystemsManager.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.3f);
+		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.3f);
 
 		//If there is no target but the queue still has things in it, stuff went wrong probably
 		if (targetedEnemy == null && player.EnemyQueue.Count > 0)
@@ -380,7 +380,7 @@ public class AttackPhase : PlayerPhase
 		targetedEnemy = null;
 		
 		player.EnemyQueue.Clear();
-		SystemsManager.UI.TimelineSlider.gameObject.SetActive(false);
+		Services.UI.TimelineSlider.gameObject.SetActive(false);
 	}
 
 	public override void OnTriggerEnter2D(Collider2D col)
@@ -388,7 +388,7 @@ public class AttackPhase : PlayerPhase
 		if (col.gameObject.GetComponent<Creature>())
 		{
 			GameObject.Instantiate(player.AttackParticlesPrefab, col.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0, 360)));
-			SystemsManager.Audio.PlaySound(player.attackSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.attackSound, SourceType.PlayerSound);
 		}
 		if (col.gameObject.Equals(targetedEnemy))
 		{
@@ -416,7 +416,7 @@ public class AttackPhase : PlayerPhase
 			{
 				player.EnemyQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
 			}
-			SystemsManager.Utility.ShakeCamera(0.1f, 0.25f);
+			Services.Utility.ShakeCamera(0.1f, 0.25f);
 		}
 		
 		//If there are enemies left in the queue, set the next one as the new target
