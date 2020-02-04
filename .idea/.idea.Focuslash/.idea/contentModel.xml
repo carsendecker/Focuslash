@@ -32,6 +32,7 @@
           </e>
           <e p="Utility" t="Include">
             <e p="AudioManager.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
             <e p="Services.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
