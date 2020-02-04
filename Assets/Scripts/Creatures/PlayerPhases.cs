@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// THIS WHOLE THING IS FOR THE PLAYER STATE MACHINE. THESE CLASSES ALL FOLLOW THE ABSTRACT PLAYERPHASE
+// CLASS BELOW
 
 //========================================//
 //          PHASE STATE CLASSES           //
@@ -62,14 +64,14 @@ public class MovePhase : PlayerPhase
 	
 	public override void OnEnter()
 	{
-		Services.UI.CooldownSlider.maxValue = player.CooldownTime;
+		Services.UI.CooldownSlider.maxValue = player.AttackCooldownTime;
 		if (player.coolingDown)
 		{
 			cdTimer = 0;
 		}
 		else
 		{
-			cdTimer = player.CooldownTime;
+			cdTimer = player.AttackCooldownTime;
 		}
 		Services.UI.CooldownSlider.value = cdTimer;
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
@@ -83,18 +85,17 @@ public class MovePhase : PlayerPhase
 		if(player.canMove)
 			player.Move();
 		
-		if (cdTimer < player.CooldownTime)
+		if (cdTimer < player.AttackCooldownTime)
 		{
 			cdTimer += Time.deltaTime;
 			Services.UI.CooldownSlider.value = cdTimer;
 			
-			if (cdTimer >= player.CooldownTime)
+			if (cdTimer >= player.AttackCooldownTime)
 			{
 				player.coolingDown = false;
 			}
 		}
 
-		//TODO: Force player into the attack phase instead of them choosing when?
 		if (!player.coolingDown && InputManager.PressedDown(Inputs.Attack))
 		{
 			player.SetPhase(PlayerController.Phase.Choosing);
@@ -149,7 +150,7 @@ public class ChoosePhase : PlayerPhase
 		//Target the closest enemy in range first
 		GameObject closestEnemy = null;
 		float closestDistance = 999999;
-		foreach (var enemy in player.EnemyList)
+		foreach (var enemy in player.EnemiesInRange)
 		{	
 			float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
 			if (distance < closestDistance)
@@ -172,7 +173,7 @@ public class ChoosePhase : PlayerPhase
 	//Runs every update frame
 	public override void Run()
 	{
-		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.25f);
+		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyAttackQueue.Count, 0.25f);
 		if (crosshair != null)
 		{
 			CycleEnemies();
@@ -196,10 +197,10 @@ public class ChoosePhase : PlayerPhase
 			}
 			
 			//Adds the targeted enemy to a "queue" for later
-			player.EnemyQueue.Add(targetedEnemy);
+			player.EnemyAttackQueue.Add(targetedEnemy);
 
 			//Spawns a new crosshair to show the enemy has been targeted
-			if (player.EnemyQueue.Contains(targetedEnemy))
+			if (player.EnemyAttackQueue.Contains(targetedEnemy))
 			{
 				GameObject targetCrosshair = GameObject.Instantiate(player.LockedCrosshairPrefab,targetedEnemy.transform.position, Quaternion.identity);
 				targetCrosshair.transform.parent = targetedEnemy.transform;
@@ -221,7 +222,7 @@ public class ChoosePhase : PlayerPhase
 
 		if (InputManager.PressedDown(Inputs.Cancel))
 		{
-			//Not working rn
+			//Not working rn, code to dequeue targets
 			
 //			player.EnemyQueue.RemoveAt(player.EnemyQueue.Count - 1);
 //			GameObject.Destroy(crosshairList[crosshairList.Count - 1]);
@@ -240,7 +241,7 @@ public class ChoosePhase : PlayerPhase
 //				player.SetPhase(PlayerController.Phase.Movement);
 //			}
 			
-			player.EnemyQueue.Clear();
+			player.EnemyAttackQueue.Clear();
 			Services.UI.TimelineSlider.gameObject.SetActive(false);
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
@@ -275,7 +276,7 @@ public class ChoosePhase : PlayerPhase
 	//TODO: Better targeting (fix distance based thing?) 
 	private void CycleEnemies()
 	{
-		int currentIndex = player.EnemyList.IndexOf(targetedEnemy);
+		int currentIndex = player.EnemiesInRange.IndexOf(targetedEnemy);
 		if (InputManager.PressedDown(Inputs.Left))
 		{
 			if (currentIndex > 0)
@@ -284,14 +285,14 @@ public class ChoosePhase : PlayerPhase
 			}
 			else
 			{
-				currentIndex = player.EnemyList.Count - 1;
+				currentIndex = player.EnemiesInRange.Count - 1;
 			}
-			targetedEnemy = player.EnemyList[currentIndex];
+			targetedEnemy = player.EnemiesInRange[currentIndex];
 			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
 		}
 		else if (InputManager.PressedDown(Inputs.Right))
 		{
-			if (currentIndex < player.EnemyList.Count - 1)
+			if (currentIndex < player.EnemiesInRange.Count - 1)
 			{
 				currentIndex++;
 			}
@@ -299,7 +300,7 @@ public class ChoosePhase : PlayerPhase
 			{
 				currentIndex = 0;
 			}
-			targetedEnemy = player.EnemyList[currentIndex];
+			targetedEnemy = player.EnemiesInRange[currentIndex];
 			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
 		}
 	}
@@ -316,7 +317,7 @@ public class AttackPhase : PlayerPhase
 //	public List<>/Dictionary<> attackQueue
 	public GameObject targetedEnemy;
 	
-	private const float attackMoveSpeed = 40f;
+	private const float attackMoveSpeed = 45f;
 	private bool hitTarget;
 	private Collider2D pCol;
 	private CircleCollider2D pRangeCol;
@@ -329,17 +330,17 @@ public class AttackPhase : PlayerPhase
 	
 	public override void OnEnter()
 	{
-		targetedEnemy = player.EnemyQueue[0];
+		targetedEnemy = player.EnemyAttackQueue[0];
 		pCol = player.GetComponent<Collider2D>();
 		pRangeCol = player.GetComponentsInChildren<CircleCollider2D>()[1];
 	}
 
 	public override void Run()
 	{
-		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyQueue.Count, 0.3f);
+		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyAttackQueue.Count, 0.3f);
 
 		//If there is no target but the queue still has things in it, stuff went wrong probably
-		if (targetedEnemy == null && player.EnemyQueue.Count > 0)
+		if (targetedEnemy == null && player.EnemyAttackQueue.Count > 0)
 		{
 			player.SetPhase(PlayerController.Phase.Movement);
 			Debug.Log("Enemy is null");
@@ -379,7 +380,7 @@ public class AttackPhase : PlayerPhase
 		pCol.isTrigger = false;
 		targetedEnemy = null;
 		
-		player.EnemyQueue.Clear();
+		player.EnemyAttackQueue.Clear();
 		Services.UI.TimelineSlider.gameObject.SetActive(false);
 	}
 
@@ -404,7 +405,7 @@ public class AttackPhase : PlayerPhase
 		{
 			hitTarget = false;
 			pausing = true;
-			player.EnemyQueue.Remove(targetedEnemy);
+			player.EnemyAttackQueue.Remove(targetedEnemy);
 //			player.rb.velocity /= 3;
 		}
 		
@@ -414,17 +415,17 @@ public class AttackPhase : PlayerPhase
 			//If enemy dies, remove all instances of it in the queue
 			if (col.GetComponent<Creature>().TakeDamage(player.AttackDamage))
 			{
-				player.EnemyQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
+				player.EnemyAttackQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
 			}
 			Services.Utility.ShakeCamera(0.1f, 0.25f);
 		}
 		
 		//If there are enemies left in the queue, set the next one as the new target
-		if (player.EnemyQueue.Count > 0)
+		if (player.EnemyAttackQueue.Count > 0)
 		{
-			targetedEnemy = player.EnemyQueue[0];
+			targetedEnemy = player.EnemyAttackQueue[0];
 		}
-		else if (player.EnemyQueue.Count == 0)
+		else if (player.EnemyAttackQueue.Count == 0)
 		{
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
