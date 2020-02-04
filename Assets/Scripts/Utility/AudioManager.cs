@@ -23,8 +23,8 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         //Assigns an instance of this to the GameSystems manager
-        if (SystemsManager.Audio == null)
-            SystemsManager.Audio = this;
+        if (Services.Audio == null)
+            Services.Audio = this;
         
         //Assigns all the audio sources to a sound type
         AudioSource[] asos = GetComponents<AudioSource>();

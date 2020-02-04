@@ -27,8 +27,8 @@ public class UIManager : MonoBehaviour
     
     void Awake()
     {
-        if(SystemsManager.UI == null)
-            SystemsManager.UI = this;
+        if(Services.UI == null)
+            Services.UI = this;
     }
 
     private void Start()

@@ -24,10 +24,10 @@ public class ArenaRoom : Room
     {
         if (other.CompareTag("Player"))
         {
-            SystemsManager.UI.ScoreText.gameObject.SetActive(true);
+            Services.UI.ScoreText.gameObject.SetActive(true);
             Instantiate(WallPrefab, transform.localPosition + new Vector3(RoomWidth / 2, 0f, 0f), Quaternion.identity);
             Destroy(col);
-            SystemsManager.Audio.PlaySound(doorCloseSound, SourceType.EnemySound);
+            Services.Audio.PlaySound(doorCloseSound, SourceType.EnemySound);
             
             spawner.MAP_WIDTH = RoomWidth;
             spawner.MAP_HEIGHT = RoomHeight;

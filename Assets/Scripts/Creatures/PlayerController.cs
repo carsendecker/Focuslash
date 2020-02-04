@@ -11,16 +11,19 @@ public class PlayerController : Creature
 		Choosing = 2,
 		Attacking = 3,
 	}
+	
 
-	public int AttackCount;
-	public int AttackDamage = 1;
-	public float iFrameTime;
-	public float CooldownTime;
-	public GameObject CrosshairPrefab, LockedCrosshairPrefab;
+	public int AttackCount; // # of things player can target (or aka # of "focus" points)
+	public int AttackDamage = 1; //Damage of one dash
+	public float iFrameTime; //How long the player is invincible after being hit
+	public float AttackCooldownTime; //How long focus takes to recharge
+	public GameObject CrosshairPrefab, LockedCrosshairPrefab; //
 	public GameObject AttackParticlesPrefab;
 	public Color SlowMoColor;
-	public List<GameObject> EnemyList = new List<GameObject>();
-	public List<GameObject> EnemyQueue = new List<GameObject>();
+	public List<GameObject> EnemiesInRange = new List<GameObject>();
+	public List<GameObject> EnemyAttackQueue = new List<GameObject>();
+	
+	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
 	[HideInInspector] public Rigidbody2D rb;
@@ -35,6 +38,10 @@ public class PlayerController : Creature
 
 	void Awake()
 	{
+		//Give player to the services manager for easy access
+		if (Services.Player == null)
+			Services.Player = this;
+		
 		rb = GetComponent<Rigidbody2D>();
 		attackRange = GetComponentInChildren<Collider2D>();
 		
@@ -45,21 +52,20 @@ public class PlayerController : Creature
 		SetPhase(Phase.Movement);
 	}
 	
-	// Use this for initialization
 	new void Start ()
 	{
 		base.Start();
 		
 		//Set stats and sliders and such
 		canMove = true;
-		SystemsManager.UI.PlayerHealthSlider.maxValue = MaxHealth;
+		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
 	}
 	
-	// Update is called once per frame
+
 	void Update ()
 	{
 		currentPhase.Run();
-		SystemsManager.UI.PlayerHealthSlider.value = Mathf.Lerp(SystemsManager.UI.PlayerHealthSlider.value, health, 0.2f);
+		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
 	}
 
 	//Deals damage to the player
@@ -69,8 +75,8 @@ public class PlayerController : Creature
 		base.TakeDamage(damage);
 		iFramesForSeconds(iFrameTime, true);
 		
-		UtilityGod.UG.ShakeCamera(0.5f, 0.3f);
-		SystemsManager.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
+		Services.Utility.ShakeCamera(0.5f, 0.3f);
+		Services.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
 		
 		SetPhase(Phase.Movement);
 
@@ -88,14 +94,15 @@ public class PlayerController : Creature
 		rb.AddForce(forceDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 	}
 
+	//Kills the player
 	protected override void Die()
 	{
 		EnemySpawner es = FindObjectOfType<EnemySpawner>();
 
-		SystemsManager.UI.ScoreText.text = "Final Score: " + SystemsManager.UI.ScoreText.text;
-		SystemsManager.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
-		SystemsManager.UI.ScoreText.fontSize = 25;
-		SystemsManager.UI.PlayerHealthSlider.value = 0;
+		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
+		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
+		Services.UI.ScoreText.fontSize = 25;
+		Services.UI.PlayerHealthSlider.value = 0;
 		
 		Destroy(es);
 		Destroy(gameObject);
@@ -135,7 +142,7 @@ public class PlayerController : Creature
 		rb.velocity = tempVel;
 	}
 
-	//Flashes player sprite and gives iFrames after being damaged
+	//Flashes player sprite
 	private IEnumerator DamageFlash(float duration)
 	{
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -152,22 +159,23 @@ public class PlayerController : Creature
 		}
 	}
 
+	// Gives iFrames for specified length of time, option to flash the player also
 	public void iFramesForSeconds(float time, bool flash)
 	{
 		if (invincible) return;
 		if (flash)
 			StartCoroutine(DamageFlash(time));
+		
 		StartCoroutine(iFrames(time));
 	}
 	
-	//Makes player invincible for a specified amount of time
+	//Makes player invincible for a specified amount of time, the actual coroutine
 	private IEnumerator iFrames(float time)
 	{
 		invincible = true;
 		yield return new WaitForSecondsRealtime(time);
 		invincible = false;
 	}
-	
 	
 	
 	private void OnCollisionEnter2D(Collision2D other)
@@ -178,11 +186,14 @@ public class PlayerController : Creature
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		currentPhase.OnTriggerEnter2D(other);
-		if (other.CompareTag("Enemy") && !EnemyList.Contains(other.gameObject))
+		
+		//Adds an enemy to the list of currently in-range enemies
+		if (other.CompareTag("Enemy") && !EnemiesInRange.Contains(other.gameObject))
 		{
-			EnemyList.Add(other.gameObject);
+			EnemiesInRange.Add(other.gameObject);
 		}
 
+		//TODO: Should probably change how this works to a normal Vector2 distance value
 		if (other.CompareTag("AggroTrigger"))
 		{
 			other.GetComponentInParent<Creature>().Aggro(true);
@@ -192,9 +203,11 @@ public class PlayerController : Creature
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		currentPhase.OnTriggerExit2D(other);
-		if (EnemyList.Contains(other.gameObject))
+		
+		//Removes an enemy to the list of currently in-range enemies
+		if (EnemiesInRange.Contains(other.gameObject))
 		{
-			EnemyList.Remove(other.gameObject);
+			EnemiesInRange.Remove(other.gameObject);
 		}
 		
 		if (other.CompareTag("AggroTrigger"))
@@ -203,17 +216,17 @@ public class PlayerController : Creature
 		}
 	}
 	
+	//Hurts the player if dangerous particles hit em
 	private void OnParticleCollision(GameObject other)
 	{
 		if (other.CompareTag("Death Particles"))
 		{
-			//TODO: Passing damage value
+			//TODO: Passing damage value of laser
 			TakeDamage(1);
 		}
 	}
 
 
-	
 	//Checks to see if the player is in a certain phase
 	public bool IsPhase(Phase phaseToCheck)
 	{
@@ -227,9 +240,10 @@ public class PlayerController : Creature
 	//Sets the phase of the player to newPhase
 	public void SetPhase(Phase newPhase)
 	{
+		//Can't enter the same phase its already in
 		if (currentPhase != null && IsPhase(newPhase))
 		{
-			return;
+			throw new Exception("Tried to enter the same state again!");
 		}
 
 		currentPhase?.OnExit();

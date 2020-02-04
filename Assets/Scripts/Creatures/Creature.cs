@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The base class for all "living" entities in the game, includes enemies, the player, etc
+/// </summary>
 public class Creature : MonoBehaviour
 {
 
-    public int MaxHealth;
+    public int MaxHealth; 
     public float MoveSpeed;
 
     protected int health;
@@ -16,8 +19,12 @@ public class Creature : MonoBehaviour
         health = MaxHealth;
     }
     
-    //Call this from the creature that *will be aggro'd onto*
-    // ie call this from the player when entering enemy range
+    /// <summary>
+    /// For making a creature aggressive towards another.
+    /// 
+    /// Call this from the creature that *will be aggro'd onto*
+    /// (ie call this from the player when entering enemy range [enemy.Aggro(true) or something])
+    /// </summary>
     public virtual void Aggro(bool aggrod)
     {
         this.enabled = aggrod;
@@ -37,10 +44,8 @@ public class Creature : MonoBehaviour
         return false;
     }
 
-    protected virtual void Die()
-    {
-        
-    }
+    //For when a creature dies
+    protected virtual void Die() {}
 
     
 }

@@ -757,65 +757,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 657409613}
   m_CullTransparentMesh: 0
---- !u!1 &686974702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 686974703}
-  - component: {fileID: 686974704}
-  m_Layer: 0
-  m_Name: Digger Manager
-  m_TagString: GameController
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &686974703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686974702}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &686974704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686974702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5574e8eb3fd4ee6a43c4975bccbc3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RoomCount: 4
-  RoomVariance: 0
-  DigPathSize: 30
-  DigPathVariance: 10
-  StartingRoomPrefab: {fileID: 4248596262663566470, guid: 7de06f3c6be5445be87686951796c03f,
-    type: 3}
-  EndRoomPrefab: {fileID: 3162398059702796481, guid: 9ad3903f9431846789a1f905dd844115,
-    type: 3}
-  DiggerPrefab: {fileID: 5273108175306872099, guid: c127d501692524521ab604b6a7477a15,
-    type: 3}
-  RoomList:
-  - {fileID: 1638661470362484298, guid: fd2e76421a5eb45d79155267c040ce7a, type: 3}
-  - {fileID: 4244375994169763244, guid: beef3311bddc64c90b221e4e6e055657, type: 3}
-  - {fileID: 642172470893323043, guid: fd24bf59d76a0482eb4d4978f3ed7289, type: 3}
-  - {fileID: 4385447375753222087, guid: b5bf9301eb4e94b229744b114012f8a6, type: 3}
-  WallSize: {x: 0, y: 0}
 --- !u!1 &705819789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +963,7 @@ RectTransform:
   - {fileID: 2137577693}
   - {fileID: 130979667}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1107,10 +1048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8276fff544d704d56a92a3ee0aa0a2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackPanel: {fileID: 0}
-  AttackOptions:
-  - {fileID: 0}
-  - {fileID: 0}
   CooldownSlider: {fileID: 332313376}
   PlayerHealthSlider: {fileID: 20681814}
   TimelineSlider: {fileID: 1484687684}

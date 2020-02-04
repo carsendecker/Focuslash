@@ -4,14 +4,6 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Room Text Files" t="Include">
-          <e p="bigRoom.txt" t="Include" />
-          <e p="endRoomArena.txt" t="Include" />
-          <e p="gruntAmbush.txt" t="Include" />
-          <e p="smallRoom.txt" t="Include" />
-          <e p="startRoom.txt" t="Include" />
-          <e p="turretZigZag.txt" t="Include" />
-        </e>
         <e p="Scripts" t="Include">
           <e p="Creatures" t="Include">
             <e p="Creature.cs" t="Include" />
@@ -40,10 +32,11 @@
           </e>
           <e p="Utility" t="Include">
             <e p="AudioManager.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
+            <e p="Services.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
-            <e p="SystemsManager.cs" t="Include" />
-            <e p="UtilityGod.cs" t="Include" />
+            <e p="UtilityManager.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
