@@ -49,7 +49,6 @@ public class PlayerController : Creature
 		Phases.Add(Phase.Movement, new MovePhase(this));
 		Phases.Add(Phase.Choosing, new ChoosePhase(this));
 		Phases.Add(Phase.Attacking, new AttackPhase(this));
-		SetPhase(Phase.Movement);
 	}
 	
 	new void Start ()
@@ -59,6 +58,7 @@ public class PlayerController : Creature
 		//Set stats and sliders and such
 		canMove = true;
 		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
+		SetPhase(Phase.Movement);
 	}
 	
 
@@ -76,7 +76,7 @@ public class PlayerController : Creature
 		iFramesForSeconds(iFrameTime, true);
 		
 		Services.Utility.ShakeCamera(0.5f, 0.3f);
-		Services.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
+		Services.Audio.PlaySound(hurtSound, SourceType.CreatureSound);
 		
 		SetPhase(Phase.Movement);
 
@@ -243,7 +243,8 @@ public class PlayerController : Creature
 		//Can't enter the same phase its already in
 		if (currentPhase != null && IsPhase(newPhase))
 		{
-			throw new Exception("Tried to enter the same state again!");
+//			throw new Exception("Tried to enter the same state again!");
+			return;
 		}
 
 		currentPhase?.OnExit();

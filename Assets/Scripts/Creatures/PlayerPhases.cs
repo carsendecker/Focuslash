@@ -77,7 +77,7 @@ public class MovePhase : PlayerPhase
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 
 		//Short pause of iFrames after attacking
-		player.iFramesForSeconds(0.5f, true);
+		player.iFramesForSeconds(0.5f, false);
 	}
 
 	public override void Run()
@@ -135,7 +135,7 @@ public class ChoosePhase : PlayerPhase
 		Time.timeScale = 0.05f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
-		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.PlayerSound);
+		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
 		
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
 		
@@ -206,7 +206,7 @@ public class ChoosePhase : PlayerPhase
 				targetCrosshair.transform.parent = targetedEnemy.transform;
 				crosshairList.Add(targetCrosshair);
 				
-				Services.Audio.PlaySound(player.selectTargetSound, SourceType.PlayerSound);
+				Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
 
 				attacksLeft--;
 
@@ -288,7 +288,7 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = player.EnemiesInRange.Count - 1;
 			}
 			targetedEnemy = player.EnemiesInRange[currentIndex];
-			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
 		}
 		else if (InputManager.PressedDown(Inputs.Right))
 		{
@@ -301,7 +301,7 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = 0;
 			}
 			targetedEnemy = player.EnemiesInRange[currentIndex];
-			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
 		}
 	}
 }
@@ -317,7 +317,7 @@ public class AttackPhase : PlayerPhase
 //	public List<>/Dictionary<> attackQueue
 	public GameObject targetedEnemy;
 	
-	private const float attackMoveSpeed = 45f;
+	private const float attackMoveSpeed = 42f;
 	private bool hitTarget;
 	private Collider2D pCol;
 	private CircleCollider2D pRangeCol;
@@ -389,7 +389,7 @@ public class AttackPhase : PlayerPhase
 		if (col.gameObject.GetComponent<Creature>())
 		{
 			GameObject.Instantiate(player.AttackParticlesPrefab, col.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0, 360)));
-			Services.Audio.PlaySound(player.attackSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.attackSound, SourceType.CreatureSound);
 		}
 		if (col.gameObject.Equals(targetedEnemy))
 		{

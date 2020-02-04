@@ -27,7 +27,7 @@ public class ArenaRoom : Room
             Services.UI.ScoreText.gameObject.SetActive(true);
             Instantiate(WallPrefab, transform.localPosition + new Vector3(RoomWidth / 2, 0f, 0f), Quaternion.identity);
             Destroy(col);
-            Services.Audio.PlaySound(doorCloseSound, SourceType.EnemySound);
+            Services.Audio.PlaySound(doorCloseSound, SourceType.AmbientSound);
             
             spawner.MAP_WIDTH = RoomWidth;
             spawner.MAP_HEIGHT = RoomHeight;

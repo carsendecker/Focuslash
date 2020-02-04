@@ -6,8 +6,8 @@ using UnityEngine;
 //Audio can be sent to 3 different audio sources
 public enum SourceType
 {
-    EnemySound = 1,
-    PlayerSound = 2,
+    AmbientSound = 1,
+    CreatureSound = 2,
     Music = 3
 }
 
@@ -28,8 +28,8 @@ public class AudioManager : MonoBehaviour
         
         //Assigns all the audio sources to a sound type
         AudioSource[] asos = GetComponents<AudioSource>();
-        sources.Add(SourceType.EnemySound, asos[0]);
-        sources.Add(SourceType.PlayerSound, asos[1]);
+        sources.Add(SourceType.AmbientSound, asos[0]);
+        sources.Add(SourceType.CreatureSound, asos[1]);
         sources.Add(SourceType.Music, asos[2]);
     }
 
