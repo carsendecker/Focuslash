@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class BigKnight : Creature
 {
     [Header("Stats")]
-    public int Damage;
     public float KnockbackForce;
     public float ChargeTime;
 
@@ -16,8 +15,6 @@ public class BigKnight : Creature
     public GameObject DeathParticles;
     public GameObject AttackObject;
 
-    private GameObject player;
-    private Rigidbody2D rb;
     private Vector3 direction;
     private bool isMoving;
     private float chargeAmount;
@@ -37,7 +34,7 @@ public class BigKnight : Creature
     {
         if (isMoving)
         {
-            direction = Vector3.Lerp(direction, player.transform.position - transform.position, 0.1f);
+            direction = Vector3.Lerp(direction, Services.Player.transform.position - transform.position, 0.1f);
             rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
             rb.velocity = transform.right * MoveSpeed;
         }

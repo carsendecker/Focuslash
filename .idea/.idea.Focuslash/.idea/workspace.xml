@@ -4,21 +4,24 @@
     <list default="true" id="870f07b9-e25e-4f48-959f-ce4875492831" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Focuslash/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Focuslash/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Focuslash/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Focuslash/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Creatures/Creature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Creatures/Creature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerPhases.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerPhases.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/BigKnight.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/BigKnight.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyAttack.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyAttack.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySpawner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySpawner.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/GruntScript.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/GruntScript.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/LaserTurret.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/LaserTurret.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Brendy Scene Assets.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene Assets.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Genric Scene Assets.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Creatures.DotSettings.user.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Isiah Scene Assets.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Lianna Scene Assets.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/BigKnight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/BigKnight.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DestroyAfterTime.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DestroyAfterTime.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DigManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DigManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Digger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Digger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rooms.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rooms/ArenaRoom.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rooms/ArenaRoom.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rooms/Room.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Rooms/Room.cs.meta" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +33,7 @@
     <session id="1791498208">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.opened" value="4" />
@@ -38,29 +41,29 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cs" value="5305" />
+          <entry key="cs" value="5573" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C#" value="5305" />
+          <entry key="C#" value="5573" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cs" value="22" />
+          <entry key="cs" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="C#" value="22" />
+          <entry key="C#" value="25" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerPhases.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
@@ -140,6 +143,23 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene Assets/QuitGame.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552">
+              <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+              <folding>
+                <marker date="1581010198862" expanded="false" signature="6:78" ph="..." />
+                <marker date="1581010198862" expanded="true" signature="117:463" ph="{...}" />
+                <marker date="1581010198862" expanded="true" signature="180:224" ph="{...}" />
+                <marker date="1581010198862" expanded="true" signature="259:302" ph="{...}" />
+                <marker date="1581010198862" expanded="true" signature="336:380" ph="{...}" />
+                <marker date="1581010198862" expanded="true" signature="406:461" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/Creature.cs">
           <provider selected="true" editor-type-id="text-editor">
@@ -155,21 +175,6 @@
                 <marker date="1580938296941" expanded="true" signature="913:1068" ph="/* Call this from the creature DEALING the damage (so like objectToDamage.TakeDamage()) ... */" />
                 <marker date="1580938296941" expanded="true" signature="1115:1273" ph="{...}" />
                 <marker date="1580938296941" expanded="true" signature="1181:1245" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Utility/GameManager.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-              <folding>
-                <marker date="1580851363965" expanded="false" signature="6:78" ph="..." />
-                <marker date="1580851363965" expanded="true" signature="120:261" ph="{...}" />
-                <marker date="1580851363965" expanded="true" signature="139:219" ph="{...}" />
-                <marker date="1580851363965" expanded="true" signature="238:259" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -214,24 +219,6 @@
                 <marker date="1580938651493" expanded="true" signature="5991:6015" ph="{...}" />
                 <marker date="1580938651493" expanded="true" signature="6117:6391" ph="{...}" />
                 <marker date="1580938651493" expanded="true" signature="6215:6300" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/GruntScript.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
-              <folding>
-                <marker date="1580962912624" expanded="false" signature="6:78" ph="..." />
-                <marker date="1580962912624" expanded="true" signature="115:1247" ph="{...}" />
-                <marker date="1580962912624" expanded="true" signature="306:340" ph="{...}" />
-                <marker date="1580962912624" expanded="true" signature="364:843" ph="{...}" />
-                <marker date="1580962912624" expanded="true" signature="899:1091" ph="{...}" />
-                <marker date="1580962912624" expanded="true" signature="956:1085" ph="{...}" />
-                <marker date="1580962912624" expanded="true" signature="1126:1245" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -283,16 +270,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Rooms/Room.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Rooms/ArenaRoom.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DigManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/BigKnight.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/LaserTurret.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Digger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/GruntScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/Services.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/Creature.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerPhases.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene Assets/QuitGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/UIManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utility/UtilityManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -318,6 +303,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/GruntScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Creatures/PlayerPhases.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/BigKnight.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene Assets/Quit Game Button.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene Assets/QuitGame.cs" />
       </list>
     </option>
   </component>
@@ -393,12 +381,12 @@
       <workItem from="1580416451030" duration="6211000" />
       <workItem from="1580756126619" duration="3649000" />
       <workItem from="1580796617826" duration="4801000" />
-      <workItem from="1580937450432" duration="2778000" />
+      <workItem from="1580937450432" duration="3833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17439000" />
+    <option name="totallyTimeSpent" value="18494000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -489,31 +477,7 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Rooms/Room.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1557758634307" expanded="false" signature="6:92" ph="..." />
-            <marker date="1557758634307" expanded="true" signature="127:3506" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="134:246" ph="/* When making rooms: ... */" />
-            <marker date="1557758634307" expanded="true" signature="638:840" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="868:904" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="948:2844" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="998:2838" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="1057:2828" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="1112:1695" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="1357:1677" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="1430:1655" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="1512:1629" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="1740:2040" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="2086:2290" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="2350:2814" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="2690:2796" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="2931:3504" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="3248:3467" ph="{...}" />
-            <marker date="1557758634307" expanded="true" signature="3388:3457" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Utility/GameManager.cs">
       <provider selected="true" editor-type-id="text-editor">
@@ -737,6 +701,48 @@
             <marker date="1580963088868" expanded="true" signature="10641:10696" ph="{...}" />
             <marker date="1580963088868" expanded="true" signature="10743:10804" ph="{...}" />
             <marker date="1580963088868" expanded="true" signature="10881:11073" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene Assets/Quit Game Button.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Creatures/Enemy/BigKnight.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-467">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding>
+            <marker date="1580963321907" expanded="false" signature="6:100" ph="..." />
+            <marker date="1580963321907" expanded="true" signature="135:2033" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="553:778" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="810:1114" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="838:1108" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="1172:1253" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="1272:1671" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="1399:1513" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="1724:1877" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="1829:1871" ph="{...}" />
+            <marker date="1580963321907" expanded="true" signature="1912:2031" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scenes/Test Scenes/Carsen Scene Assets/QuitGame.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding>
+            <marker date="1581010198862" expanded="false" signature="6:78" ph="..." />
+            <marker date="1581010198862" expanded="true" signature="117:463" ph="{...}" />
+            <marker date="1581010198862" expanded="true" signature="180:224" ph="{...}" />
+            <marker date="1581010198862" expanded="true" signature="259:302" ph="{...}" />
+            <marker date="1581010198862" expanded="true" signature="336:380" ph="{...}" />
+            <marker date="1581010198862" expanded="true" signature="406:461" ph="{...}" />
           </folding>
         </state>
       </provider>
