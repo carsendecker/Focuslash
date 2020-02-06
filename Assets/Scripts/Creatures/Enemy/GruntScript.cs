@@ -4,35 +4,25 @@ using UnityEngine;
 
 public class GruntScript : Creature
 {
-    public int Damage;
     public float knockbackForce;
     public float MoveLeadDistance;
     
     public GameObject DeathParticles;
 
-    private GameObject player;
-    private Rigidbody2D rb;
-    private Rigidbody2D playerRb;
     private Vector3 direction;
     
     
-    // Start is called before the first frame update
-    new void Start()
+    protected override void Start()
     {
         base.Start();
-        player = GameObject.FindWithTag("Player");
-        rb = GetComponent<Rigidbody2D>();
-        playerRb = player.GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     void FixedUpdate()
     {
-        Vector3 targetPos = player.transform.position + (Vector3) (playerRb.velocity.normalized * MoveLeadDistance);
+        //Runs towards player, but not quite perfectly
+        Vector3 targetPos = Services.Player.transform.position + 
+                            (Vector3) (Services.Player.GetComponent<Rigidbody2D>().velocity.normalized * MoveLeadDistance);
+        
         direction = Vector3.Lerp(direction, targetPos - transform.position, 0.1f);
         rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         rb.velocity = transform.right * MoveSpeed;

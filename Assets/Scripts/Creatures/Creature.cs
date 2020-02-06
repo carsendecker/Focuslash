@@ -10,13 +10,17 @@ public class Creature : MonoBehaviour
 
     public int MaxHealth; 
     public float MoveSpeed;
+    public int Damage;
 
-    protected int health;
+    protected float health;
+    protected Rigidbody2D rb;
 
 
-    public virtual void Start()
+    protected virtual void Start()
     {
         health = MaxHealth;
+        if (GetComponent<Rigidbody2D>() != null)
+            rb = GetComponent<Rigidbody2D>();
     }
     
     /// <summary>

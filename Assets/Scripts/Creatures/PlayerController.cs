@@ -14,7 +14,6 @@ public class PlayerController : Creature
 	
 
 	public int AttackCount; // # of things player can target (or aka # of "focus" points)
-	public int AttackDamage = 1; //Damage of one dash
 	public float iFrameTime; //How long the player is invincible after being hit
 	public float AttackCooldownTime; //How long focus takes to recharge
 	public GameObject CrosshairPrefab, LockedCrosshairPrefab; //
@@ -26,7 +25,7 @@ public class PlayerController : Creature
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
-	[HideInInspector] public Rigidbody2D rb;
+//	[HideInInspector] public Rigidbody2D rb;
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool coolingDown;
 	[HideInInspector] public bool canMove;

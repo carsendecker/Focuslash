@@ -7,19 +7,19 @@
         <e p="Scripts" t="Include">
           <e p="Creatures" t="Include">
             <e p="Creature.cs" t="Include" />
+            <e p="Enemy" t="Include">
+              <e p="BigKnight.cs" t="Include" />
+              <e p="EnemyAttack.cs" t="Include" />
+              <e p="EnemySpawner.cs" t="Include" />
+              <e p="GruntScript.cs" t="Include" />
+              <e p="LaserTurret.cs" t="Include" />
+            </e>
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerPhases.cs" t="Include" />
           </e>
           <e p="DestroyAfterTime.cs" t="Include" />
           <e p="Digger.cs" t="Include" />
           <e p="DigManager.cs" t="Include" />
-          <e p="Enemy" t="Include">
-            <e p="BigKnight.cs" t="Include" />
-            <e p="EnemyAttack.cs" t="Include" />
-            <e p="EnemySpawner.cs" t="Include" />
-            <e p="GruntScript.cs" t="Include" />
-            <e p="LaserTurret.cs" t="Include" />
-          </e>
           <e p="Rooms" t="Include">
             <e p="ArenaRoom.cs" t="Include" />
             <e p="Room.cs" t="Include" />
