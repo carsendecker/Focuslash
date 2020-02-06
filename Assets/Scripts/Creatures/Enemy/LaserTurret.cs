@@ -13,12 +13,10 @@ public class LaserTurret : Creature
     public float AttackLeadDistance; //How far in front it will aim in front of the player
     public float ChargeTime; //How long it takes to charge
     public float FireTime; //How long it fires for
-    public int Damage;
     public Slider HealthBar;
     public GameObject DeathParticles; //For when it dies
     public AudioClip FireSound;
 
-    private PlayerController player;
     private Rigidbody2D playerRb;
     private Collider2D laserCol;
     private float attackTimer;
@@ -26,21 +24,22 @@ public class LaserTurret : Creature
 //    private float maxColY = 0.62f;
 //    private bool growCol;
     
-    // Start is called before the first frame update
-    new void Start() {
+    protected override void Start() {
         base.Start();
-        player = Services.Player;
-        playerRb = player.GetComponent<Rigidbody2D>();
+        playerRb = Services.Player.GetComponent<Rigidbody2D>();
         laserCol = Laser.GetComponent<Collider2D>();
         laserCol.enabled = false;
-        NewAttackTimer();
+        
         HealthBar.maxValue = MaxHealth;
         HealthBar.value = MaxHealth;
+        
+        NewAttackTimer();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Begins an attack after a cooldown
         if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
@@ -61,7 +60,7 @@ public class LaserTurret : Creature
 
     private IEnumerator Attack()
     {
-        Vector3 targetPos = player.transform.position + (Vector3)(playerRb.velocity.normalized * AttackLeadDistance);
+        Vector3 targetPos = Services.Player.transform.position + (Vector3)(playerRb.velocity.normalized * AttackLeadDistance);
         var dir = targetPos - Laser.transform.position;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Laser.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
@@ -75,7 +74,7 @@ public class LaserTurret : Creature
 //        yield return new WaitForSeconds(0.5f);
         
         LaserParticles.Play();
-        Services.Audio.PlaySound(FireSound, SourceType.EnemySound);
+        Services.Audio.PlaySound(FireSound, SourceType.CreatureSound);
         
         yield return new WaitForSeconds(FireTime);
 

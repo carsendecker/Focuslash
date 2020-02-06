@@ -76,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
             enemyCheck = Physics2D.OverlapCircle(spawnPos, SpawnDensity - (currentDifficulty / DifficultyScaleDelay));
         } while (enemyCheck != null && enemyCheck.gameObject.CompareTag("Enemy"));
 
-        Services.Audio.PlaySound(SpawningSound, SourceType.EnemySound);
+        Services.Audio.PlaySound(SpawningSound, SourceType.AmbientSound);
         GameObject particles = Instantiate(SpawnParticlePrefab, spawnPos, Quaternion.identity);
 
         yield return new WaitForSeconds(SummonDelay);

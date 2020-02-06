@@ -6,7 +6,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player Sounds
+  m_Name: Creature Sounds
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 3a2eb98dcc3bc447e917a59ef2efa1aa
   m_Children: []
@@ -128,7 +128,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy Sounds
+  m_Name: Ambient Sounds
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 3be3fcee50a634d0d9c767fb6c9439ed
   m_Children: []

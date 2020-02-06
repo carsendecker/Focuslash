@@ -77,7 +77,7 @@ public class MovePhase : PlayerPhase
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 
 		//Short pause of iFrames after attacking
-		player.iFramesForSeconds(0.5f, true);
+		player.iFramesForSeconds(0.5f, false);
 	}
 
 	public override void Run()
@@ -108,7 +108,9 @@ public class MovePhase : PlayerPhase
 }
 
 
-			
+		
+
+
 //=============================================//
 //---------------CHOOSE PHASE------------------//
 //=============================================//
@@ -135,7 +137,7 @@ public class ChoosePhase : PlayerPhase
 		Time.timeScale = 0.05f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
-		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.PlayerSound);
+		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
 		
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
 		
@@ -206,7 +208,7 @@ public class ChoosePhase : PlayerPhase
 				targetCrosshair.transform.parent = targetedEnemy.transform;
 				crosshairList.Add(targetCrosshair);
 				
-				Services.Audio.PlaySound(player.selectTargetSound, SourceType.PlayerSound);
+				Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
 
 				attacksLeft--;
 
@@ -222,31 +224,12 @@ public class ChoosePhase : PlayerPhase
 
 		if (InputManager.PressedDown(Inputs.Cancel))
 		{
-			//Not working rn, code to dequeue targets
-			
-//			player.EnemyQueue.RemoveAt(player.EnemyQueue.Count - 1);
-//			GameObject.Destroy(crosshairList[crosshairList.Count - 1]);
-//			crosshairList.RemoveAt(crosshairList.Count - 1);
-//
-//			targetedEnemy = player.EnemyQueue[player.EnemyQueue.Count - 1];
-//			if (confirmingAttack)
-//			{
-//				crosshair = GameObject.Instantiate(player.CrosshairPrefab, targetedEnemy.transform.position, Quaternion.identity);
-//				confirmingAttack = false;
-//			}
-//			
-//			if (player.EnemyQueue.Count == 0)
-//			{
-//				MenuGod.MG.TimelineSlider.gameObject.SetActive(false);
-//				player.SetPhase(PlayerController.Phase.Movement);
-//			}
-			
+			//Cancels the current attack
 			player.EnemyAttackQueue.Clear();
 			Services.UI.TimelineSlider.gameObject.SetActive(false);
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
 
-//		ChooseAttack();
 	}
 
 	public override void OnExit()
@@ -262,7 +245,6 @@ public class ChoosePhase : PlayerPhase
 		//Disable circle range sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 		
-//		MenuGod.MG.AttackPanel.SetActive(false);
 
 		//Get rid of all target crosshairs
 		foreach (var thing in crosshairList)
@@ -288,7 +270,7 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = player.EnemiesInRange.Count - 1;
 			}
 			targetedEnemy = player.EnemiesInRange[currentIndex];
-			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
 		}
 		else if (InputManager.PressedDown(Inputs.Right))
 		{
@@ -301,10 +283,11 @@ public class ChoosePhase : PlayerPhase
 				currentIndex = 0;
 			}
 			targetedEnemy = player.EnemiesInRange[currentIndex];
-			Services.Audio.PlaySound(player.moveTargetSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
 		}
 	}
 }
+
 
 
 
@@ -317,11 +300,13 @@ public class AttackPhase : PlayerPhase
 //	public List<>/Dictionary<> attackQueue
 	public GameObject targetedEnemy;
 	
-	private const float attackMoveSpeed = 45f;
+	private const float AttackMoveSpeed = 41f;
+	
 	private bool hitTarget;
 	private Collider2D pCol;
 	private CircleCollider2D pRangeCol;
 	private bool pausing;
+	private Rigidbody2D playerRB;
 	
 	public AttackPhase(PlayerController owner)
 	{
@@ -333,6 +318,7 @@ public class AttackPhase : PlayerPhase
 		targetedEnemy = player.EnemyAttackQueue[0];
 		pCol = player.GetComponent<Collider2D>();
 		pRangeCol = player.GetComponentsInChildren<CircleCollider2D>()[1];
+		playerRB = player.GetComponent<Rigidbody2D>();
 	}
 
 	public override void Run()
@@ -357,16 +343,14 @@ public class AttackPhase : PlayerPhase
 		else if (hitTarget)
 		{
 			//If you've hit the target but have not left its collider, stay at constant velocity
-			player.rb.velocity = player.rb.velocity;
+			playerRB.velocity = playerRB.velocity;
 		}
 		else if (pausing)
 		{
-			//After hitting the target and leaving its collider, lerp velocity down, then continue to next target. Gives a short pause
-			//between each dash into an enemy.
-			
-			//**Lerp speed and magnitude comparison effect speed of pause**
-			player.rb.velocity = Vector2.Lerp(player.rb.velocity, Vector2.zero, 0.3f);
-			if (player.rb.velocity.magnitude <= 1.5f)
+			//After hitting the target and leaving its collider, lerp velocity down, then continue to next target. 
+			//Gives a short pause between each dash into an enemy.
+			playerRB.velocity = Vector2.Lerp(playerRB.velocity, Vector2.zero, 0.3f);
+			if (playerRB.velocity.magnitude <= 1.5f)
 			{
 				pausing = false;
 			}
@@ -389,7 +373,7 @@ public class AttackPhase : PlayerPhase
 		if (col.gameObject.GetComponent<Creature>())
 		{
 			GameObject.Instantiate(player.AttackParticlesPrefab, col.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0, 360)));
-			Services.Audio.PlaySound(player.attackSound, SourceType.PlayerSound);
+			Services.Audio.PlaySound(player.attackSound, SourceType.CreatureSound);
 		}
 		if (col.gameObject.Equals(targetedEnemy))
 		{
@@ -406,14 +390,13 @@ public class AttackPhase : PlayerPhase
 			hitTarget = false;
 			pausing = true;
 			player.EnemyAttackQueue.Remove(targetedEnemy);
-//			player.rb.velocity /= 3;
 		}
 		
 		//If *any* collided object has a creature script attached on the way to the target, deal damage
 		if (col.GetComponent<Creature>() != null)
 		{
 			//If enemy dies, remove all instances of it in the queue
-			if (col.GetComponent<Creature>().TakeDamage(player.AttackDamage))
+			if (col.GetComponent<Creature>().TakeDamage(player.Damage))
 			{
 				player.EnemyAttackQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
 			}
@@ -437,6 +420,6 @@ public class AttackPhase : PlayerPhase
 	private void MoveTowardsEnemy()
 	{
 		Vector3 direction = targetedEnemy.transform.position - player.transform.position;
-		player.rb.velocity = Vector3.Lerp(player.rb.velocity, direction.normalized * attackMoveSpeed, 0.25f);
+		playerRB.velocity = Vector3.Lerp(playerRB.velocity, direction.normalized * AttackMoveSpeed, 0.25f);
 	}
 }

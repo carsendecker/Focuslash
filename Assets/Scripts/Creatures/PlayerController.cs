@@ -14,7 +14,6 @@ public class PlayerController : Creature
 	
 
 	public int AttackCount; // # of things player can target (or aka # of "focus" points)
-	public int AttackDamage = 1; //Damage of one dash
 	public float iFrameTime; //How long the player is invincible after being hit
 	public float AttackCooldownTime; //How long focus takes to recharge
 	public GameObject CrosshairPrefab, LockedCrosshairPrefab; //
@@ -26,7 +25,7 @@ public class PlayerController : Creature
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
-	[HideInInspector] public Rigidbody2D rb;
+//	[HideInInspector] public Rigidbody2D rb;
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool coolingDown;
 	[HideInInspector] public bool canMove;
@@ -49,7 +48,6 @@ public class PlayerController : Creature
 		Phases.Add(Phase.Movement, new MovePhase(this));
 		Phases.Add(Phase.Choosing, new ChoosePhase(this));
 		Phases.Add(Phase.Attacking, new AttackPhase(this));
-		SetPhase(Phase.Movement);
 	}
 	
 	new void Start ()
@@ -59,6 +57,7 @@ public class PlayerController : Creature
 		//Set stats and sliders and such
 		canMove = true;
 		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
+		SetPhase(Phase.Movement);
 	}
 	
 
@@ -76,7 +75,7 @@ public class PlayerController : Creature
 		iFramesForSeconds(iFrameTime, true);
 		
 		Services.Utility.ShakeCamera(0.5f, 0.3f);
-		Services.Audio.PlaySound(hurtSound, SourceType.PlayerSound);
+		Services.Audio.PlaySound(hurtSound, SourceType.CreatureSound);
 		
 		SetPhase(Phase.Movement);
 
@@ -243,7 +242,8 @@ public class PlayerController : Creature
 		//Can't enter the same phase its already in
 		if (currentPhase != null && IsPhase(newPhase))
 		{
-			throw new Exception("Tried to enter the same state again!");
+//			throw new Exception("Tried to enter the same state again!");
+			return;
 		}
 
 		currentPhase?.OnExit();
