@@ -25,7 +25,6 @@ public class PlayerController : Creature
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
-//	[HideInInspector] public Rigidbody2D rb;
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool coolingDown;
 	[HideInInspector] public bool canMove;
