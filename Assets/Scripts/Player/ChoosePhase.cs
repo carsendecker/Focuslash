@@ -14,7 +14,6 @@ public class ChoosePhase : PlayerPhase
 	private GameObject targetedEnemy;
 	private GameObject crosshair;
 	private int optionSelected = 0;
-	private int attacksLeft;
 	private bool confirmingAttack;
 	
 	private Color camColor;
@@ -35,11 +34,8 @@ public class ChoosePhase : PlayerPhase
 		
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
 		
-		Services.UI.TimelineSlider.gameObject.SetActive(true);
-		Services.UI.TimelineSlider.maxValue = player.AttackCount;
+//		Services.UI.TimelineSlider.gameObject.SetActive(true);
 		
-		attacksLeft = player.AttackCount;
-
 		//Turns on range indicator sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
 
@@ -69,7 +65,7 @@ public class ChoosePhase : PlayerPhase
 	//Runs every update frame
 	public override void Run()
 	{
-		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyAttackQueue.Count, 0.25f);
+//		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyAttackQueue.Count, 0.25f);
 		if (crosshair != null)
 		{
 			CycleEnemies();
@@ -81,7 +77,6 @@ public class ChoosePhase : PlayerPhase
 			if (confirmingAttack)
 			{
 				//Once pressed again after targeting everything, start attacking
-				Services.UI.TimelineInstructionText.gameObject.SetActive(false);
 				player.SetPhase(PlayerController.Phase.Attacking);
 				return;
 			}
@@ -104,10 +99,10 @@ public class ChoosePhase : PlayerPhase
 				
 				Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
 
-				attacksLeft--;
+				player.CurrentFocus--;
 
-				//If there are no more attacks left, remove the crosshair and show a confirmation
-				if (attacksLeft <= 0)
+				//If there is not enough focus for another attack, remove the crosshair and show a confirmation
+				if (player.CurrentFocus < 1)
 				{
 					confirmingAttack = true;
 					GameObject.Destroy(crosshair);
@@ -120,7 +115,7 @@ public class ChoosePhase : PlayerPhase
 		{
 			//Cancels the current attack
 			player.EnemyAttackQueue.Clear();
-			Services.UI.TimelineSlider.gameObject.SetActive(false);
+//			Services.UI.TimelineSlider.gameObject.SetActive(false);
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
 
@@ -128,6 +123,8 @@ public class ChoosePhase : PlayerPhase
 
 	public override void OnExit()
 	{
+		Services.UI.TimelineInstructionText.gameObject.SetActive(false);
+
 		Time.timeScale = 1f;
 		Camera.main.backgroundColor = camColor;
 		

@@ -15,8 +15,9 @@ public class PlayerController : Creature
 
 	public int AttackCount; // # of things player can target (or aka # of "focus" points)
 	public float iFrameTime; //How long the player is invincible after being hit
-	public float AttackCooldownTime; //How long focus takes to recharge
-	public GameObject CrosshairPrefab, LockedCrosshairPrefab; //
+	public float FocusRechargeRate; //How long focus takes to recharge
+	[HideInInspector] public float CurrentFocus; //Current focus amount
+	public GameObject CrosshairPrefab, LockedCrosshairPrefab;
 	public GameObject AttackParticlesPrefab;
 	public Color SlowMoColor;
 	public List<GameObject> EnemiesInRange = new List<GameObject>();
@@ -26,7 +27,7 @@ public class PlayerController : Creature
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
 	[HideInInspector] public GameObject targetedEnemy;
-	[HideInInspector] public bool coolingDown;
+//	[HideInInspector] public bool coolingDown;
 	[HideInInspector] public bool canMove;
 	
 	private bool invincible;
@@ -55,7 +56,12 @@ public class PlayerController : Creature
 		
 		//Set stats and sliders and such
 		canMove = true;
+		CurrentFocus = AttackCount;
+		
+		//Initialize UI bars
 		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
+		Services.UI.TimelineSlider.maxValue = AttackCount;
+		
 		SetPhase(Phase.Movement);
 	}
 	
@@ -64,6 +70,8 @@ public class PlayerController : Creature
 	{
 		currentPhase.Run();
 		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
+		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, CurrentFocus, 0.2f);
+		CurrentFocus = Mathf.Clamp(CurrentFocus, 0, AttackCount);
 	}
 
 	//Deals damage to the player
