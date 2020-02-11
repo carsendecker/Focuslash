@@ -14,17 +14,27 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Creatures" t="Include">
-            <e p="Creature.cs" t="Include" />
-            <e p="Enemy" t="Include">
-              <e p="BigKnight.cs" t="Include" />
-              <e p="EnemyAttack.cs" t="Include" />
-              <e p="EnemySpawner.cs" t="Include" />
-              <e p="GruntScript.cs" t="Include" />
-              <e p="LaserTurret.cs" t="Include" />
-            </e>
+          <e p="Creature.cs" t="Include" />
+          <e p="Enemy" t="Include">
+            <e p="BigKnight.cs" t="Include" />
+            <e p="EnemyAttack.cs" t="Include" />
+            <e p="EnemySpawner.cs" t="Include" />
+            <e p="GruntScript.cs" t="Include" />
+            <e p="LaserTurret.cs" t="Include" />
+          </e>
+          <e p="Managers" t="Include">
+            <e p="AudioManager.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+            <e p="InputManager.cs" t="Include" />
+            <e p="Services.cs" t="Include" />
+            <e p="UtilityManager.cs" t="Include" />
+          </e>
+          <e p="Player" t="Include">
+            <e p="AttackPhase.cs" t="Include" />
+            <e p="ChoosePhase.cs" t="Include" />
+            <e p="MovePhase.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
-            <e p="PlayerPhases.cs" t="Include" />
+            <e p="PlayerPhase.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="CameraFollow.cs" t="Include" />
@@ -34,13 +44,13 @@
             <e p="UIManager.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
-            <e p="AudioManager.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
-            <e p="GameManager.cs" t="Include" />
-            <e p="InputManager.cs" t="Include" />
-            <e p="Services.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
-            <e p="UtilityManager.cs" t="Include" />
+            <e p="TEST" t="Include">
+              <e p="BehaviorTree.cs" t="Include" />
+              <e p="EventManager.cs" t="Include" />
+              <e p="FiniteStateMachine.cs" t="Include" />
+            </e>
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
