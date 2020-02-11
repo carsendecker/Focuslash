@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        TimelineSlider.gameObject.SetActive(false);
+//        TimelineSlider.gameObject.SetActive(false);
         TimelineInstructionText.gameObject.SetActive(false);
     }
 

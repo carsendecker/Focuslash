@@ -11,7 +11,7 @@ using UnityEngine;
 /// </summary>
 public class MovePhase : PlayerPhase
 {
-    private float cdTimer;
+//    private float cdTimer;
 
     public MovePhase(PlayerController owner)
     {
@@ -21,20 +21,21 @@ public class MovePhase : PlayerPhase
     //Executes this upon entering the state
     public override void OnEnter()
     {
-        Services.UI.CooldownSlider.maxValue = player.AttackCooldownTime;
-        if (player.coolingDown)
-        {
-            cdTimer = 0;
-        }
-        else
-        {
-            cdTimer = player.AttackCooldownTime;
-        }
-        Services.UI.CooldownSlider.value = cdTimer;
+        Services.UI.CooldownSlider.maxValue = player.AttackCount;
+        
+//        if (player.coolingDown)
+//        {
+//            cdTimer = 0;
+//        }
+//        else
+//        {
+//            cdTimer = player.FocusRechargeRate;
+//        }
+        Services.UI.CooldownSlider.value = player.CurrentFocus;
         player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 
         //Short pause of iFrames after attacking
-        player.iFramesForSeconds(0.5f, false);
+        player.iFramesForSeconds(0.7f, false);
     }
 
     public override void Run()
@@ -42,18 +43,14 @@ public class MovePhase : PlayerPhase
         if(player.canMove)
             player.Move();
 		
-        if (cdTimer < player.AttackCooldownTime)
+        //Recharges focus until you have max
+        if (player.CurrentFocus < player.AttackCount)
         {
-            cdTimer += Time.deltaTime;
-            Services.UI.CooldownSlider.value = cdTimer;
-			
-            if (cdTimer >= player.AttackCooldownTime)
-            {
-                player.coolingDown = false;
-            }
+            player.CurrentFocus += Time.deltaTime * player.FocusRechargeRate;
         }
 
-        if (!player.coolingDown && InputManager.PressedDown(Inputs.Attack))
+        //If focus is more than at least 1, you can start attacking
+        if (InputManager.PressedDown(Inputs.Attack) && Mathf.Floor(player.CurrentFocus) > 0)
         {
             player.SetPhase(PlayerController.Phase.Choosing);
         }

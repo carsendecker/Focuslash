@@ -73,13 +73,12 @@ public class AttackPhase : PlayerPhase
 
 	public override void OnExit()
 	{
-		player.coolingDown = true;
 		pRangeCol.enabled = true;
 		pCol.isTrigger = false;
 		targetedEnemy = null;
 		
 		player.EnemyAttackQueue.Clear();
-		Services.UI.TimelineSlider.gameObject.SetActive(false);
+//		Services.UI.TimelineSlider.gameObject.SetActive(false);
 	}
 
 	public override void OnTriggerEnter2D(Collider2D col)
