@@ -51,6 +51,14 @@ public class Creature : MonoBehaviour
     //For when a creature dies
     protected virtual void Die() {}
 
+    /// <summary>
+    /// Returns the creature's current health
+    /// </summary>
+    public float GetHealth()
+    {
+        return health;
+    }
+
     
 }
 
