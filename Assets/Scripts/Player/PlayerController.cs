@@ -59,8 +59,9 @@ public class PlayerController : Creature
 		CurrentFocus = AttackCount;
 		
 		//Initialize UI bars
-		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
-		Services.UI.TimelineSlider.maxValue = AttackCount;
+//		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
+		Services.UI.UpdatePlayerHealth();
+		Services.UI.FocusSlider.maxValue = AttackCount;
 		
 		SetPhase(Phase.Movement);
 	}
@@ -69,8 +70,8 @@ public class PlayerController : Creature
 	void Update ()
 	{
 		currentPhase.Run();
-		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
-		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, CurrentFocus, 0.2f);
+//		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
+		Services.UI.FocusSlider.value = Mathf.Lerp(Services.UI.FocusSlider.value, CurrentFocus, 0.2f);
 		CurrentFocus = Mathf.Clamp(CurrentFocus, 0, AttackCount);
 	}
 
@@ -78,8 +79,11 @@ public class PlayerController : Creature
 	public override bool TakeDamage(int damage)
 	{
 		if (invincible) return false;
+		
 		base.TakeDamage(damage);
 		iFramesForSeconds(iFrameTime, true);
+		
+		Services.UI.UpdatePlayerHealth();
 		
 		Services.Utility.ShakeCamera(0.5f, 0.3f);
 		Services.Audio.PlaySound(hurtSound, SourceType.CreatureSound);
@@ -103,14 +107,15 @@ public class PlayerController : Creature
 	//Kills the player
 	protected override void Die()
 	{
-		EnemySpawner es = FindObjectOfType<EnemySpawner>();
+		EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
 
+		//TODO: Should eventually be replaced by an actual UI controller that gets called from an event or something
 		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
 		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
 		Services.UI.ScoreText.fontSize = 25;
 		Services.UI.PlayerHealthSlider.value = 0;
 		
-		Destroy(es);
+		Destroy(spawner);
 		Destroy(gameObject);
 	}
 
@@ -148,7 +153,9 @@ public class PlayerController : Creature
 		rb.velocity = tempVel;
 	}
 
-	//Flashes player sprite
+	/// <summary>
+	/// Flashes player sprite
+	/// </summary>
 	private IEnumerator DamageFlash(float duration)
 	{
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -165,7 +172,9 @@ public class PlayerController : Creature
 		}
 	}
 
-	// Gives iFrames for specified length of time, option to flash the player also
+	/// <summary>
+	/// Gives iFrames for specified length of time, option to flash the player also
+	/// </summary>
 	public void iFramesForSeconds(float time, bool flash)
 	{
 		if (invincible) return;
@@ -175,7 +184,9 @@ public class PlayerController : Creature
 		StartCoroutine(iFrames(time));
 	}
 	
-	//Makes player invincible for a specified amount of time, the actual coroutine
+	/// <summary>
+	/// Makes player invincible for a specified amount of time, the actual coroutine called by iFramesForSeconds
+	/// </summary>
 	private IEnumerator iFrames(float time)
 	{
 		invincible = true;
@@ -227,7 +238,7 @@ public class PlayerController : Creature
 	{
 		if (other.CompareTag("Death Particles"))
 		{
-			//TODO: Passing damage value of laser
+			//TODO: Passing damage value of particles?
 			TakeDamage(1);
 		}
 	}
