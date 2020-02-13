@@ -15,6 +15,7 @@ public class ChoosePhase : PlayerPhase
 	private GameObject crosshair;
 	private int optionSelected = 0;
 	private bool confirmingAttack;
+	private float startingFocus; //How much focus you start choosing with, used for when you cancel your attack
 	
 	private Color camColor;
 	private List<GameObject> crosshairList = new List<GameObject>();
@@ -31,6 +32,7 @@ public class ChoosePhase : PlayerPhase
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
+		startingFocus = player.CurrentFocus;
 		
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
 		
@@ -106,7 +108,7 @@ public class ChoosePhase : PlayerPhase
 				{
 					confirmingAttack = true;
 					GameObject.Destroy(crosshair);
-					Services.UI.TimelineInstructionText.gameObject.SetActive(true);
+					Services.UI.AttackInstructionText.gameObject.SetActive(true);
 				}
 			}
 		}
@@ -115,6 +117,7 @@ public class ChoosePhase : PlayerPhase
 		{
 			//Cancels the current attack
 			player.EnemyAttackQueue.Clear();
+			player.CurrentFocus = startingFocus;
 //			Services.UI.TimelineSlider.gameObject.SetActive(false);
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
@@ -123,7 +126,7 @@ public class ChoosePhase : PlayerPhase
 
 	public override void OnExit()
 	{
-		Services.UI.TimelineInstructionText.gameObject.SetActive(false);
+		Services.UI.AttackInstructionText.gameObject.SetActive(false);
 
 		Time.timeScale = 1f;
 		Camera.main.backgroundColor = camColor;
