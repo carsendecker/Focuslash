@@ -39,6 +39,7 @@
           <e p="UI" t="Include">
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
+            <e p="PauseMenuScript.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
             <e p="TargetText.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
