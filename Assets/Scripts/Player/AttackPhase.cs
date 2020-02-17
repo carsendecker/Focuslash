@@ -37,8 +37,6 @@ public class AttackPhase : PlayerPhase
 
 	public override void Run()
 	{
-		Services.UI.FocusSlider.value = Mathf.Lerp(Services.UI.FocusSlider.value, player.EnemyAttackQueue.Count, 0.3f);
-
 		//If there is no target but the queue still has things in it, stuff went wrong probably
 		if (targetedEnemy == null && player.EnemyAttackQueue.Count > 0)
 		{

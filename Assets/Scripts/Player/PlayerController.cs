@@ -15,7 +15,7 @@ public class PlayerController : Creature
 
 	public int AttackCount; // # of things player can target (or aka # of "focus" points)
 	public float iFrameTime; //How long the player is invincible after being hit
-	public float FocusRechargeRate; //How long focus takes to recharge
+	public float FocusRechargeRate; //How long a single attack takes to recharge
 	[HideInInspector] public float CurrentFocus; //Current focus amount
 	public GameObject CrosshairPrefab, LockedCrosshairPrefab;
 	public GameObject AttackParticlesPrefab;
@@ -27,7 +27,6 @@ public class PlayerController : Creature
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
 	[HideInInspector] public GameObject targetedEnemy;
-//	[HideInInspector] public bool coolingDown;
 	[HideInInspector] public bool canMove;
 	
 	private bool invincible;
@@ -59,9 +58,7 @@ public class PlayerController : Creature
 		CurrentFocus = AttackCount;
 		
 		//Initialize UI bars
-//		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
 		Services.UI.UpdatePlayerHealth();
-		Services.UI.FocusSlider.maxValue = AttackCount;
 		
 		SetPhase(Phase.Movement);
 	}
@@ -70,9 +67,9 @@ public class PlayerController : Creature
 	void Update ()
 	{
 		currentPhase.Run();
-//		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
-		Services.UI.FocusSlider.value = Mathf.Lerp(Services.UI.FocusSlider.value, CurrentFocus, 0.2f);
 		CurrentFocus = Mathf.Clamp(CurrentFocus, 0, AttackCount);
+		Services.UI.UpdatePlayerFocus();
+
 	}
 
 	//Deals damage to the player
@@ -113,7 +110,6 @@ public class PlayerController : Creature
 		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
 		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
 		Services.UI.ScoreText.fontSize = 25;
-		Services.UI.PlayerHealthSlider.value = 0;
 		
 		Destroy(spawner);
 		Destroy(gameObject);
