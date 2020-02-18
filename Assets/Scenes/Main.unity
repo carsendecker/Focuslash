@@ -2053,46 +2053,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: Damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: FocusRechargeRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: hurtSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e194d188f3f914ed1b9ed013d597cf08, type: 3}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: attackSound
-      value: 
-      objectReference: {fileID: 8300000, guid: a9a86cf0993aa4dcd84f38f71eccfb93, type: 3}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: enterSlomoSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 3815f4634983a4a079a0f75a50c6312f, type: 3}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: selectTargetSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: moveTargetSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 85194f6d556444f3d8fa29c1ec6f0647, type: 3}
-    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
-        type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 4731d8a7a38124432a5af022406d7b07, type: 3}
     - target: {fileID: 344415782776548287, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
       propertyPath: m_Camera

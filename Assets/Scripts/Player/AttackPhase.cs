@@ -17,9 +17,10 @@ public class AttackPhase : PlayerPhase
 	private const float AttackMoveSpeed = 41f;
 	
 	private bool hitTarget;
+	private bool pausing;
+	
 	private Collider2D pCol;
 	private CircleCollider2D pRangeCol;
-	private bool pausing;
 	private Rigidbody2D playerRB;
 	
 	public AttackPhase(PlayerController owner)
@@ -45,27 +46,26 @@ public class AttackPhase : PlayerPhase
 			return;
 		}
 
+		//If you have not entered the target's collider yet, move towards it
 		if (!hitTarget && targetedEnemy != null && !pausing)
 		{
-			//If you have not entered the target's collider yet, move towards it
 			pRangeCol.enabled = false;
 			pCol.isTrigger = true;
 			MoveTowardsEnemy();
 		}
+		//If you've hit the target but have not left its collider, stay at constant velocity
 		else if (hitTarget)
 		{
-			//If you've hit the target but have not left its collider, stay at constant velocity
 			playerRB.velocity = playerRB.velocity;
 		}
+		//After hitting the target and leaving its collider, lerp velocity down, then continue to next target. 
+		//Gives a short pause between each dash into an enemy.
 		else if (pausing)
 		{
-			//After hitting the target and leaving its collider, lerp velocity down, then continue to next target. 
-			//Gives a short pause between each dash into an enemy.
-			playerRB.velocity = Vector2.Lerp(playerRB.velocity, Vector2.zero, 0.3f);
-			if (playerRB.velocity.magnitude <= 1.5f)
-			{
+			playerRB.velocity = Vector2.Lerp(playerRB.velocity, Vector2.zero, 0.25f);
+			
+			if (playerRB.velocity.magnitude <= 1f)
 				pausing = false;
-			}
 		}
 	}
 
@@ -76,20 +76,19 @@ public class AttackPhase : PlayerPhase
 		targetedEnemy = null;
 		
 		player.EnemyAttackQueue.Clear();
-//		Services.UI.TimelineSlider.gameObject.SetActive(false);
 	}
 
 	public override void OnTriggerEnter2D(Collider2D col)
 	{
+		//If you enter a creature, make particles and sounds and stuff
 		if (col.gameObject.GetComponent<Creature>())
 		{
 			GameObject.Instantiate(player.AttackParticlesPrefab, col.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0, 360)));
 			Services.Audio.PlaySound(player.attackSound, SourceType.CreatureSound);
 		}
+		//If you hit the actual targeted enemy, start to slow down
 		if (col.gameObject.Equals(targetedEnemy))
-		{
 			hitTarget = true;
-		}
 	}
 
 	public override void OnTriggerExit2D(Collider2D col)
