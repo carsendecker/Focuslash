@@ -147,11 +147,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 5
-  MoveSpeed: 7.3
+  MoveSpeed: 7
+  Damage: 1
   AttackCount: 3
-  AttackDamage: 1
-  iFrameTime: 0.6
-  AttackCooldownTime: 3.5
+  iFrameTime: 0.5
+  FocusRechargeRate: 0.5
+  CurrentFocus: 0
   CrosshairPrefab: {fileID: 7620361654373778696, guid: 27688867fb9a4468dbbd3e8e66ac3cce,
     type: 3}
   LockedCrosshairPrefab: {fileID: 4550494481841785008, guid: b400a2c8e095b4fb5834d66f5874843b,
@@ -159,18 +160,16 @@ MonoBehaviour:
   AttackParticlesPrefab: {fileID: 1611215975507535509, guid: 68a01d55415424555b933add5493f95c,
     type: 3}
   SlowMoColor: {r: 0.15076537, g: 0.16021417, b: 0.26415092, a: 1}
-  EnemiesInRange: []
-  EnemyAttackQueue: []
   hurtSound: {fileID: 8300000, guid: e194d188f3f914ed1b9ed013d597cf08, type: 3}
   attackSound: {fileID: 8300000, guid: a9a86cf0993aa4dcd84f38f71eccfb93, type: 3}
   enterSlomoSound: {fileID: 8300000, guid: 3815f4634983a4a079a0f75a50c6312f, type: 3}
   selectTargetSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
   moveTargetSound: {fileID: 8300000, guid: 85194f6d556444f3d8fa29c1ec6f0647, type: 3}
-  deathSound: {fileID: 0}
-  rb: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 4731d8a7a38124432a5af022406d7b07, type: 3}
   targetedEnemy: {fileID: 0}
-  coolingDown: 0
   canMove: 0
+  EnemiesInRange: []
+  EnemyAttackQueue: []
 --- !u!212 &344415781491089921
 SpriteRenderer:
   m_ObjectHideFlags: 0

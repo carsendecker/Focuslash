@@ -8,8 +8,13 @@ using UnityEngine;
 public class Creature : MonoBehaviour
 {
 
+    [Tooltip("This creature's max health points.")]
     public int MaxHealth; 
+    
+    [Tooltip("This creature's movement speed. Self explanatory.")]
     public float MoveSpeed;
+    
+    [Tooltip("The *base* damage this creature deals if it attacks another creature.")]
     public int Damage;
 
     protected float health;
@@ -50,6 +55,14 @@ public class Creature : MonoBehaviour
 
     //For when a creature dies
     protected virtual void Die() {}
+
+    /// <summary>
+    /// Returns the creature's current health
+    /// </summary>
+    public float GetHealth()
+    {
+        return health;
+    }
 
     
 }

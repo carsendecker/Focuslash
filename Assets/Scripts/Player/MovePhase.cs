@@ -21,7 +21,6 @@ public class MovePhase : PlayerPhase
     //Executes this upon entering the state
     public override void OnEnter()
     {
-        Services.UI.CooldownSlider.maxValue = player.AttackCount;
         
 //        if (player.coolingDown)
 //        {
@@ -31,7 +30,6 @@ public class MovePhase : PlayerPhase
 //        {
 //            cdTimer = player.FocusRechargeRate;
 //        }
-        Services.UI.CooldownSlider.value = player.CurrentFocus;
         player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 
         //Short pause of iFrames after attacking

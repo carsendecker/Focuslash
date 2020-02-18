@@ -12,23 +12,30 @@ public class PlayerController : Creature
 		Attacking = 3,
 	}
 	
-
-	public int AttackCount; // # of things player can target (or aka # of "focus" points)
-	public float iFrameTime; //How long the player is invincible after being hit
-	public float FocusRechargeRate; //How long focus takes to recharge
+	[Tooltip("Number of things player can target at max (aka max 'focus' points).")]
+	public int AttackCount;
+	
+	[Tooltip("How many seconds the player is invincible after being hit.")]
+	public float iFrameTime;
+	
+	[Tooltip("How long (in seconds) a single attack takes to recharge.")]
+	public float FocusRechargeRate;
+	
 	[HideInInspector] public float CurrentFocus; //Current focus amount
-	public GameObject CrosshairPrefab, LockedCrosshairPrefab;
+
+	[Space(10)]
+	public GameObject CrosshairPrefab;
+	public GameObject LockedCrosshairPrefab;
 	public GameObject AttackParticlesPrefab;
-	public Color SlowMoColor;
-	public List<GameObject> EnemiesInRange = new List<GameObject>();
-	public List<GameObject> EnemyAttackQueue = new List<GameObject>();
+	public Color SlowMoColor; //The color the camera turns when entering slow motion, will probably get rid of this eventually
 	
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
 	[HideInInspector] public GameObject targetedEnemy;
-//	[HideInInspector] public bool coolingDown;
 	[HideInInspector] public bool canMove;
+	[HideInInspector] public List<GameObject> EnemiesInRange = new List<GameObject>();
+	[HideInInspector] public List<GameObject> EnemyAttackQueue = new List<GameObject>();
 	
 	private bool invincible;
 	private Collider2D attackRange;
@@ -59,8 +66,7 @@ public class PlayerController : Creature
 		CurrentFocus = AttackCount;
 		
 		//Initialize UI bars
-		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
-		Services.UI.TimelineSlider.maxValue = AttackCount;
+		Services.UI.UpdatePlayerHealth();
 		
 		SetPhase(Phase.Movement);
 	}
@@ -69,17 +75,20 @@ public class PlayerController : Creature
 	void Update ()
 	{
 		currentPhase.Run();
-		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
-		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, CurrentFocus, 0.2f);
 		CurrentFocus = Mathf.Clamp(CurrentFocus, 0, AttackCount);
+		Services.UI.UpdatePlayerFocus();
+
 	}
 
 	//Deals damage to the player
 	public override bool TakeDamage(int damage)
 	{
 		if (invincible) return false;
+		
 		base.TakeDamage(damage);
 		iFramesForSeconds(iFrameTime, true);
+		
+		Services.UI.UpdatePlayerHealth();
 		
 		Services.Utility.ShakeCamera(0.5f, 0.3f);
 		Services.Audio.PlaySound(hurtSound, SourceType.CreatureSound);
@@ -103,14 +112,14 @@ public class PlayerController : Creature
 	//Kills the player
 	protected override void Die()
 	{
-		EnemySpawner es = FindObjectOfType<EnemySpawner>();
+		EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
 
+		//TODO: Should eventually be replaced by an actual UI controller that gets called from an event or something
 		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
 		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
 		Services.UI.ScoreText.fontSize = 25;
-		Services.UI.PlayerHealthSlider.value = 0;
 		
-		Destroy(es);
+		Destroy(spawner);
 		Destroy(gameObject);
 	}
 
@@ -148,7 +157,9 @@ public class PlayerController : Creature
 		rb.velocity = tempVel;
 	}
 
-	//Flashes player sprite
+	/// <summary>
+	/// Flashes player sprite
+	/// </summary>
 	private IEnumerator DamageFlash(float duration)
 	{
 		SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -165,7 +176,9 @@ public class PlayerController : Creature
 		}
 	}
 
-	// Gives iFrames for specified length of time, option to flash the player also
+	/// <summary>
+	/// Gives iFrames for specified length of time, option to flash the player also
+	/// </summary>
 	public void iFramesForSeconds(float time, bool flash)
 	{
 		if (invincible) return;
@@ -175,7 +188,9 @@ public class PlayerController : Creature
 		StartCoroutine(iFrames(time));
 	}
 	
-	//Makes player invincible for a specified amount of time, the actual coroutine
+	/// <summary>
+	/// Makes player invincible for a specified amount of time, the actual coroutine called by iFramesForSeconds
+	/// </summary>
 	private IEnumerator iFrames(float time)
 	{
 		invincible = true;
@@ -227,7 +242,7 @@ public class PlayerController : Creature
 	{
 		if (other.CompareTag("Death Particles"))
 		{
-			//TODO: Passing damage value of laser
+			//TODO: Passing damage value of particles?
 			TakeDamage(1);
 		}
 	}
