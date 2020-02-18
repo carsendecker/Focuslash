@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="870f07b9-e25e-4f48-959f-ce4875492831" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Focuslash/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Focuslash/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UtilityManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UtilityManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/AttackPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/AttackPhase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ChoosePhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ChoosePhase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,12 +22,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cs" value="12580" />
+          <entry key="cs" value="12583" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C#" value="12580" />
+          <entry key="C#" value="12583" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -131,29 +123,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Player/ChoosePhase.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+            <state relative-caret-position="633">
+              <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
               <folding>
-                <marker date="1582067231930" expanded="false" signature="6:97" ph="..." />
-                <marker date="1582067231930" expanded="true" signature="99:248" ph="/* ============================================= ... */" />
-                <marker date="1582067231930" expanded="true" signature="250:368" ph="/// The state the player is in whenever they are focusing and targeting enemies to attack ... " />
-                <marker date="1582067231930" expanded="true" signature="407:4481" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="478:546" ph="/* private int optionSelected = 0; ... */" />
-                <marker date="1582067231930" expanded="true" signature="794:818" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="852:1440" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="1180:1277" ph="/* Services.UI.TimelineSlider.gameObject.SetActive(true); ... */" />
-                <marker date="1582067231930" expanded="true" signature="1496:2773" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="1546:1810" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="1593:1669" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="1844:1927" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="2023:2549" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="2599:2768" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="2805:3303" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="2965:3028" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="3236:3275" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="3337:4479" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="3526:4418" ph="{...}" />
-                <marker date="1582067231930" expanded="true" signature="3938:4029" ph="{...}" />
+                <marker date="1582067637437" expanded="false" signature="6:97" ph="..." />
+                <marker date="1582067637437" expanded="true" signature="99:248" ph="/* ============================================= ... */" />
+                <marker date="1582067637437" expanded="true" signature="250:368" ph="/// The state the player is in whenever they are focusing and targeting enemies to attack ... " />
+                <marker date="1582067637437" expanded="true" signature="407:4480" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="478:546" ph="/* private int optionSelected = 0; ... */" />
+                <marker date="1582067637437" expanded="true" signature="794:818" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="852:1440" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="1180:1277" ph="/* Services.UI.TimelineSlider.gameObject.SetActive(true); ... */" />
+                <marker date="1582067637437" expanded="true" signature="1496:2772" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="1546:1810" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="1593:1669" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="1860:2029" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="2063:2146" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="2242:2768" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="2804:3302" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="2964:3027" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="3235:3274" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="3336:4478" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="3525:4417" ph="{...}" />
+                <marker date="1582067637437" expanded="true" signature="3937:4028" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -352,12 +344,12 @@
       <workItem from="1581366531966" duration="3368000" />
       <workItem from="1581457832135" duration="8033000" />
       <workItem from="1581881220288" duration="5593000" />
-      <workItem from="1582054968774" duration="11216000" />
+      <workItem from="1582054968774" duration="11555000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47784000" />
+    <option name="totallyTimeSpent" value="48123000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -710,29 +702,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Player/ChoosePhase.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+        <state relative-caret-position="633">
+          <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
           <folding>
-            <marker date="1582067231930" expanded="false" signature="6:97" ph="..." />
-            <marker date="1582067231930" expanded="true" signature="99:248" ph="/* ============================================= ... */" />
-            <marker date="1582067231930" expanded="true" signature="250:368" ph="/// The state the player is in whenever they are focusing and targeting enemies to attack ... " />
-            <marker date="1582067231930" expanded="true" signature="407:4481" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="478:546" ph="/* private int optionSelected = 0; ... */" />
-            <marker date="1582067231930" expanded="true" signature="794:818" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="852:1440" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="1180:1277" ph="/* Services.UI.TimelineSlider.gameObject.SetActive(true); ... */" />
-            <marker date="1582067231930" expanded="true" signature="1496:2773" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="1546:1810" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="1593:1669" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="1844:1927" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="2023:2549" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="2599:2768" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="2805:3303" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="2965:3028" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="3236:3275" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="3337:4479" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="3526:4418" ph="{...}" />
-            <marker date="1582067231930" expanded="true" signature="3938:4029" ph="{...}" />
+            <marker date="1582067637437" expanded="false" signature="6:97" ph="..." />
+            <marker date="1582067637437" expanded="true" signature="99:248" ph="/* ============================================= ... */" />
+            <marker date="1582067637437" expanded="true" signature="250:368" ph="/// The state the player is in whenever they are focusing and targeting enemies to attack ... " />
+            <marker date="1582067637437" expanded="true" signature="407:4480" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="478:546" ph="/* private int optionSelected = 0; ... */" />
+            <marker date="1582067637437" expanded="true" signature="794:818" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="852:1440" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="1180:1277" ph="/* Services.UI.TimelineSlider.gameObject.SetActive(true); ... */" />
+            <marker date="1582067637437" expanded="true" signature="1496:2772" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="1546:1810" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="1593:1669" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="1860:2029" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="2063:2146" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="2242:2768" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="2804:3302" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="2964:3027" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="3235:3274" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="3336:4478" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="3525:4417" ph="{...}" />
+            <marker date="1582067637437" expanded="true" signature="3937:4028" ph="{...}" />
           </folding>
         </state>
       </provider>

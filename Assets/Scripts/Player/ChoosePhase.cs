@@ -63,6 +63,14 @@ public class ChoosePhase : PlayerPhase
 			return;
 		}
 		
+		if (InputManager.PressedDown(Inputs.Cancel))
+		{
+			//Cancels the current attack
+			player.EnemyAttackQueue.Clear();
+			player.CurrentFocus = startingFocus;
+			player.SetPhase(PlayerController.Phase.Movement);
+		}
+		
 		if (player.CurrentFocus < 1)
 		{
 			if(crosshair != null)
@@ -88,15 +96,6 @@ public class ChoosePhase : PlayerPhase
 
 			player.CurrentFocus--;
 		}
-		
-		if (InputManager.PressedDown(Inputs.Cancel))
-		{
-			//Cancels the current attack
-			player.EnemyAttackQueue.Clear();
-			player.CurrentFocus = startingFocus;
-			player.SetPhase(PlayerController.Phase.Movement);
-		}
-
 
 	}
 
