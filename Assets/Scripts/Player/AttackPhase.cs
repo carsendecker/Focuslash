@@ -55,9 +55,8 @@ public class AttackPhase : PlayerPhase
 		}
 		//If you've hit the target but have not left its collider, stay at constant velocity
 		else if (hitTarget)
-		{
 			playerRB.velocity = playerRB.velocity;
-		}
+		
 		//After hitting the target and leaving its collider, lerp velocity down, then continue to next target. 
 		//Gives a short pause between each dash into an enemy.
 		else if (pausing)
@@ -94,6 +93,17 @@ public class AttackPhase : PlayerPhase
 	public override void OnTriggerExit2D(Collider2D col)
 	{
 		if (pRangeCol.enabled) return;
+		
+		//If *any* collided object has a creature script attached on the way to the target, deal damage
+		if (col.GetComponent<Creature>() != null)
+		{
+			//If enemy dies, remove all instances of it in the queue
+			if (col.GetComponent<Creature>().TakeDamage(player.Damage))
+				player.EnemyAttackQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
+			
+			Services.Utility.ShakeCamera(0.1f, 0.25f);
+		}
+		
 		//Once exiting trigger of the targeted enemy, remove it from the queue and pause a sec
 		if (hitTarget && col.gameObject.Equals(targetedEnemy))
 		{
@@ -102,26 +112,12 @@ public class AttackPhase : PlayerPhase
 			player.EnemyAttackQueue.Remove(targetedEnemy);
 		}
 		
-		//If *any* collided object has a creature script attached on the way to the target, deal damage
-		if (col.GetComponent<Creature>() != null)
-		{
-			//If enemy dies, remove all instances of it in the queue
-			if (col.GetComponent<Creature>().TakeDamage(player.Damage))
-			{
-				player.EnemyAttackQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
-			}
-			Services.Utility.ShakeCamera(0.1f, 0.25f);
-		}
-		
 		//If there are enemies left in the queue, set the next one as the new target
 		if (player.EnemyAttackQueue.Count > 0)
-		{
 			targetedEnemy = player.EnemyAttackQueue[0];
-		}
+		
 		else if (player.EnemyAttackQueue.Count == 0)
-		{
 			player.SetPhase(PlayerController.Phase.Movement);
-		}
 
 		
 	}

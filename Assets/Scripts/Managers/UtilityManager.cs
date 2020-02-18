@@ -13,27 +13,17 @@ public class UtilityManager : MonoBehaviour
     private CameraShake cShake;
     private bool gameFrozen;
 
+    private List<Color> fadingColors = new List<Color>();
+
     void Awake()
     {
-        if (Services.Utility == null)
-            Services.Utility = this;
+        Services.Utility = this;
     }
     
-
     void Start()
     {
         mainCam = Camera.main;
         cShake = mainCam.GetComponent<CameraShake>();
-    }
-
-    void Update()
-    {
-        if (InputManager.PressedDown(Inputs.Restart))
-        {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
     }
 
     /// <summary>
@@ -58,16 +48,31 @@ public class UtilityManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Fades a color's alpha to 0 at a certain speed (I guess this is usually supposed to be called in some form of update loop?)
+    /// BROKEN LOL Fades a color's alpha to 0 at a certain speed (I guess this is usually supposed to be called in some form of update loop?)
     /// </summary>
-    public bool FadeOut(Color colorToFade, float speed)
+    public void FadeOut(Color colorToFade, float speed)
     {
-        colorToFade.a -= Mathf.Clamp(speed, 0, 1);
-        if (colorToFade.a <= 0)
+        if (fadingColors.Contains(colorToFade)) return;
+
+        StartCoroutine(FadeOutC(colorToFade, speed));
+    }
+
+    /// <summary>
+    /// The actual coroutine to handle the fading independently, should not called anywhere but here
+    /// </summary>
+    private IEnumerator FadeOutC(Color colorToFade, float speed)
+    {
+        Color changingColor = colorToFade;
+        fadingColors.Add(colorToFade);
+        
+        while (colorToFade.a > 0)
         {
-            return true;
+            colorToFade.a -= Mathf.Clamp(speed, 0, 1);
+            yield return 0;
         }
-        return false;
+
+        fadingColors.Remove(colorToFade);
+
     }
     
     /// <summary>

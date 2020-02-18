@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //=============================================//
@@ -13,8 +14,8 @@ public class ChoosePhase : PlayerPhase
 {		
 	private GameObject targetedEnemy;
 	private GameObject crosshair;
-	private int optionSelected = 0;
-	private bool confirmingAttack;
+//	private int optionSelected = 0;
+//	private bool confirmingAttack;
 	private float startingFocus; //How much focus you start choosing with, used for when you cancel your attack
 	
 	private Color camColor;
@@ -40,87 +41,62 @@ public class ChoosePhase : PlayerPhase
 		
 		//Turns on range indicator sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
+		Services.UI.AttackInstructionText.gameObject.SetActive(true);
 
-		//Target the closest enemy in range first
-		GameObject closestEnemy = null;
-		float closestDistance = 999999;
-		foreach (var enemy in player.EnemiesInRange)
-		{	
-			float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
-			if (distance < closestDistance)
-			{
-				distance = closestDistance;
-				closestEnemy = enemy;
-			}
-		}
+		targetedEnemy = null;
 
-		if (closestEnemy == null)
-		{
-			crosshair = null;
-			targetedEnemy = null;
-			return;
-		}
-		targetedEnemy = closestEnemy;
-		crosshair = GameObject.Instantiate(player.CrosshairPrefab, closestEnemy.transform.position, Quaternion.identity);
 	}
 
 	//Runs every update frame
 	public override void Run()
 	{
-//		Services.UI.TimelineSlider.value = Mathf.Lerp(Services.UI.TimelineSlider.value, player.EnemyAttackQueue.Count, 0.25f);
-		if (crosshair != null)
-		{
-			CycleEnemies();
-			crosshair.transform.position = Vector3.Lerp(crosshair.transform.position, targetedEnemy.transform.position, 0.25f);
-		}
-
 		if (InputManager.PressedDown(Inputs.Attack))
 		{
-			if (confirmingAttack)
-			{
-				//Once pressed again after targeting everything, start attacking
-				player.SetPhase(PlayerController.Phase.Attacking);
-				return;
-			}
-
-			if (targetedEnemy == null || crosshair == null)
+			if (player.EnemyAttackQueue.Count == 0)
 			{
 				player.SetPhase(PlayerController.Phase.Movement);
 				return;
 			}
 			
+			//Once pressed again after targeting everything, start attacking
+			player.SetPhase(PlayerController.Phase.Attacking);
+			return;
+		}
+		
+		if (player.CurrentFocus < 1)
+		{
+			if(crosshair != null)
+				GameObject.Destroy(crosshair);
+			
+			return;
+		}
+
+		TargetWithMouse();
+
+
+		if (InputManager.PressedDown(Inputs.Target) && targetedEnemy != null)
+		{
 			//Adds the targeted enemy to a "queue" for later
 			player.EnemyAttackQueue.Add(targetedEnemy);
 
 			//Spawns a new crosshair to show the enemy has been targeted
-			if (player.EnemyAttackQueue.Contains(targetedEnemy))
-			{
-				GameObject targetCrosshair = GameObject.Instantiate(player.LockedCrosshairPrefab,targetedEnemy.transform.position, Quaternion.identity);
-				targetCrosshair.transform.parent = targetedEnemy.transform;
-				crosshairList.Add(targetCrosshair);
-				
-				Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
+			GameObject targetCrosshair = GameObject.Instantiate(player.LockedCrosshairPrefab,targetedEnemy.transform.position, Quaternion.identity);
+			targetCrosshair.transform.parent = targetedEnemy.transform;
+			crosshairList.Add(targetCrosshair);
+			
+			Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
 
-				player.CurrentFocus--;
-
-				//If there is not enough focus for another attack, remove the crosshair and show a confirmation
-				if (player.CurrentFocus < 1)
-				{
-					confirmingAttack = true;
-					GameObject.Destroy(crosshair);
-					Services.UI.AttackInstructionText.gameObject.SetActive(true);
-				}
-			}
+			player.CurrentFocus--;
 		}
-
+		
 		if (InputManager.PressedDown(Inputs.Cancel))
 		{
 			//Cancels the current attack
 			player.EnemyAttackQueue.Clear();
 			player.CurrentFocus = startingFocus;
-//			Services.UI.TimelineSlider.gameObject.SetActive(false);
 			player.SetPhase(PlayerController.Phase.Movement);
 		}
+
 
 	}
 
@@ -130,12 +106,14 @@ public class ChoosePhase : PlayerPhase
 
 		Time.timeScale = 1f;
 		Camera.main.backgroundColor = camColor;
-		
-		GameObject.Destroy(crosshair);
-		crosshair = null;
-		
+
+		if (crosshair != null)
+		{
+			GameObject.Destroy(crosshair);
+			crosshair = null;
+		}
+
 		targetedEnemy = null;
-		confirmingAttack = false;
 		//Disable circle range sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 		
@@ -148,36 +126,40 @@ public class ChoosePhase : PlayerPhase
 		crosshairList.Clear();
 	}
 
-	//Takes input left and right to cycle through enemies in range
-	//TODO: Better targeting (fix distance based thing?) 
-	private void CycleEnemies()
+
+	private void TargetWithMouse()
 	{
-		int currentIndex = player.EnemiesInRange.IndexOf(targetedEnemy);
-		if (InputManager.PressedDown(Inputs.Left))
+		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero, 0f);
+
+		foreach (RaycastHit2D hit in hits)
 		{
-			if (currentIndex > 0)
+			GameObject creature = hit.collider.gameObject;
+			
+			//If the target isn't a Creature, dont target it
+			if (!creature.GetComponent<Creature>()) continue;
+
+			//If the enemy isnt in range, don't target it
+			if(!player.EnemiesInRange.Contains(creature)) continue;
+
+			//If the mouse is already on the targeted enemy, just update the crosshairs position then return
+			if (creature.Equals(targetedEnemy))
 			{
-				currentIndex--;
+				crosshair.transform.position = targetedEnemy.transform.position;
+				return;
 			}
-			else
-			{
-				currentIndex = player.EnemiesInRange.Count - 1;
-			}
-			targetedEnemy = player.EnemiesInRange[currentIndex];
+			
+			//If the mouse is on a new enemy, make that creature the new target and make a new crosshair on it
+			targetedEnemy = creature;
+			GameObject.Destroy(crosshair);
+			crosshair = GameObject.Instantiate(player.CrosshairPrefab, targetedEnemy.transform.position, Quaternion.identity);
+			
 			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
+			
+			return;
 		}
-		else if (InputManager.PressedDown(Inputs.Right))
-		{
-			if (currentIndex < player.EnemiesInRange.Count - 1)
-			{
-				currentIndex++;
-			}
-			else
-			{
-				currentIndex = 0;
-			}
-			targetedEnemy = player.EnemiesInRange[currentIndex];
-			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
-		}
+
+		targetedEnemy = null;
+		GameObject.Destroy(crosshair);
 	}
 }

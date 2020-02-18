@@ -107,6 +107,7 @@ public class PlayerController : Creature
 		
 		Vector2 forceDirection = transform.position - damagingObj.position;
 		rb.AddForce(forceDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+		
 	}
 
 	//Kills the player
