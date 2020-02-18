@@ -12,23 +12,30 @@ public class PlayerController : Creature
 		Attacking = 3,
 	}
 	
-
-	public int AttackCount; // # of things player can target (or aka # of "focus" points)
-	public float iFrameTime; //How long the player is invincible after being hit
-	public float FocusRechargeRate; //How long focus takes to recharge
+	[Tooltip("Number of things player can target at max (aka max 'focus' points).")]
+	public int AttackCount;
+	
+	[Tooltip("How many seconds the player is invincible after being hit.")]
+	public float iFrameTime;
+	
+	[Tooltip("How long (in seconds) a single attack takes to recharge.")]
+	public float FocusRechargeRate;
+	
 	[HideInInspector] public float CurrentFocus; //Current focus amount
-	public GameObject CrosshairPrefab, LockedCrosshairPrefab;
+
+	[Space(10)]
+	public GameObject CrosshairPrefab;
+	public GameObject LockedCrosshairPrefab;
 	public GameObject AttackParticlesPrefab;
-	public Color SlowMoColor;
-	public List<GameObject> EnemiesInRange = new List<GameObject>();
-	public List<GameObject> EnemyAttackQueue = new List<GameObject>();
+	public Color SlowMoColor; //The color the camera turns when entering slow motion, will probably get rid of this eventually
 	
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
 	[HideInInspector] public GameObject targetedEnemy;
-//	[HideInInspector] public bool coolingDown;
 	[HideInInspector] public bool canMove;
+	[HideInInspector] public List<GameObject> EnemiesInRange = new List<GameObject>();
+	[HideInInspector] public List<GameObject> EnemyAttackQueue = new List<GameObject>();
 	
 	private bool invincible;
 	private Collider2D attackRange;
@@ -59,9 +66,7 @@ public class PlayerController : Creature
 		CurrentFocus = AttackCount;
 		
 		//Initialize UI bars
-//		Services.UI.PlayerHealthSlider.maxValue = MaxHealth;
 		Services.UI.UpdatePlayerHealth();
-		Services.UI.FocusSlider.maxValue = AttackCount;
 		
 		SetPhase(Phase.Movement);
 	}
@@ -70,9 +75,9 @@ public class PlayerController : Creature
 	void Update ()
 	{
 		currentPhase.Run();
-//		Services.UI.PlayerHealthSlider.value = Mathf.Lerp(Services.UI.PlayerHealthSlider.value, health, 0.2f);
-		Services.UI.FocusSlider.value = Mathf.Lerp(Services.UI.FocusSlider.value, CurrentFocus, 0.2f);
 		CurrentFocus = Mathf.Clamp(CurrentFocus, 0, AttackCount);
+		Services.UI.UpdatePlayerFocus();
+
 	}
 
 	//Deals damage to the player
@@ -113,7 +118,6 @@ public class PlayerController : Creature
 		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
 		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
 		Services.UI.ScoreText.fontSize = 25;
-		Services.UI.PlayerHealthSlider.value = 0;
 		
 		Destroy(spawner);
 		Destroy(gameObject);
