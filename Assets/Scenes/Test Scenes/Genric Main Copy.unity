@@ -2175,14 +2175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8276fff544d704d56a92a3ee0aa0a2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CooldownSlider: {fileID: 221274909}
-  PlayerHealthSlider: {fileID: 1069047044}
   PlayerHealthBar: {fileID: 1973258332}
   HeartPrefab: {fileID: 6833371543648063384, guid: f38425534e72548379ee2d85ea8a1dbd,
     type: 3}
   FullHeartColor: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
   EmptyHeartColor: {r: 0.3773585, g: 0.1975792, b: 0.1975792, a: 1}
-  FocusSlider: {fileID: 1851450519}
+  PlayerFocusBar: {fileID: 0}
+  FocusBarPrefab: {fileID: 221274907}
   AttackInstructionText: {fileID: 870823809}
   ScoreText: {fileID: 1746867069}
   LoadingScreen: {fileID: 0}
@@ -2357,7 +2356,7 @@ GameObject:
   - component: {fileID: 1555547013}
   m_Layer: 0
   m_Name: Health Upgrade
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2464,6 +2463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f7ce16bae9e88a41aef95e692e67f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 0
+  MoveSpeed: 0
+  Damage: 0
   healthIncreaseNumber: 20
 --- !u!1 &1746867067
 GameObject:
