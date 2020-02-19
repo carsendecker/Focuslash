@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// This class is for the numbers that show up when an enemy is targeted, and indicates the order in which the enemy has been targeted
+/// </summary>
 public class TargetText : MonoBehaviour
 {
     public TMP_Text NumberText;
@@ -13,7 +16,7 @@ public class TargetText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = FindObjectOfType<PlayerController>();
+        player = Services.Player;
         numberOfTargets = FindObjectsOfType<TargetText>().Length;
         TargetText[] maybeTarget = transform.parent.GetComponentsInChildren<TargetText>();
         if (maybeTarget.Length > 1)
