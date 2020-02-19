@@ -63,6 +63,13 @@ public class Creature : MonoBehaviour
     {
         return health;
     }
+    
+    public virtual void Heal(int amountToHeal = 999)
+    {
+        health += amountToHeal;
+        if (health > MaxHealth) 
+            health = MaxHealth;
+    }
 
     
 }
