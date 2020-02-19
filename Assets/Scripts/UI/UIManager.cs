@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PlayerFocusBar;
     [SerializeField] private GameObject FocusBarPrefab;
     public TMP_Text AttackInstructionText;
+    [SerializeField] private Color EmptyFocusColor;
+    private Color fullFocusColor;
 
     [Header("Score")] 
     public TMP_Text ScoreText;
@@ -54,7 +56,8 @@ public class UIManager : MonoBehaviour
         {
             heart.color = FullHeartColor;
         }
-
+        
+        fullFocusColor = playerFocus[0].GetComponentsInChildren<Image>()[1].color;
         UpdateFocusSliderBounds();
     }
 
@@ -102,6 +105,11 @@ public class UIManager : MonoBehaviour
         {
             bar.value = Mathf.Lerp(bar.value, Services.Player.CurrentFocus, 0.2f);
         }
+
+        if (playerFocus[0].value < playerFocus[0].maxValue)
+            playerFocus[0].GetComponentsInChildren<Image>()[1].color = EmptyFocusColor;
+        else 
+            playerFocus[0].GetComponentsInChildren<Image>()[1].color = fullFocusColor;
 
         //Adds and removes focus bars based on the player's AttackCount
         while (playerFocus.Count != Services.Player.AttackCount)
