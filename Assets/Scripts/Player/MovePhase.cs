@@ -11,8 +11,6 @@ using UnityEngine;
 /// </summary>
 public class MovePhase : PlayerPhase
 {
-//    private float cdTimer;
-
     public MovePhase(PlayerController owner)
     {
         player = owner;
@@ -21,19 +19,7 @@ public class MovePhase : PlayerPhase
     //Executes this upon entering the state
     public override void OnEnter()
     {
-        
-//        if (player.coolingDown)
-//        {
-//            cdTimer = 0;
-//        }
-//        else
-//        {
-//            cdTimer = player.FocusRechargeRate;
-//        }
         player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-
-        //Short pause of iFrames after attacking
-        player.iFramesForSeconds(0.7f, false);
     }
 
     public override void Run()

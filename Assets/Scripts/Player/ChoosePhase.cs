@@ -14,8 +14,6 @@ public class ChoosePhase : PlayerPhase
 {		
 	private GameObject targetedEnemy;
 	private GameObject crosshair;
-//	private int optionSelected = 0;
-//	private bool confirmingAttack;
 	private float startingFocus; //How much focus you start choosing with, used for when you cancel your attack
 	
 	private Color camColor;
@@ -29,7 +27,7 @@ public class ChoosePhase : PlayerPhase
 	public override void OnEnter()
 	{
 		//Slows down time and such
-		Time.timeScale = 0.05f;
+		Time.timeScale = 0.04f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
@@ -69,6 +67,7 @@ public class ChoosePhase : PlayerPhase
 			player.EnemyAttackQueue.Clear();
 			player.CurrentFocus = startingFocus;
 			player.SetPhase(PlayerController.Phase.Movement);
+			return;
 		}
 		
 		if (player.CurrentFocus < 1)
@@ -88,7 +87,7 @@ public class ChoosePhase : PlayerPhase
 			player.EnemyAttackQueue.Add(targetedEnemy);
 
 			//Spawns a new crosshair to show the enemy has been targeted
-			GameObject targetCrosshair = GameObject.Instantiate(player.LockedCrosshairPrefab,targetedEnemy.transform.position, Quaternion.identity);
+			GameObject targetCrosshair = GameObject.Instantiate(player.LockedCrosshairPrefab,targetedEnemy.transform.position,Quaternion.identity);
 			targetCrosshair.transform.parent = targetedEnemy.transform;
 			crosshairList.Add(targetCrosshair);
 			
