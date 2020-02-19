@@ -10,16 +10,13 @@ public enum Inputs
     Down=3,
     Left=4,
     Attack=5,
-    Parry=6,
+    Target=6,
     Restart=7,
     Cancel=8
 }
 
 public static class InputManager 
 {
-
-//    public static KeyCode Up, Down, Left, Right, Attack, Parry, Restart;
-    
     public static bool Pressed(Inputs i)
     {
         switch (i)
@@ -34,8 +31,8 @@ public static class InputManager
                 return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
             case Inputs.Attack:
                 return Input.GetKey(KeyCode.Space);
-            case Inputs.Parry:
-                return Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.RightShift);
+            case Inputs.Target:
+                return Input.GetKey(KeyCode.Mouse0);
             case Inputs.Restart:
                 return Input.GetKey(KeyCode.R);
         }
@@ -57,8 +54,8 @@ public static class InputManager
                 return Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
             case Inputs.Attack:
                 return Input.GetKeyDown(KeyCode.Space);
-            case Inputs.Parry:
-                return Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.RightShift);
+            case Inputs.Target:
+                return Input.GetKeyDown(KeyCode.Mouse0);
             case Inputs.Restart:
                 return Input.GetKeyDown(KeyCode.R);
             case Inputs.Cancel:
@@ -82,8 +79,8 @@ public static class InputManager
                 return Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S);
             case Inputs.Attack:
                 return Input.GetKeyUp(KeyCode.Space);
-            case Inputs.Parry:
-                return Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.RightShift);
+            case Inputs.Target:
+                return Input.GetKeyUp(KeyCode.Mouse0);
             case Inputs.Restart:
                 return Input.GetKeyUp(KeyCode.R);
         }
