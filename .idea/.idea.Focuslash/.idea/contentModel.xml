@@ -48,6 +48,7 @@
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
+            <e p="FPSDisplay.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
             <e p="TEST" t="Include">
               <e p="BehaviorTree.cs" t="Include" />

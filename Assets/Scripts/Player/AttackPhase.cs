@@ -14,7 +14,7 @@ public class AttackPhase : PlayerPhase
 //	public List<>/Dictionary<> attackQueue
 	private GameObject targetedEnemy;
 	
-	private const float AttackMoveSpeed = 43f;
+	private const float AttackMoveSpeed = 50f;
 	
 	private bool hitTarget;
 	private bool pausing;
@@ -48,9 +48,9 @@ public class AttackPhase : PlayerPhase
 		//Gives a short pause between each dash into an enemy.
 		if (pausing)
 		{
-			player.rb.velocity = Vector2.Lerp(player.rb.velocity, Vector2.zero, 0.15f);
+			player.rb.velocity = Vector2.Lerp(player.rb.velocity, Vector2.zero, 0.3f);
 			
-			if (player.rb.velocity.magnitude <= 0.2f)
+			if (player.rb.velocity.magnitude <= 1f)
 				pausing = false;
 		}
 		//If you're not pausing and you hit the target, but have not left its collider, stay at constant velocity
@@ -130,6 +130,6 @@ public class AttackPhase : PlayerPhase
 	private void MoveTowardsEnemy()
 	{
 		Vector3 direction = targetedEnemy.transform.position - player.transform.position;
-		player.rb.velocity = Vector3.Lerp(player.rb.velocity, direction.normalized * AttackMoveSpeed, 0.25f);
+		player.rb.velocity = Vector3.Lerp(player.rb.velocity, direction.normalized * AttackMoveSpeed, 0.35f);
 	}
 }

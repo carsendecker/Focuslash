@@ -131,28 +131,28 @@ public class PlayerController : Creature
 		
 		if (InputManager.Pressed(Inputs.Right))
 		{
-			tempVel.x = Mathf.Lerp(tempVel.x, MoveSpeed, 0.2f);
+			tempVel.x = Mathf.Lerp(tempVel.x, MoveSpeed, 0.23f);
 		}
 		else if (InputManager.Pressed(Inputs.Left))
 		{
-			tempVel.x = Mathf.Lerp(tempVel.x, -MoveSpeed, 0.2f);
+			tempVel.x = Mathf.Lerp(tempVel.x, -MoveSpeed, 0.23f);
 		}
 		else
 		{
-			tempVel.x = Mathf.Lerp(tempVel.x, 0, 0.2f);
+			tempVel.x = Mathf.Lerp(tempVel.x, 0, 0.26f);
 		}
 		
 		if (InputManager.Pressed(Inputs.Up))
 		{
-			tempVel.y = Mathf.Lerp(tempVel.y, MoveSpeed, 0.2f);
+			tempVel.y = Mathf.Lerp(tempVel.y, MoveSpeed, 0.23f);
 		}
 		else if (InputManager.Pressed(Inputs.Down))
 		{
-			tempVel.y = Mathf.Lerp(tempVel.y, -MoveSpeed, 0.2f);
+			tempVel.y = Mathf.Lerp(tempVel.y, -MoveSpeed, 0.23f);
 		}
 		else
 		{
-			tempVel.y = Mathf.Lerp(tempVel.y, 0, 0.2f);
+			tempVel.y = Mathf.Lerp(tempVel.y, 0, 0.26f);
 		}
 		
 		rb.velocity = tempVel;
