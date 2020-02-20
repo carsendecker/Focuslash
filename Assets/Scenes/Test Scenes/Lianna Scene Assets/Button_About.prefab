@@ -652,9 +652,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'You''re a rollerblading graffiti artist who goes by the name of <insert
-    (your?) street name>. In a city warped and oversaturated with mindless living
-    and bland tastes, this means constant danger. '
+  m_Text: 'You''re a rollerblading graffiti artist who goes by the name of Zippy.
+    In a city warped and oversaturated with mindless living and bland tastes, this
+    means constant danger. '
 --- !u!1 &6007031056758343436
 GameObject:
   m_ObjectHideFlags: 0
