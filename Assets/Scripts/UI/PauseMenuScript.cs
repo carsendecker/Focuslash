@@ -52,6 +52,6 @@ public class PauseMenuScript : MonoBehaviour
         //Want to make sure the game doesnt stay frozen when going to the menu
         Time.timeScale = 1f;
         Debug.Log("Loading Menu...");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 }
