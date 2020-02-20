@@ -18,7 +18,7 @@ public class Creature : MonoBehaviour
     public int Damage;
 
     protected float health;
-    protected Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
 
 
     protected virtual void Start()
@@ -62,6 +62,13 @@ public class Creature : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+    
+    public virtual void Heal(int amountToHeal = 999)
+    {
+        health += amountToHeal;
+        if (health > MaxHealth) 
+            health = MaxHealth;
     }
 
     

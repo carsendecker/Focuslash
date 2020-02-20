@@ -20,11 +20,16 @@
             <e p="GruntScript.cs" t="Include" />
             <e p="LaserTurret.cs" t="Include" />
           </e>
+          <e p="Items" t="Include">
+            <e p="FocusUpgrade.cs" t="Include" />
+            <e p="HealthUpgrade.cs" t="Include" />
+          </e>
           <e p="Managers" t="Include">
             <e p="AudioManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
             <e p="Services.cs" t="Include" />
+            <e p="UIManager.cs" t="Include" />
             <e p="UtilityManager.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
@@ -35,14 +40,13 @@
             <e p="PlayerPhase.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
-            <e p="CameraFollow.cs" t="Include" />
-            <e p="CameraShake.cs" t="Include" />
             <e p="PauseMenuScript.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
             <e p="TargetText.cs" t="Include" />
-            <e p="UIManager.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
+            <e p="CameraFollow.cs" t="Include" />
+            <e p="CameraShake.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
             <e p="TEST" t="Include">
