@@ -41,6 +41,7 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerPhase.cs" t="Include" />
           </e>
+          <e p="RoomTransistions.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="PauseMenuScript.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
