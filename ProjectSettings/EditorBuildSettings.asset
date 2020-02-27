@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/Options Menu.unity
     guid: b949965c46174664d8b461a2e4c9f6fe
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/Genric Scene.unity
+    guid: 6cc7e6c9166da492ba0f0f1a0343abbf
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/CinemachineTest.unity
+    guid: 3828e92dd1d45214bb168e176c846755
   m_configObjects: {}
