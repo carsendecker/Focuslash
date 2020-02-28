@@ -18,6 +18,7 @@ public class ChoosePhase : PlayerPhase
 	
 	private Color camColor;
 	private List<GameObject> crosshairList = new List<GameObject>();
+	private Vector3[] LinePositions;
 	
 	public ChoosePhase(PlayerController owner)
 	{
@@ -32,23 +33,24 @@ public class ChoosePhase : PlayerPhase
 		Camera.main.backgroundColor = player.SlowMoColor;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
 		startingFocus = player.CurrentFocus;
-		
+
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
-		
-//		Services.UI.TimelineSlider.gameObject.SetActive(true);
-		
+
 		//Turns on range indicator sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
 		Services.UI.AttackInstructionText.gameObject.SetActive(true);
 
 		targetedEnemy = null;
 
+		player.AttackLine.enabled = true;
+		LinePositions = new[] {player.transform.position, player.transform.position};
+		player.AttackLine.SetPositions(LinePositions);
 	}
 
 	//Runs every update frame
 	public override void Run()
 	{
-		if (InputManager.PressedDown(Inputs.Attack))
+		if (InputManager.PressedUp(Inputs.Focus))
 		{
 			if (player.EnemyAttackQueue.Count == 0)
 			{
@@ -79,7 +81,7 @@ public class ChoosePhase : PlayerPhase
 		}
 
 		TargetWithMouse();
-
+		DrawAttackLine();
 
 		if (InputManager.PressedDown(Inputs.Target) && targetedEnemy != null)
 		{
@@ -115,7 +117,8 @@ public class ChoosePhase : PlayerPhase
 		//Disable circle range sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 		
-
+		player.AttackLine.enabled = true;
+		
 		//Get rid of all target crosshairs
 		foreach (var thing in crosshairList)
 		{ 
@@ -159,5 +162,16 @@ public class ChoosePhase : PlayerPhase
 
 		targetedEnemy = null;
 		GameObject.Destroy(crosshair);
+	}
+	
+	private void DrawAttackLine()
+	{
+		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		float distanceFromPlayer = Vector2.Distance(player.transform.position, mousePos);
+
+		if (distanceFromPlayer < player.AttackLineRange)
+		{
+			player.AttackLine.SetPosition(1, mousePos);
+		}
 	}
 }

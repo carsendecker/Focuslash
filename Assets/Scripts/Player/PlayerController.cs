@@ -20,6 +20,9 @@ public class PlayerController : Creature
 	
 	[Tooltip("How long (in seconds) a single attack takes to recharge.")]
 	public float FocusRechargeRate;
+
+	[Tooltip("How long a single attack line can extend.")]
+	public float AttackLineRange;
 	
 	[HideInInspector] public float CurrentFocus; //Current focus amount
 
@@ -36,6 +39,7 @@ public class PlayerController : Creature
 	[HideInInspector] public bool canMove;
 	[HideInInspector] public List<GameObject> EnemiesInRange = new List<GameObject>();
 	[HideInInspector] public List<GameObject> EnemyAttackQueue = new List<GameObject>();
+	[HideInInspector] public LineRenderer AttackLine;
 	
 	private bool invincible;
 	private Collider2D attackRange;
@@ -50,6 +54,7 @@ public class PlayerController : Creature
 		
 		rb = GetComponent<Rigidbody2D>();
 		attackRange = GetComponentInChildren<Collider2D>();
+		AttackLine = GetComponentInChildren<LineRenderer>();
 		
 		//Adds all the phases to a dictionary for future access
 		Phases.Add(Phase.Movement, new MovePhase(this));

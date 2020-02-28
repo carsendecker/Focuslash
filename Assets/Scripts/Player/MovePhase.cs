@@ -34,7 +34,7 @@ public class MovePhase : PlayerPhase
         }
 
         //If focus is more than at least 1, you can start attacking
-        if (InputManager.PressedDown(Inputs.Attack) && Mathf.Floor(player.CurrentFocus) > 0)
+        if (InputManager.PressedDown(Inputs.Focus) && Mathf.Floor(player.CurrentFocus) > 0)
         {
             player.SetPhase(PlayerController.Phase.Choosing);
         }
