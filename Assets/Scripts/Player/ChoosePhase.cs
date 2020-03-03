@@ -14,10 +14,14 @@ public class ChoosePhase : PlayerPhase
 {		
 	private GameObject targetedEnemy;
 	private GameObject crosshair;
+	private LineRenderer attackLine;
+	private Vector3 attackLineStartPos;
 	private float startingFocus; //How much focus you start choosing with, used for when you cancel your attack
 	
 	private Color camColor;
 	private List<GameObject> crosshairList = new List<GameObject>();
+	private List<GameObject> attackLineList = new List<GameObject>();
+	private Vector3[] linePositions;
 	
 	public ChoosePhase(PlayerController owner)
 	{
@@ -27,36 +31,31 @@ public class ChoosePhase : PlayerPhase
 	public override void OnEnter()
 	{
 		//Slows down time and such
-		Time.timeScale = 0.04f;
+		Time.timeScale = 0.03f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
 		startingFocus = player.CurrentFocus;
-		
+
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
-		
-//		Services.UI.TimelineSlider.gameObject.SetActive(true);
-		
+
 		//Turns on range indicator sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
 		Services.UI.AttackInstructionText.gameObject.SetActive(true);
 
 		targetedEnemy = null;
 
+		CreateNewLine(player.transform.position);
+		player.CurrentFocus--;
 	}
 
 	//Runs every update frame
-	public override void Run()
+	public override void Update()
 	{
-		if (InputManager.PressedDown(Inputs.Attack))
+		if (InputManager.PressedUp(Inputs.Focus))
 		{
-			if (player.EnemyAttackQueue.Count == 0)
-			{
-				player.SetPhase(PlayerController.Phase.Movement);
-				return;
-			}
-			
-			//Once pressed again after targeting everything, start attacking
+			SetTarget();
+
 			player.SetPhase(PlayerController.Phase.Attacking);
 			return;
 		}
@@ -64,38 +63,30 @@ public class ChoosePhase : PlayerPhase
 		if (InputManager.PressedDown(Inputs.Cancel))
 		{
 			//Cancels the current attack
-			player.EnemyAttackQueue.Clear();
+			player.AttackPositionQueue.Clear();
 			player.CurrentFocus = startingFocus;
 			player.SetPhase(PlayerController.Phase.Movement);
 			return;
 		}
-		
-		if (player.CurrentFocus < 1)
-		{
-			if(crosshair != null)
-				GameObject.Destroy(crosshair);
-			
-			return;
-		}
 
-		TargetWithMouse();
+		// TargetWithMouse();
+		DrawAttackLine();
 
-
-		if (InputManager.PressedDown(Inputs.Target) && targetedEnemy != null)
+		if (InputManager.PressedDown(Inputs.Target) && player.CurrentFocus >= 1)
 		{
 			//Adds the targeted enemy to a "queue" for later
-			player.EnemyAttackQueue.Add(targetedEnemy);
-
-			//Spawns a new crosshair to show the enemy has been targeted
-			GameObject targetCrosshair = GameObject.Instantiate(player.LockedCrosshairPrefab,targetedEnemy.transform.position,Quaternion.identity);
-			targetCrosshair.transform.parent = targetedEnemy.transform;
-			crosshairList.Add(targetCrosshair);
-			
-			Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
-
+			SetTarget();
 			player.CurrentFocus--;
+
+			Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
+			
+			CreateNewLine(attackLine.GetPosition(1));
 		}
 
+	}
+	
+	public override void FixedUpdate()
+	{
 	}
 
 	public override void OnExit()
@@ -103,7 +94,7 @@ public class ChoosePhase : PlayerPhase
 		Services.UI.AttackInstructionText.gameObject.SetActive(false);
 
 		Time.timeScale = 1f;
-		Camera.main.backgroundColor = camColor;
+		Services.MainCamera.backgroundColor = camColor;
 
 		if (crosshair != null)
 		{
@@ -114,8 +105,13 @@ public class ChoosePhase : PlayerPhase
 		targetedEnemy = null;
 		//Disable circle range sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
-		
 
+		foreach (GameObject line in attackLineList)
+		{
+			GameObject.Destroy(line);
+		}
+		attackLineList.Clear();
+		
 		//Get rid of all target crosshairs
 		foreach (var thing in crosshairList)
 		{ 
@@ -124,40 +120,40 @@ public class ChoosePhase : PlayerPhase
 		crosshairList.Clear();
 	}
 
-
-	private void TargetWithMouse()
+	/// <summary>
+	/// Enqueues the position at the end of the drawn line, and reduce focus
+	/// </summary>
+	private void SetTarget()
 	{
-		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero, 0f);
+		player.AttackPositionQueue.Enqueue(attackLine.GetPosition(1));
+	}
+	
 
-		foreach (RaycastHit2D hit in hits)
-		{
-			GameObject creature = hit.collider.gameObject;
-			
-			//If the target isn't a Creature, dont target it
-			if (!creature.GetComponent<Creature>()) continue;
+	/// <summary>
+	/// Takes the current line and changes its end position to the player's mouse position
+	/// </summary>
+	private void DrawAttackLine()
+	{
+		Vector2 mousePos = Services.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+		float distanceFromPlayer = Mathf.Clamp(Vector2.Distance(attackLineStartPos, mousePos), 0, player.AttackLineRange);
 
-			//If the enemy isnt in range, don't target it
-			if(!player.EnemiesInRange.Contains(creature)) continue;
+		Vector2 lineEndPos = (mousePos - (Vector2) attackLineStartPos).normalized * distanceFromPlayer;
+		
+		attackLine.SetPosition(0, attackLineStartPos);
+		attackLine.SetPosition(1, (Vector2)attackLineStartPos + lineEndPos);
+	}
+	
 
-			//If the mouse is already on the targeted enemy, just update the crosshairs position then return
-			if (creature.Equals(targetedEnemy))
-			{
-				crosshair.transform.position = targetedEnemy.transform.position;
-				return;
-			}
-			
-			//If the mouse is on a new enemy, make that creature the new target and make a new crosshair on it
-			targetedEnemy = creature;
-			GameObject.Destroy(crosshair);
-			crosshair = GameObject.Instantiate(player.CrosshairPrefab, targetedEnemy.transform.position, Quaternion.identity);
-			
-			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
-			
-			return;
-		}
-
-		targetedEnemy = null;
-		GameObject.Destroy(crosshair);
+	/// <summary>
+	/// Spawns a new attack line to chill there and let the player know where they are aiming
+	/// </summary>
+	private void CreateNewLine(Vector3 startPos)
+	{
+		attackLineStartPos = startPos;
+		linePositions = new[] {startPos, startPos};
+		attackLine = GameObject.Instantiate(player.AttackLinePrefab, attackLineStartPos, Quaternion.identity).GetComponent<LineRenderer>();
+		attackLine.SetPositions(linePositions);
+		
+		attackLineList.Add(attackLine.gameObject);
 	}
 }

@@ -9,13 +9,13 @@ public enum Inputs
     Right=2,
     Down=3,
     Left=4,
-    Attack=5,
+    Focus=5,
     Target=6,
     Restart=7,
     Cancel=8
 }
 
-public static class InputManager 
+public static class InputManager
 {
     public static bool Pressed(Inputs i)
     {
@@ -29,10 +29,10 @@ public static class InputManager
                 return Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
             case Inputs.Down:
                 return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-            case Inputs.Attack:
-                return Input.GetKey(KeyCode.Space);
-            case Inputs.Target:
+            case Inputs.Focus:
                 return Input.GetKey(KeyCode.Mouse0);
+            case Inputs.Target:
+                return Input.GetKey(KeyCode.Space);
             case Inputs.Restart:
                 return Input.GetKey(KeyCode.R);
         }
@@ -52,10 +52,10 @@ public static class InputManager
                 return Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
             case Inputs.Down:
                 return Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
-            case Inputs.Attack:
-                return Input.GetKeyDown(KeyCode.Space);
-            case Inputs.Target:
+            case Inputs.Focus:
                 return Input.GetKeyDown(KeyCode.Mouse0);
+            case Inputs.Target:
+                return Input.GetKeyDown(KeyCode.Space);
             case Inputs.Restart:
                 return Input.GetKeyDown(KeyCode.R);
             case Inputs.Cancel:
@@ -77,10 +77,10 @@ public static class InputManager
                 return Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D);
             case Inputs.Down:
                 return Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S);
-            case Inputs.Attack:
-                return Input.GetKeyUp(KeyCode.Space);
-            case Inputs.Target:
+            case Inputs.Focus:
                 return Input.GetKeyUp(KeyCode.Mouse0);
+            case Inputs.Target:
+                return Input.GetKeyUp(KeyCode.Space);
             case Inputs.Restart:
                 return Input.GetKeyUp(KeyCode.R);
         }

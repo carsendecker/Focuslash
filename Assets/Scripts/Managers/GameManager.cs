@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     {
         if(Services.Game == null)
             Services.Game = this;
+        
+        Services.InitializeServices();
     }
 
     void Update()
