@@ -109,4 +109,28 @@ public class UtilityManager : MonoBehaviour
         gameFrozen = false;
         Time.timeScale = prev;
     }
+
+    // private List<bool> currentWaitingBools = new List<bool>();
+    // public void WaitForSecondsThenTrue(float seconds, ref bool boolToSet)
+    // {
+    //     if (currentWaitingBools.Contains(boolToSet))
+    //     {
+    //         if (currentWaitingBools[currentWaitingBools.IndexOf(boolToSet)] == true)
+    //         {
+    //             boolToSet = true;
+    //             currentWaitingBools.Remove(boolToSet);
+    //             return;
+    //         }
+    //     }
+    //     
+    //     currentWaitingBools.Add(boolToSet);
+    //     StartCoroutine(WaitPauseC(seconds, boolToSet));
+    //     
+    // }
+    //
+    // private IEnumerator WaitPauseC(float seconds, bool boolToChange)
+    // {
+    //     yield return new WaitForSeconds(seconds);
+    //     currentWaitingBools[currentWaitingBools.IndexOf(boolToChange)] = true;
+    // }
 }

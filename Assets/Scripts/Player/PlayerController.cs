@@ -27,8 +27,6 @@ public class PlayerController : Creature
 	[HideInInspector] public float CurrentFocus; //Current focus amount
 
 	[Space(10)]
-	public GameObject CrosshairPrefab;
-	public GameObject LockedCrosshairPrefab;
 	public GameObject AttackLinePrefab;
 	public GameObject AttackParticlesPrefab;
 	public Color SlowMoColor; //The color the camera turns when entering slow motion, will probably get rid of this eventually
@@ -38,12 +36,9 @@ public class PlayerController : Creature
 
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool canMove;
-	[HideInInspector] public List<GameObject> EnemiesInRange = new List<GameObject>();
-	// [HideInInspector] public List<GameObject> EnemyAttackQueue = new List<GameObject>();
 	[HideInInspector] public Queue<Vector2> AttackPositionQueue = new Queue<Vector2>();
 	
 	private bool invincible;
-	private Collider2D attackRange;
 	private PlayerPhase currentPhase;
 	private Dictionary<Phase, PlayerPhase> Phases = new Dictionary<Phase, PlayerPhase>();
 
@@ -54,7 +49,6 @@ public class PlayerController : Creature
 			Services.Player = this;
 		
 		rb = GetComponent<Rigidbody2D>();
-		attackRange = GetComponentInChildren<Collider2D>();
 		
 		//Adds all the phases to a dictionary for future access
 		Phases.Add(Phase.Movement, new MovePhase(this));
@@ -79,10 +73,14 @@ public class PlayerController : Creature
 
 	void Update ()
 	{
-		currentPhase.Run();
+		currentPhase.Update();
 		CurrentFocus = Mathf.Clamp(CurrentFocus, 0, AttackCount);
 		Services.UI.UpdatePlayerFocus();
+	}
 
+	private void FixedUpdate()
+	{
+		currentPhase.FixedUpdate();
 	}
 
 	//Deals damage to the player
@@ -144,7 +142,7 @@ public class PlayerController : Creature
 		}
 		else
 		{
-			tempVel.x = Mathf.Lerp(tempVel.x, 0, 0.26f);
+			tempVel.x = Mathf.Lerp(tempVel.x, 0, 0.3f);
 		}
 		
 		if (InputManager.Pressed(Inputs.Up))
@@ -157,7 +155,7 @@ public class PlayerController : Creature
 		}
 		else
 		{
-			tempVel.y = Mathf.Lerp(tempVel.y, 0, 0.26f);
+			tempVel.y = Mathf.Lerp(tempVel.y, 0, 0.3f);
 		}
 		
 		rb.velocity = tempVel;
@@ -213,12 +211,6 @@ public class PlayerController : Creature
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		currentPhase.OnTriggerEnter2D(other);
-		
-		//Adds an enemy to the list of currently in-range enemies
-		if (other.CompareTag("Enemy") && !EnemiesInRange.Contains(other.gameObject))
-		{
-			EnemiesInRange.Add(other.gameObject);
-		}
 
 		//TODO: Should probably change how this works to a normal Vector2 distance value
 		if (other.CompareTag("AggroTrigger"))
@@ -230,12 +222,6 @@ public class PlayerController : Creature
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		currentPhase.OnTriggerExit2D(other);
-		
-		//Removes an enemy to the list of currently in-range enemies
-		if (EnemiesInRange.Contains(other.gameObject))
-		{
-			EnemiesInRange.Remove(other.gameObject);
-		}
 		
 		if (other.CompareTag("AggroTrigger"))
 		{
@@ -278,6 +264,7 @@ public class PlayerController : Creature
 		currentPhase = Phases[newPhase];
 		currentPhase.OnEnter();
 	}
+	
 
 }
 

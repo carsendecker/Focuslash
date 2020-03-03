@@ -31,7 +31,7 @@ public class ChoosePhase : PlayerPhase
 	public override void OnEnter()
 	{
 		//Slows down time and such
-		Time.timeScale = 0.04f;
+		Time.timeScale = 0.03f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
@@ -46,19 +46,16 @@ public class ChoosePhase : PlayerPhase
 		targetedEnemy = null;
 
 		CreateNewLine(player.transform.position);
+		player.CurrentFocus--;
 	}
 
 	//Runs every update frame
-	public override void Run()
+	public override void Update()
 	{
 		if (InputManager.PressedUp(Inputs.Focus))
 		{
-			if (player.AttackPositionQueue.Count == 0)
-			{
-				SetTarget();
-			}
-			
-			//Once pressed again after targeting everything, start attacking
+			SetTarget();
+
 			player.SetPhase(PlayerController.Phase.Attacking);
 			return;
 		}
@@ -71,37 +68,25 @@ public class ChoosePhase : PlayerPhase
 			player.SetPhase(PlayerController.Phase.Movement);
 			return;
 		}
-		
-		if (player.CurrentFocus < 1)
-		{
-			if(crosshair != null)
-				GameObject.Destroy(crosshair);
-			
-			return;
-		}
 
 		// TargetWithMouse();
 		DrawAttackLine();
 
-		if (InputManager.PressedDown(Inputs.Target))
+		if (InputManager.PressedDown(Inputs.Target) && player.CurrentFocus >= 1)
 		{
 			//Adds the targeted enemy to a "queue" for later
-			// player.EnemyAttackQueue.Add(targetedEnemy);
-			
+			SetTarget();
+			player.CurrentFocus--;
 
-			//Spawns a new crosshair to show the enemy has been targeted
-			// GameObject targetCrosshair = GameObject.Instantiate(player.LockedCrosshairPrefab,targetedEnemy.transform.position,Quaternion.identity);
-			// targetCrosshair.transform.parent = targetedEnemy.transform;
-			// crosshairList.Add(targetCrosshair);
-			
 			Services.Audio.PlaySound(player.selectTargetSound, SourceType.CreatureSound);
-
-			if (player.CurrentFocus >= 1)
-			{
-				CreateNewLine(attackLine.GetPosition(1));
-			}
+			
+			CreateNewLine(attackLine.GetPosition(1));
 		}
 
+	}
+	
+	public override void FixedUpdate()
+	{
 	}
 
 	public override void OnExit()
@@ -135,49 +120,15 @@ public class ChoosePhase : PlayerPhase
 		crosshairList.Clear();
 	}
 
+	/// <summary>
+	/// Enqueues the position at the end of the drawn line, and reduce focus
+	/// </summary>
 	private void SetTarget()
 	{
 		player.AttackPositionQueue.Enqueue(attackLine.GetPosition(1));
-		player.CurrentFocus--;
-	}
-
-
-	private void TargetWithMouse()
-	{
-		Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero, 0f);
-
-		foreach (RaycastHit2D hit in hits)
-		{
-			GameObject creature = hit.collider.gameObject;
-			
-			//If the target isn't a Creature, dont target it
-			if (!creature.GetComponent<Creature>()) continue;
-
-			//If the enemy isnt in range, don't target it
-			if(!player.EnemiesInRange.Contains(creature)) continue;
-
-			//If the mouse is already on the targeted enemy, just update the crosshairs position then return
-			if (creature.Equals(targetedEnemy))
-			{
-				crosshair.transform.position = targetedEnemy.transform.position;
-				return;
-			}
-			
-			//If the mouse is on a new enemy, make that creature the new target and make a new crosshair on it
-			targetedEnemy = creature;
-			GameObject.Destroy(crosshair);
-			crosshair = GameObject.Instantiate(player.CrosshairPrefab, targetedEnemy.transform.position, Quaternion.identity);
-			
-			Services.Audio.PlaySound(player.moveTargetSound, SourceType.CreatureSound);
-			
-			return;
-		}
-
-		targetedEnemy = null;
-		GameObject.Destroy(crosshair);
 	}
 	
+
 	/// <summary>
 	/// Takes the current line and changes its end position to the player's mouse position
 	/// </summary>

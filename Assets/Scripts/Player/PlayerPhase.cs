@@ -19,12 +19,15 @@ public abstract class PlayerPhase
 	/// <summary>
 	/// Gets called every frame while the player is in the state (like Update())
 	/// </summary>
-	public abstract void Run();
+	public abstract void Update();
+
+	public abstract void FixedUpdate();
 	
 	/// <summary>
 	/// Gets called whenever the player exits the state
 	/// </summary>
 	public abstract void OnExit();
+	
 
 	
 	public virtual void OnCollisionEnter2D(Collision2D col)
