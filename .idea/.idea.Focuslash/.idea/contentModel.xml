@@ -20,6 +20,7 @@
             <e p="GruntScript.cs" t="Include" />
             <e p="LaserTurret.cs" t="Include" />
           </e>
+          <e p="ExitGateScript.cs" t="Include" />
           <e p="Items" t="Include">
             <e p="FocusUpgrade.cs" t="Include" />
             <e p="HealthUpgrade.cs" t="Include" />
@@ -30,6 +31,7 @@
             <e p="InputManager.cs" t="Include" />
             <e p="Services.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
+            <e p="UpgradeManager.cs" t="Include" />
             <e p="UtilityManager.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
@@ -39,6 +41,7 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerPhase.cs" t="Include" />
           </e>
+          <e p="RoomTransistions.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="PauseMenuScript.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />

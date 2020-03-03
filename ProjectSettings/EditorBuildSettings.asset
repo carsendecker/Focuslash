@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/Options Menu.unity
     guid: b949965c46174664d8b461a2e4c9f6fe
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/CinemachineTest.unity
+    guid: 3828e92dd1d45214bb168e176c846755
+  - enabled: 1
+    path: Assets/Scenes/Test Scenes/RoomTranistionTest.unity
+    guid: bb3ff1f0f42723b458c36f20c5d71b49
   m_configObjects: {}
