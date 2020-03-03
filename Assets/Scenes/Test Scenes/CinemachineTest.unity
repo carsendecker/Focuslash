@@ -1653,7 +1653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &727534606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,7 +1714,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727534605}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.31, z: -363.0121}
+  m_LocalPosition: {x: 0, y: -0.88, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 634802638}
@@ -9669,17 +9669,17 @@ PrefabInstance:
     - target: {fileID: 6377068022100860520, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6377068022100860520, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.31
+      value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 6377068022100860520, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -353.0121
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6377068022100860567, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
@@ -9690,6 +9690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Camera Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377068023124523527, guid: 0dc4edfe971154522b6efa571cdb6b0b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
@@ -9968,6 +9973,11 @@ PrefabInstance:
       propertyPath: transitions
       value: 
       objectReference: {fileID: 197866011}
+    - target: {fileID: 8501727589121348822, guid: ece113c08a4407148badad4053802a29,
+        type: 3}
+      propertyPath: sceneNumber
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8501727589121348825, guid: ece113c08a4407148badad4053802a29,
         type: 3}
       propertyPath: m_LocalPosition.x

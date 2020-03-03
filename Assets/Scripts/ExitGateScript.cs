@@ -8,6 +8,7 @@ public class ExitGateScript : MonoBehaviour
 {
 
     public Animator transitions;
+    public int sceneNumber;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,7 +22,7 @@ public class ExitGateScript : MonoBehaviour
     public void LoadNextLevel()
     {
         Debug.Log("Load Next Scene");
-        StartCoroutine(LoadLevel(3));
+        StartCoroutine(LoadLevel(sceneNumber));
     }
 
     IEnumerator LoadLevel(int levelIndex)
