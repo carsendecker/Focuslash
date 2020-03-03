@@ -12,9 +12,10 @@ using UnityEngine;
 public class AttackPhase : PlayerPhase
 {
 //	public List<>/Dictionary<> attackQueue
-	private GameObject targetedEnemy;
+	private Vector3 dashTarget;
 	
 	private const float AttackMoveSpeed = 50f;
+	private const float AttackTargetDistance = 0.5f;
 	
 	private bool hitTarget;
 	private bool pausing;
@@ -29,26 +30,28 @@ public class AttackPhase : PlayerPhase
 	
 	public override void OnEnter()
 	{
-		targetedEnemy = player.EnemyAttackQueue[0];
+		// targetedEnemy = player.EnemyAttackQueue[0];
 		pCol = player.GetComponent<Collider2D>();
 		pRangeCol = player.GetComponentsInChildren<CircleCollider2D>()[1];
+		dashTarget = player.AttackPositionQueue.Dequeue();
 	}
 
 	public override void Run()
 	{
-		//If there is no target but the queue still has things in it, stuff went wrong probably
-		if (targetedEnemy == null && player.EnemyAttackQueue.Count > 0)
-		{
-			player.SetPhase(PlayerController.Phase.Movement);
-			Debug.Log("Enemy is null");
-			return;
-		}
 		
+		//If there is no target but the queue still has things in it, stuff went wrong probably
+		// if (targetedEnemy == null && player.AttackPositionQueue.Count > 0)
+		// {
+		// 	player.SetPhase(PlayerController.Phase.Movement);
+		// 	Debug.Log("Enemy is null");
+		// 	return;
+		// }
+
 		//After hitting the target and leaving its collider, lerp velocity down, then continue to next target. 
 		//Gives a short pause between each dash into an enemy.
 		if (pausing)
 		{
-			player.rb.velocity = Vector2.Lerp(player.rb.velocity, Vector2.zero, 0.3f);
+			player.rb.velocity = Vector2.Lerp(player.rb.velocity, Vector2.zero, 0.35f);
 			
 			if (player.rb.velocity.magnitude <= 1f)
 				pausing = false;
@@ -59,11 +62,22 @@ public class AttackPhase : PlayerPhase
 			player.rb.velocity = player.rb.velocity;
 		}
 		//If you aren't pausing and have not entered the target's collider yet, move towards it
-		else if (targetedEnemy != null)
+		else if (dashTarget != null)
 		{
 			pRangeCol.enabled = false;
 			pCol.isTrigger = true;
-			MoveTowardsEnemy();
+			MoveTowardsTarget();
+			
+			if (Vector3.Distance(player.transform.position, dashTarget) < AttackTargetDistance)
+			{
+				if (player.AttackPositionQueue.Count == 0)
+				{
+					player.SetPhase(PlayerController.Phase.Movement);
+					return;
+				}
+				dashTarget = player.AttackPositionQueue.Dequeue();
+				pausing = true;
+			}
 		}
 		
 	}
@@ -74,8 +88,8 @@ public class AttackPhase : PlayerPhase
 		pRangeCol.enabled = true;
 		pCol.isTrigger = false;
 		
-		targetedEnemy = null;
-		player.EnemyAttackQueue.Clear();
+		// dashTarget = null;
+		// player.EnemyAttackQueue.Clear();
 		
 		//Short pause of iFrames after attacking
 		player.iFramesForSeconds(0.6f, false);
@@ -90,8 +104,8 @@ public class AttackPhase : PlayerPhase
 			Services.Audio.PlaySound(player.attackSound, SourceType.CreatureSound);
 		}
 		//If you hit the actual targeted enemy, start to slow down
-		if (col.gameObject.Equals(targetedEnemy))
-			hitTarget = true;
+		// if (col.gameObject.Equals(targetedEnemy))
+		// 	hitTarget = true;
 	}
 
 	public override void OnTriggerExit2D(Collider2D col)
@@ -101,35 +115,37 @@ public class AttackPhase : PlayerPhase
 		//If *any* collided object has a creature script attached on the way to the target, deal damage
 		if (col.GetComponent<Creature>() != null)
 		{
+			col.GetComponent<Creature>().TakeDamage(player.Damage);
 			//If enemy dies, remove all instances of it in the queue
-			if (col.GetComponent<Creature>().TakeDamage(player.Damage))
-				player.EnemyAttackQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
+			// if (col.GetComponent<Creature>().TakeDamage(player.Damage))
+			// 	player.EnemyAttackQueue.RemoveAll(enemy => enemy.Equals(col.gameObject));
 			
-			Services.Utility.ShakeCamera(0.1f, 0.25f);
+			Services.Utility.ShakeCamera(0.15f, 0.25f);
 		}
 		
 		//Once exiting trigger of the targeted enemy, remove it from the queue and pause a sec
-		if (hitTarget && col.gameObject.Equals(targetedEnemy))
-		{
-			hitTarget = false;
-			pausing = true;
-			player.EnemyAttackQueue.Remove(targetedEnemy);
-		}
+		// if (hitTarget && col.gameObject.Equals(targetedEnemy))
+		// {
+		// 	hitTarget = false;
+		// 	pausing = true;
+		// 	// player.EnemyAttackQueue.Remove(targetedEnemy);
+		// 	player.AttackPositionQueue.Dequeue();
+		// }
 		
 		//If there are enemies left in the queue, set the next one as the new target
-		if (player.EnemyAttackQueue.Count > 0)
-			targetedEnemy = player.EnemyAttackQueue[0];
-		
-		else if (player.EnemyAttackQueue.Count == 0)
-			player.SetPhase(PlayerController.Phase.Movement);
+		// if (player.EnemyAttackQueue.Count > 0)
+		// 	targetedEnemy = player.EnemyAttackQueue[0];
+		//
+		// else if (player.EnemyAttackQueue.Count == 0)
+		// 	player.SetPhase(PlayerController.Phase.Movement);
 
 		
 	}
 
 	//Sets velocity towards the target
-	private void MoveTowardsEnemy()
+	private void MoveTowardsTarget()
 	{
-		Vector3 direction = targetedEnemy.transform.position - player.transform.position;
+		Vector3 direction = dashTarget - player.transform.position;
 		player.rb.velocity = Vector3.Lerp(player.rb.velocity, direction.normalized * AttackMoveSpeed, 0.35f);
 	}
 }

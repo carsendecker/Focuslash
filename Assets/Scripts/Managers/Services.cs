@@ -13,4 +13,10 @@ public static class Services
 	public static UtilityManager Utility;
 	public static PlayerController Player;
 	public static GameManager Game;
+	public static Camera MainCamera;
+
+	public static void InitializeServices()
+	{
+		MainCamera = Camera.main;
+	}
 }

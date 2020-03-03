@@ -29,6 +29,7 @@ public class PlayerController : Creature
 	[Space(10)]
 	public GameObject CrosshairPrefab;
 	public GameObject LockedCrosshairPrefab;
+	public GameObject AttackLinePrefab;
 	public GameObject AttackParticlesPrefab;
 	public Color SlowMoColor; //The color the camera turns when entering slow motion, will probably get rid of this eventually
 	
@@ -38,8 +39,8 @@ public class PlayerController : Creature
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool canMove;
 	[HideInInspector] public List<GameObject> EnemiesInRange = new List<GameObject>();
-	[HideInInspector] public List<GameObject> EnemyAttackQueue = new List<GameObject>();
-	[HideInInspector] public LineRenderer AttackLine;
+	// [HideInInspector] public List<GameObject> EnemyAttackQueue = new List<GameObject>();
+	[HideInInspector] public Queue<Vector2> AttackPositionQueue = new Queue<Vector2>();
 	
 	private bool invincible;
 	private Collider2D attackRange;
@@ -54,7 +55,6 @@ public class PlayerController : Creature
 		
 		rb = GetComponent<Rigidbody2D>();
 		attackRange = GetComponentInChildren<Collider2D>();
-		AttackLine = GetComponentInChildren<LineRenderer>();
 		
 		//Adds all the phases to a dictionary for future access
 		Phases.Add(Phase.Movement, new MovePhase(this));

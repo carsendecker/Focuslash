@@ -5643,6 +5643,12 @@ PrefabInstance:
       propertyPath: AttackLineRange
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
+        type: 3}
+      propertyPath: AttackLinePrefab
+      value: 
+      objectReference: {fileID: 2989321023571445804, guid: 9c105aa3d61bb47209c23d63a3d90305,
+        type: 3}
     - target: {fileID: 344415782776548287, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
       propertyPath: m_Camera
@@ -5657,6 +5663,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Positions.Array.data[1].y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5152766317115878744, guid: e96805a986fe74b68aed1e041b787f68,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
