@@ -1362,7 +1362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.799988, y: -35.479996}
+  m_AnchoredPosition: {x: 13.800049, y: -35.47998}
   m_SizeDelta: {x: 175, y: 7.5400085}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1090465596
@@ -1496,7 +1496,7 @@ GameObject:
   - component: {fileID: 1329037461}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5529,36 +5529,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973258332}
   m_CullTransparentMesh: 0
---- !u!1 &2003756952
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2003756953}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2003756953
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2003756952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7195028, y: -0.2880543, z: -128.0856}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &344415782940524376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5626,6 +5596,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
+        type: 3}
+      propertyPath: XPToNextLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
+        type: 3}
+      propertyPath: LevelUpParticles
+      value: 
+      objectReference: {fileID: 5792894923034492941, guid: bbf1f509e428c42339373e4f5c11fd69,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
 --- !u!1001 &1795976091036530645

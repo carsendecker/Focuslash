@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GruntScript : Creature
+public class GruntScript : Enemy
 {
     public float knockbackForce;
     public float MoveLeadDistance;
@@ -38,6 +38,7 @@ public class GruntScript : Creature
 
     protected override void Die()
     {
+        base.Die();
         Instantiate(DeathParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

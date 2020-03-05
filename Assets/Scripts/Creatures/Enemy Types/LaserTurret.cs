@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Slider = UnityEngine.UI.Slider;
 
-public class LaserTurret : Creature
+public class LaserTurret : Enemy
 {
     public GameObject Laser;
     public ParticleSystem TelegraphParticles, LaserParticles;
@@ -100,6 +100,7 @@ public class LaserTurret : Creature
 
     protected override void Die()
     {
+        base.Die();
         Instantiate(DeathParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

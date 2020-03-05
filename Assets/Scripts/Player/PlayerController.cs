@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class PlayerController : Creature
 {
@@ -23,6 +24,10 @@ public class PlayerController : Creature
 
 	[Tooltip("How long a single attack line can extend.")]
 	public float AttackLineRange;
+
+	[Tooltip("How much XP it takes for the player to level up.")]
+	public float XPToNextLevel;
+	[SerializeField] private float currentXP;
 	
 	[HideInInspector] public float CurrentFocus; //Current focus amount
 
@@ -30,6 +35,7 @@ public class PlayerController : Creature
 	public GameObject AttackLinePrefab;
 	public GameObject AttackParticlesPrefab;
 	public Color SlowMoColor; //The color the camera turns when entering slow motion, will probably get rid of this eventually
+	public GameObject LevelUpParticles;
 	
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
@@ -162,6 +168,42 @@ public class PlayerController : Creature
 	}
 
 	/// <summary>
+	/// Gives the player a certain amount of XP. If they have enough, they level up.
+	/// </summary>
+	public void GainXP(float amount)
+	{
+		currentXP += amount;
+
+		if (currentXP >= XPToNextLevel)
+			LevelUp();
+	}
+
+	/// <summary>
+	/// Does a fancy animation and spawns the upgrade items
+	/// </summary>
+	private void LevelUp()
+	{
+		//TODO: Actually implement the proper level up item spawns, which needs integration with the level rooms. It now just gives you the stats for testing.
+		//IDEA: instead of spawning the items, you are shifted to another "plane" where you can choose, then once you choose you fade back to where you were?
+		Instantiate(LevelUpParticles, transform);
+		
+		MaxHealth += 1;
+		Heal();
+
+		AttackCount += 1;
+		CurrentFocus = AttackCount;
+
+		currentXP -= XPToNextLevel;
+		XPToNextLevel *= 1.5f;
+	}
+
+	
+	
+	//-----------IFRAME/FLASH FUNCTIONS-----------//
+	#region iFrame + Flash Functions
+	
+	
+	/// <summary>
 	/// Flashes player sprite
 	/// </summary>
 	private IEnumerator DamageFlash(float duration)
@@ -183,6 +225,7 @@ public class PlayerController : Creature
 	/// <summary>
 	/// Gives iFrames for specified length of time, option to flash the player also
 	/// </summary>
+	// ReSharper disable once InconsistentNaming
 	public void iFramesForSeconds(float time, bool flash)
 	{
 		if (invincible) return;
@@ -202,6 +245,11 @@ public class PlayerController : Creature
 		invincible = false;
 	}
 	
+	#endregion
+	
+
+	//--------TRIGGER/COLLISION FUNCTIONS--------//
+	#region Trigger Functions
 	
 	private void OnCollisionEnter2D(Collision2D other)
 	{
@@ -215,7 +263,7 @@ public class PlayerController : Creature
 		//TODO: Should probably change how this works to a normal Vector2 distance value
 		if (other.CompareTag("AggroTrigger"))
 		{
-			other.GetComponentInParent<Creature>().Aggro(true);
+			other.GetComponentInParent<Enemy>().Aggro(true);
 		}
 	}
 
@@ -225,7 +273,7 @@ public class PlayerController : Creature
 		
 		if (other.CompareTag("AggroTrigger"))
 		{
-			other.GetComponentInParent<Creature>().Aggro(false);
+			other.GetComponentInParent<Enemy>().Aggro(false);
 		}
 	}
 	
@@ -238,7 +286,12 @@ public class PlayerController : Creature
 			TakeDamage(1);
 		}
 	}
+	
+	#endregion
 
+
+	//----------STATE MACHINE FUNCTIONS---------//
+	#region State Machine Functions
 
 	//Checks to see if the player is in a certain phase
 	public bool IsPhase(Phase phaseToCheck)
@@ -265,6 +318,7 @@ public class PlayerController : Creature
 		currentPhase.OnEnter();
 	}
 	
+	#endregion
 
 }
 

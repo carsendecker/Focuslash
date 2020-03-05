@@ -28,17 +28,7 @@ public class Creature : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
     }
     
-    /// <summary>
-    /// For making a creature aggressive towards another.
-    /// 
-    /// Call this from the creature that *will be aggro'd onto*
-    /// (ie call this from the player when entering enemy range [enemy.Aggro(true) or something])
-    /// </summary>
-    public virtual void Aggro(bool aggrod)
-    {
-        this.enabled = aggrod;
-    }
-
+    
     //Call this from the creature DEALING the damage (so like objectToDamage.TakeDamage())
     //If the object taking damage is killed, returns a value of true
     public virtual bool TakeDamage(int damage)
