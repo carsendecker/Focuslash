@@ -7,7 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Creature : MonoBehaviour
 {
-
+    public string Name;
+    
     [Tooltip("This creature's max health points.")]
     public int MaxHealth; 
     

@@ -17,6 +17,7 @@
             <e p="Enemy Types" t="Include">
               <e p="LaserTurret.cs" t="Include" />
               <e p="MobsterScript.cs" t="Include" />
+              <e p="SlingerScript.cs" t="Include" />
             </e>
             <e p="Enemy.cs" t="Include" />
           </e>
