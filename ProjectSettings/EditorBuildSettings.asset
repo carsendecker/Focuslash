@@ -9,14 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Main Menu.unity
     guid: 430d8e9c1e5cb46dbbb87cd4a83af2e3
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 1ac828f158bc94f869355a7fcfa00d43
-  - enabled: 1
     path: Assets/Scenes/Menu/Options Menu.unity
     guid: b949965c46174664d8b461a2e4c9f6fe
   - enabled: 1
-    path: Assets/Scenes/Test Scenes/CinemachineTest.unity
-    guid: 3828e92dd1d45214bb168e176c846755
+    path: Assets/Scenes/Test Scenes/Tutorial Scene.unity
+    guid: 8b417d4770b681f478849578411bc654
   - enabled: 1
     path: Assets/Scenes/Test Scenes/RoomTranistionTest.unity
     guid: bb3ff1f0f42723b458c36f20c5d71b49
