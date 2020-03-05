@@ -5839,6 +5839,12 @@ PrefabInstance:
       propertyPath: SpawnDelay
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6614601193551276009, guid: 8adb2950a2d544717b34a9cb0e1c50e4,
+        type: 3}
+      propertyPath: EnemyTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 8294495241791088127, guid: e49428885ab852c4ab3c6432dcf3e4ed,
+        type: 3}
     - target: {fileID: 6614601193551276010, guid: 8adb2950a2d544717b34a9cb0e1c50e4,
         type: 3}
       propertyPath: m_LocalPosition.x
