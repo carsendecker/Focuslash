@@ -56,8 +56,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1193112082871136222}
-  - component: {fileID: 1193112082871136223}
   - component: {fileID: 2401453008530685819}
+  - component: {fileID: 1193112082871136223}
   - component: {fileID: 5803647425174016305}
   - component: {fileID: 6889375660965388015}
   m_Layer: 0
@@ -82,6 +82,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2401453008530685819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193112082871136221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2685c67aec2d549f4baddd2ef6aff81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Slinger
+  MaxHealth: 1
+  MoveSpeed: 4
+  Damage: 1
+  rb: {fileID: 0}
+  XPValue: 1
+  AttackRange: 5.5
+  AttacksPerSecond: 0.5
+  DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
+    type: 3}
+  Bullet: {fileID: 3196917951569527822, guid: 537118430bca54ce09d8b874786fd197, type: 3}
 --- !u!212 &1193112082871136223
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -132,29 +155,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2401453008530685819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193112082871136221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2685c67aec2d549f4baddd2ef6aff81e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Slinger
-  MaxHealth: 1
-  MoveSpeed: 4
-  Damage: 1
-  rb: {fileID: 0}
-  XPValue: 1
-  AttackRange: 5.5
-  AttacksPerSecond: 0.5
-  DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
-    type: 3}
-  Bullet: {fileID: 3196917951569527822, guid: 537118430bca54ce09d8b874786fd197, type: 3}
 --- !u!61 &5803647425174016305
 BoxCollider2D:
   m_ObjectHideFlags: 0

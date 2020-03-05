@@ -17,10 +17,13 @@ public abstract class PlayerPhase
 	public abstract void OnEnter();
 	
 	/// <summary>
-	/// Gets called every frame while the player is in the state (like Update())
+	/// Gets called every frame while the player is in the state
 	/// </summary>
 	public abstract void Update();
 
+	/// <summary>
+	/// Gets called every FixedUpdate while the player is in the state
+	/// </summary>
 	public abstract void FixedUpdate();
 	
 	/// <summary>

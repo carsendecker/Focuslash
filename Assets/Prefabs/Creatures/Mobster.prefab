@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3847e5ae5b8f482686eb75a02c56065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Mobster
   MaxHealth: 1
   MoveSpeed: 5.5
   Damage: 1
