@@ -100,7 +100,11 @@ MonoBehaviour:
   rb: {fileID: 0}
   XPValue: 1
   knockbackForce: 30
-  MoveLeadDistance: 0
+  MoveLeadDistance: 1.3
+  AttackRange: 2
+  AttackLungeForce: 45
+  AttackWindupTime: 0.6
+  AttackRestTime: 1
   DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
     type: 3}
 --- !u!212 &8294495241791088125

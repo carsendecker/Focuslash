@@ -2,30 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobsterScript : Creature
+public class MobsterScript : Enemy
 {
     public float knockbackForce;
     public float MoveLeadDistance;
+    public float AttackRange;
+    public float AttackLungeForce;
+    public float AttackWindupTime;
+    public float AttackRestTime;
     
     public GameObject DeathParticles;
 
     private Vector3 direction;
+    private Rigidbody2D playerRb;
+    private bool inAttackRange;
+    private bool attacking;
     
     
     protected override void Start()
     {
         base.Start();
+        playerRb = Services.Player.GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        //Runs towards player, but not quite perfectly
         Vector3 targetPos = Services.Player.transform.position + 
-                            (Vector3) (Services.Player.GetComponent<Rigidbody2D>().velocity.normalized * MoveLeadDistance);
+                            (Vector3) (playerRb.velocity.normalized * MoveLeadDistance);
         
         direction = Vector3.Lerp(direction, targetPos - transform.position, 0.1f);
         rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-        rb.velocity = transform.right * MoveSpeed;
+        
+        if (Vector3.Distance(Services.Player.transform.position, transform.position) > AttackRange && !attacking)
+        {
+            //Runs towards player, but not quite perfectly
+
+            
+            rb.velocity = transform.right * MoveSpeed;
+        }
+        else if (!attacking)
+        {
+            StartCoroutine(Attack());
+        }
+        else
+        {
+            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, 0.2f);
+        }
+    }
+
+    IEnumerator Attack()
+    {
+        attacking = true;
+        yield return new WaitForSeconds(AttackWindupTime);
+        
+        rb.AddForce(transform.right * AttackLungeForce, ForceMode2D.Impulse);
+        
+        yield return new WaitForSeconds(AttackRestTime);
+        attacking = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -38,6 +71,7 @@ public class MobsterScript : Creature
 
     protected override void Die()
     {
+        base.Die();
         Instantiate(DeathParticles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
