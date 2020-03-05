@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class PlayerController : Creature
 {
+	private const float MaxXPIncreaseRate = 2f;
 	public enum Phase
 	{
 		Movement = 1,
@@ -20,25 +22,30 @@ public class PlayerController : Creature
 	
 	[Tooltip("How long (in seconds) a single attack takes to recharge.")]
 	public float FocusRechargeRate;
+
+	[Tooltip("How long a single attack line can extend.")]
+	public float AttackLineRange;
+
+	[Tooltip("How much XP it takes for the player to level up.")]
+	public float XPToNextLevel;
+	[SerializeField] private float currentXP;
 	
 	[HideInInspector] public float CurrentFocus; //Current focus amount
 
 	[Space(10)]
-	public GameObject CrosshairPrefab;
-	public GameObject LockedCrosshairPrefab;
+	public GameObject AttackLinePrefab;
 	public GameObject AttackParticlesPrefab;
 	public Color SlowMoColor; //The color the camera turns when entering slow motion, will probably get rid of this eventually
+	public GameObject LevelUpParticles;
 	
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
 
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool canMove;
-	[HideInInspector] public List<GameObject> EnemiesInRange = new List<GameObject>();
-	[HideInInspector] public List<GameObject> EnemyAttackQueue = new List<GameObject>();
+	[HideInInspector] public Queue<Vector2> AttackPositionQueue = new Queue<Vector2>();
 	
 	private bool invincible;
-	private Collider2D attackRange;
 	private PlayerPhase currentPhase;
 	private Dictionary<Phase, PlayerPhase> Phases = new Dictionary<Phase, PlayerPhase>();
 
@@ -49,7 +56,6 @@ public class PlayerController : Creature
 			Services.Player = this;
 		
 		rb = GetComponent<Rigidbody2D>();
-		attackRange = GetComponentInChildren<Collider2D>();
 		
 		//Adds all the phases to a dictionary for future access
 		Phases.Add(Phase.Movement, new MovePhase(this));
@@ -74,10 +80,14 @@ public class PlayerController : Creature
 
 	void Update ()
 	{
-		currentPhase.Run();
+		currentPhase.Update();
 		CurrentFocus = Mathf.Clamp(CurrentFocus, 0, AttackCount);
 		Services.UI.UpdatePlayerFocus();
+	}
 
+	private void FixedUpdate()
+	{
+		currentPhase.FixedUpdate();
 	}
 
 	//Deals damage to the player
@@ -131,33 +141,69 @@ public class PlayerController : Creature
 		
 		if (InputManager.Pressed(Inputs.Right))
 		{
-			tempVel.x = Mathf.Lerp(tempVel.x, MoveSpeed, 0.2f);
+			tempVel.x = Mathf.Lerp(tempVel.x, MoveSpeed, 0.23f);
 		}
 		else if (InputManager.Pressed(Inputs.Left))
 		{
-			tempVel.x = Mathf.Lerp(tempVel.x, -MoveSpeed, 0.2f);
+			tempVel.x = Mathf.Lerp(tempVel.x, -MoveSpeed, 0.23f);
 		}
 		else
 		{
-			tempVel.x = Mathf.Lerp(tempVel.x, 0, 0.2f);
+			tempVel.x = Mathf.Lerp(tempVel.x, 0, 0.3f);
 		}
 		
 		if (InputManager.Pressed(Inputs.Up))
 		{
-			tempVel.y = Mathf.Lerp(tempVel.y, MoveSpeed, 0.2f);
+			tempVel.y = Mathf.Lerp(tempVel.y, MoveSpeed, 0.23f);
 		}
 		else if (InputManager.Pressed(Inputs.Down))
 		{
-			tempVel.y = Mathf.Lerp(tempVel.y, -MoveSpeed, 0.2f);
+			tempVel.y = Mathf.Lerp(tempVel.y, -MoveSpeed, 0.23f);
 		}
 		else
 		{
-			tempVel.y = Mathf.Lerp(tempVel.y, 0, 0.2f);
+			tempVel.y = Mathf.Lerp(tempVel.y, 0, 0.3f);
 		}
 		
 		rb.velocity = tempVel;
 	}
 
+	/// <summary>
+	/// Gives the player a certain amount of XP. If they have enough, they level up.
+	/// </summary>
+	public void GainXP(float amount)
+	{
+		currentXP += amount;
+
+		if (currentXP >= XPToNextLevel)
+			LevelUp();
+	}
+
+	/// <summary>
+	/// Does a fancy animation and spawns the upgrade items
+	/// </summary>
+	private void LevelUp()
+	{
+		//TODO: Actually implement the proper level up item spawns, which needs integration with the level rooms. It now just gives you the stats for testing.
+		//IDEA: instead of spawning the items, you are shifted to another "plane" where you can choose, then once you choose you fade back to where you were?
+		Instantiate(LevelUpParticles, transform);
+		
+		MaxHealth += 1;
+		Heal();
+
+		AttackCount += 1;
+		CurrentFocus = AttackCount;
+
+		currentXP -= XPToNextLevel;
+		XPToNextLevel *= MaxXPIncreaseRate;
+	}
+
+	
+	
+	//-----------IFRAME/FLASH FUNCTIONS-----------//
+	#region iFrame + Flash Functions
+	
+	
 	/// <summary>
 	/// Flashes player sprite
 	/// </summary>
@@ -180,6 +226,7 @@ public class PlayerController : Creature
 	/// <summary>
 	/// Gives iFrames for specified length of time, option to flash the player also
 	/// </summary>
+	// ReSharper disable once InconsistentNaming
 	public void iFramesForSeconds(float time, bool flash)
 	{
 		if (invincible) return;
@@ -199,6 +246,11 @@ public class PlayerController : Creature
 		invincible = false;
 	}
 	
+	#endregion
+	
+
+	//--------TRIGGER/COLLISION FUNCTIONS--------//
+	#region Trigger Functions
 	
 	private void OnCollisionEnter2D(Collision2D other)
 	{
@@ -208,17 +260,11 @@ public class PlayerController : Creature
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		currentPhase.OnTriggerEnter2D(other);
-		
-		//Adds an enemy to the list of currently in-range enemies
-		if (other.CompareTag("Enemy") && !EnemiesInRange.Contains(other.gameObject))
-		{
-			EnemiesInRange.Add(other.gameObject);
-		}
 
 		//TODO: Should probably change how this works to a normal Vector2 distance value
 		if (other.CompareTag("AggroTrigger"))
 		{
-			other.GetComponentInParent<Creature>().Aggro(true);
+			other.GetComponentInParent<Enemy>().Aggro(true);
 		}
 	}
 
@@ -226,15 +272,9 @@ public class PlayerController : Creature
 	{
 		currentPhase.OnTriggerExit2D(other);
 		
-		//Removes an enemy to the list of currently in-range enemies
-		if (EnemiesInRange.Contains(other.gameObject))
-		{
-			EnemiesInRange.Remove(other.gameObject);
-		}
-		
 		if (other.CompareTag("AggroTrigger"))
 		{
-			other.GetComponentInParent<Creature>().Aggro(false);
+			other.GetComponentInParent<Enemy>().Aggro(false);
 		}
 	}
 	
@@ -247,7 +287,12 @@ public class PlayerController : Creature
 			TakeDamage(1);
 		}
 	}
+	
+	#endregion
 
+
+	//----------STATE MACHINE FUNCTIONS---------//
+	#region State Machine Functions
 
 	//Checks to see if the player is in a certain phase
 	public bool IsPhase(Phase phaseToCheck)
@@ -273,6 +318,8 @@ public class PlayerController : Creature
 		currentPhase = Phases[newPhase];
 		currentPhase.OnEnter();
 	}
+	
+	#endregion
 
 }
 

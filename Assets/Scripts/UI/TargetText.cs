@@ -21,13 +21,13 @@ public class TargetText : MonoBehaviour
         TargetText[] maybeTarget = transform.parent.GetComponentsInChildren<TargetText>();
         if (maybeTarget.Length > 1)
         {
-            maybeTarget[0].NumberText.text += " " + player.EnemyAttackQueue.Count;
+            maybeTarget[0].NumberText.text += " " + player.AttackPositionQueue.Count;
             Destroy(gameObject);
         }
         else
         {
             NumberText.text = "";
-            NumberText.text += player.EnemyAttackQueue.Count;
+            NumberText.text += player.AttackPositionQueue.Count;
         }
     }
 

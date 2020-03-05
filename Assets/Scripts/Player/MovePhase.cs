@@ -22,11 +22,8 @@ public class MovePhase : PlayerPhase
         player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
     }
 
-    public override void Run()
+    public override void Update()
     {
-        if(player.canMove)
-            player.Move();
-		
         //Recharges focus until you have max
         if (player.CurrentFocus < player.AttackCount)
         {
@@ -34,10 +31,16 @@ public class MovePhase : PlayerPhase
         }
 
         //If focus is more than at least 1, you can start attacking
-        if (InputManager.PressedDown(Inputs.Attack) && Mathf.Floor(player.CurrentFocus) > 0)
+        if (InputManager.PressedDown(Inputs.Focus) && Mathf.Floor(player.CurrentFocus) > 0)
         {
             player.SetPhase(PlayerController.Phase.Choosing);
         }
+    }
+
+    public override void FixedUpdate()
+    {
+        if (player.canMove)
+            player.Move();
     }
 
     public override void OnExit()
