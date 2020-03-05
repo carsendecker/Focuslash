@@ -14,6 +14,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="BulletScript.cs" t="Include" />
           <e p="Creatures" t="Include">
             <e p="Creature.cs" t="Include" />
             <e p="Enemy Types" t="Include">
