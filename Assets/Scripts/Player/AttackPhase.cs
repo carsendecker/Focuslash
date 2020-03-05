@@ -15,7 +15,7 @@ public class AttackPhase : PlayerPhase
 	
 	private const float AttackMoveSpeed = 50f;
 	private const float AttackTargetDistance = 1.5f; //Distance at which the player will stop moving towards a target
-	private const float timeToPause = 0.1f;
+	private const float timeToPause = 0.05f;
 	
 	private bool hitTarget;
 	private float pauseTimer;
@@ -42,7 +42,8 @@ public class AttackPhase : PlayerPhase
 		if (pausing && pauseTimer > 0)
 		{
 			pauseTimer -= Time.deltaTime;
-			// pausing = false;
+			if(pauseTimer <= 0)
+				pausing = false;
 		}
 		//If you're not pausing and you hit the target, but have not left its collider, stay at constant velocity
 		//Doesnt do anything atm
@@ -74,11 +75,11 @@ public class AttackPhase : PlayerPhase
 			// player.rb.velocity = Vector2.zero;
 			player.rb.velocity = Vector2.Lerp(player.rb.velocity, Vector2.zero, 0.55f);
 
-			if (player.rb.velocity.magnitude <= 2.1f)
+			if (player.rb.velocity.magnitude <= 1.5f && pauseTimer <= 0)
 			{
 				// pauseTimer = timeToPause;
 				player.rb.velocity = Vector2.zero;
-				pausing = false;
+				pauseTimer += timeToPause;
 			}
 		}
 		else if (hitTarget)

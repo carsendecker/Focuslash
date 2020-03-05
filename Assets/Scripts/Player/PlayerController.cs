@@ -6,6 +6,7 @@ using UnityEngine.Analytics;
 
 public class PlayerController : Creature
 {
+	private const float MaxXPIncreaseRate = 2f;
 	public enum Phase
 	{
 		Movement = 1,
@@ -194,7 +195,7 @@ public class PlayerController : Creature
 		CurrentFocus = AttackCount;
 
 		currentXP -= XPToNextLevel;
-		XPToNextLevel *= 1.5f;
+		XPToNextLevel *= MaxXPIncreaseRate;
 	}
 
 	
