@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Scenes/RoomTranistionTest.unity
     guid: bb3ff1f0f42723b458c36f20c5d71b49
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 1ac828f158bc94f869355a7fcfa00d43
   m_configObjects: {}
