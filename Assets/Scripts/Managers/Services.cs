@@ -14,6 +14,7 @@ public static class Services
 	public static PlayerController Player;
 	public static GameManager Game;
 	public static Camera MainCamera;
+	public static SaveSystem Save;
 
 	public static void InitializeServices()
 	{

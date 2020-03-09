@@ -54,6 +54,11 @@ public class Creature : MonoBehaviour
     {
         return health;
     }
+
+    public void SetHealth(float newHealth)
+    {
+        health = Mathf.Clamp(newHealth, 0, MaxHealth);
+    }
     
     public virtual void Heal(int amountToHeal = 999)
     {
