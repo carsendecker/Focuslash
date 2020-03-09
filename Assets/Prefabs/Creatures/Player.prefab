@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d698fae4e514d70b6864ccc4c3983a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: Zippi
   MaxHealth: 5
   MoveSpeed: 7
   Damage: 1
@@ -153,12 +154,16 @@ MonoBehaviour:
   iFrameTime: 0.5
   FocusRechargeRate: 0.65
   AttackLineRange: 5
+  XPToNextLevel: 5
+  currentXP: 0
   CurrentFocus: 0
   AttackLinePrefab: {fileID: 2989321023571445804, guid: 9c105aa3d61bb47209c23d63a3d90305,
     type: 3}
   AttackParticlesPrefab: {fileID: 1611215975507535509, guid: 68a01d55415424555b933add5493f95c,
     type: 3}
   SlowMoColor: {r: 0.15076537, g: 0.16021417, b: 0.26415092, a: 1}
+  LevelUpParticles: {fileID: 5792894923034492941, guid: bbf1f509e428c42339373e4f5c11fd69,
+    type: 3}
   hurtSound: {fileID: 8300000, guid: e194d188f3f914ed1b9ed013d597cf08, type: 3}
   attackSound: {fileID: 8300000, guid: a9a86cf0993aa4dcd84f38f71eccfb93, type: 3}
   enterSlomoSound: {fileID: 8300000, guid: 3815f4634983a4a079a0f75a50c6312f, type: 3}
