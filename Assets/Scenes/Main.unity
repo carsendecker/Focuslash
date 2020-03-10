@@ -4692,7 +4692,7 @@ PrefabInstance:
     - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
       propertyPath: XPToNextLevel
-      value: 99999
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
