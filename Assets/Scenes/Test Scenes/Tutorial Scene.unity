@@ -161,12 +161,12 @@ PrefabInstance:
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.30049562
+      value: 0.30049658
       objectReference: {fileID: 0}
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.842152
+      value: -20.842127
       objectReference: {fileID: 0}
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
@@ -1404,6 +1404,11 @@ PrefabInstance:
       propertyPath: transitions
       value: 
       objectReference: {fileID: 417254369}
+    - target: {fileID: 3998586193927100727, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
+        type: 3}
+      propertyPath: sceneNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4792358626179046299, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
         type: 3}
       propertyPath: m_Follow
