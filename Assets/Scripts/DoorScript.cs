@@ -17,6 +17,31 @@ public class DoorScript : Enemy
     //private Rigidbody2D playerRb;
    // private bool inAttackRange;
    // private bool attacking;
+   
+   //This part of the script will LISTEN for when the event has occured
+   public void Start()
+   {
+       //Add the method to the event currently on the DoorEvents script
+       //The video I'm using called it subscribing
+       DoorEvents.current.onDoorwayTriggerEnter += closeDoorWay;
+       
+       //Set the door to be inactive.
+       this.gameObject.SetActive(false);
+       Debug.Log("Close Door");
+   }
+
+   public void closeDoorWay()
+   {
+       //Set the game object to active here.
+        this.gameObject.SetActive(true);
+   }
+
+   protected override void Die()
+   {
+       base.Die();
+       Instantiate(DeathParticles, transform.position, Quaternion.identity);
+       Destroy(gameObject);
+   }
     
     
     /*protected override void Start()
@@ -69,10 +94,5 @@ public class DoorScript : Enemy
         }#1#
     }*/
 
-    protected override void Die()
-    {
-        base.Die();
-        Instantiate(DeathParticles, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-    }
+   
 }

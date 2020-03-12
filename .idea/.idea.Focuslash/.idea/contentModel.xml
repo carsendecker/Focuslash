@@ -18,19 +18,21 @@
           <e p="Creatures" t="Include">
             <e p="Creature.cs" t="Include" />
             <e p="Enemy Types" t="Include">
-              <e p="DoorScript.cs" t="Include" />
               <e p="LaserTurret.cs" t="Include" />
               <e p="MobsterScript.cs" t="Include" />
               <e p="SlingerScript.cs" t="Include" />
             </e>
             <e p="Enemy.cs" t="Include" />
           </e>
+          <e p="DoorScript.cs" t="Include" />
           <e p="Items" t="Include">
             <e p="FocusUpgrade.cs" t="Include" />
             <e p="HealthUpgrade.cs" t="Include" />
           </e>
           <e p="Managers" t="Include">
             <e p="AudioManager.cs" t="Include" />
+            <e p="DoorEvents.cs" t="Include" />
+            <e p="EnemyCheckManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
             <e p="InputManager.cs" t="Include" />
             <e p="SaveSystem.cs" t="Include" />
