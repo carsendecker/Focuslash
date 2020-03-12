@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Options Menu.unity
     guid: b949965c46174664d8b461a2e4c9f6fe
   - enabled: 1
-    path: Assets/Scenes/Test Scenes/Tutorial Scene.unity
+    path: Assets/Scenes/Tutorial Scene.unity
     guid: 8b417d4770b681f478849578411bc654
   - enabled: 1
     path: Assets/Scenes/Test Scenes/Genric Test Scenes/RoomTranistionTest.unity
