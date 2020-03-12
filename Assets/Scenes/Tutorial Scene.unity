@@ -1414,6 +1414,26 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1599389287}
+    - target: {fileID: 4792358626325223854, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 6.0406055
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792358626325223854, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -12.067471
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792358626325223854, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 5.9997616
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792358626325223854, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
+        type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 11.959156
+      objectReference: {fileID: 0}
     - target: {fileID: 4792358626649449048, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
         type: 3}
       propertyPath: m_Name
@@ -1484,6 +1504,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1599389287}
+    - target: {fileID: 4792358627395518860, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4792358627849800456, guid: 423dbadc4f8d1bc4d8bcd49c216d55d9,
         type: 3}
       propertyPath: m_Follow
