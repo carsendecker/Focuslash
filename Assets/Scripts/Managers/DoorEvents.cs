@@ -14,16 +14,31 @@ public class DoorEvents : MonoBehaviour
         current = this;
     }
 
+    //I GOT IT
+    //This event action holds on to functions.
     public event Action onDoorwayTriggerEnter;
 
-    //Still slightly confused on events, but heres what I gathered...
-    //DoorwayTriggerEnter can hold on to events that are added from scripts such as DoorScript, which is listening for when an event is triggered...
+  //However, right now, the function doesnt have anything within it.
+  //Other scripts need to subscribe its function into it, a sort of function within a function.
+  //Then it can be invoked in whatever means needed by doing DoorEvents.Current.(name of the function thats in the script)
     public void DoorwayTriggerEnter()
     {
         if (onDoorwayTriggerEnter != null)
         {
             //Invoke the event action
             onDoorwayTriggerEnter();
+        }
+    }
+    
+    //A new event to add on. 
+    public event Action onEnemiesDefeated;
+
+    public void EnemiesDefeated()
+    {
+        if (onEnemiesDefeated != null)
+        {
+            //Invoke the event's action which is to be added from another script.
+            onEnemiesDefeated();
         }
     }
 

@@ -12,6 +12,7 @@ public class DoorScript : Enemy
   //  public float AttackRestTime;
     
   public GameObject DeathParticles;
+  private SpriteRenderer thisSpriteRenderer;
 
    // private Vector3 direction;
     //private Rigidbody2D playerRb;
@@ -21,9 +22,14 @@ public class DoorScript : Enemy
    //This part of the script will LISTEN for when the event has occured
    public void Start()
    {
+       SetHealth(999);
+       thisSpriteRenderer = GetComponent<SpriteRenderer>();
+       thisSpriteRenderer.color = Color.gray;
+ 
        //Add the method to the event currently on the DoorEvents script
        //The video I'm using called it subscribing
        DoorEvents.current.onDoorwayTriggerEnter += closeDoorWay;
+       DoorEvents.current.onEnemiesDefeated += makeDoorSlashable;
        
        //Set the door to be inactive.
        this.gameObject.SetActive(false);
@@ -35,6 +41,14 @@ public class DoorScript : Enemy
        //Set the game object to active here.
         this.gameObject.SetActive(true);
    }
+
+   public void makeDoorSlashable()
+   {
+       thisSpriteRenderer.color = Color.blue;
+       SetHealth(1);
+   }
+   
+   
 
    protected override void Die()
    {
