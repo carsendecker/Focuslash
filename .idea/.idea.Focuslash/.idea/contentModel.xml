@@ -55,11 +55,11 @@
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
+            <e p="EventManager.cs" t="Include" />
             <e p="FPSDisplay.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
             <e p="TEST" t="Include">
               <e p="BehaviorTree.cs" t="Include" />
-              <e p="EventManager.cs" t="Include" />
               <e p="FiniteStateMachine.cs" t="Include" />
             </e>
           </e>
@@ -67,6 +67,8 @@
             <e p="EnemySpawner.cs" t="Include" />
             <e p="ExitGateScript.cs" t="Include" />
             <e p="RoomTransistions.cs" t="Include" />
+            <e p="SlashPuzzle.cs" t="Include" />
+            <e p="SlashSensor.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
