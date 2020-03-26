@@ -14,7 +14,7 @@ public class SlashSensor : Creature
             if (value)
                 sr.color = ActiveColor;
             else
-                fadingColor = true;
+                fadingColor = 3;
 
         }
     }
@@ -24,7 +24,7 @@ public class SlashSensor : Creature
     private SlashPuzzle parentPuzzle;
     private bool isActive;
     private SpriteRenderer sr;
-    private bool fadingColor;
+    private float fadingColor;
     
     
     void Start()
@@ -37,12 +37,10 @@ public class SlashSensor : Creature
 
     private void Update()
     {
-        if (fadingColor)
+        if (fadingColor > 0)
         {
             sr.color = Color.Lerp(sr.color, InactiveColor, 0.05f);
-
-            if (sr.color.Equals(InactiveColor))
-                fadingColor = false;
+            fadingColor -= Time.deltaTime;
         }
     }
 
