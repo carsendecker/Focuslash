@@ -23,6 +23,7 @@
             <e p="Enemy.cs" t="Include" />
           </e>
           <e p="DoorScript.cs" t="Include" />
+          <e p="FirstBoss.cs" t="Include" />
           <e p="Items" t="Include">
             <e p="FocusUpgrade.cs" t="Include" />
             <e p="HealthUpgrade.cs" t="Include" />
