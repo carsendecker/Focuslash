@@ -101,6 +101,8 @@ public class AttackPhase : PlayerPhase
 		//Short pause of iFrames after attacking
 		player.iFramesForSeconds(0.5f, false);
 		player.AttackPositionQueue.Clear();
+		
+		Services.Events.Fire(new PlayerLeftAttackPhase());
 	}
 
 	public override void OnTriggerEnter2D(Collider2D col)
@@ -138,3 +140,5 @@ public class AttackPhase : PlayerPhase
 		player.rb.velocity = Vector3.Lerp(player.rb.velocity, direction.normalized * AttackMoveSpeed, 0.35f);
 	}
 }
+
+

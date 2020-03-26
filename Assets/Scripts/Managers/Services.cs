@@ -15,9 +15,11 @@ public static class Services
 	public static GameManager Game;
 	public static Camera MainCamera;
 	public static SaveSystem Save;
+	public static EventManager Events;
 
 	public static void InitializeServices()
 	{
 		MainCamera = Camera.main;
+		Events = new EventManager();
 	}
 }
