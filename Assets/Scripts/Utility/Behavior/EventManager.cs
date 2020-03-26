@@ -67,26 +67,5 @@ public abstract class AGPEvent
 	public delegate void Handler (AGPEvent e);
 }
 
-public class GoalScored : AGPEvent
-{
-	public readonly bool blueTeamScored;
-	
-	public GoalScored(bool blueTeamScored)
-	{
-		this.blueTeamScored = blueTeamScored;
-	}
-}
-
-public class GameStarted : AGPEvent { }
-
-public class GameTimedOut : AGPEvent
-{
-	public readonly int blueScore, redScore;
-
-	public GameTimedOut(int blueScore, int redScore)
-	{
-		this.blueScore = blueScore;
-		this.redScore = redScore;
-	}
-
-}
+//Event for when the player leaves the attack phase
+public class PlayerLeftAttackPhase : AGPEvent {}

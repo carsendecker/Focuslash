@@ -26,6 +26,7 @@
             <e p="Enemy.cs" t="Include" />
           </e>
           <e p="DoorScript.cs" t="Include" />
+          <e p="FirstBoss.cs" t="Include" />
           <e p="Items" t="Include">
             <e p="FocusUpgrade.cs" t="Include" />
             <e p="HealthUpgrade.cs" t="Include" />
@@ -55,21 +56,25 @@
             <e p="TargetText.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
+            <e p="Behavior" t="Include">
+              <e p="BehaviorTree.cs" t="Include" />
+              <e p="EventManager.cs" t="Include" />
+              <e p="FiniteStateMachine.cs" t="Include" />
+              <e p="Task.cs" t="Include" />
+              <e p="TaskManager.cs" t="Include" />
+            </e>
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
             <e p="FPSDisplay.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
-            <e p="TEST" t="Include">
-              <e p="BehaviorTree.cs" t="Include" />
-              <e p="EventManager.cs" t="Include" />
-              <e p="FiniteStateMachine.cs" t="Include" />
-            </e>
           </e>
           <e p="World" t="Include">
             <e p="EnemySpawner.cs" t="Include" />
             <e p="ExitGateScript.cs" t="Include" />
             <e p="RoomTransistions.cs" t="Include" />
+            <e p="SlashPuzzle.cs" t="Include" />
+            <e p="SlashSensor.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
