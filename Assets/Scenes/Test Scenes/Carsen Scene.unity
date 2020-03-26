@@ -374,6 +374,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main HUD Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1563279627326583943, guid: 9d3cf347db4eb40b99fe86914b708c4b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.6000061
+      objectReference: {fileID: 0}
     - target: {fileID: 1563279627326584057, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -457,18 +462,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 159255230}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &159255232 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1563279626871418821, guid: 9d3cf347db4eb40b99fe86914b708c4b,
-    type: 3}
-  m_PrefabInstance: {fileID: 159255230}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &159255233 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1563279627600661305, guid: 9d3cf347db4eb40b99fe86914b708c4b,
@@ -3203,7 +3196,7 @@ MonoBehaviour:
     type: 3}
   AttackInstructionText: {fileID: 159255233}
   EmptyFocusColor: {r: 0.7924528, g: 0.03364185, b: 0.03364185, a: 1}
-  ScoreText: {fileID: 159255232}
+  ScoreText: {fileID: 0}
   LoadingScreen: {fileID: 0}
 --- !u!4 &276036945
 Transform:
@@ -3239,12 +3232,12 @@ PrefabInstance:
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.30580378
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -23.39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
@@ -4037,14 +4030,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7a4dc999c1d4673bf8d1fc0405d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Bushy
   MaxHealth: 0
   MoveSpeed: 0
   Damage: 0
   rb: {fileID: 0}
   XPValue: 0
---- !u!61 &1253915281
-BoxCollider2D:
+--- !u!58 &1253915281
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4056,19 +4049,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.10783577}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.2}
   serializedVersion: 2
-  m_Size: {x: 3, y: 2.3529778}
-  m_EdgeRadius: 0
+  m_Radius: 1.38
 --- !u!1 &1334090695
 GameObject:
   m_ObjectHideFlags: 0
