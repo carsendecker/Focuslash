@@ -12,6 +12,9 @@ using UnityEngine;
 /// </summary>
 public class ChoosePhase : PlayerPhase
 {		
+	
+	//TODO: Make it so that you do not dash if your target location is over a pit!!!
+	
 	private GameObject targetedEnemy;
 	private GameObject crosshair;
 	private LineRenderer attackLine;
