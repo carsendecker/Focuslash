@@ -1,0 +1,310 @@
+fileFormatVersion: 2
+guid: 5f2761f42e9cace4a8092ed12052069b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4301249030605390498
+    second: WASD_Keys_spritesheet
+  - first:
+      213: -4283772519304314674
+    second: Tutorial_WASD_sprtsht_1
+  - first:
+      213: -780137651132337228
+    second: Tutorial_WASD_sprtsht_2
+  - first:
+      213: 7385891330639656537
+    second: Tutorial_WASD_sprtsht_3
+  - first:
+      213: -3306884681014550435
+    second: Tutorial_WASD_sprtsht_4
+  - first:
+      213: -41629446467383523
+    second: Tutorial_WASD_sprtsht_0
+  - first:
+      213: -2968145501744914120
+    second: Tutorial_WASD_sprtsht_1
+  - first:
+      213: 8730535051521581253
+    second: Tutorial_WASD_sprtsht_2
+  - first:
+      213: 447965958934329216
+    second: Tutorial_WASD_sprtsht_3
+  - first:
+      213: 386529866856899290
+    second: Tutorial_WASD_sprtsht_4
+  - first:
+      213: -5366651941331609813
+    second: Tutorial_WASD_sprtsht_0
+  - first:
+      213: 6651902389993435508
+    second: Tutorial_WASD_sprtsht_1
+  - first:
+      213: 7958330879938930992
+    second: Tutorial_WASD_sprtsht_2
+  - first:
+      213: 3622214358774842161
+    second: Tutorial_WASD_sprtsht_3
+  - first:
+      213: 4143748677925078768
+    second: Tutorial_WASD_sprtsht_4
+  - first:
+      213: -8502767222344905093
+    second: Tutorial_WASD_sprtsht_5
+  - first:
+      213: 2697607103190686092
+    second: Tutorial_WASD_sprtsht_6
+  - first:
+      213: 2876420540685942977
+    second: Tutorial_WASD_sprtsht_7
+  - first:
+      213: -3575775487047142845
+    second: Tutorial_WASD_sprtsht_8
+  - first:
+      213: 1316616259510596560
+    second: Tutorial_WASD_sprtsht_9
+  - first:
+      213: 9186603879030086116
+    second: Tutorial_WASD_sprtsht_10
+  - first:
+      213: -3026855974780901266
+    second: Tutorial_WASD_sprtsht_11
+  - first:
+      213: 1867313618982988324
+    second: Tutorial_WASD_sprtsht_12
+  - first:
+      213: -5187579754006444353
+    second: Tutorial_WASD_sprtsht_13
+  - first:
+      213: 5769432636491502722
+    second: Tutorial_WASD_sprtsht_14
+  - first:
+      213: -6019222076395447697
+    second: Tutorial_WASD_sprtsht_15
+  - first:
+      213: -4774758661572618876
+    second: Tutorial_WASD_sprtsht_16
+  - first:
+      213: 2775804566892163368
+    second: Tutorial_WASD_sprtsht_17
+  - first:
+      213: 175323013253541951
+    second: Tutorial_WASD_sprtsht_18
+  - first:
+      213: -3871993876873800103
+    second: Tutorial_WASD_sprtsht_19
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tutorial_WASD_sprtsht_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1f8d1f2d3a1c6ff0800000000000000
+      internalID: -41629446467383523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_WASD_sprtsht_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83122de54670fc6d0800000000000000
+      internalID: -2968145501744914120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_WASD_sprtsht_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c06a0d7f57192970800000000000000
+      internalID: 8730535051521581253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_WASD_sprtsht_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0877fbd8aae773600800000000000000
+      internalID: 447965958934329216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tutorial_WASD_sprtsht_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2a511bdda3d5500800000000000000
+      internalID: 386529866856899290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
