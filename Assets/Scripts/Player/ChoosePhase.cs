@@ -12,6 +12,9 @@ using UnityEngine;
 /// </summary>
 public class ChoosePhase : PlayerPhase
 {		
+	
+	//TODO: Make it so that you do not dash if your target location is over a pit!!!
+	
 	private GameObject targetedEnemy;
 	private GameObject crosshair;
 	private LineRenderer attackLine;
@@ -31,7 +34,7 @@ public class ChoosePhase : PlayerPhase
 	public override void OnEnter()
 	{
 		//Slows down time and such
-		Time.timeScale = 0.03f;
+		Time.timeScale = 0.1f;
 		camColor = Camera.main.backgroundColor;
 		Camera.main.backgroundColor = player.SlowMoColor;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
