@@ -256,7 +256,7 @@ PrefabInstance:
     - target: {fileID: 1563279627218692665, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627218692665, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
@@ -613,7 +613,7 @@ PrefabInstance:
     - target: {fileID: 344415781491089922, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 344415781491089922, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
@@ -709,6 +709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Revised Tutorial Level Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842217414308273168, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: sceneNumber
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
@@ -1281,7 +1286,7 @@ PrefabInstance:
     - target: {fileID: 610898943907853566, guid: c60755e3632ae9a45b0a0aa8c8b6e642,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 610898943907853566, guid: c60755e3632ae9a45b0a0aa8c8b6e642,
         type: 3}
