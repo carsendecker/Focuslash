@@ -710,10 +710,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revised Tutorial Level Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3100803446057928670, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100803447342498987, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6842217414308273168, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: sceneNumber
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
