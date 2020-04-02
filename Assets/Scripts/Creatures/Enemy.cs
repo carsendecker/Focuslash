@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Enemy : Creature
 {
-    [Tooltip("How much XP this enemy is worth to the player.")]
-    public float XPValue;
     
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
@@ -32,6 +30,5 @@ public class Enemy : Creature
 
     protected override void Die()
     {
-        Services.Player.GainXP(XPValue);
     }
 }

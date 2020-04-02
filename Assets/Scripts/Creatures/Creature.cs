@@ -44,8 +44,11 @@ public class Creature : MonoBehaviour
         return false;
     }
 
-    //For when a creature dies
-    protected virtual void Die() {}
+    //For when a creature dies. Default implementation just destroys the gameObject.
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
+    }
 
     /// <summary>
     /// Returns the creature's current health

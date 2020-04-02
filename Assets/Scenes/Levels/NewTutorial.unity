@@ -328,6 +328,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main HUD Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1563279627326583943, guid: 9d3cf347db4eb40b99fe86914b708c4b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -8.340088
+      objectReference: {fileID: 0}
     - target: {fileID: 1563279627326584057, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -635,6 +640,11 @@ PrefabInstance:
       propertyPath: XPToNextLevel
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
+        type: 3}
+      propertyPath: AttackCount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
 --- !u!4 &589420941 stripped
@@ -650,6 +660,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203076352354035988, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 589420941}
+    - target: {fileID: 1746178333731083551, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: Name
+      value: Blocker Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746178333731083551, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: MaxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3100803445286791036, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -710,35 +735,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Revised Tutorial Level Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 6842217414308273168, guid: ba137419b55164c5cb4abb162961922d,
+    - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
-      propertyPath: sceneNumber
-      value: 1
+      propertyPath: m_text
+      value: Need graffiti of the player drawing a line through an enemy?
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706446, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
@@ -749,31 +769,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7604790357663753106, guid: ba137419b55164c5cb4abb162961922d,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7604790357663753106, guid: ba137419b55164c5cb4abb162961922d,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7604790357663753106, guid: ba137419b55164c5cb4abb162961922d,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7604790357663753106, guid: ba137419b55164c5cb4abb162961922d,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7604790357663753106, guid: ba137419b55164c5cb4abb162961922d,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba137419b55164c5cb4abb162961922d, type: 3}

@@ -4,72 +4,126 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[Serializable]
+public class Wave
+{
+    public List<GameObject> Enemies;
+}
+
 public class EnemySpawner : MonoBehaviour
 {
     [Tooltip("Each list is a wave, add enemy GameObjects to a wave")]
-    public List<List<GameObject>> EnemyWaves = new List<List<GameObject>>();
-    public List<GameObject> EnemiesAlive = new List<GameObject>();
-    public Dictionary<GameObject, Vector3> SpawnPositions = new Dictionary<GameObject, Vector3>();
-    
-    [Tooltip("How long (in seconds) an enemy takes to actually instantiate")]
+    public List<Wave> EnemyWaves = new List<Wave>();
+
+    [Tooltip("How long (in seconds) an enemy takes to actually instantiate after the spawn animation begins.")]
     public float SummonDelay;
     
     public GameObject SpawnParticlePrefab;
     public AudioClip SpawningSound;
 
     private int waveNumber;
+    private bool spawningWave;
+    private bool doneSpawning;
+    private BlockerDoorScript[] roomDoors;
+    
+    //TODO: Support for making last enemy drop something (or just make room drop something)
+    //TODO: Support for enabling/disabling doors
+    //TODO: Support for force-spawning waves? (maybe)
 
     private void Awake()
     {
-        for (int i = 0; i < EnemyWaves.Count; i++)
+        for (int i = 1; i < EnemyWaves.Count; i++)
         {
-            foreach (GameObject enemy in EnemyWaves[i])
+            foreach (GameObject enemy in EnemyWaves[i].Enemies)
             {
-                SpawnPositions.Add(enemy, enemy.transform.position);
+                // SpawnPositions.Add(enemy, enemy.transform.position);
+                enemy.SetActive(false);
             }
         }
+
+        roomDoors = GetComponentsInChildren<BlockerDoorScript>();
     }
 
     void Start()
     {
-        StartCoroutine(SpawnNextWave());
     }
 
     void Update()
     {
-        if (EnemyWaves[waveNumber].Count == 0)
+        if (doneSpawning) return;
+        
+        if (EnemyWaves[waveNumber].Enemies.Count == 0 && !spawningWave)
         {
-            
+            StartCoroutine(SpawnNextWave());
         }
     }
 
-    //Infinitely spawns enemies
+    //Spawns all enemies in a wave, slightly staggered
     IEnumerator SpawnNextWave()
     {
-        for (int i = 0; i < EnemyWaves[waveNumber].Count; i++)
+        spawningWave = true;
+        waveNumber++;
+
+        if (waveNumber > EnemyWaves.Count - 1)
         {
-            StartCoroutine(SpawnEnemy(EnemyWaves[waveNumber][i]));
-            yield return new WaitForSeconds(Random.Range(0.2f, 0.5f)); //*Another* delay to space out multiple spawns
+            RoomOver();
+            yield break;
         }
 
-        waveNumber++;
+        for (int i = 0; i < EnemyWaves[waveNumber].Enemies.Count; i++)
+        {
+            StartCoroutine(SpawnEnemy(EnemyWaves[waveNumber].Enemies[i]));
+            yield return new WaitForSeconds(Random.Range(0.2f, 0.5f)); //*Another* delay to space out multiple spawns
+        }
+        
+        spawningWave = false;
     }
 
     //Actually does the spawning of enemies
     IEnumerator SpawnEnemy(GameObject enemy)
     {
         Vector2 spawnPos = Vector2.zero;
-        Collider2D enemyCheck;
         
-        spawnPos = SpawnPositions[enemy];
+        spawnPos = enemy.transform.position;
         
         Services.Audio.PlaySound(SpawningSound, SourceType.AmbientSound);
         GameObject particles = Instantiate(SpawnParticlePrefab, spawnPos, Quaternion.identity);
 
         yield return new WaitForSeconds(SummonDelay);
 
-        EnemiesAlive.Add(Instantiate(enemy, spawnPos, Quaternion.identity));
+        enemy.SetActive(true);
+        // EnemiesAlive.Add(Instantiate(enemy, spawnPos, Quaternion.identity));
         Destroy(particles);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            foreach (BlockerDoorScript door in roomDoors)
+            {
+                door.closeDoorWay();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (waveNumber >= EnemyWaves.Count) return;
+        
+        if (EnemyWaves[waveNumber].Enemies.Contains(other.gameObject))
+            EnemyWaves[waveNumber].Enemies.Remove(other.gameObject);
+    }
+
+    private void RoomOver()
+    {
+        doneSpawning = true;
+        foreach (BlockerDoorScript door in roomDoors)
+        {
+            door.makeDoorSlashable();
+        }
+        
+        Destroy(this);
+        //TODO: Just destroy script when done??
+    }
 }

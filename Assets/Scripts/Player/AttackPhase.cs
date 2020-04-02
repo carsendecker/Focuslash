@@ -45,23 +45,20 @@ public class AttackPhase : PlayerPhase
 			if(pauseTimer <= 0)
 				pausing = false;
 		}
-		//If you're not pausing and you hit the target, but have not left its collider, stay at constant velocity
-		//Doesnt do anything atm
 		else if (hitTarget)
 		{
-			player.rb.velocity = player.rb.velocity;
 		}
 		else
 		{
-			//If you aren't pausing and have not entered the target's collider yet, move towards it
+			//If you are a certain distance away from the target, start to pause and remove it from the target queue.
 			if (Vector3.Distance(player.transform.position, dashTarget) < AttackTargetDistance && player.AttackPositionQueue.Count > 0)
 			{
 				dashTarget = player.AttackPositionQueue.Dequeue();
 				pausing = true;
 			}
-			else if (Vector3.Distance(player.transform.position, dashTarget) < 0.5f && player.AttackPositionQueue.Count == 0)
+			else if (Vector3.Distance(player.transform.position, dashTarget) < 0.7f && player.AttackPositionQueue.Count == 0)
 			{
-				player.rb.velocity /= 2;
+				player.rb.velocity /= 2.5f;
 				player.SetPhase(PlayerController.Phase.Movement);
 			}
 		}
@@ -107,8 +104,17 @@ public class AttackPhase : PlayerPhase
 
 	public override void OnTriggerEnter2D(Collider2D col)
 	{
+		//If you hit a wall, get knocked out of attacking
+		if (col.gameObject.CompareTag("Wall"))
+		{
+			Services.Utility.ShakeCamera(0.5f, 0.3f);
+			Vector3 prevVel = player.rb.velocity;
+			player.rb.velocity = Vector2.zero;
+			player.rb.AddForce(-prevVel, ForceMode2D.Impulse);
+			player.SetPhase(PlayerController.Phase.Movement);
+		}
 		//If you enter a creature, damage it then make particles and sounds and stuff
-		if (col.GetComponent<Creature>())
+		else if (col.GetComponent<Creature>())
 		{
 			GameObject.Instantiate(player.AttackParticlesPrefab, col.transform.position, Quaternion.Euler(0f, 0f, Random.Range(0, 360)));
 			Services.Audio.PlaySound(player.attackSound, SourceType.CreatureSound);
@@ -118,15 +124,7 @@ public class AttackPhase : PlayerPhase
 		
 			Services.Utility.ShakeCamera(0.15f, 0.25f);
 		}
-		//If you hit a wall, get knocked out of attacking
-		else if (col.gameObject.CompareTag("Wall"))
-		{
-			Services.Utility.ShakeCamera(0.5f, 0.3f);
-			Vector3 prevVel = player.rb.velocity;
-			player.rb.velocity = Vector2.zero;
-			player.rb.AddForce(-prevVel, ForceMode2D.Impulse);
-			player.SetPhase(PlayerController.Phase.Movement);
-		}
+		
 	}
 
 	public override void OnTriggerExit2D(Collider2D col)
