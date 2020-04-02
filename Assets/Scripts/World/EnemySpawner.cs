@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Wave> EnemyWaves = new List<Wave>();
 
     [Tooltip("How long (in seconds) an enemy takes to actually instantiate after the spawn animation begins.")]
-    public float SummonDelay;
+    public float SummonDelay = 2;
     
     public GameObject SpawnParticlePrefab;
     public AudioClip SpawningSound;

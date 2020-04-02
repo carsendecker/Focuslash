@@ -675,6 +675,22 @@ PrefabInstance:
       propertyPath: MaxHealth
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2351112327097689776, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: SummonDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351112327097689776, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: SpawningSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+    - target: {fileID: 2351112327097689776, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: SpawnParticlePrefab
+      value: 
+      objectReference: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
+        type: 3}
     - target: {fileID: 3100803445286791036, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: m_LocalPosition.x
