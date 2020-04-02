@@ -26,10 +26,6 @@ public class PlayerController : Creature
 	[Tooltip("How long a single attack line can extend.")]
 	public float AttackLineRange;
 
-	[Tooltip("How much XP it takes for the player to level up.")]
-	public float XPToNextLevel;
-	[SerializeField] private float currentXP;
-	
 	[HideInInspector] public float CurrentFocus; //Current focus amount
 
 	[Space(10)]
@@ -169,17 +165,6 @@ public class PlayerController : Creature
 	}
 
 	/// <summary>
-	/// Gives the player a certain amount of XP. If they have enough, they level up.
-	/// </summary>
-	public void GainXP(float amount)
-	{
-		currentXP += amount;
-
-		if (currentXP >= XPToNextLevel)
-			LevelUp();
-	}
-
-	/// <summary>
 	/// Does a fancy animation and spawns the upgrade items
 	/// </summary>
 	private void LevelUp()
@@ -188,14 +173,10 @@ public class PlayerController : Creature
 		//IDEA: instead of spawning the items, you are shifted to another "plane" where you can choose, then once you choose you fade back to where you were?
 		Instantiate(LevelUpParticles, transform);
 		
-		MaxHealth += 1;
 		Heal();
 
 		AttackCount += 1;
 		CurrentFocus = AttackCount;
-
-		currentXP -= XPToNextLevel;
-		XPToNextLevel *= MaxXPIncreaseRate;
 	}
 
 	
