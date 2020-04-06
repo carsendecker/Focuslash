@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -124,6 +125,27 @@ public class EnemySpawner : MonoBehaviour
         }
         
         Destroy(this);
-        //TODO: Just destroy script when done??
+    }
+
+    /// <summary>
+    /// Draws gizmos in scene view to show the wave an enemy is assigned to.
+    /// </summary>
+    private void OnDrawGizmosSelected()
+    {
+        GUIStyle labelStyle = new GUIStyle();
+        labelStyle.fontSize = 20;
+        labelStyle.normal.textColor = Color.green;
+        labelStyle.fontStyle = FontStyle.Bold;
+        
+        int index = 0;
+        foreach (Wave wave in EnemyWaves)
+        {
+            foreach (GameObject enemy in wave.Enemies)
+            {
+                Handles.Label(enemy.transform.position, index.ToString(), labelStyle);
+            }
+
+            index++;
+        }
     }
 }

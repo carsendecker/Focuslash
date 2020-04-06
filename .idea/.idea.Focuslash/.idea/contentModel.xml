@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="DO_NOT_MOVE_FOLDER_TY.txt" t="Include" />
+          <e p="EnemySpawnerTool.cs" t="Include" />
+        </e>
         <e p="Scenes" t="Include">
           <e p="Test Scenes" t="Include">
             <e p="Carsen Scene Assets" t="Include">

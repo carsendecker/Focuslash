@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
             bar.value = Mathf.Lerp(bar.value, Services.Player.CurrentFocus, 0.2f);
         }
 
-        if (playerFocus[0].value < playerFocus[0].maxValue)
+        if (playerFocus[0].value < playerFocus[0].maxValue - 0.01f)
             playerFocus[0].GetComponentsInChildren<Image>()[1].color = EmptyFocusColor;
         else 
             playerFocus[0].GetComponentsInChildren<Image>()[1].color = fullFocusColor;
