@@ -661,6 +661,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 800478443, guid: ba137419b55164c5cb4abb162961922d, type: 3}
+      propertyPath: EnemyWaves.Array.data[0].Enemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 800478443, guid: ba137419b55164c5cb4abb162961922d, type: 3}
       propertyPath: test.m_Font
       value: 
       objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -681,6 +685,11 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 589420941}
+    - target: {fileID: 1659154801022966913, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1746178333731083551, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: Name
@@ -804,6 +813,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba137419b55164c5cb4abb162961922d, type: 3}
+--- !u!1 &800478442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6346613351091105203, guid: ba137419b55164c5cb4abb162961922d,
+    type: 3}
+  m_PrefabInstance: {fileID: 800478441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &800478443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 800478443, guid: ba137419b55164c5cb4abb162961922d,
+    type: 3}
+  m_PrefabInstance: {fileID: 800478441}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c3657a44d364dc288a5e5d1027e92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &800478444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800478442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a461c00fe5740ddb2eed22f03614fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewWaveNumber: 0
+  spawner: {fileID: 800478443}
 --- !u!1 &1061173789
 GameObject:
   m_ObjectHideFlags: 0

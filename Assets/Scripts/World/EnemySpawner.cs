@@ -9,6 +9,11 @@ using Random = UnityEngine.Random;
 public class Wave
 {
     public List<GameObject> Enemies;
+
+    public Wave()
+    {
+        Enemies = new List<GameObject>();
+    }
 }
 
 public class EnemySpawner : MonoBehaviour
@@ -127,10 +132,20 @@ public class EnemySpawner : MonoBehaviour
         Destroy(this);
     }
 
+    
+    
+    //=================== EDITOR TOOL METHODS ==================//
+    
+    
     /// <summary>
     /// Draws gizmos in scene view to show the wave an enemy is assigned to.
     /// </summary>
     private void OnDrawGizmosSelected()
+    {
+        DrawWEnemyWaveNumbers();
+    }
+
+    public void DrawWEnemyWaveNumbers()
     {
         GUIStyle labelStyle = new GUIStyle();
         labelStyle.fontSize = 20;
@@ -147,5 +162,61 @@ public class EnemySpawner : MonoBehaviour
 
             index++;
         }
+    }
+    
+    /// <summary>
+    /// Assigns a given enemy to a new spawning wave number.
+    /// </summary>
+    public void AssignToWave(GameObject enemyToAssign, int waveNumber)
+    {
+        int waveNum = waveNumber;
+        if (waveNum > EnemyWaves.Count)
+        {
+            waveNum = EnemyWaves.Count;
+        }
+
+        if (waveNum == EnemyWaves.Count)
+        {
+            EnemyWaves.Add(new Wave());
+        }
+
+        int removedIndex = 0;
+        foreach (Wave wave in EnemyWaves)
+        {
+            if (wave.Enemies.Contains(enemyToAssign))
+            {
+                removedIndex = EnemyWaves.IndexOf(wave);
+
+                //Decrement the wave number to add the enemy to by 1 if the old wave will be empty.
+                //This is due to the next wave moving down 1 place when the old one is removed.
+                if (wave.Enemies.Count == 1 && waveNum > removedIndex) waveNum--;
+                
+                wave.Enemies.Remove(enemyToAssign);
+                break;
+            }
+        }
+        
+        //If the wave is now empty, remove the wave
+        if(EnemyWaves[removedIndex].Enemies.Count == 0) 
+            EnemyWaves.RemoveAt(removedIndex);
+        
+        EnemyWaves[waveNum].Enemies.Add(enemyToAssign);
+
+    }
+
+    /// <summary>
+    /// Returns the wave number that a given enemy is in.
+    /// </summary>
+    public int GetWaveNumber(GameObject enemyToFind)
+    {
+        int index = 0;
+        foreach (Wave wave in EnemyWaves)
+        {
+            if(wave.Enemies.Contains(enemyToFind))
+                return index;
+            index++;
+        }
+
+        return -1;
     }
 }

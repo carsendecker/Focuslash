@@ -5,10 +5,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Editor" t="Include">
-          <e p="DO_NOT_MOVE_FOLDER_TY.txt" t="Include" />
-          <e p="EnemySpawnerTool.cs" t="Include" />
-        </e>
         <e p="Scenes" t="Include">
           <e p="Test Scenes" t="Include">
             <e p="Carsen Scene Assets" t="Include">
@@ -29,6 +25,10 @@
             <e p="Enemy.cs" t="Include" />
           </e>
           <e p="DoorScript.cs" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="EnemySpawnerTool.cs" t="Include" />
+            <e p="EnemyWaveAssignTool.cs" t="Include" />
+          </e>
           <e p="FirstBoss.cs" t="Include" />
           <e p="Items" t="Include">
             <e p="FocusUpgrade.cs" t="Include" />
@@ -69,6 +69,9 @@
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
+            <e p="EditorStuff" t="Include">
+              <e p="AssignToSpawnWave.cs" t="Include" />
+            </e>
             <e p="FPSDisplay.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
           </e>
