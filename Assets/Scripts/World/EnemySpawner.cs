@@ -174,7 +174,6 @@ public class EnemySpawner : MonoBehaviour
         {
             waveNum = EnemyWaves.Count;
         }
-
         if (waveNum == EnemyWaves.Count)
         {
             EnemyWaves.Add(new Wave());

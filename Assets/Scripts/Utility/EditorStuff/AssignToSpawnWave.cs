@@ -14,6 +14,7 @@ public class AssignToSpawnWave : MonoBehaviour
     /// </summary>
     private void OnDrawGizmosSelected()
     {
+	    spawner = GetComponentInParent<EnemySpawner>();
 	    spawner.DrawWEnemyWaveNumbers();
 
         GUIStyle labelStyle = new GUIStyle();
