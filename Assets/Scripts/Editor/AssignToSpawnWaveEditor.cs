@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CustomEditor(typeof(AssignToSpawnWave))]
 [CanEditMultipleObjects]
-public class EnemyWaveAssignTool : Editor
+public class AssignToSpawnWaveEditor : Editor
 {
 	private AssignToSpawnWave[] enemies;
 	
