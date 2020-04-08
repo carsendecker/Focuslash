@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 3683817992597609235}
   - component: {fileID: 4327612682584904909}
   m_Layer: 0
-  m_Name: Mobster
+  m_Name: _Mobster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8294495241791088127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.61, y: 6.37, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 1}
   m_Children:
   - {fileID: 476790463655027821}
@@ -99,7 +99,6 @@ MonoBehaviour:
   MoveSpeed: 5.5
   Damage: 1
   rb: {fileID: 0}
-  XPValue: 1
   knockbackForce: 30
   MoveLeadDistance: 1.3
   AttackRange: 2

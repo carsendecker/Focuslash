@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,7 +34,6 @@ public class EnemySpawner : MonoBehaviour
     private BlockerDoorScript[] roomDoors;
     
     //TODO: Support for making last enemy drop something (or just make room drop something)
-    //TODO: Support for enabling/disabling doors
     //TODO: Support for force-spawning waves? (maybe)
 
     private void Awake()
@@ -153,11 +153,21 @@ public class EnemySpawner : MonoBehaviour
         labelStyle.fontStyle = FontStyle.Bold;
         
         int index = 0;
-        foreach (Wave wave in EnemyWaves)
+        //Using ToList() so there are no errors when removing an enemy during iteration
+        foreach (Wave wave in EnemyWaves.ToList())
         {
-            foreach (GameObject enemy in wave.Enemies)
+            foreach (GameObject enemy in wave.Enemies.ToList())
             {
-                Handles.Label(enemy.transform.position, index.ToString(), labelStyle);
+                //If an enemy reference is missing, remove it from the list
+                try
+                {
+                    Handles.Label(enemy.transform.position, index.ToString(), labelStyle);
+                }
+                catch (Exception e)
+                {
+                    wave.Enemies.Remove(enemy);
+                }
+                
             }
 
             index++;
@@ -170,12 +180,14 @@ public class EnemySpawner : MonoBehaviour
     public void AssignToWave(GameObject enemyToAssign, int waveNumber)
     {
         int waveNum = waveNumber;
+        
         if (waveNum > EnemyWaves.Count)
         {
             waveNum = EnemyWaves.Count;
         }
-        if (waveNum == EnemyWaves.Count)
+        if (waveNum == EnemyWaves.Count || EnemyWaves.Count == 0)
         {
+            
             EnemyWaves.Add(new Wave());
         }
 
@@ -195,11 +207,12 @@ public class EnemySpawner : MonoBehaviour
             }
         }
         
+        EnemyWaves[waveNum].Enemies.Add(enemyToAssign);
+
         //If the wave is now empty, remove the wave
         if(EnemyWaves[removedIndex].Enemies.Count == 0) 
             EnemyWaves.RemoveAt(removedIndex);
         
-        EnemyWaves[waveNum].Enemies.Add(enemyToAssign);
 
     }
 

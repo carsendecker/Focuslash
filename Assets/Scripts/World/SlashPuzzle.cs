@@ -29,6 +29,7 @@ public class SlashPuzzle : MonoBehaviour
     void Start()
     {
         Services.Events.Register<PlayerLeftAttackPhase>(ResetSensors);
+        DoorToOpen.GetComponent<BlockerDoorScript>().closeDoorWay();
     }
 
     /// <summary>

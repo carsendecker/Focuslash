@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockerDoorScript : Creature
 {
+    public bool startClosed;
     private SpriteRenderer thisSpriteRenderer;
     
     
@@ -17,7 +18,7 @@ public class BlockerDoorScript : Creature
         // DoorEvents.current.onDoorwayTriggerEnter += closeDoorWay;
         // DoorEvents.current.onEnemiesDefeated += makeDoorSlashable;
         
-        gameObject.SetActive(false);
+        gameObject.SetActive(startClosed);
     }
 
     public void closeDoorWay()

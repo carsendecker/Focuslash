@@ -11,6 +11,8 @@ public class EnemySpawnerEditor : Editor
 {
 	private EnemySpawner spawner;
 	private int enemyIndex;
+	private int enemyNumToSpawn = 1;
+	private int enemyWaveToSpawn = 0;
 
 	public override void OnInspectorGUI()
 	{
@@ -31,31 +33,46 @@ public class EnemySpawnerEditor : Editor
 			nameList[i] = enemyList[i].name;
 		}
 
-		//Dropdown and button for spawning enemies into the room
+		GUILayout.Space(15);
+		GUILayout.Label("Spawn Enemy into Room:");
+		enemyWaveToSpawn = EditorGUILayout.IntField("Assign to wave: ", enemyWaveToSpawn);
+		
 		GUILayout.BeginHorizontal();
 
-		enemyIndex = EditorGUILayout.Popup("Spawn Enemy: ", enemyIndex, nameList);
+		enemyIndex = EditorGUILayout.Popup(enemyIndex, nameList);
+		enemyNumToSpawn = EditorGUILayout.IntField(enemyNumToSpawn);
+
+		GUILayout.EndHorizontal();
 		
+		
+		//SPAWNING AN ENEMY INTO THE ROOM
 		if (GUILayout.Button("Spawn Enemy in Room"))
 		{
 			foreach (GameObject enemy in enemyList)
 			{
 				if (enemy.name == nameList[enemyIndex])
 				{
-					GameObject o = Instantiate(enemy, spawner.transform);
-					o.AddComponent<AssignToSpawnWave>();
-					spawner.AssignToWave(o, 0);
+					for (int i = 0; i < enemyNumToSpawn; i++)
+					{
+						GameObject o = Instantiate(enemy, spawner.transform);
+						o.AddComponent<AssignToSpawnWave>();
+						spawner.AssignToWave(o, enemyWaveToSpawn);
+						Selection.activeGameObject = o;
+					}
+					
+
 				}
 			}
 		}
 		
-		GUILayout.EndHorizontal();
-
+		EditorGUILayout.HelpBox("Choose an enemy type from the dropdown, and specify how many you want to spawn. They will then be instantiated as a child of the room and added to wave 0 automatically.", MessageType.Info);
+		
 		int index = 0;
         foreach (Wave wave in spawner.EnemyWaves)
         {
             foreach (GameObject enemy in wave.Enemies)
             {
+	            if(enemy == null) continue;
 	            AssignToSpawnWave sw = enemy.GetComponent<AssignToSpawnWave>();
 	            if (sw == null)
 	            {
