@@ -20,7 +20,7 @@ public class DoorScript : Enemy
    // private bool attacking;
    
    //This part of the script will LISTEN for when the event has occured
-   public void Start()
+   protected override void Start()
    {
        SetHealth(1);
        //thisSpriteRenderer = GetComponent<SpriteRenderer>();

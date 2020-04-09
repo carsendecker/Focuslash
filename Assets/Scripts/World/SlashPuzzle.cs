@@ -31,6 +31,10 @@ public class SlashPuzzle : MonoBehaviour
         Services.Events.Register<PlayerLeftAttackPhase>(ResetSensors);
     }
 
+    /// <summary>
+    /// Gets called when the player stops attacking. Resets all the sensors if they aren't all activated.
+    /// Otherwise, open the room.
+    /// </summary>
     void ResetSensors(AGPEvent e)
     {
         byte sensorsActive = 0;
@@ -40,8 +44,10 @@ public class SlashPuzzle : MonoBehaviour
         }
 
         if (sensorsActive >= SlashSensors.Count)
+        {
             Opened = true;
-        
+        }
+
         if (!Opened)
         {
             foreach (SlashSensor sensor in SlashSensors)

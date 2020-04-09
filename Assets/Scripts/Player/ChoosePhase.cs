@@ -46,8 +46,11 @@ public class ChoosePhase : PlayerPhase
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
 		Services.UI.AttackInstructionText.gameObject.SetActive(true);
 
-		targetedEnemy = null;
 
+		if (Mathf.Floor(startingFocus) < 1)
+		{
+			
+		}
 		CreateNewLine(player.transform.position);
 		player.CurrentFocus--;
 	}
@@ -105,7 +108,6 @@ public class ChoosePhase : PlayerPhase
 			crosshair = null;
 		}
 
-		targetedEnemy = null;
 		//Disable circle range sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 

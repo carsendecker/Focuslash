@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockerDoorScript : MonoBehaviour
+public class BlockerDoorScript : Creature
 {
     private SpriteRenderer thisSpriteRenderer;
     
@@ -14,29 +14,22 @@ public class BlockerDoorScript : MonoBehaviour
         
         //Add the method to the event currently on the DoorEvents script
         //The video I'm using called it subscribing
-        DoorEvents.current.onDoorwayTriggerEnter += closeDoorWay;
-        DoorEvents.current.onEnemiesDefeated += makeDoorSlashable;
+        // DoorEvents.current.onDoorwayTriggerEnter += closeDoorWay;
+        // DoorEvents.current.onEnemiesDefeated += makeDoorSlashable;
         
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
-    
-    void Update()
-    {
-        
-    }
-    
     public void closeDoorWay()
    {
        //Set the game object to active here.
-        this.gameObject.SetActive(true);
-        this.gameObject.tag = "Wall";
+        gameObject.SetActive(true);
+        tag = "Wall";
    }
 
    public void makeDoorSlashable()
    {
-       thisSpriteRenderer.color = Color.blue;
-       this.gameObject.SetActive(false);
-
+       thisSpriteRenderer.color = new Color(0.24f, 0.87f, 0.87f);
+       tag = "Untagged";
    }
 }
