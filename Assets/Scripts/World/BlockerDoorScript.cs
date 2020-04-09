@@ -5,6 +5,7 @@ using UnityEngine;
 public class BlockerDoorScript : Creature
 {
     public bool startClosed;
+    public AudioClip DoorSound;
     private SpriteRenderer thisSpriteRenderer;
     
     
@@ -12,12 +13,7 @@ public class BlockerDoorScript : Creature
     {
         thisSpriteRenderer = GetComponent<SpriteRenderer>();
         thisSpriteRenderer.color = Color.gray;
-        
-        //Add the method to the event currently on the DoorEvents script
-        //The video I'm using called it subscribing
-        // DoorEvents.current.onDoorwayTriggerEnter += closeDoorWay;
-        // DoorEvents.current.onEnemiesDefeated += makeDoorSlashable;
-        
+
         gameObject.SetActive(startClosed);
     }
 
@@ -26,11 +22,14 @@ public class BlockerDoorScript : Creature
        //Set the game object to active here.
         gameObject.SetActive(true);
         tag = "Wall";
+        Services.Audio.PlaySound(DoorSound, SourceType.AmbientSound);
    }
 
    public void makeDoorSlashable()
    {
        thisSpriteRenderer.color = new Color(0.24f, 0.87f, 0.87f);
        tag = "Untagged";
+       Services.Audio.PlaySound(DoorSound, SourceType.AmbientSound);
+
    }
 }

@@ -30,7 +30,6 @@ public class EnemySpawner : MonoBehaviour
 
     private int waveNumber;
     private bool spawningWave;
-    private bool doneSpawning;
     private BlockerDoorScript[] roomDoors;
     
     //TODO: Support for making last enemy drop something (or just make room drop something)
@@ -42,25 +41,25 @@ public class EnemySpawner : MonoBehaviour
         {
             foreach (GameObject enemy in EnemyWaves[i].Enemies)
             {
-                // SpawnPositions.Add(enemy, enemy.transform.position);
                 enemy.SetActive(false);
             }
         }
 
         roomDoors = GetComponentsInChildren<BlockerDoorScript>();
     }
-
-    void Start()
-    {
-    }
+    
 
     void Update()
     {
-        if (doneSpawning) return;
-        
+        if (waveNumber >= EnemyWaves.Count) return;
+
         if (EnemyWaves[waveNumber].Enemies.Count == 0 && !spawningWave)
         {
             StartCoroutine(SpawnNextWave());
+        }
+        else if (EnemyWaves[waveNumber].Enemies.Contains(null))
+        {
+            EnemyWaves[waveNumber].Enemies.Remove(null);
         }
     }
 
@@ -79,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < EnemyWaves[waveNumber].Enemies.Count; i++)
         {
             StartCoroutine(SpawnEnemy(EnemyWaves[waveNumber].Enemies[i]));
-            yield return new WaitForSeconds(Random.Range(0.2f, 0.5f)); //*Another* delay to space out multiple spawns
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.3f)); //*Another* delay to space out multiple spawns
         }
         
         spawningWave = false;
@@ -123,7 +122,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void RoomOver()
     {
-        doneSpawning = true;
         foreach (BlockerDoorScript door in roomDoors)
         {
             door.makeDoorSlashable();

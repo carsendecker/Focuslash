@@ -95,6 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3dbc667b5177a45b685a86862fa960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 
+  MaxHealth: 0
+  MoveSpeed: 0
+  Damage: 0
+  rb: {fileID: 0}
+  startClosed: 0
+  DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
 --- !u!61 &6041797979246111082
 BoxCollider2D:
   m_ObjectHideFlags: 0

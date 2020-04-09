@@ -44,17 +44,16 @@ public class SlashPuzzle : MonoBehaviour
             if (sensor.Active) sensorsActive++;
         }
 
-        if (sensorsActive >= SlashSensors.Count)
+        if (sensorsActive == SlashSensors.Count)
         {
             Opened = true;
+            return;
         }
-
-        if (!Opened)
+        
+        foreach (SlashSensor sensor in SlashSensors)
         {
-            foreach (SlashSensor sensor in SlashSensors)
-            {
+            if(sensor.Active)
                 sensor.Active = false;
-            }
         }
         
     }

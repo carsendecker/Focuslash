@@ -13,7 +13,6 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="BlockerDoorScript.cs" t="Include" />
           <e p="BulletScript.cs" t="Include" />
           <e p="Creatures" t="Include">
             <e p="Creature.cs" t="Include" />
@@ -24,7 +23,6 @@
             </e>
             <e p="Enemy.cs" t="Include" />
           </e>
-          <e p="DoorScript.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="AssignToSpawnWaveEditor.cs" t="Include" />
             <e p="EnemySpawnerEditor.cs" t="Include" />
@@ -76,6 +74,8 @@
             <e p="Spin.cs" t="Include" />
           </e>
           <e p="World" t="Include">
+            <e p="BlockerDoorScript.cs" t="Include" />
+            <e p="DoorScript.cs" t="Include" />
             <e p="EndlessEnemySpawner.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />
             <e p="ExitGateScript.cs" t="Include" />
