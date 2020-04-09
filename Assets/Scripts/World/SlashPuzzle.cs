@@ -29,6 +29,7 @@ public class SlashPuzzle : MonoBehaviour
     void Start()
     {
         Services.Events.Register<PlayerLeftAttackPhase>(ResetSensors);
+        DoorToOpen.GetComponent<BlockerDoorScript>().closeDoorWay();
     }
 
     /// <summary>
@@ -43,17 +44,16 @@ public class SlashPuzzle : MonoBehaviour
             if (sensor.Active) sensorsActive++;
         }
 
-        if (sensorsActive >= SlashSensors.Count)
+        if (sensorsActive == SlashSensors.Count)
         {
             Opened = true;
+            return;
         }
-
-        if (!Opened)
+        
+        foreach (SlashSensor sensor in SlashSensors)
         {
-            foreach (SlashSensor sensor in SlashSensors)
-            {
+            if(sensor.Active)
                 sensor.Active = false;
-            }
         }
         
     }
