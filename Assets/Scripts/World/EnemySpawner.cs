@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,6 +10,11 @@ using Random = UnityEngine.Random;
 public class Wave
 {
     public List<GameObject> Enemies;
+
+    public Wave()
+    {
+        Enemies = new List<GameObject>();
+    }
 }
 
 public class EnemySpawner : MonoBehaviour
@@ -23,11 +30,9 @@ public class EnemySpawner : MonoBehaviour
 
     private int waveNumber;
     private bool spawningWave;
-    private bool doneSpawning;
     private BlockerDoorScript[] roomDoors;
     
     //TODO: Support for making last enemy drop something (or just make room drop something)
-    //TODO: Support for enabling/disabling doors
     //TODO: Support for force-spawning waves? (maybe)
 
     private void Awake()
@@ -36,25 +41,36 @@ public class EnemySpawner : MonoBehaviour
         {
             foreach (GameObject enemy in EnemyWaves[i].Enemies)
             {
-                // SpawnPositions.Add(enemy, enemy.transform.position);
                 enemy.SetActive(false);
             }
         }
 
         roomDoors = GetComponentsInChildren<BlockerDoorScript>();
     }
-
-    void Start()
-    {
-    }
+    
 
     void Update()
     {
-        if (doneSpawning) return;
-        
+        if (waveNumber >= EnemyWaves.Count) return;
+
         if (EnemyWaves[waveNumber].Enemies.Count == 0 && !spawningWave)
         {
             StartCoroutine(SpawnNextWave());
+        }
+        else
+        {
+            /*
+             * This is really dumb, but in order to check if an object reference is missing, im just trying to do something random
+             * with a gameobject and if it throws an error (prob NullReference), then it can remove it from the list.
+             */
+            try
+            {
+                int randomAssThing = EnemyWaves[waveNumber].Enemies[0].gameObject.layer;
+            }
+            catch (Exception e)
+            {
+                EnemyWaves[waveNumber].Enemies.RemoveAt(0);
+            }
         }
     }
 
@@ -73,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < EnemyWaves[waveNumber].Enemies.Count; i++)
         {
             StartCoroutine(SpawnEnemy(EnemyWaves[waveNumber].Enemies[i]));
-            yield return new WaitForSeconds(Random.Range(0.2f, 0.5f)); //*Another* delay to space out multiple spawns
+            yield return new WaitForSeconds(Random.Range(0.1f, 0.3f)); //*Another* delay to space out multiple spawns
         }
         
         spawningWave = false;
@@ -117,13 +133,111 @@ public class EnemySpawner : MonoBehaviour
 
     private void RoomOver()
     {
-        doneSpawning = true;
         foreach (BlockerDoorScript door in roomDoors)
         {
             door.makeDoorSlashable();
         }
         
         Destroy(this);
-        //TODO: Just destroy script when done??
+    }
+
+    
+    
+    //=================== EDITOR TOOL METHODS ==================//
+    
+    
+    /// <summary>
+    /// Draws gizmos in scene view to show the wave an enemy is assigned to.
+    /// </summary>
+    private void OnDrawGizmosSelected()
+    {
+        DrawWEnemyWaveNumbers();
+    }
+
+    public void DrawWEnemyWaveNumbers()
+    {
+        GUIStyle labelStyle = new GUIStyle();
+        labelStyle.fontSize = 20;
+        labelStyle.normal.textColor = Color.green;
+        labelStyle.fontStyle = FontStyle.Bold;
+        
+        int index = 0;
+        //Using ToList() so there are no errors when removing an enemy during iteration
+        foreach (Wave wave in EnemyWaves.ToList())
+        {
+            foreach (GameObject enemy in wave.Enemies.ToList())
+            {
+                //If an enemy reference is missing, remove it from the list
+                try
+                {
+                    Handles.Label(enemy.transform.position, index.ToString(), labelStyle);
+                }
+                catch (Exception e)
+                {
+                    wave.Enemies.Remove(enemy);
+                }
+                
+            }
+
+            index++;
+        }
+    }
+    
+    /// <summary>
+    /// Assigns a given enemy to a new spawning wave number.
+    /// </summary>
+    public void AssignToWave(GameObject enemyToAssign, int waveNumber)
+    {
+        int waveNum = waveNumber;
+        
+        if (waveNum > EnemyWaves.Count)
+        {
+            waveNum = EnemyWaves.Count;
+        }
+        if (waveNum == EnemyWaves.Count || EnemyWaves.Count == 0)
+        {
+            
+            EnemyWaves.Add(new Wave());
+        }
+
+        int removedIndex = 0;
+        foreach (Wave wave in EnemyWaves)
+        {
+            if (wave.Enemies.Contains(enemyToAssign))
+            {
+                removedIndex = EnemyWaves.IndexOf(wave);
+
+                //Decrement the wave number to add the enemy to by 1 if the old wave will be empty.
+                //This is due to the next wave moving down 1 place when the old one is removed.
+                if (wave.Enemies.Count == 1 && waveNum > removedIndex) waveNum--;
+                
+                wave.Enemies.Remove(enemyToAssign);
+                break;
+            }
+        }
+        
+        EnemyWaves[waveNum].Enemies.Add(enemyToAssign);
+
+        //If the wave is now empty, remove the wave
+        if(EnemyWaves[removedIndex].Enemies.Count == 0) 
+            EnemyWaves.RemoveAt(removedIndex);
+        
+
+    }
+
+    /// <summary>
+    /// Returns the wave number that a given enemy is in.
+    /// </summary>
+    public int GetWaveNumber(GameObject enemyToFind)
+    {
+        int index = 0;
+        foreach (Wave wave in EnemyWaves)
+        {
+            if(wave.Enemies.Contains(enemyToFind))
+                return index;
+            index++;
+        }
+
+        return -1;
     }
 }

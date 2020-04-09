@@ -106,9 +106,9 @@ public class UIManager : MonoBehaviour
             bar.value = Mathf.Lerp(bar.value, Services.Player.CurrentFocus, 0.2f);
         }
 
-        if (playerFocus[0].value < playerFocus[0].maxValue -1)
+        if (playerFocus[0].value < playerFocus[0].maxValue - 0.01f)
             playerFocus[0].GetComponentsInChildren<Image>()[1].color = EmptyFocusColor;
-        else
+        else 
             playerFocus[0].GetComponentsInChildren<Image>()[1].color = fullFocusColor;
 
         //Adds and removes focus bars based on the player's AttackCount
