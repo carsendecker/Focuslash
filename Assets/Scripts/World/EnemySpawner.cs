@@ -57,9 +57,20 @@ public class EnemySpawner : MonoBehaviour
         {
             StartCoroutine(SpawnNextWave());
         }
-        else if (EnemyWaves[waveNumber].Enemies.Contains(null))
+        else
         {
-            EnemyWaves[waveNumber].Enemies.Remove(null);
+            /*
+             * This is really dumb, but in order to check if an object reference is missing, im just trying to do something random
+             * with a gameobject and if it throws an error (prob NullReference), then it can remove it from the list.
+             */
+            try
+            {
+                int randomAssThing = EnemyWaves[waveNumber].Enemies[0].gameObject.layer;
+            }
+            catch (Exception e)
+            {
+                EnemyWaves[waveNumber].Enemies.RemoveAt(0);
+            }
         }
     }
 
