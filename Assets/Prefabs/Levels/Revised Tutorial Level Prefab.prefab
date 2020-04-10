@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a461c00fe5740ddb2eed22f03614fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewWaveNumber: 0
+  NewWaveNumber: 2
   spawner: {fileID: 1692060005097802085}
 --- !u!1 &325857287361101784
 GameObject:
@@ -6789,7 +6789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a461c00fe5740ddb2eed22f03614fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewWaveNumber: 0
+  NewWaveNumber: 2
   spawner: {fileID: 1692060005097802085}
 --- !u!1 &1604322661977864486
 GameObject:
@@ -15372,19 +15372,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyWaves:
+  - Enemies: []
   - Enemies:
-    - {fileID: 8879533930761131112}
     - {fileID: 7414214015400270420}
+    - {fileID: 8879533930761131112}
   - Enemies:
-    - {fileID: 6325021854636447739}
-    - {fileID: 1512914716246358090}
     - {fileID: 230774484820050912}
+    - {fileID: 1512914716246358090}
     - {fileID: 5852524434332417456}
+    - {fileID: 6325021854636447739}
   SummonDelay: 2
   SpawnObjectOnFinish: 0
   ObjectToSpawn: {fileID: 0}
   KeepDoorsClosedOnFinish: 0
-  SpawnInFirstWave: 1
+  SpawnInFirstWave: 0
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
@@ -55320,7 +55321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a461c00fe5740ddb2eed22f03614fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewWaveNumber: 0
+  NewWaveNumber: 2
   spawner: {fileID: 1692060005097802085}
 --- !u!1 &5916240735865610996
 GameObject:
@@ -56978,7 +56979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a461c00fe5740ddb2eed22f03614fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewWaveNumber: 0
+  NewWaveNumber: 2
   spawner: {fileID: 1692060005097802085}
 --- !u!114 &8882849356097453462
 MonoBehaviour:
@@ -68695,7 +68696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a461c00fe5740ddb2eed22f03614fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewWaveNumber: 0
+  NewWaveNumber: 1
   spawner: {fileID: 1692060005097802085}
 --- !u!114 &7978376831643769977
 MonoBehaviour:
@@ -82761,7 +82762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a461c00fe5740ddb2eed22f03614fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewWaveNumber: 0
+  NewWaveNumber: 1
   spawner: {fileID: 1692060005097802085}
 --- !u!1 &8889779517775023220
 GameObject:
