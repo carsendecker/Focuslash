@@ -67,7 +67,7 @@
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
-            <e p="EditorStuff" t="Include">
+            <e p="Editor" t="Include">
               <e p="AssignToSpawnWave.cs" t="Include" />
             </e>
             <e p="EnableDisableOnDestroy.cs" t="Include" />
