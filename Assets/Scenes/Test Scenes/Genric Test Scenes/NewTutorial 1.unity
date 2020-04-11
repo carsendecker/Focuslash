@@ -352,6 +352,16 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 589420941}
+    - target: {fileID: 1491631281167694975, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491631281167694975, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1746178333731083551, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: Name
@@ -437,6 +447,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Revised Tutorial Level Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108763654315255265, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108763654315255265, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7604790357519706440, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
