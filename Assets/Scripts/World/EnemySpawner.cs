@@ -178,7 +178,8 @@ public class EnemySpawner : MonoBehaviour
     
     
     //=================== EDITOR TOOL METHODS ==================//
-    
+
+#if UNITY_EDITOR
     
     /// <summary>
     /// Draws gizmos in scene view to show the wave an enemy is assigned to.
@@ -217,6 +218,8 @@ public class EnemySpawner : MonoBehaviour
         }
     }
     
+#endif
+
     /// <summary>
     /// Assigns a given enemy to a new spawning wave number.
     /// </summary>
