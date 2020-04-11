@@ -72,6 +72,7 @@
             <e p="EditorStuff" t="Include">
               <e p="AssignToSpawnWave.cs" t="Include" />
             </e>
+            <e p="EnableDisableOnDestroy.cs" t="Include" />
             <e p="FPSDisplay.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
           </e>

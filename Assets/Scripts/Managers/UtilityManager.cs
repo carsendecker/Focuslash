@@ -109,6 +109,10 @@ public class UtilityManager : MonoBehaviour
         gameFrozen = false;
         Time.timeScale = prev;
     }
+    
+    public float ExpoIn (float k) {
+        return k == 0f? 0f : Mathf.Pow(1024f, k - 1f);
+    }
 
     // private List<bool> currentWaitingBools = new List<bool>();
     // public void WaitForSecondsThenTrue(float seconds, ref bool boolToSet)
