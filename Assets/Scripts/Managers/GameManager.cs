@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public List<EnemySpawner> LevelRooms = new List<EnemySpawner>();
+    
     void Awake()
     {
         if(Services.Game == null)
