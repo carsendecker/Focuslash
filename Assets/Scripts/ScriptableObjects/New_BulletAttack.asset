@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DamagePerHit: 0
   BulletPrefab: {fileID: 0}
-  damagePerBullet: 0
-  fireRate: 0
+  Patterns:
+  - Direction: 0
+    fireRate: 0
+    Angle: 0
+    Offset: 0
