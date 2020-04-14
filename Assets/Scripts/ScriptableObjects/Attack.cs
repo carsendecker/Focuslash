@@ -3,32 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-[CreateAssetMenu(fileName = "BulletAttack", menuName = "Creatures/BulletAttack")]
-public class BulletAttack : ScriptableObject
+[CreateAssetMenu(fileName = "New_Attack", menuName = "Creatures/AttackTemplate")]
+public class Attack : ScriptableObject
 {
-    // [System.Serializable]
-    // public struct Direction
-    // {
-    //     public bool up, down, left, right, upLeft, upRight, downLeft, downRight;
-    //     [Space(10)]
-    //     public bool all;
-    //     public bool atPlayer;
-    // }
-    
-    public enum FireDirection
+	[Tooltip("The damage delt per hit of the attack")]
+	public int DamagePerHit;
+	
+	
+	//Will add to this	
 
-    [System.Serializable]
-    public struct BulletPattern
-    {
-        
-    }
-
-    public GameObject BulletPrefab;
-    public int damagePerBullet;
-    
-    [Tooltip("Bullets fired per second, per emitter")]
-    public int fireRate;
-
-    [Tooltip("The directions that bullets will shoot in at once.")]
-    public Directions directionsToShoot;
 }

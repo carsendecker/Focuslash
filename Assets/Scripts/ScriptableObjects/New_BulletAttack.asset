@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: BulletAttack
-  m_EditorClassIdentifier: Assembly-CSharp::BulletAttack
+  m_Script: {fileID: 11500000, guid: eb4fe05ae33ea4e39bb4703ac8889bb1, type: 3}
+  m_Name: New_BulletAttack
+  m_EditorClassIdentifier: 
+  DamagePerHit: 0
+  BulletPrefab: {fileID: 0}
   damagePerBullet: 0
   fireRate: 0
