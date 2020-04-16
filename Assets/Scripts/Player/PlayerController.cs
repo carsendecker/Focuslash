@@ -44,6 +44,9 @@ public class PlayerController : Creature
 	private PlayerPhase currentPhase;
 	private Dictionary<Phase, PlayerPhase> Phases = new Dictionary<Phase, PlayerPhase>();
 
+	[Tooltip("The Animation component")] 
+	public Animator anim;
+
 	void Awake()
 	{
 		//Give player to the services manager for easy access
@@ -134,6 +137,8 @@ public class PlayerController : Creature
 	{
 		Vector2 tempVel = rb.velocity;
 		
+
+		
 		if (InputManager.Pressed(Inputs.Right))
 		{
 			tempVel.x = Mathf.Lerp(tempVel.x, MoveSpeed, 0.23f);
@@ -161,6 +166,11 @@ public class PlayerController : Creature
 		}
 		
 		rb.velocity = tempVel;
+		
+		anim.SetFloat("Horizontal", tempVel.x);
+		anim.SetFloat("Vertical",tempVel.y);
+		anim.SetFloat("Speed",tempVel.sqrMagnitude);
+		
 	}
 
 	/// <summary>
