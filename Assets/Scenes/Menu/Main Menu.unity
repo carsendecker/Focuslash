@@ -525,10 +525,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Focuslash
+  m_text: FOCUSLASH
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: aba475e64c8ab604ca2804cb9a0417f2, type: 2}
+  m_sharedMaterial: {fileID: -6662863551840574700, guid: aba475e64c8ab604ca2804cb9a0417f2,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -935,28 +936,39 @@ PrefabInstance:
     - target: {fileID: 1491916310696871328, guid: fa91020466faf374f9dc51ecf8412296,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1491916310696871328, guid: fa91020466faf374f9dc51ecf8412296,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491916310696871328, guid: fa91020466faf374f9dc51ecf8412296,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1491916310696871328, guid: fa91020466faf374f9dc51ecf8412296,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1491916310696871328, guid: fa91020466faf374f9dc51ecf8412296,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1491916310696871328, guid: fa91020466faf374f9dc51ecf8412296,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+        type: 2}
+    - target: {fileID: 1491916310696871328, guid: fa91020466faf374f9dc51ecf8412296,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa91020466faf374f9dc51ecf8412296, type: 3}
 --- !u!224 &1462569782 stripped
