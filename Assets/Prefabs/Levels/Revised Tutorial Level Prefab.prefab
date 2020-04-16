@@ -8790,7 +8790,6 @@ GameObject:
   - component: {fileID: 7223909666502867295}
   - component: {fileID: 5561627953609715580}
   - component: {fileID: 4459038474374156444}
-  - component: {fileID: 4783864632793878486}
   - component: {fileID: 2360351969653693460}
   m_Layer: 0
   m_Name: Laser Hallway
@@ -8863,19 +8862,6 @@ PolygonCollider2D:
       - {x: 3.0053864, y: 12.086315}
       - {x: 3.2236176, y: -8.922924}
       - {x: -2.950653, y: -8.92292}
---- !u!114 &4783864632793878486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2295787758303971736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b258c77f150dcdc4d84e4a177d427797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
 --- !u!114 &2360351969653693460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24795,7 +24781,6 @@ GameObject:
   - component: {fileID: 3100803446274301071}
   - component: {fileID: 3100803446274301070}
   - component: {fileID: 3100803446274301065}
-  - component: {fileID: 3100803446274301064}
   m_Layer: 0
   m_Name: WASD Room
   m_TagString: Untagged
@@ -24861,19 +24846,6 @@ PolygonCollider2D:
       - {x: -12, y: -7.99}
       - {x: 12, y: -7.94}
       - {x: 12, y: 6.98}
---- !u!114 &3100803446274301064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3100803446274301067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b258c77f150dcdc4d84e4a177d427797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
 --- !u!1 &3100803446299112430
 GameObject:
   m_ObjectHideFlags: 0
@@ -34555,7 +34527,6 @@ GameObject:
   - component: {fileID: 5067280807653915544}
   - component: {fileID: 8015349286289960379}
   - component: {fileID: 2302268785965093467}
-  - component: {fileID: 6949424849690266897}
   - component: {fileID: 8283731797193330928}
   m_Layer: 0
   m_Name: Pivot Upgrade Room
@@ -34632,19 +34603,6 @@ PolygonCollider2D:
       - {x: 12.966579, y: 5.000988}
       - {x: 12.818378, y: -5.1023293}
       - {x: 0.5553131, y: -5.149189}
---- !u!114 &6949424849690266897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4453677745713597279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b258c77f150dcdc4d84e4a177d427797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
 --- !u!114 &8283731797193330928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67763,7 +67721,6 @@ GameObject:
   - component: {fileID: 7604790356671490644}
   - component: {fileID: 7604790356671490649}
   - component: {fileID: 7604790356671490651}
-  - component: {fileID: 7604790356671490650}
   m_Layer: 0
   m_Name: Hallway 3
   m_TagString: Untagged
@@ -67828,19 +67785,6 @@ PolygonCollider2D:
       - {x: -3.0421371, y: -5.9922314}
       - {x: 6.046505, y: -5.942236}
       - {x: 6.0842705, y: 0.050001144}
---- !u!114 &7604790356671490650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7604790356671490645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b258c77f150dcdc4d84e4a177d427797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
 --- !u!1 &7604790357070841366
 GameObject:
   m_ObjectHideFlags: 0
@@ -75699,7 +75643,6 @@ GameObject:
   - component: {fileID: 147385550320836682}
   - component: {fileID: 3126970223740450409}
   - component: {fileID: 6605173372476246409}
-  - component: {fileID: 2605427459066435267}
   m_Layer: 0
   m_Name: Pivot Puzzle Room
   m_TagString: Untagged
@@ -75767,19 +75710,6 @@ PolygonCollider2D:
       - {x: 7.4551506, y: 19.262009}
       - {x: 6.9253464, y: -1.972065}
       - {x: -6.930214, y: -1.9502373}
---- !u!114 &2605427459066435267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8761651080983072909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b258c77f150dcdc4d84e4a177d427797, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
 --- !u!1 &8808693332889881298
 GameObject:
   m_ObjectHideFlags: 0
@@ -81472,15 +81402,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adfb609b4180f4a9d844be67681e36b3, type: 3}
---- !u!4 &3742132945345251905 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1193112082871136222, guid: adfb609b4180f4a9d844be67681e36b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 2549163869324289439}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3742132945345251906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1193112082871136221, guid: adfb609b4180f4a9d844be67681e36b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2549163869324289439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3742132945345251905 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1193112082871136222, guid: adfb609b4180f4a9d844be67681e36b3,
     type: 3}
   m_PrefabInstance: {fileID: 2549163869324289439}
   m_PrefabAsset: {fileID: 0}
@@ -82895,15 +82825,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49428885ab852c4ab3c6432dcf3e4ed, type: 3}
---- !u!1 &3290847355782502540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8294495241791088127, guid: e49428885ab852c4ab3c6432dcf3e4ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 6823102169870450035}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3290847355782502543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8294495241791088124, guid: e49428885ab852c4ab3c6432dcf3e4ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 6823102169870450035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3290847355782502540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8294495241791088127, guid: e49428885ab852c4ab3c6432dcf3e4ed,
     type: 3}
   m_PrefabInstance: {fileID: 6823102169870450035}
   m_PrefabAsset: {fileID: 0}
