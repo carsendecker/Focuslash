@@ -13,8 +13,10 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="BulletScript.cs" t="Include" />
           <e p="Creatures" t="Include">
+            <e p="Boss" t="Include">
+              <e p="FirstBoss.cs" t="Include" />
+            </e>
             <e p="Creature.cs" t="Include" />
             <e p="Enemy Types" t="Include">
               <e p="LaserTurret.cs" t="Include" />
@@ -27,8 +29,8 @@
             <e p="AssignToSpawnWaveEditor.cs" t="Include" />
             <e p="EnemySpawnerEditor.cs" t="Include" />
           </e>
-          <e p="FirstBoss.cs" t="Include" />
           <e p="Items" t="Include">
+            <e p="BulletScript.cs" t="Include" />
             <e p="FocusUpgrade.cs" t="Include" />
             <e p="HealthUpgrade.cs" t="Include" />
           </e>
@@ -51,6 +53,10 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerPhase.cs" t="Include" />
           </e>
+          <e p="ScriptableObjects" t="Include">
+            <e p="Attack.cs" t="Include" />
+            <e p="BulletAttack.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="PauseMenuScript.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
@@ -70,6 +76,7 @@
             <e p="EditorStuff" t="Include">
               <e p="AssignToSpawnWave.cs" t="Include" />
             </e>
+            <e p="EnableDisableOnDestroy.cs" t="Include" />
             <e p="FPSDisplay.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
           </e>

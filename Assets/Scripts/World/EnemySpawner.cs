@@ -25,25 +25,49 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("How long (in seconds) an enemy takes to actually instantiate after the spawn animation begins.")]
     public float SummonDelay = 2;
     
+    public bool SpawnObjectOnFinish;
+    public GameObject ObjectToSpawn;
+    public bool KeepDoorsClosedOnFinish;
+    public bool SpawnInFirstWave;
+    
     public GameObject SpawnParticlePrefab;
     public AudioClip SpawningSound;
 
     private int waveNumber;
     private bool spawningWave;
     private BlockerDoorScript[] roomDoors;
+    private bool started;
     
     //TODO: Support for making last enemy drop something (or just make room drop something)
     //TODO: Support for force-spawning waves? (maybe)
 
     private void Awake()
     {
-        for (int i = 1; i < EnemyWaves.Count; i++)
+        if (SpawnInFirstWave)
         {
-            foreach (GameObject enemy in EnemyWaves[i].Enemies)
+            for (int i = 0; i < EnemyWaves.Count; i++)
             {
-                enemy.SetActive(false);
+                foreach (GameObject enemy in EnemyWaves[i].Enemies)
+                {
+                    enemy.SetActive(false);
+                }
+            }
+
+            StartCoroutine(SpawnNextWave());
+        }
+        else
+        {
+            for (int i = 1; i < EnemyWaves.Count; i++)
+            {
+                foreach (GameObject enemy in EnemyWaves[i].Enemies)
+                {
+                    enemy.SetActive(false);
+                }
             }
         }
+
+        if (SpawnObjectOnFinish)
+            ObjectToSpawn.SetActive(false);
 
         roomDoors = GetComponentsInChildren<BlockerDoorScript>();
     }
@@ -114,12 +138,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !started)
         {
             foreach (BlockerDoorScript door in roomDoors)
             {
                 door.closeDoorWay();
             }
+
+            started = true;
         }
     }
 
@@ -133,9 +159,17 @@ public class EnemySpawner : MonoBehaviour
 
     private void RoomOver()
     {
-        foreach (BlockerDoorScript door in roomDoors)
+        if (!KeepDoorsClosedOnFinish)
         {
-            door.makeDoorSlashable();
+            foreach (BlockerDoorScript door in roomDoors)
+            {
+                door.makeDoorSlashable();
+            }
+        }
+
+        if (SpawnObjectOnFinish)
+        {
+            ObjectToSpawn.SetActive(true);
         }
         
         Destroy(this);
@@ -144,7 +178,8 @@ public class EnemySpawner : MonoBehaviour
     
     
     //=================== EDITOR TOOL METHODS ==================//
-    
+
+#if UNITY_EDITOR
     
     /// <summary>
     /// Draws gizmos in scene view to show the wave an enemy is assigned to.
@@ -183,6 +218,8 @@ public class EnemySpawner : MonoBehaviour
         }
     }
     
+#endif
+
     /// <summary>
     /// Assigns a given enemy to a new spawning wave number.
     /// </summary>

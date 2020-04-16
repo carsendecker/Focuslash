@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ExitGateScript : MonoBehaviour
 {
 
-    public Animator transitions;
+    //public Animator transitions;
     public int sceneNumber;
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +28,7 @@ public class ExitGateScript : MonoBehaviour
     IEnumerator LoadLevel(int levelIndex)
     {
         //Play our animation
-        transitions.SetTrigger("start");
+        //transitions.SetTrigger("start");
         //Wait for it to stop
         yield return new WaitForSeconds(1);
         //Load the scene

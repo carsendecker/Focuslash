@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour
     
     public void StartTheGame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("NewTutorial");
         
     }
 }
