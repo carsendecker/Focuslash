@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +28,8 @@ public class MovePhase : PlayerPhase
         //Recharges focus until you have max
         if (player.CurrentFocus < player.AttackCount)
         {
-            player.CurrentFocus += Time.deltaTime * player.FocusRechargeRate;
+            //Increases recharge rate by 1/4 of itself for each extra pivot over 1
+            player.CurrentFocus += Time.deltaTime * (player.FocusRechargeRate + (player.FocusRechargeRate * ((player.AttackCount - 1f)/4f)));
         }
 
         //If focus is more than at least 1, you can start attacking

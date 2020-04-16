@@ -17,8 +17,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Player Focus")]
 //    public Slider FocusSlider;
-    [SerializeField] private GameObject PlayerFocusBar;
-    [SerializeField] private GameObject FocusBarPrefab;
+    [SerializeField] private Slider PlayerFocusBar;
+    [SerializeField] private Sprite[] FocusBarSprites = new Sprite[3];
     public TMP_Text AttackInstructionText;
     [SerializeField] private Color EmptyFocusColor;
     private Color fullFocusColor;
@@ -30,7 +30,8 @@ public class UIManager : MonoBehaviour
     public GameObject LoadingScreen;
 
     private List<Image> playerHearts = new List<Image>();
-    private List<Slider> playerFocus = new List<Slider>();
+
+    // private List<Slider> playerFocus = new List<Slider>();
     
     
     void Awake()
@@ -42,10 +43,10 @@ public class UIManager : MonoBehaviour
             playerHearts.Add(child.GetComponent<Image>());
         }
 
-        foreach (Transform child in PlayerFocusBar.transform)
-        {
-            playerFocus.Add(child.GetComponent<Slider>());
-        }
+        // foreach (Transform child in PlayerFocusBar.transform)
+        // {
+        //     playerFocus.Add(child.GetComponent<Slider>());
+        // }
     }
 
     private void Start()
@@ -57,8 +58,8 @@ public class UIManager : MonoBehaviour
             heart.color = FullHeartColor;
         }
         
-        fullFocusColor = playerFocus[0].GetComponentsInChildren<Image>()[1].color;
-        UpdateFocusSliderBounds();
+        fullFocusColor = PlayerFocusBar.GetComponentsInChildren<Image>()[1].color;
+        PlayerFocusBar.maxValue = 3;
     }
 
     /// <summary>
@@ -101,48 +102,20 @@ public class UIManager : MonoBehaviour
     public void UpdatePlayerFocus()
     {
         //Updates values of each bar
-        foreach (Slider bar in playerFocus)
-        {
-            bar.value = Mathf.Lerp(bar.value, Services.Player.CurrentFocus, 0.2f);
-        }
-
+        PlayerFocusBar.value = Mathf.Lerp(PlayerFocusBar.value, Services.Player.CurrentFocus, 0.32f);
+        Image[] sliderSprites = PlayerFocusBar.GetComponentsInChildren<Image>();
+        
         //Changes the color if full
-        if (playerFocus[0].value < playerFocus[0].maxValue - 0.01f)
-            playerFocus[0].GetComponentsInChildren<Image>()[1].color = EmptyFocusColor;
+        if (PlayerFocusBar.value < 0.98f)
+            sliderSprites[1].color = EmptyFocusColor;
         else 
-            playerFocus[0].GetComponentsInChildren<Image>()[1].color = fullFocusColor;
-
-        //Adds and removes focus bars based on the player's AttackCount
-        while (playerFocus.Count != Services.Player.AttackCount)
+            sliderSprites[1].color = fullFocusColor;
+        
+        foreach (Image image in sliderSprites)
         {
-            //If the UI has less focus than the player's attack count
-            if (playerFocus.Count < Services.Player.AttackCount)
-            {
-                GameObject newBar = Instantiate(FocusBarPrefab, PlayerFocusBar.transform);
-                playerFocus.Add(newBar.GetComponent<Slider>());
-            }
-            //If the UI has more focus than the player's AC
-            else if (playerFocus.Count > Services.Player.AttackCount)
-            {
-                Slider barToRemove = playerFocus[playerFocus.Count - 1];
-                playerFocus.Remove(barToRemove);
-                Destroy(barToRemove.gameObject);
-            }
-            
-            UpdateFocusSliderBounds();
+            image.sprite = FocusBarSprites[Services.Player.AttackCount - 1];
         }
-    }
 
-    /// <summary>
-    /// Changes the max and min values of each slider so they work together idk
-    /// </summary>
-    private void UpdateFocusSliderBounds()
-    {
-        for (int i = 0; i < playerFocus.Count; i++)
-        {
-            playerFocus[i].minValue = i;
-            playerFocus[i].maxValue = i + 1;
-        }
     }
 
 }

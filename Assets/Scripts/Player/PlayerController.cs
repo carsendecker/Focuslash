@@ -6,7 +6,6 @@ using UnityEngine.Analytics;
 
 public class PlayerController : Creature
 {
-	private const float MaxXPIncreaseRate = 2f;
 	public enum Phase
 	{
 		Movement = 1,

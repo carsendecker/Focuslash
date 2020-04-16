@@ -8,7 +8,9 @@ public class AssignToSpawnWave : MonoBehaviour
     public int NewWaveNumber;
 
     [HideInInspector] public EnemySpawner spawner;
-    
+
+#if UNITY_EDITOR
+	
     /// <summary>
     /// Draws gizmos in scene view to show the wave the enemy is assigned to.
     /// </summary>
@@ -25,5 +27,8 @@ public class AssignToSpawnWave : MonoBehaviour
         Handles.Label(transform.position, "  *", labelStyle);
         
 	}
+    
+#endif
+
 
 }
