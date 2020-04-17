@@ -242,10 +242,6 @@ public class PlayerController : Creature
 	//--------TRIGGER/COLLISION FUNCTIONS--------//
 	#region Trigger Functions
 	
-	private void OnCollisionEnter2D(Collision2D other)
-	{
-		currentPhase.OnCollisionEnter2D(other);
-	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -256,6 +252,11 @@ public class PlayerController : Creature
 		{
 			other.GetComponentInParent<Enemy>().Aggro(true);
 		}
+	}
+
+	private void OnTriggerStay2D(Collider2D other)
+	{
+		currentPhase.OnTriggerStay2D(other);
 	}
 
 	private void OnTriggerExit2D(Collider2D other)

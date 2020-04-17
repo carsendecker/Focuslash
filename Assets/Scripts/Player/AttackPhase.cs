@@ -32,7 +32,17 @@ public class AttackPhase : PlayerPhase
 	{
 		pCol = player.GetComponent<Collider2D>();
 		pCol.isTrigger = true;
+		
 		dashTarget = player.AttackPositionQueue.Dequeue();
+
+		List<Collider2D> colList = new List<Collider2D>();
+		if(pCol.OverlapCollider(new ContactFilter2D(), colList) > 0)
+		{
+			foreach (Collider2D collider in colList)
+			{
+				OnTriggerEnter2D(collider);
+			}
+		}
 	}
 
 	public override void Update()
@@ -45,6 +55,7 @@ public class AttackPhase : PlayerPhase
 			if(pauseTimer <= 0)
 				pausing = false;
 		}
+		//Idk if this is important but im scared to take it out
 		else if (hitTarget)
 		{
 		}
@@ -126,10 +137,7 @@ public class AttackPhase : PlayerPhase
 		}
 		
 	}
-
-	public override void OnTriggerExit2D(Collider2D col)
-	{
-	}
+	
 
 	//Sets velocity towards the target
 	private void MoveTowardsTarget()

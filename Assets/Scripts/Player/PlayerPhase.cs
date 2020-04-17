@@ -31,13 +31,12 @@ public abstract class PlayerPhase
 	/// </summary>
 	public abstract void OnExit();
 	
-
 	
-	public virtual void OnCollisionEnter2D(Collision2D col)
+	public virtual void OnTriggerEnter2D(Collider2D col)
 	{
 	}
 
-	public virtual void OnTriggerEnter2D(Collider2D col)
+	public virtual void OnTriggerStay2D(Collider2D col)
 	{
 	}
 
