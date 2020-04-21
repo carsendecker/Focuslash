@@ -121,14 +121,6 @@ public class PlayerController : Creature
 	//Kills the player
 	protected override void Die()
 	{
-		EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
-
-		//TODO: Should eventually be replaced by an actual UI controller that gets called from an event or something
-		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
-		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
-		Services.UI.ScoreText.fontSize = 25;
-		
-		Destroy(spawner);
 		Destroy(gameObject);
 	}
 
