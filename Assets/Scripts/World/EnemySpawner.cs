@@ -38,36 +38,27 @@ public class EnemySpawner : MonoBehaviour
     private BlockerDoorScript[] roomDoors;
     private bool started;
     
-    //TODO: Support for making last enemy drop something (or just make room drop something)
     //TODO: Support for force-spawning waves? (maybe)
 
     private void Awake()
     {
+        int startingWave = 1;
+
         if (SpawnInFirstWave)
         {
-            for (int i = 0; i < EnemyWaves.Count; i++)
-            {
-                foreach (GameObject enemy in EnemyWaves[i].Enemies)
-                {
-                    enemy.SetActive(false);
-                }
-            }
-
-            StartCoroutine(SpawnNextWave());
+            startingWave = 0;
+            spawningWave = true;
         }
-        else
+
+        for (int i = startingWave; i < EnemyWaves.Count; i++)
         {
-            for (int i = 1; i < EnemyWaves.Count; i++)
+            foreach (GameObject enemy in EnemyWaves[i].Enemies)
             {
-                foreach (GameObject enemy in EnemyWaves[i].Enemies)
-                {
-                    enemy.SetActive(false);
-                }
+                enemy.SetActive(false);
             }
         }
 
-        if (SpawnObjectOnFinish)
-            ObjectToSpawn.SetActive(false);
+        if (ObjectToSpawn != null) ObjectToSpawn.SetActive(false);
 
         roomDoors = GetComponentsInChildren<BlockerDoorScript>();
     }
@@ -91,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 int randomAssThing = EnemyWaves[waveNumber].Enemies[0].gameObject.layer;
             }
-            catch (Exception e)
+            catch (NullReferenceException e)
             {
                 EnemyWaves[waveNumber].Enemies.RemoveAt(0);
             }
@@ -102,7 +93,9 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnNextWave()
     {
         spawningWave = true;
-        waveNumber++;
+        if (SpawnInFirstWave && waveNumber == 0) { /*this is gross im sorry*/ }
+        else
+            waveNumber++;
 
         if (waveNumber > EnemyWaves.Count - 1)
         {
@@ -146,6 +139,8 @@ public class EnemySpawner : MonoBehaviour
             }
 
             started = true;
+            
+
         }
     }
 
