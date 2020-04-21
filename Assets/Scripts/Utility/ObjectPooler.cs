@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public Dictionary<GameObject, ObjectPool> Pools = new Dictionary<GameObject, ObjectPool>();
+    public Dictionary<string, ObjectPool> Pools = new Dictionary<string, ObjectPool>();
     
     void Awake()
     {
@@ -17,27 +17,27 @@ public class ObjectPooler : MonoBehaviour
     /// </summary>
     public ObjectPool Create(GameObject objectToPool, int initialAmount)
     {
-        if (!Pools.ContainsKey(objectToPool))
-            Pools.Add(objectToPool, new ObjectPool(objectToPool, initialAmount));
+        if (!Pools.ContainsKey(objectToPool.name))
+            Pools.Add(objectToPool.name, new ObjectPool(objectToPool, initialAmount));
         
         //TODO: Add more objects to pool if initalAmount is bigger than current amount in pool
         
-        return Pools[objectToPool];
+        return Pools[objectToPool.name];
     }
 
     /// <summary>
     /// Gets a gameobject from its pool, sets it active, then returns it.
-    /// TODO: Add overload for instantiating at a position, rotation, etc like Instantiate()
     /// </summary>
-    public GameObject Spawn(GameObject objectToSpawn, bool setToActive = true)
+    public GameObject Spawn(GameObject objectToSpawn) => Spawn(objectToSpawn, Vector3.zero, Quaternion.identity);
+
+    public GameObject Spawn(GameObject objectToSpawn, Vector3 position, Quaternion rotation)
     {
         try
         {
-            GameObject obj = Pools[objectToSpawn].Get();
-            
-            if(setToActive)
-                obj.SetActive(true);
-            
+            GameObject obj = Pools[objectToSpawn.name].Get();
+            obj.transform.position = position;
+            obj.transform.rotation = rotation;
+            obj.SetActive(true);
             return obj;
         }
         catch (KeyNotFoundException e)
@@ -52,11 +52,13 @@ public class ObjectPool
 {
     private List<GameObject> objectList;
     private GameObject pooledObject;
+    private GameObject parentObject;
     
     public ObjectPool(GameObject objectToPool, int initialAmount)
     {
         pooledObject = objectToPool;
         objectList = new List<GameObject>(initialAmount);
+        parentObject = new GameObject("-" + objectToPool.name + " Pool-");
         AddToPool(initialAmount);
     }
 
@@ -67,17 +69,16 @@ public class ObjectPool
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject newObj = GameObject.Instantiate(pooledObject);
-            newObj.SetActive(false);
-            objectList.Add(newObj);
+            AddToPool();
         }
     }
 
     public GameObject AddToPool()
     {
-        GameObject newObj = GameObject.Instantiate(pooledObject);
+        GameObject newObj = GameObject.Instantiate(pooledObject, parentObject.transform);
         newObj.SetActive(false);
         objectList.Add(newObj);
+
         return newObj;
     }
 

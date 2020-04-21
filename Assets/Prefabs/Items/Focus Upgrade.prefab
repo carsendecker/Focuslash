@@ -9616,6 +9616,7 @@ MonoBehaviour:
   DeathParticles: {fileID: 1366389658938894302, guid: 2159ccc43828a4bcea73678ce453246c,
     type: 3}
   DeathParticleMoveSpeed: 13
+  floatingMaxOffset: 0.31
 --- !u!58 &6429128513685888668
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -10,10 +10,13 @@ public class BulletScript : MonoBehaviour
 
     private Rigidbody2D rb;
     
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
 
+    private void OnEnable()
+    {
         rb.velocity = transform.right * MoveSpeed;
     }
 
@@ -34,6 +37,6 @@ public class BulletScript : MonoBehaviour
     {
         //TODO: Check if the bullet is part of an object pool. If it isn't, destroy it
         gameObject.SetActive(false);
-        // if(Services.ObjectPools.Pools.ContainsKey(gameObject))
+        // if(Services.ObjectPools.Pools.ContainsKey(gameObject.name.Substring()))
     }
 }
