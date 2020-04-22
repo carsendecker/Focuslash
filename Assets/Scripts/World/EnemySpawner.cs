@@ -140,6 +140,8 @@ public class EnemySpawner : MonoBehaviour
 
             started = true;
             
+            if(SpawnInFirstWave)
+                StartCoroutine(SpawnNextWave());
 
         }
     }
