@@ -1,0 +1,1105 @@
+fileFormatVersion: 2
+guid: 3043d14c0c2657941a4572a869fe0171
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7771282936995990669
+    second: 1Tiles_0
+  - first:
+      213: -3638444435064722035
+    second: 1Tiles_1
+  - first:
+      213: 3638115541681887857
+    second: 1Tiles_2
+  - first:
+      213: -7915824929215656820
+    second: 1Tiles_3
+  - first:
+      213: 4663018658530690119
+    second: 1Tiles_4
+  - first:
+      213: -8118384538201649355
+    second: 1Tiles_5
+  - first:
+      213: -4358502570124030702
+    second: 1Tiles_6
+  - first:
+      213: 7471291979710458171
+    second: 1Tiles_7
+  - first:
+      213: -6642967707394764860
+    second: 1Tiles_8
+  - first:
+      213: 269640081004246655
+    second: 1Tiles_9
+  - first:
+      213: 5958578885039769455
+    second: 1Tiles_10
+  - first:
+      213: -9075647709722705803
+    second: 1Tiles_11
+  - first:
+      213: -8746622589922917420
+    second: 1Tiles_12
+  - first:
+      213: 978812254172235430
+    second: 1Tiles_13
+  - first:
+      213: -3649899471372605477
+    second: 1Tiles_14
+  - first:
+      213: 2337146928950321631
+    second: 1Tiles_15
+  - first:
+      213: 4448109409668550280
+    second: 1Tiles_16
+  - first:
+      213: -3126513154184962338
+    second: 1Tiles_17
+  - first:
+      213: -2515807726626676857
+    second: 1Tiles_18
+  - first:
+      213: -7435689019600479319
+    second: 1Tiles_19
+  - first:
+      213: -5432776341506966990
+    second: 1Tiles_20
+  - first:
+      213: -2112935359077526714
+    second: 1Tiles_21
+  - first:
+      213: 9140712146456181391
+    second: 1Tiles_22
+  - first:
+      213: -2775946875299716244
+    second: 1Tiles_23
+  - first:
+      213: 3211179530055663795
+    second: 1Tiles_24
+  - first:
+      213: -4833222346718362550
+    second: 1Tiles_25
+  - first:
+      213: -3493821671938844042
+    second: 1Tiles_26
+  - first:
+      213: -3907144024789072396
+    second: 1Tiles_27
+  - first:
+      213: -4425361383449262236
+    second: 1Tiles_28
+  - first:
+      213: -3891573104289894530
+    second: 1Tiles_29
+  - first:
+      213: 3261068950467930829
+    second: 1Tiles_30
+  - first:
+      213: -995843039979412625
+    second: 1Tiles_31
+  - first:
+      213: -4236387420221402671
+    second: 1Tiles_32
+  - first:
+      213: 3594906426550627001
+    second: 1Tiles_33
+  - first:
+      213: 4077324490217706102
+    second: 1Tiles_34
+  - first:
+      213: 3944043415744671584
+    second: 1Tiles_35
+  - first:
+      213: 70008345247163913
+    second: 1Tiles_36
+  - first:
+      213: -607507606304284314
+    second: 1Tiles_37
+  - first:
+      213: 8915558763609192945
+    second: 1Tiles_38
+  - first:
+      213: -5734282576536919489
+    second: 1Tiles_39
+  - first:
+      213: -7276827944113286571
+    second: 1Tiles_40
+  - first:
+      213: 1806418010395333602
+    second: 1Tiles_41
+  - first:
+      213: 5141743297159048037
+    second: 1Tiles_42
+  - first:
+      213: 4268880508690293510
+    second: 1Tiles_43
+  - first:
+      213: 1443923759708404059
+    second: 1Tiles_44
+  - first:
+      213: 6641076154100415842
+    second: 1Tiles_45
+  - first:
+      213: -3155190668470710705
+    second: 1Tiles_46
+  - first:
+      213: -3539714449165636904
+    second: 1Tiles_47
+  - first:
+      213: 8423764156178278745
+    second: 1Tiles_48
+  - first:
+      213: -846440033216193222
+    second: 1Tiles_49
+  - first:
+      213: -5114720796539667965
+    second: 1Tiles_50
+  - first:
+      213: -8969184072190342080
+    second: 1Tiles_51
+  - first:
+      213: 4349024382578196857
+    second: 1Tiles_52
+  - first:
+      213: -8437207393975027799
+    second: 1Tiles_53
+  - first:
+      213: -8050069237759073045
+    second: 1Tiles_54
+  - first:
+      213: 4503981940778978121
+    second: 1Tiles_55
+  - first:
+      213: 7730954360507747061
+    second: 1Tiles_56
+  - first:
+      213: -6366321983050565037
+    second: 1Tiles_57
+  - first:
+      213: 7488309368229996870
+    second: 1Tiles_58
+  - first:
+      213: -7803534638241318493
+    second: 1Tiles_59
+  - first:
+      213: 6150736131225957120
+    second: 1Tiles_60
+  - first:
+      213: -5457024301717597918
+    second: 1Tiles_61
+  - first:
+      213: 1925404451949885424
+    second: 1Tiles_62
+  - first:
+      213: 7325310031173503279
+    second: 1Tiles_63
+  - first:
+      213: -1478433814076315859
+    second: 1Tiles_64
+  - first:
+      213: -3570358471500949473
+    second: 1Tiles_65
+  - first:
+      213: 3964433257896415099
+    second: 1Tiles_66
+  - first:
+      213: -7546743954959040927
+    second: 1Tiles_67
+  - first:
+      213: 4070210211271724218
+    second: 1Tiles_68
+  - first:
+      213: 264487216526732944
+    second: 1Tiles_69
+  - first:
+      213: -1518501175881996509
+    second: 1Tiles_70
+  - first:
+      213: 968054714266850466
+    second: 1Tiles_71
+  - first:
+      213: -1243803327887817182
+    second: 1Tiles_72
+  - first:
+      213: -8636488945326479708
+    second: 1Tiles_73
+  - first:
+      213: 5582571525012763784
+    second: 1Tiles_74
+  - first:
+      213: 2043272921979450249
+    second: 1Tiles_75
+  - first:
+      213: -240057125382262440
+    second: 1Tiles_76
+  - first:
+      213: 2498016843891712858
+    second: 1Tiles_77
+  - first:
+      213: -418402079693271718
+    second: 1Tiles_78
+  - first:
+      213: -8294784745772607735
+    second: 1Tiles_79
+  - first:
+      213: -6557313434538647478
+    second: 1Tiles_80
+  - first:
+      213: 170526868619862787
+    second: 1Tiles_81
+  - first:
+      213: -1677735736132030505
+    second: 1Tiles_82
+  - first:
+      213: 7843801086182741263
+    second: 1Tiles_83
+  - first:
+      213: -7019520957600853312
+    second: 1Tiles_84
+  - first:
+      213: -2946266462843472245
+    second: 1Tiles_85
+  - first:
+      213: -7260329825567814689
+    second: 1Tiles_86
+  - first:
+      213: -5866153511587893030
+    second: 1Tiles_87
+  - first:
+      213: -3254239045997299579
+    second: 1Tiles_88
+  - first:
+      213: -5838395685439477507
+    second: 1Tiles_89
+  - first:
+      213: -2100403346242504080
+    second: 1Tiles_90
+  - first:
+      213: -100438501842399605
+    second: 1Tiles_91
+  - first:
+      213: -1474408362203847140
+    second: 1Tiles_92
+  - first:
+      213: -6053412198174479751
+    second: 1Tiles_93
+  - first:
+      213: -9161539912091381351
+    second: 1Tiles_94
+  - first:
+      213: 8818506049835953209
+    second: 1Tiles_95
+  - first:
+      213: 6758879636675743026
+    second: 1Tiles_96
+  - first:
+      213: 5870839002283906978
+    second: 1Tiles_97
+  - first:
+      213: 5776395202285254374
+    second: 1Tiles_98
+  - first:
+      213: -1280890464726311841
+    second: 1Tiles_99
+  - first:
+      213: -1670449590160373229
+    second: 1Tiles_100
+  - first:
+      213: -6617685114825652106
+    second: 1Tiles_101
+  - first:
+      213: -8552207337789855714
+    second: 1Tiles_102
+  - first:
+      213: 2446199715300384279
+    second: 1Tiles_103
+  - first:
+      213: 8011880510166115094
+    second: 1Tiles_104
+  - first:
+      213: -1946208376195995372
+    second: 1Tiles_105
+  - first:
+      213: -4872838755910617514
+    second: 1Tiles_106
+  - first:
+      213: -767779065044986030
+    second: 1Tiles_107
+  - first:
+      213: 6074400905491139911
+    second: 1Tiles_108
+  - first:
+      213: 5328438569732557997
+    second: 1Tiles_109
+  - first:
+      213: 3798037493458664532
+    second: 1Tiles_110
+  - first:
+      213: -5919118549515031200
+    second: 1Tiles_111
+  - first:
+      213: 4244652657312150366
+    second: 1Tiles_112
+  - first:
+      213: -5866694380616633306
+    second: 1Tiles_113
+  - first:
+      213: -4046228515485595943
+    second: 1Tiles_114
+  - first:
+      213: -673842429013315098
+    second: 1Tiles_115
+  - first:
+      213: 4217149329605535219
+    second: 1Tiles_116
+  - first:
+      213: -8172005717783989886
+    second: 1Tiles_117
+  - first:
+      213: 8647634127445668585
+    second: 1Tiles_118
+  - first:
+      213: -8431819463520124651
+    second: 1Tiles_119
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 1Tiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c43bc38a429db60800000000000000
+      internalID: 7771282936995990669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8d68f84016a18dc0800000000000000
+      internalID: -3638444435064722035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ad6c14fce2d7230800000000000000
+      internalID: 3638115541681887857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8c4bedaa27552290800000000000000
+      internalID: -7915824929215656820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7448db2a3ce56b040800000000000000
+      internalID: 4663018658530690119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f877a8644b55f80800000000000000
+      internalID: -8118384538201649355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21d412b310d7383c0800000000000000
+      internalID: -4358502570124030702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b39eddf887c5fa760800000000000000
+      internalID: 7471291979710458171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf085ae0107fc3a0800000000000000
+      internalID: -6642967707394764860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f76377d9934fdb300800000000000000
+      internalID: 269640081004246655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6740f01def11b250800000000000000
+      internalID: 5958578885039769455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 570046b2e72dc0280800000000000000
+      internalID: -9075647709722705803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3cc379811cd9680800000000000000
+      internalID: -8746622589922917420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a64cb72f80759d00800000000000000
+      internalID: 978812254172235430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd723fec4c3f85dc0800000000000000
+      internalID: -3649899471372605477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1aaf7cfb63f6020800000000000000
+      internalID: 2337146928950321631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88ecd55e0fbdabd30800000000000000
+      internalID: 4448109409668550280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ede183be9d46c94d0800000000000000
+      internalID: -3126513154184962338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78fdb33b33e061dd0800000000000000
+      internalID: -2515807726626676857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_19
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9abd07e8b302fc890800000000000000
+      internalID: -7435689019600479319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23ab45493b6ea94b0800000000000000
+      internalID: -5432776341506966990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64352d85c785da2e0800000000000000
+      internalID: -2112935359077526714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8a7e9384455ade70800000000000000
+      internalID: 9140712146456181391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_23
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c63a766460bd979d0800000000000000
+      internalID: -2775946875299716244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b049fed4c6609c20800000000000000
+      internalID: 3211179530055663795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a444f5712e1fcecb0800000000000000
+      internalID: -4833222346718362550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67a168f43b3738fc0800000000000000
+      internalID: -3493821671938844042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5482cd53907c9c0800000000000000
+      internalID: -3907144024789072396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46786c0b445f592c0800000000000000
+      internalID: -4425361383449262236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1Tiles_29
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f265d41ea5ef9c0800000000000000
+      internalID: -3891573104289894530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
