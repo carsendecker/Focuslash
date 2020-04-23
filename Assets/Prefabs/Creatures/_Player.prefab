@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 344415781491089921}
   - component: {fileID: 344415781491089924}
   - component: {fileID: 902999159}
+  - component: {fileID: 589420943}
   m_Layer: 0
   m_Name: _Player
   m_TagString: Player
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Zippi
-  MaxHealth: 3
+  MaxHealth: 5
   MoveSpeed: 7
   Damage: 1
   rb: {fileID: 0}
@@ -171,7 +172,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: b1fc79261c1f24d119237d93e988d6f4, type: 3}
   targetedEnemy: {fileID: 0}
   canMove: 0
-  anim: {fileID: 0}
+  anim: {fileID: 589420943}
 --- !u!212 &344415781491089921
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -211,7 +212,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: c83e45e3e4ccf4ec994b9a6ea5b4ffc2, type: 3}
+  m_Sprite: {fileID: 592831295552436826, guid: 6bf108ff74eab9a46a1216d19fb3e5c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -259,6 +260,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.012
+--- !u!95 &589420943
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344415781491089920}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c2ca04056a5fd644a105df466e8d034, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7927815469292817618
 GameObject:
   m_ObjectHideFlags: 0
