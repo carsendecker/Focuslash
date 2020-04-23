@@ -23,8 +23,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Color EmptyFocusColor;
     private Color fullFocusColor;
 
-    [Header("Score")] 
-    public TMP_Text ScoreText;
+    [Header("Overlays")] 
+    public SpriteRenderer ColorOverlay;
+    public Color PlayerFocusColor, PlayerDeathColor;
+    public Image FullCameraOverlay;
 
     [Header("Other Screens")]
     public GameObject LoadingScreen;
@@ -60,6 +62,7 @@ public class UIManager : MonoBehaviour
         
         fullFocusColor = PlayerFocusBar.GetComponentsInChildren<Image>()[1].color;
         PlayerFocusBar.maxValue = 3;
+        ColorOverlay.enabled = false;
     }
 
     /// <summary>

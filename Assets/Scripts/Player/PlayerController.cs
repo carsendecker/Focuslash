@@ -34,7 +34,7 @@ public class PlayerController : Creature
 	public GameObject LevelUpParticles;
 	
 	//TODO: Ima fix this somehow, its gross
-	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
+	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, wallBumpSound, deathSound;
 
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool canMove;
@@ -121,16 +121,14 @@ public class PlayerController : Creature
 	//Kills the player
 	protected override void Die()
 	{
-		Destroy(gameObject);
+		Services.Game.GameOver();
 	}
 
 	//Takes input and moves the player around
 	public void Move()
 	{
 		Vector2 tempVel = rb.velocity;
-		
 
-		
 		if (InputManager.Pressed(Inputs.Right))
 		{
 			tempVel.x = Mathf.Lerp(tempVel.x, MoveSpeed, 0.23f);
@@ -164,24 +162,8 @@ public class PlayerController : Creature
 		anim.SetFloat("Speed",tempVel.sqrMagnitude);
 		
 	}
-
-	/// <summary>
-	/// Does a fancy animation and spawns the upgrade items
-	/// </summary>
-	private void LevelUp()
-	{
-		//TODO: Actually implement the proper level up item spawns, which needs integration with the level rooms. It now just gives you the stats for testing.
-		//IDEA: instead of spawning the items, you are shifted to another "plane" where you can choose, then once you choose you fade back to where you were?
-		Instantiate(LevelUpParticles, transform);
-		
-		Heal();
-
-		AttackCount += 1;
-		CurrentFocus = AttackCount;
-	}
-
 	
-	
+
 	//-----------IFRAME/FLASH FUNCTIONS-----------//
 	#region iFrame + Flash Functions
 	
@@ -238,12 +220,6 @@ public class PlayerController : Creature
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		currentPhase.OnTriggerEnter2D(other);
-
-		//TODO: Should probably change how this works to a normal Vector2 distance value
-		if (other.CompareTag("AggroTrigger"))
-		{
-			other.GetComponentInParent<Enemy>().Aggro(true);
-		}
 	}
 
 	private void OnTriggerStay2D(Collider2D other)
@@ -254,11 +230,6 @@ public class PlayerController : Creature
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		currentPhase.OnTriggerExit2D(other);
-		
-		if (other.CompareTag("AggroTrigger"))
-		{
-			other.GetComponentInParent<Enemy>().Aggro(false);
-		}
 	}
 	
 	//Hurts the player if dangerous particles hit em

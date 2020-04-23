@@ -125,7 +125,7 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(SummonDelay);
 
         enemy.SetActive(true);
-        // EnemiesAlive.Add(Instantiate(enemy, spawnPos, Quaternion.identity));
+        enemy.GetComponent<Enemy>().enabled = true;
         Destroy(particles);
     }
 
@@ -136,6 +136,11 @@ public class EnemySpawner : MonoBehaviour
             foreach (BlockerDoorScript door in roomDoors)
             {
                 door.closeDoorWay();
+            }
+
+            foreach (var enemy in EnemyWaves[0].Enemies)
+            {
+                enemy.GetComponent<Enemy>().Aggro(true);
             }
 
             started = true;
