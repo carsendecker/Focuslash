@@ -11,20 +11,22 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("Player Health")]
-    [SerializeField] private GameObject PlayerHealthBar;
-    [SerializeField] private GameObject HeartPrefab;
+    [SerializeField] private GameObject PlayerHealthBar = null;
+    [SerializeField] private GameObject HeartPrefab = null;
     [SerializeField] private Color FullHeartColor, EmptyHeartColor;
 
     [Header("Player Focus")]
 //    public Slider FocusSlider;
-    [SerializeField] private Slider PlayerFocusBar;
+    [SerializeField] private Slider PlayerFocusBar = null;
     [SerializeField] private Sprite[] FocusBarSprites = new Sprite[3];
-    public TMP_Text AttackInstructionText;
+    public TMP_Text AttackInstructionText = null;
     [SerializeField] private Color EmptyFocusColor;
     private Color fullFocusColor;
 
-    [Header("Score")] 
-    public TMP_Text ScoreText;
+    [Header("Overlays")] 
+    public SpriteRenderer ColorOverlay;
+    public Color PlayerFocusColor, PlayerDeathColor;
+    public Image FullCameraOverlay;
 
     [Header("Other Screens")]
     public GameObject LoadingScreen;
@@ -60,6 +62,7 @@ public class UIManager : MonoBehaviour
         
         fullFocusColor = PlayerFocusBar.GetComponentsInChildren<Image>()[1].color;
         PlayerFocusBar.maxValue = 3;
+        ColorOverlay.enabled = false;
     }
 
     /// <summary>

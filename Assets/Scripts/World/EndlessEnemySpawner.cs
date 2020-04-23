@@ -27,7 +27,7 @@ public class EndlessEnemySpawner : MonoBehaviour
     void Update()
     {
         currentDifficulty += Time.deltaTime;
-        Services.UI.ScoreText.text = Mathf.RoundToInt(currentDifficulty * 10).ToString();
+        // Services.UI.ScoreText.text = Mathf.RoundToInt(currentDifficulty * 10).ToString();
     }
 
     //Infinitely spawns enemies

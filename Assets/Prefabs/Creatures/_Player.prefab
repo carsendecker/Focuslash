@@ -167,10 +167,11 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: a9a86cf0993aa4dcd84f38f71eccfb93, type: 3}
   enterSlomoSound: {fileID: 8300000, guid: 3815f4634983a4a079a0f75a50c6312f, type: 3}
   selectTargetSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
-  moveTargetSound: {fileID: 8300000, guid: 85194f6d556444f3d8fa29c1ec6f0647, type: 3}
-  deathSound: {fileID: 8300000, guid: 4731d8a7a38124432a5af022406d7b07, type: 3}
+  wallBumpSound: {fileID: 8300000, guid: effb8d3ad69a1412d907cb87ec302c62, type: 3}
+  deathSound: {fileID: 8300000, guid: b1fc79261c1f24d119237d93e988d6f4, type: 3}
   targetedEnemy: {fileID: 0}
   canMove: 0
+  anim: {fileID: 0}
 --- !u!212 &344415781491089921
 SpriteRenderer:
   m_ObjectHideFlags: 0
