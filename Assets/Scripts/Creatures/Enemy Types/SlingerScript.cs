@@ -15,11 +15,12 @@ public class SlingerScript : Enemy
     private bool attacking;
     private Rigidbody2D playerRb;
     private Vector3 direction;
-    
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        Services.ObjectPools.Create(Bullet, 10);
         playerRb = Services.Player.rb;
     }
 
@@ -52,7 +53,8 @@ public class SlingerScript : Enemy
         attacking = true;
         
         yield return new WaitForSeconds((1 / AttacksPerSecond) / 2);
-        Instantiate(Bullet, transform.position, transform.rotation).GetComponent<BulletScript>().Damage = Damage;
+        Services.ObjectPools.Spawn(Bullet, transform.position, transform.rotation).GetComponent<BulletScript>().Damage = Damage;
+        // Instantiate(Bullet, transform.position, transform.rotation).GetComponent<BulletScript>().Damage = Damage;
         yield return new WaitForSeconds((1 / AttacksPerSecond) / 2);
 
         attacking = false;

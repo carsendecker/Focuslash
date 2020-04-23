@@ -606,7 +606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FOCUSLASH
+  m_text: Heavenspot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aba475e64c8ab604ca2804cb9a0417f2, type: 2}
   m_sharedMaterial: {fileID: -6662863551840574700, guid: aba475e64c8ab604ca2804cb9a0417f2,
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 866278459}
-    characterCount: 9
+    characterCount: 10
     spriteCount: 0
     spaceCount: 0
     wordCount: 1

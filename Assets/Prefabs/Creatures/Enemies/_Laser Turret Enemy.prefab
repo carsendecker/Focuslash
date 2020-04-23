@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 6770289570737799293}
   - component: {fileID: 5973372081236086691}
   m_Layer: 0
-  m_Name: Laser Turret Enemy
+  m_Name: _Laser Turret Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,7 +215,6 @@ MonoBehaviour:
   MoveSpeed: 0
   Damage: 1
   rb: {fileID: 0}
-  XPValue: 2
   Laser: {fileID: 5873420121983426846}
   TelegraphParticles: {fileID: 406170197811347491}
   LaserParticles: {fileID: 3958047740150143585}
@@ -4335,7 +4334,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 823
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -9125,7 +9124,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 823
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5

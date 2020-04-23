@@ -78,6 +78,7 @@
             </e>
             <e p="EnableDisableOnDestroy.cs" t="Include" />
             <e p="FPSDisplay.cs" t="Include" />
+            <e p="ObjectPooler.cs" t="Include" />
             <e p="Spin.cs" t="Include" />
           </e>
           <e p="World" t="Include">

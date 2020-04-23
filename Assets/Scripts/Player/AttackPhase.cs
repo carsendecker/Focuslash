@@ -21,7 +21,7 @@ public class AttackPhase : PlayerPhase
 	private float pauseTimer;
 	private bool pausing;
 	
-	private Collider2D pCol; //The player's main collider
+	private CircleCollider2D pCol; //The player's main collider
 	
 	public AttackPhase(PlayerController owner)
 	{
@@ -30,9 +30,20 @@ public class AttackPhase : PlayerPhase
 	
 	public override void OnEnter()
 	{
-		pCol = player.GetComponent<Collider2D>();
+		pCol = player.GetComponent<CircleCollider2D>();
 		pCol.isTrigger = true;
+
 		dashTarget = player.AttackPositionQueue.Dequeue();
+
+		// List<Collider2D> colList = new List<Collider2D>();
+		// if(pCol.OverlapCollider(new ContactFilter2D(), colList) > 0)
+		// {
+		// 	foreach (Collider2D collider in colList)
+		// 	{
+		// 		OnTriggerEnter2D(collider);
+		// 	}
+		// }
+
 	}
 
 	public override void Update()
@@ -45,6 +56,7 @@ public class AttackPhase : PlayerPhase
 			if(pauseTimer <= 0)
 				pausing = false;
 		}
+		//Idk if this is important but im scared to take it out
 		else if (hitTarget)
 		{
 		}
@@ -107,11 +119,7 @@ public class AttackPhase : PlayerPhase
 		//If you hit a wall, get knocked out of attacking
 		if (col.gameObject.CompareTag("Wall"))
 		{
-			Services.Utility.ShakeCamera(0.5f, 0.3f);
-			Vector3 prevVel = player.rb.velocity;
-			player.rb.velocity = Vector2.zero;
-			player.rb.AddForce(-prevVel, ForceMode2D.Impulse);
-			player.SetPhase(PlayerController.Phase.Movement);
+			HitWall();
 		}
 		//If you enter a creature, damage it then make particles and sounds and stuff
 		else if (col.GetComponent<Creature>())
@@ -124,12 +132,29 @@ public class AttackPhase : PlayerPhase
 		
 			Services.Utility.ShakeCamera(0.15f, 0.25f);
 		}
-		
 	}
 
-	public override void OnTriggerExit2D(Collider2D col)
+	public override void OnTriggerStay2D(Collider2D col)
 	{
+		//If you are inside a wall, get knocked out of attacking
+		if (col.gameObject.CompareTag("Wall"))
+		{
+			HitWall();
+		}
 	}
+
+	private void HitWall()
+	{
+		Services.Utility.ShakeCamera(0.5f, 0.3f);
+		Services.Audio.PlaySound(player.wallBumpSound, SourceType.CreatureSound);
+		
+		Vector3 prevVel = player.rb.velocity;
+		player.rb.velocity = Vector2.zero;
+		player.rb.AddForce(-prevVel, ForceMode2D.Impulse);
+		
+		player.SetPhase(PlayerController.Phase.Movement);
+	}
+
 
 	//Sets velocity towards the target
 	private void MoveTowardsTarget()

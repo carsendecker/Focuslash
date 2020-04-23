@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Enemy : Creature
 {
+    private EnemySpawner currentRoom;
     
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        currentRoom = GetComponentInParent<EnemySpawner>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -68,8 +68,13 @@ public class AudioManager : MonoBehaviour
         sources[audioSourceType].PlayOneShot(clip);
         sources[audioSourceType].pitch -= pitchChange;
     }
-    
-    
+
+    public void StopMusic()
+    {
+        sources[SourceType.Music].Stop();
+    }
+
+
     //*****Can add more functions if more functionality is required*****
-    
+
 }

@@ -34,7 +34,7 @@ public class PlayerController : Creature
 	public GameObject LevelUpParticles;
 	
 	//TODO: Ima fix this somehow, its gross
-	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, moveTargetSound, deathSound;
+	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, wallBumpSound, deathSound;
 
 	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool canMove;
@@ -43,6 +43,9 @@ public class PlayerController : Creature
 	private bool invincible;
 	private PlayerPhase currentPhase;
 	private Dictionary<Phase, PlayerPhase> Phases = new Dictionary<Phase, PlayerPhase>();
+
+	[Tooltip("The Animation component")] 
+	public Animator anim;
 
 	void Awake()
 	{
@@ -118,22 +121,14 @@ public class PlayerController : Creature
 	//Kills the player
 	protected override void Die()
 	{
-		EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
-
-		//TODO: Should eventually be replaced by an actual UI controller that gets called from an event or something
-		Services.UI.ScoreText.text = "Final Score: " + Services.UI.ScoreText.text;
-		Services.UI.ScoreText.transform.localPosition = new Vector2(-100, -150);
-		Services.UI.ScoreText.fontSize = 25;
-		
-		Destroy(spawner);
-		Destroy(gameObject);
+		Services.Game.GameOver();
 	}
 
 	//Takes input and moves the player around
 	public void Move()
 	{
 		Vector2 tempVel = rb.velocity;
-		
+
 		if (InputManager.Pressed(Inputs.Right))
 		{
 			tempVel.x = Mathf.Lerp(tempVel.x, MoveSpeed, 0.23f);
@@ -161,25 +156,14 @@ public class PlayerController : Creature
 		}
 		
 		rb.velocity = tempVel;
-	}
-
-	/// <summary>
-	/// Does a fancy animation and spawns the upgrade items
-	/// </summary>
-	private void LevelUp()
-	{
-		//TODO: Actually implement the proper level up item spawns, which needs integration with the level rooms. It now just gives you the stats for testing.
-		//IDEA: instead of spawning the items, you are shifted to another "plane" where you can choose, then once you choose you fade back to where you were?
-		Instantiate(LevelUpParticles, transform);
 		
-		Heal();
-
-		AttackCount += 1;
-		CurrentFocus = AttackCount;
+		anim.SetFloat("Horizontal", tempVel.x);
+		anim.SetFloat("Vertical",tempVel.y);
+		anim.SetFloat("Speed",tempVel.sqrMagnitude);
+		
 	}
+	
 
-	
-	
 	//-----------IFRAME/FLASH FUNCTIONS-----------//
 	#region iFrame + Flash Functions
 	
@@ -232,30 +216,20 @@ public class PlayerController : Creature
 	//--------TRIGGER/COLLISION FUNCTIONS--------//
 	#region Trigger Functions
 	
-	private void OnCollisionEnter2D(Collision2D other)
-	{
-		currentPhase.OnCollisionEnter2D(other);
-	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		currentPhase.OnTriggerEnter2D(other);
+	}
 
-		//TODO: Should probably change how this works to a normal Vector2 distance value
-		if (other.CompareTag("AggroTrigger"))
-		{
-			other.GetComponentInParent<Enemy>().Aggro(true);
-		}
+	private void OnTriggerStay2D(Collider2D other)
+	{
+		currentPhase.OnTriggerStay2D(other);
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		currentPhase.OnTriggerExit2D(other);
-		
-		if (other.CompareTag("AggroTrigger"))
-		{
-			other.GetComponentInParent<Enemy>().Aggro(false);
-		}
 	}
 	
 	//Hurts the player if dangerous particles hit em

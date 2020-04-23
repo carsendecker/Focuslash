@@ -9,6 +9,7 @@ public class FocusUpgrade : Creature
     public GameObject LevelUpParticles;
     public GameObject DeathParticles;
     public float DeathParticleMoveSpeed = 3;
+    public float floatingMaxOffset;
 
     //Stuff for the cool obtainment "cutscene"
     private ParticleSystem[] particles;
@@ -17,14 +18,17 @@ public class FocusUpgrade : Creature
     private ParticleSystem.Particle[] particleList;
     private int aliveParticles;
     private bool particlesToPlayer;
+    private Vector2 startingPos;
 
     private void OnEnable()
     {
         particles = transform.GetComponentsInChildren<ParticleSystem>();
+        startingPos = transform.position;
     }
 
     private void FixedUpdate()
     {
+        //Track the particles towards the player after picking up the item
         if (particlesToPlayer)
         {
             aliveParticles = obtainParticles.GetParticles(particleList);
@@ -41,6 +45,12 @@ public class FocusUpgrade : Creature
 
             obtainParticles.SetParticles(particleList, aliveParticles);
         }
+    }
+
+    private void Update()
+    {
+        if(!dead)
+            ItemFloat();
     }
 
     public void AddMoreFocus(int focusToAdd)
@@ -95,6 +105,33 @@ public class FocusUpgrade : Creature
 
         Destroy(obtainParticles.gameObject);
         Destroy(gameObject);
+    }
+
+    private bool floatingUp = true;
+    void ItemFloat()
+    {
+        Vector2 tempPos = transform.position;
+        
+        if (floatingUp && transform.position.y < startingPos.y + (floatingMaxOffset - 0.1f))
+        {
+            tempPos.y = Mathf.Lerp(tempPos.y, startingPos.y + floatingMaxOffset, 0.01f);
+        }
+        else if(floatingUp)
+        {
+            floatingUp = false;
+        }
+
+        if (!floatingUp && transform.position.y > startingPos.y)
+        {
+            tempPos.y = Mathf.Lerp(tempPos.y, startingPos.y - 0.1f, 0.01f);
+        }
+        else if(!floatingUp)
+        {
+            floatingUp = true;
+        }
+
+        transform.position = tempPos;
+
     }
     
     
