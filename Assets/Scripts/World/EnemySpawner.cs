@@ -47,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
         if (SpawnInFirstWave)
         {
             startingWave = 0;
-            spawningWave = true;
+            waveNumber = -1;
         }
 
         for (int i = startingWave; i < EnemyWaves.Count; i++)
@@ -93,9 +93,7 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator SpawnNextWave()
     {
         spawningWave = true;
-        if (SpawnInFirstWave && waveNumber == 0) { /*this is gross im sorry*/ }
-        else
-            waveNumber++;
+        waveNumber++;
 
         if (waveNumber > EnemyWaves.Count - 1)
         {
@@ -108,7 +106,7 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(SpawnEnemy(EnemyWaves[waveNumber].Enemies[i]));
             yield return new WaitForSeconds(Random.Range(0.1f, 0.3f)); //*Another* delay to space out multiple spawns
         }
-        
+
         spawningWave = false;
     }
 
