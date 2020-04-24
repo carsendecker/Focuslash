@@ -30,13 +30,11 @@ public class PlayerController : Creature
 	[Space(10)]
 	public GameObject AttackLinePrefab;
 	public GameObject AttackParticlesPrefab;
-	public Color SlowMoColor; //The color the camera turns when entering slow motion, will probably get rid of this eventually
-	public GameObject LevelUpParticles;
+	public ParticleSystem PaintTrailParticles;
 	
 	//TODO: Ima fix this somehow, its gross
 	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, wallBumpSound, deathSound;
 
-	[HideInInspector] public GameObject targetedEnemy;
 	[HideInInspector] public bool canMove;
 	[HideInInspector] public Queue<Vector2> AttackPositionQueue = new Queue<Vector2>();
 	
@@ -71,6 +69,7 @@ public class PlayerController : Creature
 		
 		//Initialize UI bars
 		Services.UI.UpdatePlayerHealth();
+		
 		
 		SetPhase(Phase.Movement);
 	}

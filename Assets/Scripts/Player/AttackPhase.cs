@@ -34,15 +34,8 @@ public class AttackPhase : PlayerPhase
 		pCol.isTrigger = true;
 
 		dashTarget = player.AttackPositionQueue.Dequeue();
-
-		// List<Collider2D> colList = new List<Collider2D>();
-		// if(pCol.OverlapCollider(new ContactFilter2D(), colList) > 0)
-		// {
-		// 	foreach (Collider2D collider in colList)
-		// 	{
-		// 		OnTriggerEnter2D(collider);
-		// 	}
-		// }
+		
+		// player.PaintTrailParticles.Play();
 
 	}
 
@@ -53,8 +46,11 @@ public class AttackPhase : PlayerPhase
 		if (pausing && pauseTimer > 0)
 		{
 			pauseTimer -= Time.deltaTime;
-			if(pauseTimer <= 0)
+			if (pauseTimer <= 0)
+			{
 				pausing = false;
+				// player.PaintTrailParticles.Play();
+			}
 		}
 		//Idk if this is important but im scared to take it out
 		else if (hitTarget)
@@ -111,6 +107,8 @@ public class AttackPhase : PlayerPhase
 		player.iFramesForSeconds(0.5f, false);
 		player.AttackPositionQueue.Clear();
 		
+		// player.PaintTrailParticles.Stop();
+
 		Services.Events.Fire(new PlayerLeftAttackPhase());
 	}
 
