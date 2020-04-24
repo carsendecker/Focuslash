@@ -17,12 +17,36 @@ public class MobsterScript : Enemy
     private Rigidbody2D playerRb;
     private bool inAttackRange;
     private bool attacking;
+    private SpriteRenderer sr;
     
     
     protected override void Start()
     {
         base.Start();
         playerRb = Services.Player.GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        if (sr.gameObject.Equals(gameObject))
+        {
+            GameObject spriteObj = new GameObject("SpriteObject");
+            spriteObj.transform.parent = transform;
+            spriteObj.transform.localPosition = Vector3.zero;
+            spriteObj.transform.localScale = Vector3.one;
+            SpriteRenderer newSr = spriteObj.AddComponent<SpriteRenderer>();
+            newSr.sprite = sr.sprite;
+            newSr.enabled = true;
+            newSr.color = Color.white;
+            newSr.sortingLayerName = "Objects";
+
+
+            sr.enabled = false;
+            sr = newSr;
+        }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        sr.gameObject.transform.rotation = Quaternion.identity;
     }
 
     void FixedUpdate()

@@ -15,6 +15,7 @@ public class SlingerScript : Enemy
     private bool attacking;
     private Rigidbody2D playerRb;
     private Vector3 direction;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -22,11 +23,31 @@ public class SlingerScript : Enemy
         base.Start();
         Services.ObjectPools.Create(Bullet, 10);
         playerRb = Services.Player.rb;
+        
+        sr = GetComponentInChildren<SpriteRenderer>();
+        if (sr.gameObject.Equals(gameObject))
+        {
+            GameObject spriteObj = new GameObject("SpriteObject");
+            spriteObj.transform.parent = transform;
+            spriteObj.transform.localPosition = Vector3.zero;
+            spriteObj.transform.localScale = Vector3.one;
+            SpriteRenderer newSr = spriteObj.AddComponent<SpriteRenderer>();
+            newSr.sprite = sr.sprite;
+            newSr.enabled = true;
+            newSr.color = Color.white;
+            newSr.sortingLayerName = "Objects";
+
+
+            sr.enabled = false;
+            sr = newSr;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        sr.gameObject.transform.rotation = Quaternion.identity;
+
         if (Vector3.Distance(Services.Player.transform.position, transform.position) < AttackRange && !attacking)
         {
             StartCoroutine(Attack());

@@ -12,7 +12,7 @@ public class Enemy : Creature
         currentRoom = GetComponentInParent<EnemySpawner>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         
     }
