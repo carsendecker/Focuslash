@@ -117,6 +117,12 @@ public class PlayerController : Creature
 		
 	}
 
+	public override void Heal(int amountToHeal = 999)
+	{
+		base.Heal(amountToHeal);
+		Services.UI.UpdatePlayerHealth();
+	}
+
 	//Kills the player
 	protected override void Die()
 	{
