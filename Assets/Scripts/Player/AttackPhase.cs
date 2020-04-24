@@ -34,8 +34,13 @@ public class AttackPhase : PlayerPhase
 		pCol.isTrigger = true;
 
 		dashTarget = player.AttackPositionQueue.Dequeue();
-		
-		// player.PaintTrailParticles.Play();
+
+		Collider2D[] contacts = new Collider2D[5];
+		Physics2D.OverlapCollider(pCol, new ContactFilter2D(), contacts);
+		foreach (var col in contacts)
+		{
+			if(col.GetComponent<Creature>()) OnTriggerEnter2D(col);
+		}
 
 	}
 
