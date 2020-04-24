@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Road
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: a08b054788df2d040b93b92986ec0200, type: 3}
+  m_Sprite: {fileID: -8118384538201649355, guid: 3043d14c0c2657941a4572a869fe0171,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
