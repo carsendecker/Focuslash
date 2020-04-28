@@ -24,6 +24,8 @@ public class MobsterScript : Enemy
     {
         base.Start();
         playerRb = Services.Player.GetComponent<Rigidbody2D>();
+        
+        //I apologize this is literally the most useless code ever but it prevents me from having to go and change every sprite since they don't get spawned connected to the prefab aaaaaa
         sr = GetComponentInChildren<SpriteRenderer>();
         if (sr.gameObject.Equals(gameObject))
         {

@@ -127,8 +127,10 @@ public class EnemySpawner : MonoBehaviour
         Destroy(particles);
     }
 
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //If the player enters the room, close all doors in the room and aggro the enemies towards the player (aka enable their scripts)
         if (other.CompareTag("Player") && !started)
         {
             foreach (BlockerDoorScript door in roomDoors)
@@ -143,6 +145,7 @@ public class EnemySpawner : MonoBehaviour
 
             started = true;
             
+            //If the first wave will spawn in, spawn em
             if(SpawnInFirstWave)
                 StartCoroutine(SpawnNextWave());
 
@@ -153,12 +156,17 @@ public class EnemySpawner : MonoBehaviour
     {
         if (waveNumber >= EnemyWaves.Count) return;
         
+        //If something leaves the trigger, if it was an enemy, remove it from the list as it probably died
         if (EnemyWaves[waveNumber].Enemies.Contains(other.gameObject))
             EnemyWaves[waveNumber].Enemies.Remove(other.gameObject);
     }
 
+    /// <summary>
+    /// Gets called when the all enemies have been killed in a room
+    /// </summary>
     private void RoomOver()
     {
+        //Make all doors slashable
         if (!KeepDoorsClosedOnFinish)
         {
             foreach (BlockerDoorScript door in roomDoors)

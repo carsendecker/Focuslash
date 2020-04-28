@@ -34,12 +34,14 @@ public class AttackPhase : PlayerPhase
 		pCol.isTrigger = true;
 
 		dashTarget = player.AttackPositionQueue.Dequeue();
+		player.PaintTrailParticles.Play();
+
 
 		Collider2D[] contacts = new Collider2D[5];
 		Physics2D.OverlapCollider(pCol, new ContactFilter2D(), contacts);
 		foreach (var col in contacts)
 		{
-			if(col.GetComponent<Creature>()) OnTriggerEnter2D(col);
+			if(col != null && col.GetComponent<Creature>()) OnTriggerEnter2D(col);
 		}
 
 	}
@@ -54,7 +56,7 @@ public class AttackPhase : PlayerPhase
 			if (pauseTimer <= 0)
 			{
 				pausing = false;
-				// player.PaintTrailParticles.Play();
+				player.PaintTrailParticles.Play();
 			}
 		}
 		//Idk if this is important but im scared to take it out
