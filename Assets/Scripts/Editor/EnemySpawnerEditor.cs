@@ -16,8 +16,9 @@ public class EnemySpawnerEditor : Editor
 
 	public override void OnInspectorGUI()
 	{
+		//Draw default Unity inspector window
 		base.OnInspectorGUI();
-
+		
 		spawner = (EnemySpawner) target;
 		List<GameObject> enemyList = new List<GameObject>();
 		
@@ -56,7 +57,6 @@ public class EnemySpawnerEditor : Editor
 					for (int i = 0; i < enemyNumToSpawn; i++)
 					{
 						GameObject o = Instantiate(enemy, spawner.transform);
-						o.AddComponent<AssignToSpawnWave>();
 						spawner.AssignToWave(o, enemyWaveToSpawn);
 						Selection.activeGameObject = o;
 					}
@@ -67,23 +67,5 @@ public class EnemySpawnerEditor : Editor
 		EditorGUILayout.HelpBox("Choose an enemy type from the dropdown, and specify how many you want to spawn. " +
 		                        "They will then be instantiated as a child of the room and added to wave 0 automatically.", MessageType.Info);
 		
-		//Gives the AssignToSpawnWave component if any enemies do not have them
-		// int index = 0;
-  //       foreach (Wave wave in spawner.EnemyWaves)
-  //       {
-  //           foreach (GameObject enemy in wave.Enemies)
-  //           {
-	 //            if(enemy == null) continue;
-	 //            AssignToSpawnWave sw = enemy.GetComponent<AssignToSpawnWave>();
-	 //            if (sw == null)
-	 //            {
-		//             sw = enemy.AddComponent<AssignToSpawnWave>();
-	 //            }
-	 //            
-	 //            sw.spawner = spawner;
-  //           }
-  //
-  //           index++;
-  //       }
 	}
 }
