@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Mobster
   MaxHealth: 1
-  MoveSpeed: 5.5
+  MoveSpeed: 5
   Damage: 1
   rb: {fileID: 0}
   knockbackForce: 30
