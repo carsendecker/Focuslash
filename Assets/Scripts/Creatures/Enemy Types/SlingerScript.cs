@@ -16,6 +16,7 @@ public class SlingerScript : Enemy
     private Rigidbody2D playerRb;
     private Vector3 direction;
     private SpriteRenderer sr;
+    private Quaternion zeroRotation;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -25,22 +26,7 @@ public class SlingerScript : Enemy
         playerRb = Services.Player.rb;
         
         sr = GetComponentInChildren<SpriteRenderer>();
-        if (sr.gameObject.Equals(gameObject))
-        {
-            GameObject spriteObj = new GameObject("SpriteObject");
-            spriteObj.transform.parent = transform;
-            spriteObj.transform.localPosition = Vector3.zero;
-            spriteObj.transform.localScale = Vector3.one;
-            SpriteRenderer newSr = spriteObj.AddComponent<SpriteRenderer>();
-            newSr.sprite = sr.sprite;
-            newSr.enabled = true;
-            newSr.color = Color.white;
-            newSr.sortingLayerName = "Objects";
-
-
-            sr.enabled = false;
-            sr = newSr;
-        }
+        zeroRotation = new Quaternion(0, 0, 0, 0);
     }
 
     // Update is called once per frame
@@ -57,7 +43,7 @@ public class SlingerScript : Enemy
         {
             Vector3 targetPos = Services.Player.transform.position;
         
-            direction = Vector3.Lerp(direction, targetPos - transform.position, 0.1f);
+            direction = Vector2.Lerp(direction, targetPos - transform.position, 0.1f);
             rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         }
     }
