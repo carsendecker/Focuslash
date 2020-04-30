@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.72639227, z: 1}
   m_Children: []
   m_Father: {fileID: 1193112082871136222}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8880916147051427664
 CircleCollider2D:
@@ -47,7 +47,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
---- !u!1 &1193112082871136221
+--- !u!1 &339786679259727340
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,62 +55,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1193112082871136222}
-  - component: {fileID: 2401453008530685819}
-  - component: {fileID: 1193112082871136223}
-  - component: {fileID: 5803647425174016305}
-  - component: {fileID: 6889375660965388015}
+  - component: {fileID: 8557054904183266130}
+  - component: {fileID: 9201465223044898867}
   m_Layer: 0
-  m_Name: _Slinger
-  m_TagString: Enemy
+  m_Name: Sprite
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1193112082871136222
+--- !u!4 &8557054904183266130
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193112082871136221}
+  m_GameObject: {fileID: 339786679259727340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 30, y: 41.3, z: 1}
-  m_Children:
-  - {fileID: 4477018359655182467}
-  m_Father: {fileID: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1193112082871136222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2401453008530685819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193112082871136221}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2685c67aec2d549f4baddd2ef6aff81e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Slinger
-  MaxHealth: 1
-  MoveSpeed: 4
-  Damage: 1
-  rb: {fileID: 0}
-  AttackRange: 5.5
-  AttacksPerSecond: 0.75
-  DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
-    type: 3}
-  Bullet: {fileID: 3196917951569527822, guid: 537118430bca54ce09d8b874786fd197, type: 3}
---- !u!212 &1193112082871136223
+--- !u!212 &9201465223044898867
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193112082871136221}
+  m_GameObject: {fileID: 339786679259727340}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -155,6 +129,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1193112082871136221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1193112082871136222}
+  - component: {fileID: 2401453008530685819}
+  - component: {fileID: 5803647425174016305}
+  - component: {fileID: 6889375660965388015}
+  m_Layer: 0
+  m_Name: _Slinger
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1193112082871136222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193112082871136221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 30, y: 41.3, z: 1}
+  m_Children:
+  - {fileID: 8557054904183266130}
+  - {fileID: 4477018359655182467}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2401453008530685819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193112082871136221}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2685c67aec2d549f4baddd2ef6aff81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Slinger
+  MaxHealth: 1
+  MoveSpeed: 4
+  Damage: 1
+  rb: {fileID: 0}
+  AttackRange: 5.5
+  AttacksPerSecond: 0.75
+  DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
+    type: 3}
+  Bullet: {fileID: 3196917951569527822, guid: 537118430bca54ce09d8b874786fd197, type: 3}
 --- !u!61 &5803647425174016305
 BoxCollider2D:
   m_ObjectHideFlags: 0
