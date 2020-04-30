@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -218,7 +219,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     wave.Enemies.Remove(enemy);
                 }
-                
+
             }
 
             index++;
