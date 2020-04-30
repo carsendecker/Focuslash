@@ -57,6 +57,7 @@ public class EnemySpawnerEditor : Editor
 					for (int i = 0; i < enemyNumToSpawn; i++)
 					{
 						GameObject o = Instantiate(enemy, spawner.transform);
+						o.AddComponent<AssignToSpawnWave>();
 						spawner.AssignToWave(o, enemyWaveToSpawn);
 						Selection.activeGameObject = o;
 					}

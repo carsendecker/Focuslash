@@ -17,7 +17,6 @@ public class LaserTurret : Enemy
     public GameObject DeathParticles; //For when it dies
     public AudioClip FireSound;
 
-    private Rigidbody2D playerRb;
     private Collider2D laserCol;
     private float attackTimer;
     private bool charging;
@@ -28,7 +27,6 @@ public class LaserTurret : Enemy
     
     protected override void Start() {
         base.Start();
-        playerRb = Services.Player.GetComponent<Rigidbody2D>();
         laserCol = Laser.GetComponent<Collider2D>();
         laserCol.enabled = false;
         
@@ -73,9 +71,9 @@ public class LaserTurret : Enemy
         targetPos = Services.Player.transform.position;
 
         TelegraphParticles.Play();
-        yield return new WaitForSeconds(ChargeTime - 0.3f);
+        yield return new WaitForSeconds(ChargeTime - 0.6f);
         charging = false;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
 
         TelegraphParticles.Stop();
         TelegraphParticles.Clear();

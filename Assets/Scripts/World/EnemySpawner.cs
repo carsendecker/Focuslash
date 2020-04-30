@@ -38,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
     private BlockerDoorScript[] roomDoors;
     private bool started;
     
-    //TODO: Support for force-spawning waves? (maybe)
 
     private void Awake()
     {
