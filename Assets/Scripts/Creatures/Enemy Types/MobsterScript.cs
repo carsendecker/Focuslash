@@ -31,6 +31,8 @@ public class MobsterScript : Enemy
     protected override void Update()
     {
         base.Update();
+        
+        sr.gameObject.transform.rotation = Quaternion.identity;
     }
 
     void FixedUpdate()

@@ -32,7 +32,7 @@ public class SlingerScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        sr.gameObject.transform.localRotation = Quaternion.identity;
+        sr.gameObject.transform.rotation = Quaternion.identity;
 
         if (Vector3.Distance(Services.Player.transform.position, transform.position) < AttackRange && !attacking)
         {
