@@ -32,6 +32,7 @@ public class AttackPhase : PlayerPhase
 	{
 		pCol = player.GetComponent<CircleCollider2D>();
 		pCol.isTrigger = true;
+		pCol.radius += 0.002f;
 
 		dashTarget = player.AttackPositionQueue.Dequeue();
 		player.PaintTrailParticles.Play();
@@ -109,6 +110,7 @@ public class AttackPhase : PlayerPhase
 	{
 		//Reenable the player's range detector and make the player solid again
 		pCol.isTrigger = false;
+		pCol.radius -= 0.002f;
 
 		//Short pause of iFrames after attacking
 		player.iFramesForSeconds(0.5f, false);

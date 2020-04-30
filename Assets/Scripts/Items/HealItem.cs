@@ -10,7 +10,7 @@ public class HealItem : Creature
 
     protected override void Die()
     {
-        Instantiate(DeathParticles, transform.position, Quaternion.identity);
+        Instantiate(DeathParticles, transform.position, Quaternion.identity).GetComponent<ParticleSystem>().Play();
         Services.Player.Heal(heartsToRestore);
         Destroy(this.gameObject);
     }

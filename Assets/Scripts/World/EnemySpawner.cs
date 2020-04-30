@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -38,7 +39,6 @@ public class EnemySpawner : MonoBehaviour
     private BlockerDoorScript[] roomDoors;
     private bool started;
     
-    //TODO: Support for force-spawning waves? (maybe)
 
     private void Awake()
     {
@@ -219,7 +219,7 @@ public class EnemySpawner : MonoBehaviour
                 {
                     wave.Enemies.Remove(enemy);
                 }
-                
+
             }
 
             index++;

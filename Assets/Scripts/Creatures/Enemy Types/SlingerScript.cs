@@ -55,8 +55,7 @@ public class SlingerScript : Enemy
         }
         else
         {
-            Vector3 targetPos = Services.Player.transform.position + 
-                                (Vector3) (playerRb.velocity.normalized);
+            Vector3 targetPos = Services.Player.transform.position;
         
             direction = Vector3.Lerp(direction, targetPos - transform.position, 0.1f);
             rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);

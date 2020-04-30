@@ -4871,6 +4871,6 @@ MonoBehaviour:
   MoveSpeed: 0
   Damage: 0
   rb: {fileID: 0}
-  heartsToRestore: 0
+  heartsToRestore: 1
   DeathParticles: {fileID: 8932851828398892336, guid: c26d93915058642a6b1554455d9c4d41,
     type: 3}

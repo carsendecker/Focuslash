@@ -218,8 +218,8 @@ MonoBehaviour:
   Laser: {fileID: 5873420121983426846}
   TelegraphParticles: {fileID: 406170197811347491}
   LaserParticles: {fileID: 3958047740150143585}
-  AttackFrequency: 4
-  AttackFrequencyVariance: 1
+  AttackFrequency: 3.4
+  AttackFrequencyVariance: 0.5
   AttackLeadDistance: 3
   ChargeTime: 2.2
   FireTime: 2
@@ -4173,8 +4173,8 @@ ParticleSystem:
     m_Dampen:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.9
-      minScalar: 0.8
+      scalar: 1
+      minScalar: 0.98
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4226,7 +4226,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.01
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4279,7 +4279,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.32
       minScalar: 0
       maxCurve:
         serializedVersion: 2
