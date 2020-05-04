@@ -227,7 +227,8 @@ MonoBehaviour:
   MoveSpeed: 0
   Damage: 0
   rb: {fileID: 0}
-  BulletAttacks: []
+  BulletAttacks:
+  - {fileID: 11400000, guid: b931cca192ce049ee9d8e0ec38f3f2ae, type: 2}
 --- !u!58 &5527310527468423436
 CircleCollider2D:
   m_ObjectHideFlags: 0
