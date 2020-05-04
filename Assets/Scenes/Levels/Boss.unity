@@ -582,7 +582,7 @@ PrefabInstance:
     - target: {fileID: 344415781491089922, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.09
       objectReference: {fileID: 0}
     - target: {fileID: 344415781491089922, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
@@ -1243,6 +1243,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5527310527468423436, guid: b0074b83b59b54f4db870d6927b1da3d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5527310527468423438, guid: b0074b83b59b54f4db870d6927b1da3d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1251,7 +1256,7 @@ PrefabInstance:
     - target: {fileID: 5527310527468423438, guid: b0074b83b59b54f4db870d6927b1da3d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 3.64
       objectReference: {fileID: 0}
     - target: {fileID: 5527310527468423438, guid: b0074b83b59b54f4db870d6927b1da3d,
         type: 3}
