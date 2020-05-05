@@ -1,10 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BossScript : Enemy
 {
-    public List<BulletAttack> BulletAttacks = new List<BulletAttack>();
+    [Serializable]
+    public struct AttackPattern
+    {
+        public BulletAttack[] bulletAttacks;
+    }
+    
+    [Tooltip("List of different combinations of Bullet Attacks.")]
+    public List<AttackPattern> AttackPatterns = new List<AttackPattern>();
 
     private Dictionary<BulletAttack.FireDirection, GameObject> Emitters;
     private TaskManager taskManager = new TaskManager();
@@ -12,8 +20,8 @@ public class BossScript : Enemy
 
     void Start()
     {
-        var tester = new DelegateTask(FireInit, delegate { return FireBulletAttack(BulletAttacks[0]); });
-        taskManager.Do(tester);
+        var tester = new Attack(this, AttackPatterns[0].bulletAttacks);
+        // taskManager.Do(tester);
     }
 
     void Update()
@@ -21,59 +29,83 @@ public class BossScript : Enemy
         taskManager.Update();
     }
 
-    /// <summary>
-    /// Initialization for firing a bullet attack
-    /// </summary>
-    private void FireInit()
-    {
-        Debug.Log("Initialized!");
-        currentAttack = 0;
-        duration = 0;
-    }
-
-    /// <summary>
-    /// Takes a BulletAttack object and fires the attack according to them specific specifications
-    /// </summary>
-    private float duration;
-    private bool FireBulletAttack(BulletAttack attack)
-    {
-        if (duration >= attack.AttackDuration)
-        {
-            return true;
-        }
-        
-        
-
-        duration += Time.deltaTime;
-
-        return false;
-    }
-
-    /// <summary>
-    /// fires multiple attacks in succession
-    /// </summary>
-    int currentAttack = 0;
-    private bool FireComboAttack(params BulletAttack[] attacks)
-    {
-
-        if (currentAttack == attacks.Length)
-            return true;
-
-        if (FireBulletAttack(attacks[currentAttack]))
-            currentAttack++;
-
-        return false;
-    }
-
-    private class CompoundAttack : Task
+    private class Attack : Task
     {
         private BossScript boss;
-        private BulletAttack attack;
-        
-        public CompoundAttack(BossScript boss, BulletAttack attack)
+        private BulletAttack[] attacks;
+
+        private int currentAttack;
+        private float duration;
+
+        public Attack(BossScript boss, BulletAttack[] attacks)
         {
             this.boss = boss;
-            this.attack = attack;
+            this.attacks = attacks;
         }
+        
+       
+        protected override void Initialize()
+        {
+            Debug.Log("Initialized!");
+            currentAttack = 0;
+            duration = 0;
+            
+            //Resets emitter positions
+            foreach (var emitter in boss.Emitters)
+            {
+                emitter.Value.transform.rotation = Quaternion.identity;
+            }
+        }
+        
+        internal override void Update()
+        {
+            //If we've run out of bullet patterns to fire, the attack is done
+            if (currentAttack >= attacks.Length) 
+                SetStatus(TaskStatus.Success);
+
+            if (FireBulletAttack(attacks[currentAttack]))
+                currentAttack++;
+
+        }
+
+        protected override void OnSuccess()
+        {
+            
+        }
+
+        protected override void OnFail()
+        {
+            
+        }
+
+        /// <summary>
+        /// Takes a BulletAttack object and fires the attack according to them specific specifications
+        /// </summary>
+        private bool FireBulletAttack(BulletAttack attack)
+        {
+            if (duration >= attack.AttackDuration)
+            {
+                return true;
+            }
+
+            foreach (var pattern in attack.Patterns)
+            {
+                if (duration % pattern.FireRate == 0)
+                {
+                    Shoot(pattern.Direction, pattern.Angle, pattern.Offset);
+                }
+            }
+            
+
+            duration += Time.deltaTime;
+            return false;
+        }
+
+        private void Shoot(BulletAttack.FireDirection direction, float angle, float offset)
+        {
+            
+        }
+        
+        
     }
 }
