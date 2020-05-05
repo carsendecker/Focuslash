@@ -19,6 +19,9 @@ public class MobsterScript : Enemy
     private bool attacking;
     private SpriteRenderer sr;
     
+    //Animation
+    public Animator animator;
+    
     
     protected override void Start()
     {
@@ -33,6 +36,10 @@ public class MobsterScript : Enemy
         base.Update();
         
         sr.gameObject.transform.rotation = Quaternion.identity;
+        
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     void FixedUpdate()

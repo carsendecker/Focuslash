@@ -18,6 +18,8 @@ public class SlingerScript : Enemy
     private SpriteRenderer sr;
     private Quaternion zeroRotation;
 
+    public Animator animator;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -46,6 +48,10 @@ public class SlingerScript : Enemy
             direction = Vector2.Lerp(direction, targetPos - transform.position, 0.1f);
             rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         }
+        
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     private void FixedUpdate()
