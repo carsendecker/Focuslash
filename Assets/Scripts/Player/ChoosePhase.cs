@@ -35,8 +35,8 @@ public class ChoosePhase : PlayerPhase
 		//Slows down time and such
 		Time.timeScale = 0.1f;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
-		Services.UI.ColorOverlay.enabled = true;
-		Services.UI.ColorOverlay.color = Services.UI.PlayerFocusColor;
+		Services.UI.CameraOverlay.enabled = true;
+		Services.UI.CameraOverlay.color = Services.UI.PlayerFocusColor;
 
 		
 		startingFocus = player.CurrentFocus;
@@ -99,7 +99,7 @@ public class ChoosePhase : PlayerPhase
 	public override void OnExit()
 	{
 		Services.UI.AttackInstructionText.gameObject.SetActive(false);
-		Services.UI.ColorOverlay.enabled = false;
+		Services.UI.CameraOverlay.enabled = false;
 
 		Time.timeScale = 1f;
 

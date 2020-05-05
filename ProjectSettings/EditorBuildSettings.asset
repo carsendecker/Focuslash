@@ -6,27 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu/Main Menu.unity
+    path: Assets/_Scenes/Menu/Main Menu.unity
     guid: 430d8e9c1e5cb46dbbb87cd4a83af2e3
   - enabled: 1
-    path: Assets/Scenes/Menu/Options Menu.unity
+    path: Assets/_Scenes/Menu/Options Menu.unity
     guid: b949965c46174664d8b461a2e4c9f6fe
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/Test Scenes/Genric Test Scenes/RoomTranistionTest.unity
+    path: Assets/_Scenes/Test Scenes/Genric Test Scenes/RoomTranistionTest.unity
     guid: bb3ff1f0f42723b458c36f20c5d71b49
   - enabled: 0
-    path: Assets/Scenes/Main.unity
+    path: Assets/_Scenes/Main.unity
     guid: 1ac828f158bc94f869355a7fcfa00d43
   - enabled: 1
-    path: Assets/Scenes/Levels/NewTutorial.unity
+    path: Assets/_Scenes/Levels/NewTutorial.unity
     guid: 9f024aaa908a8410ba3e9af0cadf0e57
   - enabled: 1
-    path: Assets/Scenes/Levels/Level 1.unity
+    path: Assets/_Scenes/Levels/Level 1.unity
     guid: d6703e2e6cfb35e498b927fabe4d9db5
   - enabled: 0
-    path: Assets/Scenes/Levels/Level 2.unity
+    path: Assets/_Scenes/Levels/Level 2.unity
     guid: d11bfd6965425b14180a45b91ebd361c
   m_configObjects: {}
