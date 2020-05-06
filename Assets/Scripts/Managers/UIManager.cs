@@ -24,9 +24,9 @@ public class UIManager : MonoBehaviour
     private Color fullFocusColor;
 
     [Header("Overlays")] 
-    public SpriteRenderer ColorOverlay;
+    public SpriteRenderer CameraOverlay;
     public Color PlayerFocusColor, PlayerDeathColor;
-    public Image FullCameraOverlay;
+    public Image FullOverlay;
 
     [Header("Other Screens")]
     public GameObject LoadingScreen;
@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
         
         fullFocusColor = PlayerFocusBar.GetComponentsInChildren<Image>()[1].color;
         PlayerFocusBar.maxValue = 3;
-        ColorOverlay.enabled = false;
+        CameraOverlay.enabled = false;
     }
 
     /// <summary>

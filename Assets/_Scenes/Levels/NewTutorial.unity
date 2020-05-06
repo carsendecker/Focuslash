@@ -121,6 +121,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &47736057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 805374969104325009, guid: ba137419b55164c5cb4abb162961922d,
+    type: 3}
+  m_PrefabInstance: {fileID: 800478441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &47736063
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47736057}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &85873565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -467,47 +492,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1365947284, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947284, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 76.76592
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947284, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947284, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 51.480003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947285, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_Color.r
-      value: 0.5566038
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947285, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947285, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_Color.b
-      value: 0.06905341
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947285, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_Color.a
-      value: 0.23529412
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365947285, guid: 0dc4edfe971154522b6efa571cdb6b0b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377068022100860567, guid: 0dc4edfe971154522b6efa571cdb6b0b,
-        type: 3}
-      propertyPath: orthographic size
-      value: 5.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6377068023124523527, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_Name
@@ -651,7 +635,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577943893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -89.26, y: 96.3, z: 0}
+  m_LocalPosition: {x: -87.46, y: 96.3, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -664,6 +648,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1253622041, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253622041, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 344415781491089920, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
       propertyPath: m_Name
@@ -729,6 +721,11 @@ PrefabInstance:
       propertyPath: MaxHealth
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 344415781491089925, guid: e96805a986fe74b68aed1e041b787f68,
+        type: 3}
+      propertyPath: AttackLineRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4511053115047804274, guid: e96805a986fe74b68aed1e041b787f68,
         type: 3}
       propertyPath: m_Color.g
@@ -744,7 +741,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1253622042, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e96805a986fe74b68aed1e041b787f68, type: 3}
 --- !u!4 &589420941 stripped
 Transform:
@@ -851,6 +849,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2815831802335835576, guid: ba137419b55164c5cb4abb162961922d,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 47736063}
     - target: {fileID: 2916194162094257152, guid: ba137419b55164c5cb4abb162961922d,
         type: 3}
       propertyPath: m_AnchorMax.x

@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
         Services.Player.enabled = false;
         
         UIManager UI = Services.UI;
-        UI.ColorOverlay.color = UI.PlayerDeathColor;
-        UI.ColorOverlay.enabled = true;
+        UI.CameraOverlay.color = UI.PlayerDeathColor;
+        UI.CameraOverlay.enabled = true;
 
         Time.timeScale = 0f;
         
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         while (fadeTime < 2.3f)
         {
             Services.MainCamera.orthographicSize -= Time.fixedDeltaTime;
-            UI.FullCameraOverlay.color = Color.Lerp(Color.clear, Color.black, fadeTime / 2.3f);
+            UI.FullOverlay.color = Color.Lerp(Color.clear, Color.black, fadeTime / 2.3f);
             
             fadeTime += Time.fixedDeltaTime;
 
