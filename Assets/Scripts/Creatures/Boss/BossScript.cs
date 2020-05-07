@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BehaviorTree;
 using UnityEngine;
 
 public class BossScript : Enemy
@@ -25,8 +26,13 @@ public class BossScript : Enemy
 
     private Dictionary<Direction, GameObject> Emitters = new Dictionary<Direction, GameObject>();
     private TaskManager taskManager = new TaskManager();
-    
+    private Tree<BossScript> bTree;
 
+    void Awake()
+    {
+        InitializeBehavior();
+    }
+    
     void Start()
     {
         Emitters.Add(Direction.Up, emitterObjs.up);
@@ -43,9 +49,8 @@ public class BossScript : Enemy
             }
         }
         
-        var testAttack = new Attack(this, AttackPatterns[0].bulletAttacks);
+        Aggro(false);
         
-        taskManager.Do(testAttack);
     }
 
     void Update()
@@ -53,6 +58,30 @@ public class BossScript : Enemy
         taskManager.Update();
     }
 
+    public override void Aggro(bool aggrod)
+    {
+        if (this.enabled && aggrod)
+        {
+            var testAttack = new Attack(this, AttackPatterns[0].bulletAttacks);
+            taskManager.Do(testAttack);
+        }
+        
+        base.Aggro(aggrod);
+    }
+
+    private void InitializeBehavior()
+    {
+        
+    }
+    
+    #region Nodes
+
+    
+
+    #endregion
+
+    #region Tasks
+    
     private class Attack : Task
     {
         private BossScript boss;
@@ -169,4 +198,7 @@ public class BossScript : Enemy
         
         
     }
+    
+    #endregion
+
 }

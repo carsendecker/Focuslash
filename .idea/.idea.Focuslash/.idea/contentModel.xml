@@ -84,6 +84,7 @@
           </e>
           <e p="World" t="Include">
             <e p="BlockerDoorScript.cs" t="Include" />
+            <e p="BossArena.cs" t="Include" />
             <e p="DoorScript.cs" t="Include" />
             <e p="EndlessEnemySpawner.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />
