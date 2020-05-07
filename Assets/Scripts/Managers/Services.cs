@@ -16,6 +16,7 @@ public static class Services
 	public static Camera MainCamera;
 	public static SaveSystem Save;
 	public static EventManager Events;
+	public static ObjectPooler ObjectPools;
 
 	public static void InitializeServices()
 	{

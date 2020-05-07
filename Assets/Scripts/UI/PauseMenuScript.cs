@@ -37,6 +37,8 @@ public class PauseMenuScript : MonoBehaviour
         //The timescale function being set to 0 will essentially freeze the game
         Time.timeScale = 0f;
         gameIsPaused = true;
+
+        Services.Player.enabled = false;
     }
     
     public void Resume()
@@ -44,6 +46,9 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
+        
+        Services.Player.enabled = true;
+
     }
 
 

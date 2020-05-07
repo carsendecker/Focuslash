@@ -15,17 +15,27 @@ public class SlingerScript : Enemy
     private bool attacking;
     private Rigidbody2D playerRb;
     private Vector3 direction;
-    
+    private SpriteRenderer sr;
+    private Quaternion zeroRotation;
+
+    public Animator animator;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        Services.ObjectPools.Create(Bullet, 10);
         playerRb = Services.Player.rb;
+        
+        sr = GetComponentInChildren<SpriteRenderer>();
+        zeroRotation = new Quaternion(0, 0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        sr.gameObject.transform.rotation = Quaternion.identity;
+
         if (Vector3.Distance(Services.Player.transform.position, transform.position) < AttackRange && !attacking)
         {
             StartCoroutine(Attack());
@@ -33,12 +43,15 @@ public class SlingerScript : Enemy
         }
         else
         {
-            Vector3 targetPos = Services.Player.transform.position + 
-                                (Vector3) (playerRb.velocity.normalized);
+            Vector3 targetPos = Services.Player.transform.position;
         
-            direction = Vector3.Lerp(direction, targetPos - transform.position, 0.1f);
+            direction = Vector2.Lerp(direction, targetPos - transform.position, 0.1f);
             rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         }
+        
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     private void FixedUpdate()
@@ -52,7 +65,8 @@ public class SlingerScript : Enemy
         attacking = true;
         
         yield return new WaitForSeconds((1 / AttacksPerSecond) / 2);
-        Instantiate(Bullet, transform.position, transform.rotation).GetComponent<BulletScript>().Damage = Damage;
+        Services.ObjectPools.Spawn(Bullet, transform.position, transform.rotation).GetComponent<BulletScript>().Damage = Damage;
+        // Instantiate(Bullet, transform.position, transform.rotation).GetComponent<BulletScript>().Damage = Damage;
         yield return new WaitForSeconds((1 / AttacksPerSecond) / 2);
 
         attacking = false;

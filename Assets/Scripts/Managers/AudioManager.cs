@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour
     
     private void Awake()
     {
-        //Assigns an instance of this to the GameSystems manager
         if (Services.Audio == null)
             Services.Audio = this;
         
@@ -51,25 +50,39 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="clip">The sound clip to play</param>
     /// <param name="audioSourceType">The audio source type to play from</param>
-    public void PlaySound(AudioClip clip, SourceType audioSourceType)
-    {
-        sources[audioSourceType].PlayOneShot(clip);
-    }
+    public void PlaySound(AudioClip clip, SourceType audioSourceType) => PlaySound(clip, audioSourceType, 0f);
 
     /// <summary>
     /// Plays a sound from a specified audio source with a certain pitch change applied
     /// </summary>
-    /// <param name="clip"></param>
-    /// <param name="audioSourceType"></param>
-    /// <param name="pitchChange"></param>
     public void PlaySound(AudioClip clip, SourceType audioSourceType, float pitchChange)
     {
         sources[audioSourceType].pitch += pitchChange;
-        sources[audioSourceType].PlayOneShot(clip);
+
+        //Set the new music clip
+        if (audioSourceType.Equals(SourceType.Music))
+        {
+            sources[audioSourceType].clip = clip;
+            sources[audioSourceType].Play();
+        }
+        //Play a single sound
+        else
+        {
+            sources[audioSourceType].PlayOneShot(clip);
+        }
+        
         sources[audioSourceType].pitch -= pitchChange;
     }
-    
-    
-    //*****Can add more functions if more functionality is required*****
-    
+
+    /// <summary>
+    /// Stops the music lol
+    /// </summary>
+    public void StopMusic()
+    {
+        sources[SourceType.Music].Stop();
+    }
+
+
+    //*****Can add more functions if needed*****
+
 }

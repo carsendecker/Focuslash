@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Game Center Admin\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Game Center Admin\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Focuslash.-672334580.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Game Center Admin\Documents\Unity Projects\Focuslash" t="IncludeRecursive">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Scenes" t="Include">
+        <e p="_Scenes" t="Include">
           <e p="Test Scenes" t="Include">
             <e p="Carsen Scene Assets" t="Include">
               <e p="QuitGame.cs" t="Include" />
             </e>
           </e>
         </e>
+        <e p="ScriptableObjects" t="Include">
+          <e p="Attack.cs" t="Include" />
+          <e p="BulletAttack.cs" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
-          <e p="BlockerDoorScript.cs" t="Include" />
-          <e p="BulletScript.cs" t="Include" />
           <e p="Creatures" t="Include">
+            <e p="Boss" t="Include">
+              <e p="BossScript.cs" t="Include" />
+            </e>
             <e p="Creature.cs" t="Include" />
             <e p="Enemy Types" t="Include">
               <e p="LaserTurret.cs" t="Include" />
               <e p="MobsterScript.cs" t="Include" />
               <e p="SlingerScript.cs" t="Include" />
+              <e p="WallbearerScript.cs" t="Include" />
             </e>
             <e p="Enemy.cs" t="Include" />
           </e>
-          <e p="DoorScript.cs" t="Include" />
-          <e p="FirstBoss.cs" t="Include" />
+          <e p="Editor" t="Include">
+            <e p="AssignToSpawnWaveEditor.cs" t="Include" />
+            <e p="EnemySpawnerEditor.cs" t="Include" />
+          </e>
           <e p="Items" t="Include">
+            <e p="BulletScript.cs" t="Include" />
             <e p="FocusUpgrade.cs" t="Include" />
-            <e p="HealthUpgrade.cs" t="Include" />
+            <e p="HealItem.cs" t="Include" />
           </e>
           <e p="Managers" t="Include">
             <e p="AudioManager.cs" t="Include" />
@@ -56,18 +64,29 @@
             <e p="TargetText.cs" t="Include" />
           </e>
           <e p="Utility" t="Include">
+            <e p="Behavior" t="Include">
+              <e p="BehaviorTree.cs" t="Include" />
+              <e p="EventManager.cs" t="Include" />
+              <e p="FiniteStateMachine.cs" t="Include" />
+              <e p="Task.cs" t="Include" />
+              <e p="TaskManager.cs" t="Include" />
+            </e>
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
-            <e p="EventManager.cs" t="Include" />
-            <e p="FPSDisplay.cs" t="Include" />
-            <e p="Spin.cs" t="Include" />
-            <e p="TEST" t="Include">
-              <e p="BehaviorTree.cs" t="Include" />
-              <e p="FiniteStateMachine.cs" t="Include" />
+            <e p="EditorStuff" t="Include">
+              <e p="AssignToSpawnWave.cs" t="Include" />
             </e>
+            <e p="EnableDisableOnDestroy.cs" t="Include" />
+            <e p="FPSDisplay.cs" t="Include" />
+            <e p="ObjectPooler.cs" t="Include" />
+            <e p="Spin.cs" t="Include" />
           </e>
           <e p="World" t="Include">
+            <e p="BlockerDoorScript.cs" t="Include" />
+            <e p="BossArena.cs" t="Include" />
+            <e p="DoorScript.cs" t="Include" />
+            <e p="EndlessEnemySpawner.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />
             <e p="ExitGateScript.cs" t="Include" />
             <e p="RoomTransistions.cs" t="Include" />
@@ -104,7 +123,10 @@
       <e p="Focuslash.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
     </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_Focuslash.-300633837.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
   </component>
 </project>

@@ -21,7 +21,6 @@ public class ChoosePhase : PlayerPhase
 	private Vector3 attackLineStartPos;
 	private float startingFocus; //How much focus you start choosing with, used for when you cancel your attack
 	
-	private Color camColor;
 	private List<GameObject> crosshairList = new List<GameObject>();
 	private List<GameObject> attackLineList = new List<GameObject>();
 	private Vector3[] linePositions;
@@ -35,9 +34,11 @@ public class ChoosePhase : PlayerPhase
 	{
 		//Slows down time and such
 		Time.timeScale = 0.1f;
-		camColor = Camera.main.backgroundColor;
-		Camera.main.backgroundColor = player.SlowMoColor;
 		Services.Audio.PlaySound(player.enterSlomoSound, SourceType.CreatureSound);
+		Services.UI.CameraOverlay.enabled = true;
+		Services.UI.CameraOverlay.color = Services.UI.PlayerFocusColor;
+
+		
 		startingFocus = player.CurrentFocus;
 
 		player.GetComponent<Rigidbody2D>().velocity /= 5;
@@ -46,8 +47,11 @@ public class ChoosePhase : PlayerPhase
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
 		Services.UI.AttackInstructionText.gameObject.SetActive(true);
 
-		targetedEnemy = null;
 
+		if (Mathf.Floor(startingFocus) < 1)
+		{
+			
+		}
 		CreateNewLine(player.transform.position);
 		player.CurrentFocus--;
 	}
@@ -95,9 +99,9 @@ public class ChoosePhase : PlayerPhase
 	public override void OnExit()
 	{
 		Services.UI.AttackInstructionText.gameObject.SetActive(false);
+		Services.UI.CameraOverlay.enabled = false;
 
 		Time.timeScale = 1f;
-		Services.MainCamera.backgroundColor = camColor;
 
 		if (crosshair != null)
 		{
@@ -105,7 +109,6 @@ public class ChoosePhase : PlayerPhase
 			crosshair = null;
 		}
 
-		targetedEnemy = null;
 		//Disable circle range sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = false;
 

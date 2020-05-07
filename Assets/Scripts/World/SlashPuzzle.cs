@@ -29,8 +29,13 @@ public class SlashPuzzle : MonoBehaviour
     void Start()
     {
         Services.Events.Register<PlayerLeftAttackPhase>(ResetSensors);
+        DoorToOpen.GetComponent<BlockerDoorScript>().closeDoorWay();
     }
 
+    /// <summary>
+    /// Gets called when the player stops attacking. Resets all the sensors if they aren't all activated.
+    /// Otherwise, open the room.
+    /// </summary>
     void ResetSensors(AGPEvent e)
     {
         byte sensorsActive = 0;
@@ -39,15 +44,16 @@ public class SlashPuzzle : MonoBehaviour
             if (sensor.Active) sensorsActive++;
         }
 
-        if (sensorsActive >= SlashSensors.Count)
-            Opened = true;
-        
-        if (!Opened)
+        if (sensorsActive == SlashSensors.Count)
         {
-            foreach (SlashSensor sensor in SlashSensors)
-            {
+            Opened = true;
+            return;
+        }
+        
+        foreach (SlashSensor sensor in SlashSensors)
+        {
+            if(sensor.Active)
                 sensor.Active = false;
-            }
         }
         
     }

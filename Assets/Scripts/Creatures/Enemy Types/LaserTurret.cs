@@ -17,16 +17,16 @@ public class LaserTurret : Enemy
     public GameObject DeathParticles; //For when it dies
     public AudioClip FireSound;
 
-    private Rigidbody2D playerRb;
     private Collider2D laserCol;
     private float attackTimer;
+    private bool charging;
+    private Vector3 targetPos;
 
 //    private float maxColY = 0.62f;
 //    private bool growCol;
     
     protected override void Start() {
         base.Start();
-        playerRb = Services.Player.GetComponent<Rigidbody2D>();
         laserCol = Laser.GetComponent<Collider2D>();
         laserCol.enabled = false;
         
@@ -48,6 +48,13 @@ public class LaserTurret : Enemy
                 StartCoroutine(Attack());
             }
         }
+        else if (charging)
+        {
+            targetPos = Vector3.Lerp(targetPos, Services.Player.transform.position, 0.3f);
+            var dir = targetPos - Laser.transform.position;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            Laser.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+        }
 
         HealthBar.value = Mathf.Lerp(HealthBar.value, health, 0.1f);
     }
@@ -60,18 +67,17 @@ public class LaserTurret : Enemy
 
     private IEnumerator Attack()
     {
-        Vector3 targetPos = Services.Player.transform.position + (Vector3)(playerRb.velocity.normalized * AttackLeadDistance);
-        var dir = targetPos - Laser.transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Laser.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
-        
+        charging = true;
+        targetPos = Services.Player.transform.position;
+
         TelegraphParticles.Play();
-        yield return new WaitForSeconds(ChargeTime);
-        
+        yield return new WaitForSeconds(ChargeTime - 0.6f);
+        charging = false;
+        yield return new WaitForSeconds(0.6f);
+
         TelegraphParticles.Stop();
         TelegraphParticles.Clear();
-        
-//        yield return new WaitForSeconds(0.5f);
+
         
         LaserParticles.Play();
         Services.Audio.PlaySound(FireSound, SourceType.CreatureSound);
@@ -80,6 +86,7 @@ public class LaserTurret : Enemy
 
         LaserParticles.Stop();
         NewAttackTimer();
+        
     }
 
 //    private void OnTriggerEnter2D(Collider2D other)

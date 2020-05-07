@@ -17,18 +17,34 @@ public class MobsterScript : Enemy
     private Rigidbody2D playerRb;
     private bool inAttackRange;
     private bool attacking;
+    private SpriteRenderer sr;
+    
+    //Animation
+    public Animator animator;
     
     
     protected override void Start()
     {
         base.Start();
         playerRb = Services.Player.GetComponent<Rigidbody2D>();
+        
+        sr = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        
+        sr.gameObject.transform.rotation = Quaternion.identity;
+        
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     void FixedUpdate()
     {
-        Vector3 targetPos = Services.Player.transform.position + 
-                            (Vector3) (playerRb.velocity.normalized * MoveLeadDistance);
+        Vector3 targetPos = Services.Player.transform.position + (Vector3) (playerRb.velocity.normalized * MoveLeadDistance);
         
         direction = Vector3.Lerp(direction, targetPos - transform.position, 0.1f);
         rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
@@ -36,8 +52,6 @@ public class MobsterScript : Enemy
         if (Vector3.Distance(Services.Player.transform.position, transform.position) > AttackRange && !attacking)
         {
             //Runs towards player, but not quite perfectly
-
-            
             rb.velocity = transform.right * MoveSpeed;
         }
         else if (!attacking)

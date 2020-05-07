@@ -1,9 +1,12 @@
 fileFormatVersion: 2
-guid: aae0b2b350cfe4742a5e11dfc4491397
+guid: 68c3657a44d364dc288a5e5d1027e92a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
+      type: 3}
+  - SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

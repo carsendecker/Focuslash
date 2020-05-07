@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -11,26 +12,36 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("Player Health")]
-    [SerializeField] private GameObject PlayerHealthBar;
-    [SerializeField] private GameObject HeartPrefab;
+    [SerializeField] private GameObject PlayerHealthBar = null;
+    [SerializeField] private GameObject HeartPrefab = null;
     [SerializeField] private Color FullHeartColor, EmptyHeartColor;
 
     [Header("Player Focus")]
 //    public Slider FocusSlider;
-    [SerializeField] private GameObject PlayerFocusBar;
-    [SerializeField] private GameObject FocusBarPrefab;
-    public TMP_Text AttackInstructionText;
+    [SerializeField] private Slider PlayerFocusBar = null;
+    [SerializeField] private Sprite[] FocusBarSprites = new Sprite[3];
+    public TMP_Text AttackInstructionText = null;
     [SerializeField] private Color EmptyFocusColor;
     private Color fullFocusColor;
 
-    [Header("Score")] 
-    public TMP_Text ScoreText;
+    [Header("Overlays")] 
+    public SpriteRenderer CameraOverlay;
+    public Color PlayerFocusColor, PlayerDeathColor;
+    public Image FullOverlay;
+
+    [Header("Boss")] 
+    [SerializeField] private bool SceneHasBoss;
+    [SerializeField] private Slider BossHealthBar;
+    [SerializeField] private Creature BossEnemy;
+    private bool bossIntroDone;
+    private float bossLerpTime;
 
     [Header("Other Screens")]
     public GameObject LoadingScreen;
 
     private List<Image> playerHearts = new List<Image>();
-    private List<Slider> playerFocus = new List<Slider>();
+
+    // private List<Slider> playerFocus = new List<Slider>();
     
     
     void Awake()
@@ -42,10 +53,10 @@ public class UIManager : MonoBehaviour
             playerHearts.Add(child.GetComponent<Image>());
         }
 
-        foreach (Transform child in PlayerFocusBar.transform)
-        {
-            playerFocus.Add(child.GetComponent<Slider>());
-        }
+        // foreach (Transform child in PlayerFocusBar.transform)
+        // {
+        //     playerFocus.Add(child.GetComponent<Slider>());
+        // }
     }
 
     private void Start()
@@ -57,8 +68,29 @@ public class UIManager : MonoBehaviour
             heart.color = FullHeartColor;
         }
         
-        fullFocusColor = playerFocus[0].GetComponentsInChildren<Image>()[1].color;
-        UpdateFocusSliderBounds();
+        fullFocusColor = PlayerFocusBar.GetComponentsInChildren<Image>()[1].color;
+        PlayerFocusBar.maxValue = 3;
+        CameraOverlay.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (bossLerpTime > 0)
+        {
+            BHBTransform.sizeDelta = Vector2.Lerp(BHBTransform.sizeDelta, new Vector2(BHBPrevWidth, BHBTransform.sizeDelta.y), 0.1f);
+            BossHealthBar.GetComponentInChildren<TMP_Text>().enabled = true;
+            bossLerpTime -= Time.deltaTime;
+
+            if (bossLerpTime <= 0)
+            {
+                bossIntroDone = true;
+            }
+        }
+        
+        if (SceneHasBoss && bossIntroDone)
+        {
+            UpdateBossHealth();
+        }
     }
 
     /// <summary>
@@ -101,47 +133,50 @@ public class UIManager : MonoBehaviour
     public void UpdatePlayerFocus()
     {
         //Updates values of each bar
-        foreach (Slider bar in playerFocus)
-        {
-            bar.value = Mathf.Lerp(bar.value, Services.Player.CurrentFocus, 0.2f);
-        }
-
-        if (playerFocus[0].value < playerFocus[0].maxValue)
-            playerFocus[0].GetComponentsInChildren<Image>()[1].color = EmptyFocusColor;
+        PlayerFocusBar.value = Mathf.Lerp(PlayerFocusBar.value, Services.Player.CurrentFocus, 0.32f);
+        Image[] sliderSprites = PlayerFocusBar.GetComponentsInChildren<Image>();
+        
+        //Changes the color if full
+        if (PlayerFocusBar.value < 0.98f)
+            sliderSprites[1].color = EmptyFocusColor;
         else 
-            playerFocus[0].GetComponentsInChildren<Image>()[1].color = fullFocusColor;
-
-        //Adds and removes focus bars based on the player's AttackCount
-        while (playerFocus.Count != Services.Player.AttackCount)
+            sliderSprites[1].color = fullFocusColor;
+        
+        foreach (Image image in sliderSprites)
         {
-            //If the UI has less focus than the player's attack count
-            if (playerFocus.Count < Services.Player.AttackCount)
-            {
-                GameObject newBar = Instantiate(FocusBarPrefab, PlayerFocusBar.transform);
-                playerFocus.Add(newBar.GetComponent<Slider>());
-            }
-            //If the UI has more focus than the player's AC
-            else if (playerFocus.Count > Services.Player.AttackCount)
-            {
-                Slider barToRemove = playerFocus[playerFocus.Count - 1];
-                playerFocus.Remove(barToRemove);
-                Destroy(barToRemove.gameObject);
-            }
-            
-            UpdateFocusSliderBounds();
+            image.sprite = FocusBarSprites[Services.Player.AttackCount - 1];
         }
+
     }
 
+    
+    private float BHBPrevWidth;
+    private RectTransform BHBTransform;
     /// <summary>
-    /// Changes the max and min values of each slider so they work together idk
+    /// Enables and expands the boss' health bar all cool-like.
     /// </summary>
-    private void UpdateFocusSliderBounds()
+    /// <param name="introTime"> The length of time that it will take to fully lerp in the bar. </param>
+    public void EnableBossHealth(float introTime)
     {
-        for (int i = 0; i < playerFocus.Count; i++)
-        {
-            playerFocus[i].minValue = i;
-            playerFocus[i].maxValue = i + 1;
-        }
+        if (bossLerpTime > 0) return;
+
+        BossHealthBar.GetComponentInChildren<TMP_Text>().enabled = false;
+
+        BHBTransform = BossHealthBar.GetComponent<RectTransform>();
+        BHBPrevWidth = BHBTransform.sizeDelta.x;
+        BHBTransform.sizeDelta = new Vector2(0, 15f);
+
+        BossHealthBar.maxValue = BossEnemy.MaxHealth;
+        BossHealthBar.value = BossHealthBar.maxValue;
+        BossHealthBar.gameObject.SetActive(true);
+        
+        bossLerpTime = introTime;
+    }
+    
+
+    private void UpdateBossHealth()
+    {
+        BossHealthBar.value = Mathf.Lerp(BossHealthBar.value, BossEnemy.GetHealth(), 0.2f);
     }
 
 }
