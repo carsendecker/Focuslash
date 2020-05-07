@@ -19,22 +19,22 @@ MonoBehaviour:
   RotationSpeed: 1
   Patterns:
   - Direction: 0
-    FireRate: 1
-    BulletSpeed: 4
+    FireRate: 1.5
+    BulletSpeed: 4.25
     Angle: 0
     Offset: 0
   - Direction: 1
-    FireRate: 1
-    BulletSpeed: 4
+    FireRate: 1.5
+    BulletSpeed: 4.25
     Angle: 0
     Offset: 0
   - Direction: 2
-    FireRate: 1
-    BulletSpeed: 4
+    FireRate: 1.5
+    BulletSpeed: 4.25
     Angle: 0
     Offset: 0
   - Direction: 3
-    FireRate: 1
-    BulletSpeed: 4
+    FireRate: 1.5
+    BulletSpeed: 4.25
     Angle: 0
     Offset: 0

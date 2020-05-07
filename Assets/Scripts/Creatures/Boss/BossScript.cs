@@ -79,7 +79,6 @@ public class BossScript : Enemy
     {
         if (this.enabled && aggrod)
         {
-            Debug.Log("Going to Idle...");
             state.TransitionTo<Idle>();
         }
         
