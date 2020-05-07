@@ -780,10 +780,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 739202161, guid: d31783117a40a4d598c23d50bebd7469, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 3603083882343320647, guid: d31783117a40a4d598c23d50bebd7469,
         type: 3}
       propertyPath: m_LocalPosition.x
