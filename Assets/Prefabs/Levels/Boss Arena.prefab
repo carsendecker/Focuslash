@@ -7844,6 +7844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e2d7530491d48a1a591886da76a68a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IntroDuration: 6
+  Boss: {fileID: 739202161}
+  BossMusic: {fileID: 8300000, guid: c2014b960b5b84148a46636aab74e4a0, type: 3}
 --- !u!114 &1016697883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7878,16 +7881,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527310527468423436, guid: b0074b83b59b54f4db870d6927b1da3d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527310527468423437, guid: b0074b83b59b54f4db870d6927b1da3d,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5527310527468423438, guid: b0074b83b59b54f4db870d6927b1da3d,
         type: 3}
@@ -7944,28 +7937,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5527310527468423439, guid: b0074b83b59b54f4db870d6927b1da3d,
-        type: 3}
-      propertyPath: AttackPatterns.Array.data[0].bulletAttacks.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527310527468423439, guid: b0074b83b59b54f4db870d6927b1da3d,
-        type: 3}
-      propertyPath: AttackPatterns.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527310527468423439, guid: b0074b83b59b54f4db870d6927b1da3d,
-        type: 3}
-      propertyPath: AttackPatterns.Array.data[0].bulletAttacks.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: b931cca192ce049ee9d8e0ec38f3f2ae,
-        type: 2}
-    - target: {fileID: 5527310527468423439, guid: b0074b83b59b54f4db870d6927b1da3d,
-        type: 3}
-      propertyPath: AttackPatterns.Array.data[0].bulletAttacks.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 1d6b5a919cb404f7da9a9a69b1ffd743,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0074b83b59b54f4db870d6927b1da3d, type: 3}
 --- !u!1 &739202161 stripped

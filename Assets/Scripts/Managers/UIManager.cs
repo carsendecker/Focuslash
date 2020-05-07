@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
 
             if (bossLerpTime <= 0)
             {
+                bossIntroDone = true;
             }
         }
         

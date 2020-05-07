@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BehaviorTree;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class BossScript : Enemy
@@ -30,14 +31,20 @@ public class BossScript : Enemy
     private TaskManager taskManager = new TaskManager();
     private FiniteStateMachine<BossScript> state;
     private List<Attack> Attacks = new List<Attack>();
+    private SpriteRenderer sr;
+
+    private bool invulnerable;
     
     void Awake()
     {
         state = new FiniteStateMachine<BossScript>(this);
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
     
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+        
         Emitters.Add(Direction.Up, emitterObjs.up);
         Emitters.Add(Direction.Down, emitterObjs.down);
         Emitters.Add(Direction.Left, emitterObjs.left);
@@ -54,31 +61,63 @@ public class BossScript : Enemy
             //Adds all attacks into a list of Attack tasks to choose from later
             Attacks.Add(new Attack(this, attack.bulletAttacks));
         }
-
-
         
+        state.TransitionTo<Inactive>();
+
         Aggro(false);
         
     }
-    
+
+    protected override void Update()
+    {
+        base.Update();
+        state.Update();
+    }
+
 
     public override void Aggro(bool aggrod)
     {
         if (this.enabled && aggrod)
         {
+            Debug.Log("Going to Idle...");
             state.TransitionTo<Idle>();
         }
         
         base.Aggro(aggrod);
     }
-    
-    
+
+    public override bool TakeDamage(int damage)
+    {
+        if (invulnerable)
+        {
+            return false;
+        }
+        
+        return base.TakeDamage(damage);
+    }
+
+
     //=================================================
     // STATE MACHINE
     //=================================================
     
     #region States
 
+    private class Inactive : FiniteStateMachine<BossScript>.State
+    {
+        //Do nothing lol
+        
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+        }
+    }
+    
     private class Idle : FiniteStateMachine<BossScript>.State
     {
         private float cooldownTimer;
@@ -96,8 +135,8 @@ public class BossScript : Enemy
             if (cooldownTimer <= 0)
             {
                 //When at or below 2/3 HP and 1/3 HP, charge at the player
-                if ((Context.health <= Context.MaxHealth - Context.MaxHealth * (1/3) && timesCharged == 0) ||
-                    (Context.health <= Context.MaxHealth - Context.MaxHealth * (2/3) && timesCharged == 1))
+                if ((Context.health <= Context.MaxHealth * (2/3) && timesCharged == 0) ||
+                    (Context.health <= Context.MaxHealth * (1/3) && timesCharged == 1))
                 {
                     timesCharged++;
                     TransitionTo<Charging>();
@@ -117,7 +156,17 @@ public class BossScript : Enemy
             
         public override void OnEnter()
         {
+            Context.sr.color = Color.gray;
+            Context.gameObject.tag = "EnemyWall";
+            Context.invulnerable = true;
             ChooseNextAttack();
+        }
+
+        public override void OnExit()
+        {
+            Context.sr.color = Color.white;
+            Context.gameObject.tag = "Enemy";
+            Context.invulnerable = false;
         }
 
         public override void Update()

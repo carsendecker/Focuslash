@@ -9,6 +9,7 @@ TagManager:
   - Death Particles
   - Wall
   - AggroTrigger
+  - EnemyWall
   layers:
   - Default
   - TransparentFX
