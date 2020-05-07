@@ -1411,11 +1411,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6338114356120560933, guid: 499bd555025521a45a67aaf5f3150f46,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1911cb873454c44cf829e53fe65b7ced, type: 3}
     - target: {fileID: 6338114356708729451, guid: 499bd555025521a45a67aaf5f3150f46,
         type: 3}
       propertyPath: PlayerHealthBar
@@ -1433,29 +1428,14 @@ PrefabInstance:
       objectReference: {fileID: 159255233}
     - target: {fileID: 6338114356708729451, guid: 499bd555025521a45a67aaf5f3150f46,
         type: 3}
-      propertyPath: ColorOverlay
+      propertyPath: CameraOverlay
       value: 
       objectReference: {fileID: 1365947285}
     - target: {fileID: 6338114356708729451, guid: 499bd555025521a45a67aaf5f3150f46,
         type: 3}
-      propertyPath: FullCameraOverlay
+      propertyPath: FullOverlay
       value: 
       objectReference: {fileID: 2071628696}
-    - target: {fileID: 6338114356708729451, guid: 499bd555025521a45a67aaf5f3150f46,
-        type: 3}
-      propertyPath: PlayerFocusColor.r
-      value: 0.14311142
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338114356708729451, guid: 499bd555025521a45a67aaf5f3150f46,
-        type: 3}
-      propertyPath: PlayerFocusColor.g
-      value: 0.18182626
-      objectReference: {fileID: 0}
-    - target: {fileID: 6338114356708729451, guid: 499bd555025521a45a67aaf5f3150f46,
-        type: 3}
-      propertyPath: PlayerFocusColor.b
-      value: 0.4528302
-      objectReference: {fileID: 0}
     - target: {fileID: 6338114356965502568, guid: 499bd555025521a45a67aaf5f3150f46,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -12,6 +12,10 @@
             </e>
           </e>
         </e>
+        <e p="ScriptableObjects" t="Include">
+          <e p="Attack.cs" t="Include" />
+          <e p="BulletAttack.cs" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="Creatures" t="Include">
             <e p="Boss" t="Include">
@@ -53,10 +57,6 @@
             <e p="MovePhase.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerPhase.cs" t="Include" />
-          </e>
-          <e p="ScriptableObjects" t="Include">
-            <e p="Attack.cs" t="Include" />
-            <e p="BulletAttack.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="PauseMenuScript.cs" t="Include" />

@@ -294,7 +294,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5700703269080340732, guid: 1dabdbf6d5dba4f7687934490bdacac3,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8d01f6c26557544df8b9c0c2918f1c93, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1911cb873454c44cf829e53fe65b7ced, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -435,9 +435,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7d3a11f2f3c087e45b4b365d61bb1c6e, type: 3}
   AttackInstructionText: {fileID: 0}
   EmptyFocusColor: {r: 0.7924528, g: 0.03364185, b: 0.03364185, a: 1}
-  ColorOverlay: {fileID: 0}
-  PlayerFocusColor: {r: 0.23529412, g: 0.28235295, b: 0.6117647, a: 0.23529412}
+  CameraOverlay: {fileID: 0}
+  PlayerFocusColor: {r: 0.14311142, g: 0.18182626, b: 0.4528302, a: 0.23529412}
   PlayerDeathColor: {r: 0.5566038, g: 0, b: 0.06905341, a: 0.23529412}
+  FullOverlay: {fileID: 0}
   LoadingScreen: {fileID: 0}
 --- !u!1 &6338114356965502571
 GameObject:
