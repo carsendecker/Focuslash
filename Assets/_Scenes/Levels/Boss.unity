@@ -780,6 +780,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 739202164, guid: d31783117a40a4d598c23d50bebd7469, type: 3}
+      propertyPath: MoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 739202164, guid: d31783117a40a4d598c23d50bebd7469, type: 3}
+      propertyPath: AttackCooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1016697884, guid: d31783117a40a4d598c23d50bebd7469, type: 3}
       propertyPath: IntroDuration
       value: 6

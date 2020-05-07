@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BehaviorTree;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BossScript : Enemy
 {
@@ -19,6 +20,7 @@ public class BossScript : Enemy
     }
     
     public Transform EmitterParent;
+    public float AttackCooldown;
     public EmitterContainer emitterObjs;
     
     [Tooltip("List of different combinations of Bullet Attacks.")]
@@ -26,11 +28,12 @@ public class BossScript : Enemy
 
     private Dictionary<Direction, GameObject> Emitters = new Dictionary<Direction, GameObject>();
     private TaskManager taskManager = new TaskManager();
-    private Tree<BossScript> bTree;
-
+    private FiniteStateMachine<BossScript> state;
+    private List<Attack> Attacks = new List<Attack>();
+    
     void Awake()
     {
-        InitializeBehavior();
+        state = new FiniteStateMachine<BossScript>(this);
     }
     
     void Start()
@@ -47,38 +50,120 @@ public class BossScript : Enemy
             {
                 Services.ObjectPools.Create(pattern.BulletPrefab, 50);
             }
+            
+            //Adds all attacks into a list of Attack tasks to choose from later
+            Attacks.Add(new Attack(this, attack.bulletAttacks));
         }
+
+
         
         Aggro(false);
         
     }
-
-    void Update()
-    {
-        taskManager.Update();
-    }
+    
 
     public override void Aggro(bool aggrod)
     {
         if (this.enabled && aggrod)
         {
-            var testAttack = new Attack(this, AttackPatterns[0].bulletAttacks);
-            taskManager.Do(testAttack);
+            state.TransitionTo<Idle>();
         }
         
         base.Aggro(aggrod);
     }
+    
+    
+    //=================================================
+    // STATE MACHINE
+    //=================================================
+    
+    #region States
 
-    private void InitializeBehavior()
+    private class Idle : FiniteStateMachine<BossScript>.State
     {
+        private float cooldownTimer;
+        private byte timesCharged;
+
+        public override void OnEnter()
+        {
+            cooldownTimer = Context.AttackCooldown;
+        }
+
+        public override void Update()
+        {
+            cooldownTimer -= Time.deltaTime;
+
+            if (cooldownTimer <= 0)
+            {
+                //When at or below 2/3 HP and 1/3 HP, charge at the player
+                if ((Context.health <= Context.MaxHealth - Context.MaxHealth * (1/3) && timesCharged == 0) ||
+                    (Context.health <= Context.MaxHealth - Context.MaxHealth * (2/3) && timesCharged == 1))
+                {
+                    timesCharged++;
+                    TransitionTo<Charging>();
+                }
+                else
+                {
+                    TransitionTo<Shooting>();
+                }
+            }
+        }
+    }
+
+    private class Shooting : FiniteStateMachine<BossScript>.State
+    {
+        private Queue<int> previousAttacks = new Queue<int>();
+        private int nextAttack;
+            
+        public override void OnEnter()
+        {
+            ChooseNextAttack();
+        }
+
+        public override void Update()
+        {
+            Context.taskManager.Update();
+        }
+
+        private void ChooseNextAttack()
+        {
+            do
+            {
+                nextAttack = Random.Range(0, Context.AttackPatterns.Count);
+            } while (previousAttacks.Contains(nextAttack));
+
+            if(previousAttacks.Count == 2)
+                previousAttacks.Dequeue();
+            
+            previousAttacks.Enqueue(nextAttack);
+
+            Context.taskManager.Do(Context.Attacks[nextAttack]);
+        }
         
     }
     
-    #region Nodes
+    private class Charging : FiniteStateMachine<BossScript>.State
+    {
+        public override void OnEnter()
+        {
+            Debug.Log("Is going to charge!");
+            TransitionTo<Idle>();
+        }
 
-    
+        public override void Update()
+        {
+            
+        }
+        
+    }
 
     #endregion
+
+    
+    
+    //=================================================
+    // TASK MANAGER TASKS
+    //=================================================
 
     #region Tasks
     
@@ -128,13 +213,9 @@ public class BossScript : Enemy
 
         protected override void OnSuccess()
         {
-            Debug.Log("Success!");
+            boss.state.TransitionTo<Idle>();
         }
-
-        protected override void OnFail()
-        {
-            
-        }
+        
 
         /// <summary>
         /// Takes a BulletAttack object and fires the attack according to them specific specifications
