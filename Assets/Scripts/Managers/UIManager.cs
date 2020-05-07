@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -27,6 +28,13 @@ public class UIManager : MonoBehaviour
     public SpriteRenderer CameraOverlay;
     public Color PlayerFocusColor, PlayerDeathColor;
     public Image FullOverlay;
+
+    [Header("Boss")] 
+    [SerializeField] private bool SceneHasBoss;
+    [SerializeField] private Slider BossHealthBar;
+    [SerializeField] private Creature BossEnemy;
+    private bool bossIntroDone;
+    private float bossLerpTime;
 
     [Header("Other Screens")]
     public GameObject LoadingScreen;
@@ -63,6 +71,26 @@ public class UIManager : MonoBehaviour
         fullFocusColor = PlayerFocusBar.GetComponentsInChildren<Image>()[1].color;
         PlayerFocusBar.maxValue = 3;
         CameraOverlay.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (bossLerpTime > 0)
+        {
+            BHBTransform.sizeDelta = Vector2.Lerp(BHBTransform.sizeDelta, new Vector2(BHBPrevWidth, BHBTransform.sizeDelta.y), 0.1f);
+            BossHealthBar.GetComponentInChildren<TMP_Text>().enabled = true;
+            bossLerpTime -= Time.deltaTime;
+
+            if (bossLerpTime <= 0)
+            {
+                bossIntroDone = true;
+            }
+        }
+        
+        if (SceneHasBoss && bossIntroDone)
+        {
+            UpdateBossHealth();
+        }
     }
 
     /// <summary>
@@ -119,6 +147,36 @@ public class UIManager : MonoBehaviour
             image.sprite = FocusBarSprites[Services.Player.AttackCount - 1];
         }
 
+    }
+
+    
+    private float BHBPrevWidth;
+    private RectTransform BHBTransform;
+    /// <summary>
+    /// Enables and expands the boss' health bar all cool-like.
+    /// </summary>
+    /// <param name="introTime"> The length of time that it will take to fully lerp in the bar. </param>
+    public void EnableBossHealth(float introTime)
+    {
+        if (bossLerpTime > 0) return;
+
+        BossHealthBar.GetComponentInChildren<TMP_Text>().enabled = false;
+
+        BHBTransform = BossHealthBar.GetComponent<RectTransform>();
+        BHBPrevWidth = BHBTransform.sizeDelta.x;
+        BHBTransform.sizeDelta = new Vector2(0, 15f);
+
+        BossHealthBar.maxValue = BossEnemy.MaxHealth;
+        BossHealthBar.value = BossHealthBar.maxValue;
+        BossHealthBar.gameObject.SetActive(true);
+        
+        bossLerpTime = introTime;
+    }
+    
+
+    private void UpdateBossHealth()
+    {
+        BossHealthBar.value = Mathf.Lerp(BossHealthBar.value, BossEnemy.GetHealth(), 0.2f);
     }
 
 }

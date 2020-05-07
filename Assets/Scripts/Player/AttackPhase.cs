@@ -144,7 +144,7 @@ public class AttackPhase : PlayerPhase
 	public override void OnTriggerStay2D(Collider2D col)
 	{
 		//If you are inside a wall, get knocked out of attacking
-		if (col.gameObject.CompareTag("Wall"))
+		if (col.gameObject.CompareTag("Wall") || col.gameObject.CompareTag("EnemyWall"))
 		{
 			HitWall();
 		}

@@ -12,6 +12,10 @@
             </e>
           </e>
         </e>
+        <e p="ScriptableObjects" t="Include">
+          <e p="Attack.cs" t="Include" />
+          <e p="BulletAttack.cs" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="Creatures" t="Include">
             <e p="Boss" t="Include">
@@ -54,10 +58,6 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerPhase.cs" t="Include" />
           </e>
-          <e p="ScriptableObjects" t="Include">
-            <e p="Attack.cs" t="Include" />
-            <e p="BulletAttack.cs" t="Include" />
-          </e>
           <e p="UI" t="Include">
             <e p="PauseMenuScript.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
@@ -84,6 +84,7 @@
           </e>
           <e p="World" t="Include">
             <e p="BlockerDoorScript.cs" t="Include" />
+            <e p="BossArena.cs" t="Include" />
             <e p="DoorScript.cs" t="Include" />
             <e p="EndlessEnemySpawner.cs" t="Include" />
             <e p="EnemySpawner.cs" t="Include" />

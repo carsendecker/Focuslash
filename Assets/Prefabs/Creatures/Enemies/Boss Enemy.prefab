@@ -224,10 +224,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Boss Boi
   MaxHealth: 20
-  MoveSpeed: 0
+  MoveSpeed: 2
   Damage: 1
   rb: {fileID: 0}
   EmitterParent: {fileID: 5515690952578497254}
+  AttackCooldown: 5
   emitterObjs:
     up: {fileID: 8392080543269609975}
     down: {fileID: 2144882853664587163}
@@ -235,7 +236,17 @@ MonoBehaviour:
     right: {fileID: 5702505950258276170}
   AttackPatterns:
   - bulletAttacks:
-    - {fileID: 0}
+    - {fileID: 11400000, guid: b931cca192ce049ee9d8e0ec38f3f2ae, type: 2}
+    - {fileID: 11400000, guid: 1d6b5a919cb404f7da9a9a69b1ffd743, type: 2}
+  - bulletAttacks:
+    - {fileID: 11400000, guid: 536e9fbb31d9c43d4be0a86cf46ae02f, type: 2}
+    - {fileID: 11400000, guid: 450eda1c5449d486e8d3d5e6fa9324db, type: 2}
+    - {fileID: 11400000, guid: fb1218da44c2e4162a2b49ab692d07e4, type: 2}
+    - {fileID: 11400000, guid: 2e34a0d65947645c8aed53934de7f20e, type: 2}
+  - bulletAttacks:
+    - {fileID: 11400000, guid: eeaede7c400e24d55ac09df3d7600ded, type: 2}
+  - bulletAttacks:
+    - {fileID: 11400000, guid: 95d853ea0af004b05a58861575b22c22, type: 2}
 --- !u!58 &5527310527468423436
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -251,7 +262,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.2
 --- !u!50 &5527310527468423437
 Rigidbody2D:
   serializedVersion: 4
@@ -260,7 +271,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5527310527468423434}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
