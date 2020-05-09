@@ -22,6 +22,7 @@ public class BossScript : Enemy
     
     public Transform EmitterParent;
     public float AttackCooldown;
+    public Rigidbody2D ShieldParent;
     public EmitterContainer emitterObjs;
     
     [Tooltip("List of different combinations of Bullet Attacks.")]
@@ -34,11 +35,14 @@ public class BossScript : Enemy
     private SpriteRenderer sr;
 
     private bool invulnerable;
+    private Vector2 direction;
+    private bool shieldUp;
     
     void Awake()
     {
         state = new FiniteStateMachine<BossScript>(this);
         sr = GetComponentInChildren<SpriteRenderer>();
+        ShieldParent.gameObject.SetActive(false);
     }
     
     protected override void Start()
@@ -66,12 +70,22 @@ public class BossScript : Enemy
 
         Aggro(false);
         
+        Services.Events.Register<PlayerLeftAttackPhase>(PutUpShield);
+        
     }
 
     protected override void Update()
     {
         base.Update();
         state.Update();
+
+        if (!Services.Player.IsPhase(PlayerController.Phase.Attacking))
+        {
+            Vector3 targetPos = Services.Player.transform.position;
+
+            direction = Vector3.Lerp(direction, targetPos - transform.position, 0.04f);
+            ShieldParent.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+        }
     }
 
 
@@ -79,7 +93,6 @@ public class BossScript : Enemy
     {
         if (this.enabled && aggrod)
         {
-            Debug.Log("Going to Idle...");
             state.TransitionTo<Idle>();
         }
         
@@ -92,8 +105,25 @@ public class BossScript : Enemy
         {
             return false;
         }
+
+        if (shieldUp)
+        {
+            ShieldParent.gameObject.SetActive(false);
+        }
         
         return base.TakeDamage(damage);
+    }
+
+    private void PutUpShield(AGPEvent e)
+    {
+        if (!shieldUp) return;
+        
+        ShieldParent.gameObject.SetActive(true);
+    }
+
+    protected override void Die()
+    {
+        Destroy(gameObject);
     }
 
 
@@ -131,7 +161,7 @@ public class BossScript : Enemy
         public override void Update()
         {
             cooldownTimer -= Time.deltaTime;
-
+            
             if (cooldownTimer <= 0)
             {
                 //When at or below 2/3 HP and 1/3 HP, charge at the player
@@ -140,6 +170,11 @@ public class BossScript : Enemy
                 {
                     timesCharged++;
                     TransitionTo<Charging>();
+                }
+                else if (!Context.shieldUp && Context.health <= Context.MaxHealth / 2f)
+                {
+                    Context.shieldUp = true;
+                    Context.ShieldParent.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -153,13 +188,15 @@ public class BossScript : Enemy
     {
         private Queue<int> previousAttacks = new Queue<int>();
         private int nextAttack;
+        private bool pausing;
             
         public override void OnEnter()
         {
             Context.sr.color = Color.gray;
             Context.gameObject.tag = "EnemyWall";
             Context.invulnerable = true;
-            ChooseNextAttack();
+
+            Context.StartCoroutine(PauseUntilAttack());
         }
 
         public override void OnExit()
@@ -171,7 +208,19 @@ public class BossScript : Enemy
 
         public override void Update()
         {
+            if (pausing) return;
+            
             Context.taskManager.Update();
+        }
+
+        private IEnumerator PauseUntilAttack()
+        {
+            pausing = true;
+            
+            yield return new WaitForSeconds(1f);
+            
+            ChooseNextAttack();
+            pausing = false;
         }
 
         private void ChooseNextAttack()
