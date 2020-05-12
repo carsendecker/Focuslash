@@ -1632,6 +1632,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!114 &425918138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2038,6 +2039,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!114 &558748524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8116,7 +8118,7 @@ PrefabInstance:
     - target: {fileID: 4371407021459275596, guid: 9926ce3c04f994865b96850d3eb04f02,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4371407021459275596, guid: 9926ce3c04f994865b96850d3eb04f02,
         type: 3}
@@ -8331,7 +8333,7 @@ PrefabInstance:
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6377068023124523544, guid: 0dc4edfe971154522b6efa571cdb6b0b,
         type: 3}
@@ -8964,6 +8966,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!1 &1112413882
 GameObject:
   m_ObjectHideFlags: 0
@@ -9107,6 +9110,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!1 &1174568458
 GameObject:
   m_ObjectHideFlags: 0
@@ -9205,6 +9209,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!1001 &1180218035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9363,6 +9368,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!1 &1201569737
 GameObject:
   m_ObjectHideFlags: 0
@@ -12839,7 +12845,7 @@ PrefabInstance:
     - target: {fileID: 1563279627218692665, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627218692665, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
@@ -12914,37 +12920,37 @@ PrefabInstance:
     - target: {fileID: 1563279627218692805, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627382744845, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627382744845, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627382744845, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 7.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627382744845, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627382744845, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1563279627382744845, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d3cf347db4eb40b99fe86914b708c4b, type: 3}
@@ -59238,6 +59244,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!4 &1505923887560875761
 Transform:
   m_ObjectHideFlags: 0
@@ -59390,6 +59397,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!4 &1505923887992319501
 Transform:
   m_ObjectHideFlags: 0
@@ -59642,6 +59650,7 @@ MonoBehaviour:
   SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
     type: 3}
   SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  RoomFinishedSound: {fileID: 0}
 --- !u!4 &1505923888697247670
 Transform:
   m_ObjectHideFlags: 0
@@ -65481,7 +65490,7 @@ Transform:
   - {fileID: 1505923887992319501}
   - {fileID: 1505923888697247670}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1505923889444408285
 Grid:
@@ -69758,6 +69767,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!61 &5133780921229762646
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -69867,6 +69878,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!1 &5133780921229762666
 GameObject:
   m_ObjectHideFlags: 0
@@ -69964,6 +69977,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!212 &5133780921984077479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70620,6 +70635,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!1 &6041797978142185169
 GameObject:
   m_ObjectHideFlags: 0
@@ -70658,6 +70675,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!212 &6041797978142185171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70836,6 +70855,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!61 &6041797979238166440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -70954,6 +70975,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!212 &6041797979292780223
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -71023,6 +71046,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   startClosed: 0
   DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 0}
+  ClosedSprite: {fileID: 0}
 --- !u!212 &6041797979444665621
 SpriteRenderer:
   m_ObjectHideFlags: 0

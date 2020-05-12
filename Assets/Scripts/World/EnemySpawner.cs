@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     public bool SpawnInFirstWave;
     
     public GameObject SpawnParticlePrefab;
-    public AudioClip SpawningSound;
+    public AudioClip SpawningSound, RoomFinishedSound;
 
     private int waveNumber;
     private bool spawningWave;
@@ -166,6 +166,18 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     private void RoomOver()
     {
+        if (SpawnObjectOnFinish)
+        {
+            ObjectToSpawn.SetActive(true);
+        }
+
+        StartCoroutine(WaitToOpen());
+    }
+
+    private IEnumerator WaitToOpen()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        
         //Make all doors slashable
         if (!KeepDoorsClosedOnFinish)
         {
@@ -174,11 +186,8 @@ public class EnemySpawner : MonoBehaviour
                 door.makeDoorSlashable();
             }
         }
-
-        if (SpawnObjectOnFinish)
-        {
-            ObjectToSpawn.SetActive(true);
-        }
+        
+        Services.Audio.PlaySound(RoomFinishedSound, SourceType.AmbientSound);
         
         Destroy(this);
     }
