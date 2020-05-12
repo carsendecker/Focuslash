@@ -12391,7 +12391,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: df5638e3d1cd0b14a942c7481eca27d0, type: 3}
+      objectReference: {fileID: 8300000, guid: 1911cb873454c44cf829e53fe65b7ced, type: 3}
     - target: {fileID: 6338114356708729451, guid: 499bd555025521a45a67aaf5f3150f46,
         type: 3}
       propertyPath: PlayerHealthBar
