@@ -61,6 +61,11 @@ public class EnemySpawner : MonoBehaviour
         if (ObjectToSpawn != null) ObjectToSpawn.SetActive(false);
 
         roomDoors = GetComponentsInChildren<BlockerDoorScript>();
+
+        if (RoomFinishedSound == null)
+        {
+            RoomFinishedSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Sprites/Happy.wav");
+        }
     }
     
 
@@ -176,7 +181,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator WaitToOpen()
     {
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(1f);
         
         //Make all doors slashable
         if (!KeepDoorsClosedOnFinish)
@@ -196,6 +201,8 @@ public class EnemySpawner : MonoBehaviour
     
     //=================== EDITOR TOOL METHODS ==================//
 
+    #region Editor
+    
 #if UNITY_EDITOR
     
     /// <summary>
@@ -294,4 +301,6 @@ public class EnemySpawner : MonoBehaviour
 
         return -1;
     }
+    
+    #endregion
 }

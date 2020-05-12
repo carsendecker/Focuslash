@@ -4,9 +4,11 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - ObjectToSpawn: {instanceID: 0}
   - SpawnParticlePrefab: {fileID: 9019214194841004800, guid: 2cbff120a62f242e78cfca4aa8ce5c4b,
       type: 3}
   - SpawningSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  - RoomFinishedSound: {fileID: 8300000, guid: f90984f263234498cadbcbbd9b2ef50f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
