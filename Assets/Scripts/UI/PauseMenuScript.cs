@@ -38,7 +38,7 @@ public class PauseMenuScript : MonoBehaviour
         Time.timeScale = 0f;
         gameIsPaused = true;
 
-        Services.Player.enabled = false;
+      Services.Player.enabled = false;
     }
     
     public void Resume()
@@ -47,7 +47,7 @@ public class PauseMenuScript : MonoBehaviour
         Time.timeScale = 1f;
         gameIsPaused = false;
         
-        Services.Player.enabled = true;
+       Services.Player.enabled = true;
 
     }
 
