@@ -30,9 +30,9 @@ public class BlockerDoorScript : Creature
     }
 
     public void closeDoorWay()
-   {
-       //Set the game object to active here.
-        gameObject.SetActive(true);
+    {
+        thisSpriteRenderer.sprite = ClosedSprite;
+        col.enabled = true;
         tag = "Wall";
         Services.Audio.PlaySound(DoorSound, SourceType.AmbientSound);
    }
