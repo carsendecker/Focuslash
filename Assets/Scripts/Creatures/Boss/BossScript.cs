@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BehaviorTree;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class BossScript : Enemy
@@ -24,6 +25,7 @@ public class BossScript : Enemy
     public float AttackCooldown;
     public Rigidbody2D ShieldParent;
     public EmitterContainer emitterObjs;
+    public AudioClip deathSound, whooshSound;
     
     [Tooltip("List of different combinations of Bullet Attacks.")]
     public List<AttackPattern> AttackPatterns = new List<AttackPattern>();
@@ -123,7 +125,36 @@ public class BossScript : Enemy
 
     protected override void Die()
     {
-        Destroy(gameObject);
+        StartCoroutine(DeathCutscene());
+    }
+
+    private IEnumerator DeathCutscene()
+    {
+        Time.timeScale = 0f;
+        Services.Audio.PlaySound(deathSound, SourceType.CreatureSound);
+        Services.Audio.StopMusic();
+
+        Services.UI.CameraOverlay.color = new Color(1f, 1f, 1f, 0.75f);
+        Services.UI.CameraOverlay.enabled = true;
+        
+        yield return new WaitForSecondsRealtime(1.75f);
+
+        Time.timeScale = 0.01f;
+        
+        Services.Audio.PlaySound(whooshSound, SourceType.AmbientSound);
+
+        float t = 0;
+        while (t < 1f)
+        {
+            Services.UI.FullOverlay.enabled = true;
+            Services.UI.FullOverlay.color = Color.Lerp(Color.clear, Color.white, t);
+            t += Time.fixedDeltaTime * 0.15f;
+            yield return 0;
+        }
+        
+        yield return new WaitForSecondsRealtime(1f);
+
+        SceneManager.LoadScene(5);
     }
 
 
@@ -184,6 +215,9 @@ public class BossScript : Enemy
         }
     }
 
+    /// <summary>
+    /// The state the boss enters when its... shooting
+    /// </summary>
     private class Shooting : FiniteStateMachine<BossScript>.State
     {
         private Queue<int> previousAttacks = new Queue<int>();
@@ -338,10 +372,8 @@ public class BossScript : Enemy
                 {
                     AttackCoroutines.Add(boss.StartCoroutine(Shoot(attack.BulletPrefab, pattern)));
                 }
-
                 coroutinesStarted = true;
             }
-
 
             boss.EmitterParent.Rotate(new Vector3(0, 0, attack.RotationSpeed));
 

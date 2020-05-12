@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Game Center Admin\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Game Center Admin\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Focuslash.-672334580.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Game Center Admin\Documents\Unity Projects\Focuslash" t="IncludeRecursive">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -75,6 +73,7 @@
             </e>
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
+            <e p="CreditsScreen.cs" t="Include" />
             <e p="DestroyAfterTime.cs" t="Include" />
             <e p="EditorStuff" t="Include">
               <e p="AssignToSpawnWave.cs" t="Include" />
@@ -125,7 +124,10 @@
       <e p="Focuslash.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
     </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_Focuslash.-300633837.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
   </component>
 </project>

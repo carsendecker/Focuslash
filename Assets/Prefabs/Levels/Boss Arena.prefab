@@ -7844,7 +7844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e2d7530491d48a1a591886da76a68a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntroDuration: 6
+  IntroDuration: 5
   Boss: {fileID: 739202161}
   BossMusic: {fileID: 8300000, guid: c2014b960b5b84148a46636aab74e4a0, type: 3}
 --- !u!114 &1016697883

@@ -236,6 +236,8 @@ MonoBehaviour:
     down: {fileID: 2144882853664587163}
     left: {fileID: 2471022691267958176}
     right: {fileID: 5702505950258276170}
+  deathSound: {fileID: 8300000, guid: 3815f4634983a4a079a0f75a50c6312f, type: 3}
+  whooshSound: {fileID: 8300000, guid: 7a22ad009c4bf4aaea8644166d59b590, type: 3}
   AttackPatterns:
   - bulletAttacks:
     - {fileID: 11400000, guid: b931cca192ce049ee9d8e0ec38f3f2ae, type: 2}
@@ -427,8 +429,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9214837191144140427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.43, y: -0.04, z: 0}
-  m_LocalScale: {x: 0.47298998, y: 2.1989603, z: 0.07711}
+  m_LocalPosition: {x: 1.43, y: 0.008, z: 0}
+  m_LocalScale: {x: 0.47298998, y: 1.7244508, z: 0.07711}
   m_Children: []
   m_Father: {fileID: 8310533061381221758}
   m_RootOrder: 0
