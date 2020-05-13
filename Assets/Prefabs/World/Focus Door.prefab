@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8734296311972347452}
   - component: {fileID: 8003910056725925538}
+  - component: {fileID: 2627519177884151780}
   - component: {fileID: 6292985754674513302}
-  - component: {fileID: 7319345577122859348}
   - component: {fileID: 8902292922782408034}
   m_Layer: 0
   m_Name: Focus Door
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1951375231002363255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.42, z: 0}
-  m_LocalScale: {x: 4.025, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 858ea317411510c4790e5af8a4cdd907, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6acd944496f74b4387ce82c9325af0b, type: 3}
   m_Color: {r: 0.24313727, g: 0.86666673, b: 0.86666673, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,6 +84,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2627519177884151780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951375231002363255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3dbc667b5177a45b685a86862fa960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  MaxHealth: 0
+  MoveSpeed: 0
+  Damage: 0
+  rb: {fileID: 0}
+  startClosed: 1
+  startSlashable: 1
+  DoorSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
+  OpenSprite: {fileID: 21300000, guid: b46d11c5b918c41a799c3353f08facec, type: 3}
+  ClosedSprite: {fileID: 21300000, guid: b6acd944496f74b4387ce82c9325af0b, type: 3}
 --- !u!61 &6292985754674513302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -101,35 +123,15 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.92, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.92, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &7319345577122859348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951375231002363255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c5fbb33c6759e845a6fae4d871ac9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  MaxHealth: 1
-  MoveSpeed: 0
-  Damage: 0
-  rb: {fileID: 0}
-  XPValue: 0
-  DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
-    type: 3}
 --- !u!50 &8902292922782408034
 Rigidbody2D:
   serializedVersion: 4

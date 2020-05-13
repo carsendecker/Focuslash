@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BehaviorTree;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class BossScript : Enemy
@@ -22,7 +23,9 @@ public class BossScript : Enemy
     
     public Transform EmitterParent;
     public float AttackCooldown;
+    public Rigidbody2D ShieldParent;
     public EmitterContainer emitterObjs;
+    public AudioClip deathSound, whooshSound;
     
     [Tooltip("List of different combinations of Bullet Attacks.")]
     public List<AttackPattern> AttackPatterns = new List<AttackPattern>();
@@ -34,11 +37,14 @@ public class BossScript : Enemy
     private SpriteRenderer sr;
 
     private bool invulnerable;
+    private Vector2 direction;
+    private bool shieldUp;
     
     void Awake()
     {
         state = new FiniteStateMachine<BossScript>(this);
         sr = GetComponentInChildren<SpriteRenderer>();
+        ShieldParent.gameObject.SetActive(false);
     }
     
     protected override void Start()
@@ -66,12 +72,22 @@ public class BossScript : Enemy
 
         Aggro(false);
         
+        Services.Events.Register<PlayerLeftAttackPhase>(PutUpShield);
+        
     }
 
     protected override void Update()
     {
         base.Update();
         state.Update();
+
+        if (!Services.Player.IsPhase(PlayerController.Phase.Attacking))
+        {
+            Vector3 targetPos = Services.Player.transform.position;
+
+            direction = Vector3.Lerp(direction, targetPos - transform.position, 0.04f);
+            ShieldParent.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+        }
     }
 
 
@@ -91,8 +107,54 @@ public class BossScript : Enemy
         {
             return false;
         }
+
+        if (shieldUp)
+        {
+            ShieldParent.gameObject.SetActive(false);
+        }
         
         return base.TakeDamage(damage);
+    }
+
+    private void PutUpShield(AGPEvent e)
+    {
+        if (!shieldUp) return;
+        
+        ShieldParent.gameObject.SetActive(true);
+    }
+
+    protected override void Die()
+    {
+        StartCoroutine(DeathCutscene());
+    }
+
+    private IEnumerator DeathCutscene()
+    {
+        Time.timeScale = 0f;
+        Services.Audio.PlaySound(deathSound, SourceType.CreatureSound);
+        Services.Audio.StopMusic();
+
+        Services.UI.CameraOverlay.color = new Color(1f, 1f, 1f, 0.75f);
+        Services.UI.CameraOverlay.enabled = true;
+        
+        yield return new WaitForSecondsRealtime(1.75f);
+
+        Time.timeScale = 0.01f;
+        
+        Services.Audio.PlaySound(whooshSound, SourceType.AmbientSound);
+
+        float t = 0;
+        while (t < 1f)
+        {
+            Services.UI.FullOverlay.enabled = true;
+            Services.UI.FullOverlay.color = Color.Lerp(Color.clear, Color.white, t);
+            t += Time.fixedDeltaTime * 0.15f;
+            yield return 0;
+        }
+        
+        yield return new WaitForSecondsRealtime(1f);
+
+        SceneManager.LoadScene(5);
     }
 
 
@@ -130,7 +192,7 @@ public class BossScript : Enemy
         public override void Update()
         {
             cooldownTimer -= Time.deltaTime;
-
+            
             if (cooldownTimer <= 0)
             {
                 //When at or below 2/3 HP and 1/3 HP, charge at the player
@@ -140,6 +202,11 @@ public class BossScript : Enemy
                     timesCharged++;
                     TransitionTo<Charging>();
                 }
+                else if (!Context.shieldUp && Context.health <= Context.MaxHealth / 2f)
+                {
+                    Context.shieldUp = true;
+                    Context.ShieldParent.gameObject.SetActive(true);
+                }
                 else
                 {
                     TransitionTo<Shooting>();
@@ -148,17 +215,22 @@ public class BossScript : Enemy
         }
     }
 
+    /// <summary>
+    /// The state the boss enters when its... shooting
+    /// </summary>
     private class Shooting : FiniteStateMachine<BossScript>.State
     {
         private Queue<int> previousAttacks = new Queue<int>();
         private int nextAttack;
+        private bool pausing;
             
         public override void OnEnter()
         {
             Context.sr.color = Color.gray;
             Context.gameObject.tag = "EnemyWall";
             Context.invulnerable = true;
-            ChooseNextAttack();
+
+            Context.StartCoroutine(PauseUntilAttack());
         }
 
         public override void OnExit()
@@ -170,7 +242,19 @@ public class BossScript : Enemy
 
         public override void Update()
         {
+            if (pausing) return;
+            
             Context.taskManager.Update();
+        }
+
+        private IEnumerator PauseUntilAttack()
+        {
+            pausing = true;
+            
+            yield return new WaitForSeconds(1f);
+            
+            ChooseNextAttack();
+            pausing = false;
         }
 
         private void ChooseNextAttack()
@@ -288,10 +372,8 @@ public class BossScript : Enemy
                 {
                     AttackCoroutines.Add(boss.StartCoroutine(Shoot(attack.BulletPrefab, pattern)));
                 }
-
                 coroutinesStarted = true;
             }
-
 
             boss.EmitterParent.Rotate(new Vector3(0, 0, attack.RotationSpeed));
 

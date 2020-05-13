@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     public bool SpawnInFirstWave;
     
     public GameObject SpawnParticlePrefab;
-    public AudioClip SpawningSound;
+    public AudioClip SpawningSound, RoomFinishedSound;
 
     private int waveNumber;
     private bool spawningWave;
@@ -61,6 +61,11 @@ public class EnemySpawner : MonoBehaviour
         if (ObjectToSpawn != null) ObjectToSpawn.SetActive(false);
 
         roomDoors = GetComponentsInChildren<BlockerDoorScript>();
+
+        if (RoomFinishedSound == null)
+        {
+            RoomFinishedSound = (AudioClip) AssetDatabase.LoadAssetAtPath("Assets/Sprites/Happy.wav", typeof(AudioClip));
+        }
     }
     
 
@@ -166,6 +171,18 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     private void RoomOver()
     {
+        if (SpawnObjectOnFinish)
+        {
+            ObjectToSpawn.SetActive(true);
+        }
+
+        StartCoroutine(WaitToOpen());
+    }
+
+    private IEnumerator WaitToOpen()
+    {
+        yield return new WaitForSecondsRealtime(0.7f);
+        
         //Make all doors slashable
         if (!KeepDoorsClosedOnFinish)
         {
@@ -174,11 +191,8 @@ public class EnemySpawner : MonoBehaviour
                 door.makeDoorSlashable();
             }
         }
-
-        if (SpawnObjectOnFinish)
-        {
-            ObjectToSpawn.SetActive(true);
-        }
+        
+        Services.Audio.PlaySound(RoomFinishedSound, SourceType.AmbientSound);
         
         Destroy(this);
     }
@@ -187,6 +201,8 @@ public class EnemySpawner : MonoBehaviour
     
     //=================== EDITOR TOOL METHODS ==================//
 
+    #region Editor
+    
 #if UNITY_EDITOR
     
     /// <summary>
@@ -285,4 +301,6 @@ public class EnemySpawner : MonoBehaviour
 
         return -1;
     }
+    
+    #endregion
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8501727589121348825}
   - component: {fileID: 8501727589121348824}
   - component: {fileID: 8501727589121348822}
-  - component: {fileID: 8501727589121348823}
+  - component: {fileID: 2326357092809358487}
   m_Layer: 0
   m_Name: Exit Gate
   m_TagString: Untagged
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a5ee4574c13c74dc7b764726dd96dc6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 87f639aaed9b0dc429646559768253dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,9 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8e66439b802bb4d838d8c084d970ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitions: {fileID: 0}
---- !u!58 &8501727589121348823
-CircleCollider2D:
+  sceneNumber: 0
+--- !u!61 &2326357092809358487
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,5 +110,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.6060606, y: 0.6060606}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.3030303
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

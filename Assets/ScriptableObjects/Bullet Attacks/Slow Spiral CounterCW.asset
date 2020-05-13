@@ -16,7 +16,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 3196917951569527822, guid: cccbc1c4d946645d0988558449e7fd16,
     type: 3}
   AttackDuration: 5
-  RotationSpeed: -2
+  RotationSpeed: -2.3
   Patterns:
   - Direction: 0
     FireRate: 15
