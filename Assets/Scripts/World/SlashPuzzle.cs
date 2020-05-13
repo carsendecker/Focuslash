@@ -8,6 +8,7 @@ public class SlashPuzzle : MonoBehaviour
 {
     [HideInInspector] public List<SlashSensor> SlashSensors = new List<SlashSensor>();
     public GameObject DoorToOpen;
+    public AudioClip CompleteSound;
 
     public bool Opened
     {
@@ -17,7 +18,8 @@ public class SlashPuzzle : MonoBehaviour
             isOpened = value;
             if (value)
             {
-                Destroy(DoorToOpen.gameObject);
+                DoorToOpen.GetComponent<BlockerDoorScript>().makeDoorSlashable();
+                Services.Audio.PlaySound(CompleteSound, SourceType.AmbientSound);
                 Services.Events.Unregister<PlayerLeftAttackPhase>(ResetSensors);
             }
         }

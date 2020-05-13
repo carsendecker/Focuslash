@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (RoomFinishedSound == null)
         {
-            RoomFinishedSound = AssetDatabase.LoadAssetAtPath<AudioClip>("Assets/Sprites/Happy.wav");
+            RoomFinishedSound = (AudioClip) AssetDatabase.LoadAssetAtPath("Assets/Sprites/Happy.wav", typeof(AudioClip));
         }
     }
     
@@ -181,7 +181,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator WaitToOpen()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.7f);
         
         //Make all doors slashable
         if (!KeepDoorsClosedOnFinish)

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlashSensors: []
   DoorToOpen: {fileID: 0}
+  CompleteSound: {fileID: 8300000, guid: f90984f263234498cadbcbbd9b2ef50f, type: 3}
 --- !u!1001 &2675434140998003957
 PrefabInstance:
   m_ObjectHideFlags: 0
