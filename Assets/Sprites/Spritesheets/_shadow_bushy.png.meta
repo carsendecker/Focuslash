@@ -1,7 +1,88 @@
 fileFormatVersion: 2
 guid: 54355ec48b154fe438ed2359c989c7ff
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4923391428317985931
+    second: _shadow_bushy_0
+  - first:
+      213: -594320535557803324
+    second: _shadow_bushy_1
+  - first:
+      213: 604125382277277774
+    second: _shadow_bushy_2
+  - first:
+      213: -266245482608757559
+    second: _shadow_bushy_3
+  - first:
+      213: -7127680496400709451
+    second: _shadow_bushy_4
+  - first:
+      213: 3279081992098040625
+    second: _shadow_bushy_5
+  - first:
+      213: -7994217463072163989
+    second: _shadow_bushy_6
+  - first:
+      213: -8930765658527127928
+    second: _shadow_bushy_7
+  - first:
+      213: -4230142419813195447
+    second: _shadow_bushy_8
+  - first:
+      213: -2939839399422321239
+    second: _shadow_bushy_9
+  - first:
+      213: -7347483987296572397
+    second: _shadow_bushy_10
+  - first:
+      213: -1774633814001509932
+    second: _shadow_bushy_11
+  - first:
+      213: 3118452238172021997
+    second: _shadow_bushy_12
+  - first:
+      213: 6796516354543756370
+    second: _shadow_bushy_13
+  - first:
+      213: -1195834220005081648
+    second: _shadow_bushy_14
+  - first:
+      213: -6108683516664738036
+    second: _shadow_bushy_15
+  - first:
+      213: -8373298245056062561
+    second: _shadow_bushy_16
+  - first:
+      213: 6436664033720422281
+    second: _shadow_bushy_17
+  - first:
+      213: -1895476398282543896
+    second: _shadow_bushy_18
+  - first:
+      213: 1146867423200083428
+    second: _shadow_bushy_19
+  - first:
+      213: -607708443660406999
+    second: _shadow_bushy_20
+  - first:
+      213: 6829489078652605411
+    second: _shadow_bushy_21
+  - first:
+      213: 5999323925460056163
+    second: _shadow_bushy_22
+  - first:
+      213: 4805377612308350900
+    second: _shadow_bushy_23
+  - first:
+      213: -6204741290177246318
+    second: _shadow_bushy_24
+  - first:
+      213: 5255577990442585402
+    second: _shadow_bushy_25
+  - first:
+      213: -5993799241426632389
+    second: _shadow_bushy_26
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +112,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,7 +121,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,7 +144,31 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -72,7 +177,574 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: _shadow_bushy_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8cb8173b66635440800000000000000
+      internalID: 4923391428317985931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c27b5b2f9c80c7f0800000000000000
+      internalID: -594320535557803324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 3
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e482f6a95d8426800800000000000000
+      internalID: 604125382277277774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_3
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c47d0ae42b1e4cf0800000000000000
+      internalID: -266245482608757559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_4
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 4
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b84e834a54651d90800000000000000
+      internalID: -7127680496400709451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_5
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b4260d2b3a18d20800000000000000
+      internalID: 3279081992098040625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_6
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b67fb509295de0190800000000000000
+      internalID: -7994217463072163989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_7
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 3
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 886ab3763fb8f0480800000000000000
+      internalID: -8930765658527127928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_8
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94129b5a1e38b45c0800000000000000
+      internalID: -4230142419813195447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_9
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 4
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ad1cb464a79337d0800000000000000
+      internalID: -2939839399422321239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_10
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31c21500e3e780a90800000000000000
+      internalID: -7347483987296572397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_11
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d91b06d2fb3f57e0800000000000000
+      internalID: -1774633814001509932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_12
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 3
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de4e341d9c7f64b20800000000000000
+      internalID: 3118452238172021997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_13
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 2
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 254a6be6d93125e50800000000000000
+      internalID: 6796516354543756370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_14
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 3
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dd375adc1b876fe0800000000000000
+      internalID: -1195834220005081648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_15
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 4
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f0aefe4b8993ba0800000000000000
+      internalID: -6108683516664738036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_16
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9b18091c911ccb80800000000000000
+      internalID: -8373298245056062561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_17
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 3
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f4074f5df935950800000000000000
+      internalID: 6436664033720422281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_18
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 4
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ec6b38224ae1b5e0800000000000000
+      internalID: -1895476398282543896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_19
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4edfe4458dd7aef00800000000000000
+      internalID: 1146867423200083428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_20
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 2
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92fad98e36cf097f0800000000000000
+      internalID: -607708443660406999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_21
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 5
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e39f72022837ce50800000000000000
+      internalID: 6829489078652605411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_22
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 3
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3687c8d0351e14350800000000000000
+      internalID: 5999323925460056163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_23
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 3
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b701497a7120b240800000000000000
+      internalID: 4805377612308350900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_24
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 3
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29b49c3bba454e9a0800000000000000
+      internalID: -6204741290177246318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_25
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 4
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d01b946509fe840800000000000000
+      internalID: 5255577990442585402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: _shadow_bushy_26
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 4
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3182cfa85fb1dca0800000000000000
+      internalID: -5993799241426632389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
