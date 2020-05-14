@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f7a4dc999c1d4673bf8d1fc0405d6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Boss Boi
+  Name: Bushy
   MaxHealth: 20
   MoveSpeed: 2
   Damage: 1

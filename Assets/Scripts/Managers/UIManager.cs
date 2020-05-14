@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 /// <summary>
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     public SpriteRenderer CameraOverlay;
     public Color PlayerFocusColor, PlayerDeathColor;
     public Image FullOverlay;
+    public PostProcessVolume PostProcess;
 
     [Header("Boss")] 
     [SerializeField] private bool SceneHasBoss;
@@ -40,8 +42,6 @@ public class UIManager : MonoBehaviour
     public GameObject LoadingScreen;
 
     private List<Image> playerHearts = new List<Image>();
-
-    // private List<Slider> playerFocus = new List<Slider>();
     
     
     void Awake()
@@ -52,11 +52,6 @@ public class UIManager : MonoBehaviour
         {
             playerHearts.Add(child.GetComponent<Image>());
         }
-
-        // foreach (Transform child in PlayerFocusBar.transform)
-        // {
-        //     playerFocus.Add(child.GetComponent<Slider>());
-        // }
     }
 
     private void Start()

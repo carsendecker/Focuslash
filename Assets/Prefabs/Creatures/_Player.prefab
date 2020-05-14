@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1253622041}
-  - component: {fileID: 1253622042}
   - component: {fileID: 47307642}
   m_Layer: 0
   m_Name: Attack Range
@@ -32,22 +31,6 @@ Transform:
   m_Father: {fileID: 344415781491089922}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1253622042
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253622040}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.285
 --- !u!212 &47307642
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -156,7 +139,7 @@ MonoBehaviour:
   AttackCount: 1
   iFrameTime: 0.5
   FocusRechargeRate: 0.65
-  AttackLineRange: 5
+  AttackLineRange: 4.1
   CurrentFocus: 0
   AttackLinePrefab: {fileID: 2989321023571445804, guid: 9c105aa3d61bb47209c23d63a3d90305,
     type: 3}
@@ -169,6 +152,7 @@ MonoBehaviour:
   selectTargetSound: {fileID: 8300000, guid: 9915dad56a6ef40b4bdfefa67139a48f, type: 3}
   wallBumpSound: {fileID: 8300000, guid: effb8d3ad69a1412d907cb87ec302c62, type: 3}
   deathSound: {fileID: 8300000, guid: b1fc79261c1f24d119237d93e988d6f4, type: 3}
+  deathSoundVoice: {fileID: 8300000, guid: 5e2d15dd17fa44208933dac1bd84c1dd, type: 3}
   canMove: 0
   anim: {fileID: 589420943}
 --- !u!212 &344415781491089921
