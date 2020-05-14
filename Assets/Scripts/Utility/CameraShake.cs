@@ -45,7 +45,7 @@ public class CameraShake : MonoBehaviour {
 		else
 		{
 			shakeDuration = 0f;
-//			transform.localPosition = initialPosition;
+			transform.localPosition = initialPosition;
 		}
 	}
 	
