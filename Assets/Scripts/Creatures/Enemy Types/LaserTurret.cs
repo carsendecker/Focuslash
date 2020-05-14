@@ -25,6 +25,9 @@ public class LaserTurret : Enemy
 //    private float maxColY = 0.62f;
 //    private bool growCol;
     
+    //Animation
+     public Animator animator;
+     
     protected override void Start() {
         base.Start();
         laserCol = Laser.GetComponent<Collider2D>();
@@ -57,6 +60,10 @@ public class LaserTurret : Enemy
         }
 
         HealthBar.value = Mathf.Lerp(HealthBar.value, health, 0.1f);
+        
+        animator.SetFloat("Horizontal", targetPos.x);
+        animator.SetFloat("Vertical", targetPos.y);
+        
     }
 
     private void NewAttackTimer()
