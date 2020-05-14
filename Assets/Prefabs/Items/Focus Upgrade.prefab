@@ -9617,6 +9617,7 @@ MonoBehaviour:
     type: 3}
   DeathParticleMoveSpeed: 13
   floatingMaxOffset: 0.31
+  PickupSound: {fileID: 8300000, guid: 4c1bb91988e374d8085296aa7e13ed52, type: 3}
 --- !u!58 &6429128513685888668
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         
         Services.Audio.PlaySound(Services.Player.deathSound, SourceType.CreatureSound);
+        Services.Audio.PlaySound(Services.Player.deathSoundVoice, SourceType.CreatureSound);
+
         Services.Audio.StopMusic();
         
         yield return new WaitForSecondsRealtime(1.5f);

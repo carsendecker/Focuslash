@@ -116,7 +116,8 @@ public class AttackPhase : PlayerPhase
 		player.iFramesForSeconds(0.5f, false);
 		player.AttackPositionQueue.Clear();
 		
-		// player.PaintTrailParticles.Stop();
+		player.rb.velocity /= 2f;
+
 
 		Services.Events.Fire(new PlayerLeftAttackPhase());
 	}

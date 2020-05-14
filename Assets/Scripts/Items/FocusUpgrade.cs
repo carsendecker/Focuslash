@@ -10,6 +10,7 @@ public class FocusUpgrade : Creature
     public GameObject DeathParticles;
     public float DeathParticleMoveSpeed = 3;
     public float floatingMaxOffset;
+    public AudioClip PickupSound;
 
     //Stuff for the cool obtainment "cutscene"
     private ParticleSystem[] particles;
@@ -65,6 +66,7 @@ public class FocusUpgrade : Creature
     {
         if (!dead)
         {
+            Services.Audio.PlaySound(PickupSound, SourceType.CreatureSound);
             Destroy(GetComponent<Collider2D>());
             StartCoroutine(ObtainmentCeremony());
         }
