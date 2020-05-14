@@ -126,6 +126,7 @@ public class PlayerController : Creature
 		
 	}
 
+	//Heals the player
 	public override void Heal(int amountToHeal = 999)
 	{
 		base.Heal(amountToHeal);
