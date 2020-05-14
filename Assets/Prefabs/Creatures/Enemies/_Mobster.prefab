@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4531697329721051144}
   - component: {fileID: 1978881958325365035}
+  - component: {fileID: 6325988639510419892}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6325988639510419892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171991459566235928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d99e6cc6bfa203479abd2441800599b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4306195767890038928
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +210,7 @@ MonoBehaviour:
   AttackRestTime: 1
   DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
     type: 3}
-  animator: {fileID: 2460048285538170957}
+  animator: {fileID: 6325988639510419892}
 --- !u!61 &3683817992597609235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -246,7 +266,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8294495241791088127}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6717ea2b6c78ab048b29fb627c099740, type: 2}
   m_CullingMode: 0
