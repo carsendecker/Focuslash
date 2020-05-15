@@ -104,6 +104,7 @@ MonoBehaviour:
   MinDistanceFromPlayer: 2.2
   DeathParticles: {fileID: 3489350140759512525, guid: e200f945d72584aa5be5396faed451a4,
     type: 3}
+  animator: {fileID: 5347648281325684908}
 --- !u!50 &6889375660965388015
 Rigidbody2D:
   serializedVersion: 4
@@ -260,6 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3719287906323130779}
   - component: {fileID: 8812423813029832556}
+  - component: {fileID: 5347648281325684908}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -332,3 +334,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5347648281325684908
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342509176663144614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2d6ea6bc4221054ba900bb3fb11918d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
