@@ -45,11 +45,15 @@ public class CameraShake : MonoBehaviour {
 		else
 		{
 			shakeDuration = 0f;
-//			transform.localPosition = initialPosition;
+			transform.localPosition = initialPosition;
 		}
 	}
 	
 	public void ShakeCamera(float shakeDuration) {
+		if (this.shakeDuration > 0)
+		{
+			transform.localPosition = initialPosition;
+		}
 		initialPosition = transform.localPosition;
 		this.shakeDuration = shakeDuration;
 		elapsed = 0;

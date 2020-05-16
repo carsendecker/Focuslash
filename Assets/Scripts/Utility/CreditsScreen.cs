@@ -16,6 +16,7 @@ public class CreditsScreen : MonoBehaviour
         Title.alpha = 0;
         foreach (var name in Names)
         {
+            name.gameObject.SetActive(false);
             foreach (TMP_Text child in name.GetComponentsInChildren<TMP_Text>())
             {
                 child.alpha = 0;
@@ -27,21 +28,22 @@ public class CreditsScreen : MonoBehaviour
     private IEnumerator Credits()
     {
         StartCoroutine(FadeText(Title, true));
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         StartCoroutine(FadeText(Title, false));
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         
         foreach (TMP_Text name in Names)
         {
+            name.gameObject.SetActive(true);
             foreach (TMP_Text child in name.GetComponentsInChildren<TMP_Text>())
             {
                 StartCoroutine(FadeText(child, true));
                 yield return new WaitForSeconds(0.1f);
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2.5f);
         }
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6.75f);
         
         foreach (TMP_Text name in Names)
         {
