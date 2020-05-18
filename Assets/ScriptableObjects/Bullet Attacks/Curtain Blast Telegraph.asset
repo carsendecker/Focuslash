@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4fe05ae33ea4e39bb4703ac8889bb1, type: 3}
+  m_Name: Curtain Blast Telegraph
+  m_EditorClassIdentifier: 
+  DamagePerHit: 1
+  BulletPrefab: {fileID: 3196917951569527822, guid: f88c2c9b8284e44069cb23ae1aef3f42,
+    type: 3}
+  FireSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  AttackDuration: 1.9
+  RotationSpeed: 0
+  Patterns:
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -6
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 6
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -4
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 4
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -2
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 2
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 0
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -6
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 6
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -4
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 4
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -2
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 2
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 0

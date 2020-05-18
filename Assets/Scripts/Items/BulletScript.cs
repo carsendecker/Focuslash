@@ -7,6 +7,7 @@ public class BulletScript : MonoBehaviour
 {
     public float MoveSpeed;
     public int Damage;
+    public bool DontHitPlayer;
 
     private Rigidbody2D rb;
     
@@ -22,7 +23,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !Services.Player.IsPhase(PlayerController.Phase.Attacking))
+        if (!DontHitPlayer && other.CompareTag("Player") && !Services.Player.IsPhase(PlayerController.Phase.Attacking))
         {
             Services.Player.TakeDamage(Damage);
             Kill();

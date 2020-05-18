@@ -10,36 +10,62 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb4fe05ae33ea4e39bb4703ac8889bb1, type: 3}
-  m_Name: Cone Left
+  m_Name: Cone LeftRight
   m_EditorClassIdentifier: 
   DamagePerHit: 1
   BulletPrefab: {fileID: 3196917951569527822, guid: cccbc1c4d946645d0988558449e7fd16,
     type: 3}
+  FireSound: {fileID: 8300000, guid: 5ebbd66af31db45a9ad1aa08870aa715, type: 3}
   AttackDuration: 1
   RotationSpeed: 0
   Patterns:
   - Direction: 2
-    FireRate: 1
-    BulletSpeed: 2
-    Angle: -60
+    FireRate: 10
+    BulletSpeed: 9
+    Angle: -40
     Offset: 0
   - Direction: 2
-    FireRate: 1
-    BulletSpeed: 2
-    Angle: 60
+    FireRate: 10
+    BulletSpeed: 9
+    Angle: 40
     Offset: 0
   - Direction: 2
-    FireRate: 2
-    BulletSpeed: 3
+    FireRate: 10
+    BulletSpeed: 9
     Angle: -30
     Offset: 0
   - Direction: 2
-    FireRate: 2
-    BulletSpeed: 3
+    FireRate: 10
+    BulletSpeed: 9
     Angle: 30
     Offset: 0
   - Direction: 2
-    FireRate: 4
-    BulletSpeed: 4
+    FireRate: 10
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 0
+  - Direction: 3
+    FireRate: 10
+    BulletSpeed: 9
+    Angle: 30
+    Offset: 0
+  - Direction: 3
+    FireRate: 10
+    BulletSpeed: 9
+    Angle: -30
+    Offset: 0
+  - Direction: 3
+    FireRate: 10
+    BulletSpeed: 9
+    Angle: 40
+    Offset: 0
+  - Direction: 3
+    FireRate: 10
+    BulletSpeed: 9
+    Angle: -40
+    Offset: 0
+  - Direction: 3
+    FireRate: 10
+    BulletSpeed: 9
     Angle: 0
     Offset: 0

@@ -128,6 +128,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1663242623, guid: 9d3cf347db4eb40b99fe86914b708c4b, type: 3}
+      propertyPath: m_text
+      value: Yhsub, The Tasteless
+      objectReference: {fileID: 0}
     - target: {fileID: 610898942592148228, guid: 9d3cf347db4eb40b99fe86914b708c4b,
         type: 3}
       propertyPath: m_IsActive
@@ -543,7 +547,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 739202164, guid: d31783117a40a4d598c23d50bebd7469, type: 3}
       propertyPath: MaxHealth
-      value: 25
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 739202164, guid: d31783117a40a4d598c23d50bebd7469, type: 3}
+      propertyPath: Name
+      value: Yhsub, The Tasteless
       objectReference: {fileID: 0}
     - target: {fileID: 3603083882343320647, guid: d31783117a40a4d598c23d50bebd7469,
         type: 3}
@@ -600,10 +608,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3870573447116420113, guid: d31783117a40a4d598c23d50bebd7469,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870573447116420113, guid: d31783117a40a4d598c23d50bebd7469,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.78
+      objectReference: {fileID: 0}
     - target: {fileID: 5304260624695278720, guid: d31783117a40a4d598c23d50bebd7469,
         type: 3}
       propertyPath: m_Name
       value: Boss Arena
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320184099842937182, guid: d31783117a40a4d598c23d50bebd7469,
+        type: 3}
+      propertyPath: CollisionModule.collisionMessages
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d31783117a40a4d598c23d50bebd7469, type: 3}
@@ -913,7 +936,7 @@ PrefabInstance:
     - target: {fileID: 6041797979246111083, guid: 131103acfa81f664c9fafc4dee7ca4a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.01
+      value: 0.0061
       objectReference: {fileID: 0}
     - target: {fileID: 6041797979246111083, guid: 131103acfa81f664c9fafc4dee7ca4a5,
         type: 3}
@@ -968,7 +991,7 @@ PrefabInstance:
     - target: {fileID: 6041797979246111083, guid: 131103acfa81f664c9fafc4dee7ca4a5,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.0722198
+      value: 1.0563741
       objectReference: {fileID: 0}
     - target: {fileID: 6041797979246111083, guid: 131103acfa81f664c9fafc4dee7ca4a5,
         type: 3}

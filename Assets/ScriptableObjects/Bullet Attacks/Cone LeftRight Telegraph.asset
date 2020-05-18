@@ -10,36 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb4fe05ae33ea4e39bb4703ac8889bb1, type: 3}
-  m_Name: Cone Right
+  m_Name: Cone LeftRight Telegraph
   m_EditorClassIdentifier: 
   DamagePerHit: 1
-  BulletPrefab: {fileID: 3196917951569527822, guid: cccbc1c4d946645d0988558449e7fd16,
+  BulletPrefab: {fileID: 3196917951569527822, guid: f88c2c9b8284e44069cb23ae1aef3f42,
     type: 3}
-  AttackDuration: 1
+  FireSound: {fileID: 8300000, guid: fcc1188273992445dba59422fe6a4769, type: 3}
+  AttackDuration: 1.85
   RotationSpeed: 0
   Patterns:
-  - Direction: 3
-    FireRate: 1
-    BulletSpeed: 2
-    Angle: -60
+  - Direction: 2
+    FireRate: 10
+    BulletSpeed: 13
+    Angle: -40
+    Offset: 0
+  - Direction: 2
+    FireRate: 10
+    BulletSpeed: 13
+    Angle: 40
     Offset: 0
   - Direction: 3
-    FireRate: 1
-    BulletSpeed: 2
-    Angle: 60
+    FireRate: 10
+    BulletSpeed: 13
+    Angle: 40
     Offset: 0
   - Direction: 3
-    FireRate: 2
-    BulletSpeed: 3
-    Angle: -30
-    Offset: 0
-  - Direction: 3
-    FireRate: 2
-    BulletSpeed: 3
-    Angle: 30
-    Offset: 0
-  - Direction: 3
-    FireRate: 4
-    BulletSpeed: 4
-    Angle: 0
+    FireRate: 10
+    BulletSpeed: 13
+    Angle: -40
     Offset: 0

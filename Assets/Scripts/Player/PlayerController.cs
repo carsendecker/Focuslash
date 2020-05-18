@@ -258,6 +258,10 @@ public class PlayerController : Creature
 			//TODO: Passing damage value of particles?
 			TakeDamage(1);
 		}
+		else if (other.CompareTag("Lethal"))
+		{
+			TakeDamage(99);
+		}
 	}
 	
 	#endregion
