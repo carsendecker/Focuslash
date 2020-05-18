@@ -13,6 +13,8 @@ public class WallbearerScript : Enemy
 
     private Vector3 direction;
     private SpriteRenderer sr;
+    
+    public Animator animator; 
 
     private void Start()
     {
@@ -36,6 +38,10 @@ public class WallbearerScript : Enemy
     
         direction = Vector3.Lerp(direction, targetPos - transform.position, 0.04f);
         rb.SetRotation(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+        
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     private void FixedUpdate()
