@@ -62,10 +62,14 @@ public class EnemySpawner : MonoBehaviour
 
         roomDoors = GetComponentsInChildren<BlockerDoorScript>();
 
+#if UNITY_EDITOR
+        
         if (RoomFinishedSound == null)
         {
             RoomFinishedSound = (AudioClip) AssetDatabase.LoadAssetAtPath("Assets/Sounds/Happy.wav", typeof(AudioClip));
         }
+#endif
+
     }
     
 

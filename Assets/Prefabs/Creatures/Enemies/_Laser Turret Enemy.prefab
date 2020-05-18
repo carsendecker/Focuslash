@@ -219,7 +219,7 @@ MonoBehaviour:
   Laser: {fileID: 5873420121983426846}
   TelegraphParticles: {fileID: 406170197811347491}
   LaserParticles: {fileID: 3958047740150143585}
-  AttackFrequency: 3.4
+  AttackFrequency: 3
   AttackFrequencyVariance: 0.5
   AttackLeadDistance: 3
   ChargeTime: 2.2
