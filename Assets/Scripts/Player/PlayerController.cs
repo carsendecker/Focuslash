@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerController : Creature
 {
@@ -33,7 +34,7 @@ public class PlayerController : Creature
 	public ParticleSystem PaintTrailParticles;
 	
 	//TODO: Ima fix this somehow, its gross
-	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, wallBumpSound, deathSound;
+	public AudioClip hurtSound, attackSound, enterSlomoSound, selectTargetSound, wallBumpSound, deathSound, deathSoundVoice;
 
 	[HideInInspector] public bool canMove;
 	[HideInInspector] public Queue<Vector2> AttackPositionQueue = new Queue<Vector2>();
@@ -41,6 +42,8 @@ public class PlayerController : Creature
 	private bool invincible;
 	private PlayerPhase currentPhase;
 	private Dictionary<Phase, PlayerPhase> Phases = new Dictionary<Phase, PlayerPhase>();
+	private Vignette ppVignette;
+
 
 	[Tooltip("The Animation component")] 
 	public Animator anim;
@@ -69,8 +72,9 @@ public class PlayerController : Creature
 		
 		//Initialize UI bars
 		Services.UI.UpdatePlayerHealth();
-		
-		
+		Services.UI.PostProcess.profile.TryGetSettings(out ppVignette);
+		ppVignette.color.overrideState = true;
+
 		SetPhase(Phase.Movement);
 	}
 	
@@ -96,6 +100,11 @@ public class PlayerController : Creature
 		iFramesForSeconds(iFrameTime, true);
 		
 		Services.UI.UpdatePlayerHealth();
+		if (health == 1)
+		{
+			ppVignette.color.Override(Color.red);
+			ppVignette.intensity.Override(0.4f);
+		}
 		
 		Services.Utility.ShakeCamera(0.5f, 0.3f);
 		Services.Audio.PlaySound(hurtSound, SourceType.CreatureSound);
@@ -117,10 +126,14 @@ public class PlayerController : Creature
 		
 	}
 
+	//Heals the player
 	public override void Heal(int amountToHeal = 999)
 	{
 		base.Heal(amountToHeal);
 		Services.UI.UpdatePlayerHealth();
+
+		ppVignette.color.Override(Color.black);
+		ppVignette.intensity.Override(0.26f);
 	}
 
 	//Kills the player
@@ -244,6 +257,10 @@ public class PlayerController : Creature
 		{
 			//TODO: Passing damage value of particles?
 			TakeDamage(1);
+		}
+		else if (other.CompareTag("Lethal"))
+		{
+			TakeDamage(99);
 		}
 	}
 	

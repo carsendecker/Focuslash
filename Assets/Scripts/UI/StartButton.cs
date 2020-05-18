@@ -5,10 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
-    
+    public Animator transition;
+    public float transitionTime = 1f; 
     public void StartTheGame()
     {
-        SceneManager.LoadScene("NewTutorial");
-        
+
+        StartCoroutine(LoadLevel("NewTutorial"));
     }
+
+    IEnumerator LoadLevel(string sceneName)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(sceneName);
+    }
+    
+    
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   DamagePerHit: 1
   BulletPrefab: {fileID: 3196917951569527822, guid: cccbc1c4d946645d0988558449e7fd16,
     type: 3}
+  FireSound: {fileID: 8300000, guid: bbd6959bb874947548ea43d90806516e, type: 3}
   AttackDuration: 5
   RotationSpeed: 1
   Patterns:

@@ -9,38 +9,18 @@ public class SlashPuzzle : MonoBehaviour
     [HideInInspector] public List<SlashSensor> SlashSensors = new List<SlashSensor>();
     public GameObject DoorToOpen;
     public AudioClip CompleteSound;
-
-    public bool Opened
-    {
-        get { return isOpened; }
-        set
-        {
-            isOpened = value;
-            if (value)
-            {
-                DoorToOpen.GetComponent<BlockerDoorScript>().makeDoorSlashable();
-                Services.Audio.PlaySound(CompleteSound, SourceType.AmbientSound);
-                Services.Events.Unregister<PlayerLeftAttackPhase>(ResetSensors);
-            }
-        }
-    }
-    private bool isOpened;
-
     
-    
+
     void Start()
     {
-        Services.Events.Register<PlayerLeftAttackPhase>(ResetSensors);
         DoorToOpen.GetComponent<BlockerDoorScript>().closeDoorWay();
     }
 
-    /// <summary>
-    /// Gets called when the player stops attacking. Resets all the sensors if they aren't all activated.
-    /// Otherwise, open the room.
-    /// </summary>
-    void ResetSensors(AGPEvent e)
+    public void SensorActivated()
     {
-        byte sensorsActive = 0;
+        if (!Services.Player.IsPhase(PlayerController.Phase.Attacking)) return;
+        
+        int sensorsActive = 0;
         foreach (SlashSensor sensor in SlashSensors)
         {
             if (sensor.Active) sensorsActive++;
@@ -48,15 +28,18 @@ public class SlashPuzzle : MonoBehaviour
 
         if (sensorsActive == SlashSensors.Count)
         {
-            Opened = true;
-            return;
+            Open();
         }
-        
+    }
+
+    private void Open()
+    {
         foreach (SlashSensor sensor in SlashSensors)
         {
-            if(sensor.Active)
-                sensor.Active = false;
+            sensor.Complete();
         }
         
+        DoorToOpen.GetComponent<BlockerDoorScript>().makeDoorSlashable();
+        Services.Audio.PlaySound(CompleteSound, SourceType.AmbientSound);
     }
 }

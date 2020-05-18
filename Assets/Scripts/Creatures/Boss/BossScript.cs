@@ -23,10 +23,12 @@ public class BossScript : Enemy
     
     public Transform EmitterParent;
     public float AttackCooldown;
-    public Rigidbody2D ShieldParent;
+    public Rigidbody2D ShieldParent, LaserParent;
     public EmitterContainer emitterObjs;
-    public AudioClip deathSound, whooshSound;
-    
+    public AudioClip deathSound, whooshSound, chargeSound, fireSound;
+    public ParticleSystem ChargeParticles, LaserParticles, TelegraphParticles;
+
+    public AttackPattern OpeningAttack;
     [Tooltip("List of different combinations of Bullet Attacks.")]
     public List<AttackPattern> AttackPatterns = new List<AttackPattern>();
 
@@ -90,12 +92,28 @@ public class BossScript : Enemy
         }
     }
 
+    private void GoInvincible(bool enabled)
+    {
+        if (enabled)
+        {
+            sr.color = Color.gray;
+            gameObject.tag = "EnemyWall";
+            invulnerable = true;
+        }
+        else
+        {
+            sr.color = Color.white;
+            gameObject.tag = "Enemy";
+            invulnerable = false;
+        }
+    }
+
 
     public override void Aggro(bool aggrod)
     {
         if (this.enabled && aggrod)
         {
-            state.TransitionTo<Idle>();
+            state.TransitionTo<Opener>();
         }
         
         base.Aggro(aggrod);
@@ -128,6 +146,10 @@ public class BossScript : Enemy
         StartCoroutine(DeathCutscene());
     }
 
+    /// <summary>
+    /// Slows down time & fades to white when the boss dies
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DeathCutscene()
     {
         Time.timeScale = 0f;
@@ -179,10 +201,24 @@ public class BossScript : Enemy
         }
     }
     
+    private class Opener : FiniteStateMachine<BossScript>.State
+    {
+        public override void OnEnter()
+        {
+            Attack opener = new Attack(Context, Context.OpeningAttack.bulletAttacks);
+            Context.taskManager.Do(opener);
+        }
+
+        public override void Update()
+        {
+            Context.taskManager.Update();
+        }
+    }
+    
     private class Idle : FiniteStateMachine<BossScript>.State
     {
         private float cooldownTimer;
-        private byte timesCharged;
+        private byte timesCharged = 0;
 
         public override void OnEnter()
         {
@@ -195,12 +231,12 @@ public class BossScript : Enemy
             
             if (cooldownTimer <= 0)
             {
-                //When at or below 2/3 HP and 1/3 HP, charge at the player
-                if ((Context.health <= Context.MaxHealth * (2/3) && timesCharged == 0) ||
-                    (Context.health <= Context.MaxHealth * (1/3) && timesCharged == 1))
+                //When at or below 2/3 HP and 1/3 HP, shoot laser at the player
+                if ((Context.health <= Context.MaxHealth * (2f/3f) && timesCharged == 0) ||
+                    (Context.health <= Context.MaxHealth * (1f/3f) && timesCharged == 1))
                 {
                     timesCharged++;
-                    TransitionTo<Charging>();
+                    TransitionTo<SuperLaser>();
                 }
                 else if (!Context.shieldUp && Context.health <= Context.MaxHealth / 2f)
                 {
@@ -226,18 +262,14 @@ public class BossScript : Enemy
             
         public override void OnEnter()
         {
-            Context.sr.color = Color.gray;
-            Context.gameObject.tag = "EnemyWall";
-            Context.invulnerable = true;
+            Context.GoInvincible(true);
 
             Context.StartCoroutine(PauseUntilAttack());
         }
 
         public override void OnExit()
         {
-            Context.sr.color = Color.white;
-            Context.gameObject.tag = "Enemy";
-            Context.invulnerable = false;
+            Context.GoInvincible(false);
         }
 
         public override void Update()
@@ -274,17 +306,73 @@ public class BossScript : Enemy
         
     }
     
-    private class Charging : FiniteStateMachine<BossScript>.State
+    /// <summary>
+    /// Enters this state at 2/3 and 1/3 HP, charges and fires a laser that breaks a pillar
+    /// </summary>
+    private class SuperLaser : FiniteStateMachine<BossScript>.State
     {
+        private Vector3 targetPos;
+        private bool wasShieldUp;
+        
         public override void OnEnter()
         {
-            Debug.Log("Is going to charge!");
+            Context.GoInvincible(true);
+
+            wasShieldUp = Context.shieldUp;
+            
+            if (wasShieldUp)
+            {
+                Context.ShieldParent.gameObject.SetActive(false);
+                Context.shieldUp = false;
+            }
+
+            Context.StartCoroutine(FireLaser());
+        }
+
+        public override void OnExit()
+        {
+            Context.GoInvincible(false);
+            
+            if (wasShieldUp)
+            {
+                Context.ShieldParent.gameObject.SetActive(true);
+                Context.shieldUp = true;
+            }
+        }
+
+        private IEnumerator FireLaser()
+        {
+            Context.ChargeParticles.Play();
+            Context.TelegraphParticles.Play();
+            Services.Audio.PlaySound(Context.chargeSound, SourceType.CreatureSound);
+            
+            yield return new WaitForSeconds(Context.ChargeParticles.main.duration);
+            
+            Context.ChargeParticles.Stop();
+            Context.TelegraphParticles.Stop();
+            
+            yield return new WaitForSeconds(0.4f);
+            
+            Context.LaserParticles.Play();
+            Services.Audio.PlaySound(Context.fireSound, SourceType.CreatureSound);
+            Services.Utility.ShakeCamera(Context.LaserParticles.main.duration, 0.5f);
+
+            yield return new WaitForSeconds(Context.LaserParticles.main.duration);
+            
+            Context.LaserParticles.Stop();
+            
+            yield return new WaitForSeconds(1f);
+            
             TransitionTo<Idle>();
         }
+        
 
         public override void Update()
         {
-            
+            targetPos = Vector3.Lerp(targetPos, Services.Player.transform.position, 0.3f);
+            var dir = targetPos - Context.LaserParent.transform.position;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            Context.LaserParent.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
         }
         
     }
@@ -317,7 +405,6 @@ public class BossScript : Enemy
        
         protected override void Initialize()
         {
-            Debug.Log("Initialized!");
             currentAttack = 0;
             duration = 0;
             
@@ -368,6 +455,8 @@ public class BossScript : Enemy
             //Shoot each pattern in the attack at their fire rate
             if (!coroutinesStarted)
             {
+                Services.Audio.PlaySound(attack.FireSound, SourceType.CreatureSound);
+                
                 foreach (var pattern in attack.Patterns)
                 {
                     AttackCoroutines.Add(boss.StartCoroutine(Shoot(attack.BulletPrefab, pattern)));

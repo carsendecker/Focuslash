@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - AggroTrigger
   - EnemyWall
+  - Lethal
   layers:
   - Default
   - TransparentFX

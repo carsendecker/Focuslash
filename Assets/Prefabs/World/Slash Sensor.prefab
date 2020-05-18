@@ -72,8 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 289406419
   m_SortingLayer: -2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 65a60f6f28e112b49a44991b520355e5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fbdf1031df70249ae8fc38ab9557fbfa, type: 3}
+  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,13 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454df1791b4dd46e0a2806e674606f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Slash Sensor
-  MaxHealth: 0
-  MoveSpeed: 0
-  Damage: 0
-  rb: {fileID: 0}
-  InactiveColor: {r: 1, g: 1, b: 1, a: 1}
+  InactiveColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
   ActiveColor: {r: 0.11792451, g: 0.9363778, b: 1, a: 1}
+  ActiveTime: 0.25
+  Active: 0
+  stepSound: {fileID: 8300000, guid: e86f04bd061c841e7927d93559ccf9e2, type: 3}
 --- !u!61 &7793558116483551151
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112,14 +110,14 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.9142857, y: 0.9142857}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

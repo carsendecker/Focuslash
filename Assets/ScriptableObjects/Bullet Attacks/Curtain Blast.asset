@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4fe05ae33ea4e39bb4703ac8889bb1, type: 3}
+  m_Name: Curtain Blast
+  m_EditorClassIdentifier: 
+  DamagePerHit: 1
+  BulletPrefab: {fileID: 3196917951569527822, guid: cccbc1c4d946645d0988558449e7fd16,
+    type: 3}
+  FireSound: {fileID: 8300000, guid: 5ebbd66af31db45a9ad1aa08870aa715, type: 3}
+  AttackDuration: 0.75
+  RotationSpeed: 0
+  Patterns:
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -6
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 6
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -4
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 4
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -2
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 2
+  - Direction: 1
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 0
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -6
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 6
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -4
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 4
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: -2
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 2
+  - Direction: 0
+    FireRate: 9
+    BulletSpeed: 9
+    Angle: 0
+    Offset: 0

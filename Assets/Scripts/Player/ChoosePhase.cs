@@ -41,17 +41,17 @@ public class ChoosePhase : PlayerPhase
 		
 		startingFocus = player.CurrentFocus;
 
-		player.GetComponent<Rigidbody2D>().velocity /= 5;
+		player.GetComponent<Rigidbody2D>().velocity /= 50;
 
 		//Turns on range indicator sprite
 		player.GetComponentsInChildren<SpriteRenderer>()[1].enabled = true;
 		Services.UI.AttackInstructionText.gameObject.SetActive(true);
 
 
-		if (Mathf.Floor(startingFocus) < 1)
-		{
-			
-		}
+		// if (Mathf.Floor(startingFocus) < 1)
+		// {
+		// 	
+		// }
 		CreateNewLine(player.transform.position);
 		player.CurrentFocus--;
 	}

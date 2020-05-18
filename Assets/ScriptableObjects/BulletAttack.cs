@@ -33,6 +33,8 @@ public class BulletAttack : Attack
 	}
 
 	public GameObject BulletPrefab;
+
+	public AudioClip FireSound;
 	
 	[Tooltip("Time (in seconds) that the attack lasts.")]
 	public float AttackDuration;

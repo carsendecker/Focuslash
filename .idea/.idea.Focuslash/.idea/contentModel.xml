@@ -93,6 +93,7 @@
             <e p="RoomTransistions.cs" t="Include" />
             <e p="SlashPuzzle.cs" t="Include" />
             <e p="SlashSensor.cs" t="Include" />
+            <e p="UnstablePillar.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
